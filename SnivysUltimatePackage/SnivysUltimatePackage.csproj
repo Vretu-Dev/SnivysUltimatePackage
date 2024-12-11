@@ -12,6 +12,7 @@
         <AssemblyName>SnivysUltimatePackage</AssemblyName>
         <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
         <FileAlignment>512</FileAlignment>
+        <LangVersion>latest</LangVersion>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
         <PlatformTarget>AnyCPU</PlatformTarget>
@@ -34,7 +35,7 @@
     </PropertyGroup>
     <ItemGroup>
         <Reference Include="Assembly-CSharp">
-            <HintPath>$(EXILED_REFERENCES)\Assembly-CSharp-Publicized.dll</HintPath>
+            <HintPath>..\packages\ExMod.Exiled.9.0.0-alpha.4\lib\net48\Assembly-CSharp-Publicized.dll</HintPath>
         </Reference>
         <Reference Include="Assembly-CSharp-firstpass">
             <HintPath>$(EXILED_REFERENCES)\Assembly-CSharp-firstpass.dll</HintPath>
@@ -94,7 +95,82 @@
       <None Include="packages.config" />
     </ItemGroup>
     <ItemGroup>
+      <Compile Include="API\ICustomRole.cs" />
+      <Compile Include="API\StartTeam.cs" />
+      <Compile Include="Commands\ServerEventsCommands\EventCommands\BlackoutCommand.cs" />
+      <Compile Include="Commands\ServerEventsCommands\EventCommands\ChaoticCommand.cs" />
+      <Compile Include="Commands\ServerEventsCommands\EventCommands\FreezingTemperaturesCommand.cs" />
+      <Compile Include="Commands\ServerEventsCommands\EventCommands\NameRedactedCommand.cs" />
+      <Compile Include="Commands\ServerEventsCommands\EventCommands\PeanutHyrdraCommand.cs" />
+      <Compile Include="Commands\ServerEventsCommands\EventCommands\PeanutInfectionCommand.cs" />
+      <Compile Include="Commands\ServerEventsCommands\EventCommands\ShortCommand.cs" />
+      <Compile Include="Commands\ServerEventsCommands\EventCommands\VariableLightsCommand.cs" />
+      <Compile Include="Commands\ServerEventsCommands\MainCommand.cs" />
+      <Compile Include="Commands\ServerEventsCommands\StopCommand.cs" />
+      <Compile Include="Configs\CustomConfigs\CustomItemsConfig.cs" />
+      <Compile Include="Configs\CustomConfigs\CustomRolesAbilitiesConfig.cs" />
+      <Compile Include="Configs\CustomConfigs\CustomRolesConfig.cs" />
       <Compile Include="Configs\MasterConfig.cs" />
+      <Compile Include="Configs\MicroDamageReductionConfig.cs" />
+      <Compile Include="Configs\ServerEventsConfigs\BlackoutConfig.cs" />
+      <Compile Include="Configs\ServerEventsConfigs\ChaoticConfig.cs" />
+      <Compile Include="Configs\ServerEventsConfigs\FreezingTemperaturesConfig.cs" />
+      <Compile Include="Configs\ServerEventsConfigs\NameRedactedConfig.cs" />
+      <Compile Include="Configs\ServerEventsConfigs\PeanutHydraConfig.cs" />
+      <Compile Include="Configs\ServerEventsConfigs\PeanutInfectionConfig.cs" />
+      <Compile Include="Configs\ServerEventsConfigs\ServerEventsMasterConfig.cs" />
+      <Compile Include="Configs\ServerEventsConfigs\ShortConfig.cs" />
+      <Compile Include="Configs\ServerEventsConfigs\VariableLightsConfig.cs" />
+      <Compile Include="Custom\Abilities\ActiveCamo.cs" />
+      <Compile Include="Custom\Abilities\ChargeAbility.cs" />
+      <Compile Include="Custom\Abilities\CustomRoleEscape.cs" />
+      <Compile Include="Custom\Abilities\Detect.cs" />
+      <Compile Include="Custom\Abilities\Disguised.cs" />
+      <Compile Include="Custom\Abilities\DoorPicking.cs" />
+      <Compile Include="Custom\Abilities\DwarfAbility.cs" />
+      <Compile Include="Custom\Abilities\Flipped.cs" />
+      <Compile Include="Custom\Abilities\GivingCandyAbility.cs" />
+      <Compile Include="Custom\Abilities\HealingMist.cs" />
+      <Compile Include="Custom\Abilities\HealOnKill.cs" />
+      <Compile Include="Custom\Abilities\Martyrdom.cs" />
+      <Compile Include="Custom\Abilities\MoveSpeedReduction.cs" />
+      <Compile Include="Custom\Abilities\ReactiveHume.cs" />
+      <Compile Include="Custom\Abilities\RemoveDisguise.cs" />
+      <Compile Include="Custom\Abilities\RestrictedEscape.cs" />
+      <Compile Include="Custom\Abilities\RestrictedItems.cs" />
+      <Compile Include="Custom\Abilities\SpeedOnKill.cs" />
+      <Compile Include="Custom\Abilities\Wisp.cs" />
+      <Compile Include="Custom\Items\Armor\ExplosiveResistantArmor.cs" />
+      <Compile Include="Custom\Items\Firearms\ExplosiveRoundRevolver.cs" />
+      <Compile Include="Custom\Items\Grenades\NerveAgent.cs" />
+      <Compile Include="Custom\Items\Grenades\SmokeGrenade.cs" />
+      <Compile Include="Custom\Items\Injections\DeadringerSyringe.cs" />
+      <Compile Include="Custom\Items\Injections\KySyringe.cs" />
+      <Compile Include="Custom\Items\Other\PhantomLantern.cs" />
+      <Compile Include="Custom\Roles\A7Chaos.cs" />
+      <Compile Include="Custom\Roles\Biochemist.cs" />
+      <Compile Include="Custom\Roles\BorderPatrol.cs" />
+      <Compile Include="Custom\Roles\CISpy.cs" />
+      <Compile Include="Custom\Roles\ContainmentGuard.cs" />
+      <Compile Include="Custom\Roles\ContainmentScientist.cs" />
+      <Compile Include="Custom\Roles\Flipped.cs" />
+      <Compile Include="Custom\Roles\JuggernautChaos.cs" />
+      <Compile Include="Custom\Roles\LightGuard.cs" />
+      <Compile Include="Custom\Roles\MtfWisp.cs" />
+      <Compile Include="Custom\Roles\Nightfall.cs" />
+      <Compile Include="Custom\Roles\TelepathicChaos.cs" />
+      <Compile Include="EventHandlers\Custom\CustomRoleEventHandler.cs" />
+      <Compile Include="EventHandlers\Custom\CustomRoleMethods.cs" />
+      <Compile Include="EventHandlers\MicroDamageReductionEventHandler.cs" />
+      <Compile Include="EventHandlers\ServerEventsEventHandlers\BlackoutEventHandlers.cs" />
+      <Compile Include="EventHandlers\ServerEventsEventHandlers\ChaoticEventHandlers.cs" />
+      <Compile Include="EventHandlers\ServerEventsEventHandlers\FreezingTemperaturesEventHandlers.cs" />
+      <Compile Include="EventHandlers\ServerEventsEventHandlers\NameRedactedEventHandlers.cs" />
+      <Compile Include="EventHandlers\ServerEventsEventHandlers\PeanutHydraEventHandlers.cs" />
+      <Compile Include="EventHandlers\ServerEventsEventHandlers\PeanutInfectionEventHandlers.cs" />
+      <Compile Include="EventHandlers\ServerEventsEventHandlers\ServerEventsMainEventHandler.cs" />
+      <Compile Include="EventHandlers\ServerEventsEventHandlers\ShortEventHandlers.cs" />
+      <Compile Include="EventHandlers\ServerEventsEventHandlers\VariableLightsEventHandlers.cs" />
       <Compile Include="Plugin.cs" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
