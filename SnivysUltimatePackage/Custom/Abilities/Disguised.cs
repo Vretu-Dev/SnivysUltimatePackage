@@ -45,25 +45,23 @@ namespace SnivysUltimatePackage.Custom.Abilities
         {
             if (ev.Attacker == null)
                 return;
-            if (PlayersWithDisguisedEffect.Contains(ev.Player))
+            if (!PlayersWithDisguisedEffect.Contains(ev.Player)) 
+                return;
+            if (ev.Player.IsNTF && (ev.Attacker.IsCHI || ev.Attacker.Role.Type == RoleTypeId.ClassD))
             {
-                if (ev.Player.IsNTF && (ev.Attacker.IsCHI || ev.Attacker.Role.Type == RoleTypeId.ClassD))
-                {
-                    if (DisguisedHintDisplay)
-                        ev.Attacker.ShowHint(DisguisedCi, DisguisedTextDisplayTime);
-                    else
-                        ev.Attacker.Broadcast(new Exiled.API.Features.Broadcast(DisguisedCi, (ushort)DisguisedTextDisplayTime));
-                    ev.IsAllowed = false;
-                }
-                else if (ev.Player.IsCHI && (ev.Attacker.IsNTF || ev.Attacker.Role.Type == RoleTypeId.FacilityGuard || 
-                                             ev.Attacker.Role.Type == RoleTypeId.Scientist))
-                {
-                    if (DisguisedHintDisplay)
-                        ev.Attacker.ShowHint(DisguisedMtf, DisguisedTextDisplayTime);
-                    else
-                        ev.Attacker.Broadcast(new Exiled.API.Features.Broadcast(DisguisedMtf, (ushort)DisguisedTextDisplayTime));
-                    ev.IsAllowed = false;
-                }
+                if (DisguisedHintDisplay)
+                    ev.Attacker.ShowHint(DisguisedCi, DisguisedTextDisplayTime);
+                else
+                    ev.Attacker.Broadcast(new Exiled.API.Features.Broadcast(DisguisedCi, (ushort)DisguisedTextDisplayTime));
+                ev.IsAllowed = false;
+            }
+            else if (ev.Player.IsCHI && (ev.Attacker.IsNTF || ev.Attacker.Role.Type == RoleTypeId.Scientist))
+            {
+                if (DisguisedHintDisplay)
+                    ev.Attacker.ShowHint(DisguisedMtf, DisguisedTextDisplayTime);
+                else
+                    ev.Attacker.Broadcast(new Exiled.API.Features.Broadcast(DisguisedMtf, (ushort)DisguisedTextDisplayTime));
+                ev.IsAllowed = false;
             }
         }
 
