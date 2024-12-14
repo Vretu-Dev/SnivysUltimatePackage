@@ -24,8 +24,8 @@ namespace SnivysUltimatePackage
         public override string Name { get; } = "Snivy's Ultimate Plugin Package";
         public override string Author { get; } = "Vicious Vikki";
         public override string Prefix { get; } = "VVUltimatePluginPackage";
-        public override Version Version { get; } = new Version(1, 0, 0);
-        public override Version RequiredExiledVersion { get; } = new Version(9, 0, 0,4);
+        public override Version Version { get; } = new Version(1, 1, 0);
+        public override Version RequiredExiledVersion { get; } = new Version(9, 0, 0);
         public static int ActiveEvent = 0;
         
         public Dictionary<StartTeam, List<ICustomRole>> Roles { get; } = new();
@@ -33,6 +33,7 @@ namespace SnivysUltimatePackage
         public CustomRoleEventHandler CustomRoleEventHandler;
         public ServerEventsMainEventHandler ServerEventsMainEventHandler;
         public MicroDamageReductionEventHandler MicroDamageReductionEventHandler;
+        public MicroEvaporateEventHandlers MicroEvaporateEventHandlers;
 
         public override void OnEnabled()
         {
@@ -110,6 +111,12 @@ namespace SnivysUltimatePackage
                 Player.Hurting += MicroDamageReductionEventHandler.OnPlayerHurting;
             }
 
+            if (Instance.Config.MicroEvaporateConfig.IsEnabled)
+            {
+                MicroEvaporateEventHandlers = new MicroEvaporateEventHandlers(this);
+                Player.Dying += MicroEvaporateEventHandlers.OnDying;
+            }
+
             base.OnEnabled();
         }
 
@@ -139,6 +146,12 @@ namespace SnivysUltimatePackage
             {
                 Player.Hurting -= MicroDamageReductionEventHandler.OnPlayerHurting;
                 MicroDamageReductionEventHandler = null;
+            }
+            
+            if (Instance.Config.MicroEvaporateConfig.IsEnabled)
+            {
+                Player.Dying -= MicroEvaporateEventHandlers.OnDying;
+                MicroEvaporateEventHandlers = null;
             }
 
             Instance = null;

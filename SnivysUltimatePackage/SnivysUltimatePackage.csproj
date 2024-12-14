@@ -115,6 +115,7 @@
       <Compile Include="Configs\CustomConfigs\CustomRolesConfig.cs" />
       <Compile Include="Configs\MasterConfig.cs" />
       <Compile Include="Configs\MicroDamageReductionConfig.cs" />
+      <Compile Include="Configs\MicroEvaporateConfig.cs" />
       <Compile Include="Configs\ServerEventsConfigs\BlackoutConfig.cs" />
       <Compile Include="Configs\ServerEventsConfigs\ChaoticConfig.cs" />
       <Compile Include="Configs\ServerEventsConfigs\FreezingTemperaturesConfig.cs" />
@@ -165,6 +166,7 @@
       <Compile Include="EventHandlers\Custom\CustomRoleEventHandler.cs" />
       <Compile Include="EventHandlers\Custom\CustomRoleMethods.cs" />
       <Compile Include="EventHandlers\MicroDamageReductionEventHandler.cs" />
+      <Compile Include="EventHandlers\MicroEvaporateEventHandlers.cs" />
       <Compile Include="EventHandlers\ServerEventsEventHandlers\BlackoutEventHandlers.cs" />
       <Compile Include="EventHandlers\ServerEventsEventHandlers\ChaoticEventHandlers.cs" />
       <Compile Include="EventHandlers\ServerEventsEventHandlers\FreezingTemperaturesEventHandlers.cs" />

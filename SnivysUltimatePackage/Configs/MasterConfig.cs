@@ -18,5 +18,7 @@ namespace SnivysUltimatePackage.Configs
         public MicroDamageReductionConfig MicroDamageReductionConfig { get; set; } = new();
         
         public ServerEventsMasterConfig ServerEventsMasterConfig { get; set; } = new();
+        
+        public MicroEvaporateConfig MicroEvaporateConfig { get; set; } = new();
     }
 }
