@@ -90,14 +90,18 @@ public class CustomRoleEventHandler
         List<ICustomRole>.Enumerator roles = new();
         switch (ev.NextKnownTeam)
         {
-            case SpawnableTeamType.ChaosInsurgency:
-                if (Plugin.Roles.TryGetValue(StartTeam.Chaos, out List<ICustomRole>? role))
+            case (Faction)SpawnableFaction.ChaosWave or (Faction)SpawnableFaction.ChaosMiniWave:
+            {
+                if (Plugin.Roles.TryGetValue(StartTeam.Chaos, out List<ICustomRole> role))
                     roles = role.GetEnumerator();
                 break;
-            case SpawnableTeamType.NineTailedFox:
-                if (Plugin.Roles.TryGetValue(StartTeam.Ntf, out List<ICustomRole>? pluginRole))
+            }
+            case (Faction)SpawnableFaction.NtfWave or (Faction)SpawnableFaction.NtfMiniWave:
+            {
+                if (Plugin.Roles.TryGetValue(StartTeam.Ntf, out List<ICustomRole> pluginRole))
                     roles = pluginRole.GetEnumerator();
                 break;
+            }
         }
 
         foreach (Player player in ev.Players)

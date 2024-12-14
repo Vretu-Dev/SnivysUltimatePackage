@@ -721,14 +721,15 @@ public class ChaoticEventHandlers
                 case 20:
                     if (_config.PlayerShittingPantsEvent)
                     {
-                        Log.Debug("Player shitting pants is active, running code");
+                        Log.Warn("Player shitting pants event is broken, consider on disabling this event in your config");
+                        /*Log.Debug("Player shitting pants is active, running code");
                         foreach (PlayerAPI player in PlayerAPI.List)
                         {
                             Log.Debug($"Spawning a tantrum where {player} is at");
                             Map.PlaceTantrum(player.Position);
                             player.Broadcast(new Exiled.API.Features.Broadcast(_config.PlayerShittingPantsBroadcast,
                                 (ushort)_config.BroadcastDisplayTime));
-                        }
+                        }*/
                     }
                     else
                     {
