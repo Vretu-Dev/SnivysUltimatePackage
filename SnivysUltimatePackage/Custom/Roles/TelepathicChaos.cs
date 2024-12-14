@@ -66,24 +66,6 @@ public class TelepathicChaos : CustomRole, ICustomRole
             Duration = 0,
             Cooldown = 120,
             DetectRange = 30,
-            RoleNames =
-            {
-                {RoleTypeId.Scientist, "Sci"},
-                {RoleTypeId.NtfCaptain, "MTF Cap"},
-                {RoleTypeId.NtfPrivate, "MTF Pri"},
-                {RoleTypeId.NtfSergeant, "MTF Ser"},
-                {RoleTypeId.NtfSpecialist, "MTF Spe"},
-                {RoleTypeId.FacilityGuard, "Guard"},
-                {RoleTypeId.Scp049, "049"},
-                {RoleTypeId.Scp0492, "049-2"},
-                {RoleTypeId.Scp079, "079"},
-                {RoleTypeId.Scp096, "096"},
-                {RoleTypeId.Scp106, "106"},
-                {RoleTypeId.Scp173, "173"},
-                {RoleTypeId.Scp939, "939"},
-                {RoleTypeId.Scp3114, "3114"},
-                {RoleTypeId.Tutorial, "SH"},
-            },
         },
     };
 }

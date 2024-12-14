@@ -81,12 +81,6 @@ public class MtfWisp : CustomRole, ICustomRole
         {
             Name = "Wisp [Passive]",
             Description = "Enables walking through doors, Fog Control, Reduced Sprint",
-            EffectsToApply =
-            {
-                {EffectType.Exhausted, 1},
-                {EffectType.Ghostly, 1},
-                { EffectType.FogControl, 5},
-            }
         },
     };
 }
