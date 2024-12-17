@@ -110,6 +110,8 @@
       <Compile Include="Commands\ServerEventsCommands\EventCommands\VariableLightsCommand.cs" />
       <Compile Include="Commands\ServerEventsCommands\MainCommand.cs" />
       <Compile Include="Commands\ServerEventsCommands\StopCommand.cs" />
+      <Compile Include="Commands\VotingCommands\StartVote.cs" />
+      <Compile Include="Commands\VotingCommands\Vote.cs" />
       <Compile Include="Configs\CustomConfigs\CustomItemsConfig.cs" />
       <Compile Include="Configs\CustomConfigs\CustomRolesAbilitiesConfig.cs" />
       <Compile Include="Configs\CustomConfigs\CustomRolesConfig.cs" />
@@ -125,6 +127,7 @@
       <Compile Include="Configs\ServerEventsConfigs\ServerEventsMasterConfig.cs" />
       <Compile Include="Configs\ServerEventsConfigs\ShortConfig.cs" />
       <Compile Include="Configs\ServerEventsConfigs\VariableLightsConfig.cs" />
+      <Compile Include="Configs\VoteConfig.cs" />
       <Compile Include="Custom\Abilities\ActiveCamo.cs" />
       <Compile Include="Custom\Abilities\ChargeAbility.cs" />
       <Compile Include="Custom\Abilities\CustomRoleEscape.cs" />

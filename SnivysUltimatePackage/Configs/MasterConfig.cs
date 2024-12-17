@@ -20,5 +20,7 @@ namespace SnivysUltimatePackage.Configs
         public ServerEventsMasterConfig ServerEventsMasterConfig { get; set; } = new();
         
         public MicroEvaporateConfig MicroEvaporateConfig { get; set; } = new();
+        
+        public VoteConfig VoteConfig { get; set; } = new();
     }
 }

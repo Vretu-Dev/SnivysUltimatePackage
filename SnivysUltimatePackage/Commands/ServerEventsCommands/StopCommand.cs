@@ -4,7 +4,7 @@ using Exiled.API.Features;
 using Exiled.Permissions.Extensions;
 using SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers;
 
-namespace SnivysServerEvents.Commands
+namespace SnivysUltimatePackage.Commands.ServerEventsCommands
 {
     [CommandHandler(typeof(GameConsoleCommandHandler))]
     [CommandHandler(typeof(RemoteAdminCommandHandler))]

@@ -1,16 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
-using Exiled.API.Interfaces;
 
 namespace SnivysUltimatePackage.Configs.ServerEventsConfigs
 {
-    public class ServerEventsMasterConfig : IConfig
+    public class ServerEventsMasterConfig
     {
         [Description("Is the plugin enabled?")]
         public bool IsEnabled { get; set; } = true;
-
-        [Description("Debug Printouts? *Attention this WILL flood your console with debug statements*")] 
-        public bool Debug { get; set; } = false;
 
         [Description("Can events randomly start?")]
         public bool RandomlyStartingEvents { get; set; } = false;

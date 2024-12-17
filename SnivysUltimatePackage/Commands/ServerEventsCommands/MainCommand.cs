@@ -3,7 +3,7 @@ using CommandSystem;
 using Exiled.API.Features;
 using SnivysUltimatePackage.Commands.ServerEventsCommands.EventCommands;
 
-namespace SnivysServerEvents.Commands
+namespace SnivysUltimatePackage.Commands.ServerEventsCommands
 {
         [CommandHandler(typeof(RemoteAdminCommandHandler))]
         [CommandHandler(typeof(GameConsoleCommandHandler))]
