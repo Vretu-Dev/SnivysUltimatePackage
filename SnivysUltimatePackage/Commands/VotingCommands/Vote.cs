@@ -9,7 +9,7 @@ namespace SnivysUltimatePackage.Commands.VotingCommands
     public class Vote : ICommand
     {
         public string Command { get; } = "vote";
-        public string[] Aliases { get; } = ["v"];
+        public string[] Aliases { get; } = Array.Empty<string>();
         public string Description { get; } = "Votes during a vote";
         
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, [UnscopedRef] out string response)
