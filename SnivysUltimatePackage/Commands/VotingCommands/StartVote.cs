@@ -24,7 +24,7 @@ namespace SnivysUltimatePackage.Commands.VotingCommands
         
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
-            if (!VoteConfig.IsEnabled)
+            if (!Plugin.Instance.Config.VoteConfig.IsEnabled)
             {
                 response = "This command is disabled.";
                 return false;
@@ -57,9 +57,9 @@ namespace SnivysUltimatePackage.Commands.VotingCommands
             
             IsVoteActive = true;
             string optionsMessage = string.Join(",", VoteOptions.Select(pair => $"{pair.Key}: {pair.Value}"));
-            Map.Broadcast(VoteConfig.MapBroadcastTime, $"{VoteConfig.MapBroadcastText} Options: {optionsMessage}", Broadcast.BroadcastFlags.Normal, true);
+            Map.Broadcast(Plugin.Instance.Config.VoteConfig.MapBroadcastTime, $"{Plugin.Instance.Config.VoteConfig.MapBroadcastText} Options: {optionsMessage}", Broadcast.BroadcastFlags.Normal, true);
 
-            Timing.CallDelayed(VoteConfig.VoteDuration, () =>
+            Timing.CallDelayed(Plugin.Instance.Config.VoteConfig.VoteDuration, () =>
             {
                 var results = PlayerVotes.GroupBy(x => x.Value)
                     .Select(group => new { Option = group.Key, Count = group.Count() })
@@ -69,7 +69,7 @@ namespace SnivysUltimatePackage.Commands.VotingCommands
                 {
                     resultMessage += $"<size=30>{VoteOptions[result.Option]} : {result.Count} votes.</size>";
                 }
-                Map.Broadcast(VoteConfig.MapBroadcastTime, resultMessage, Broadcast.BroadcastFlags.Normal, true);
+                Map.Broadcast(Plugin.Instance.Config.VoteConfig.MapBroadcastTime, resultMessage, Broadcast.BroadcastFlags.Normal, true);
             });
             response = "You have started a vote";
             return true;

@@ -14,7 +14,7 @@ namespace SnivysUltimatePackage.Commands.VotingCommands
         
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
-            if (!VoteConfig.IsEnabled)
+            if (!Plugin.Instance.Config.VoteConfig.IsEnabled)
             {
                 response = "The vote system is disabled.";
                 return false;
