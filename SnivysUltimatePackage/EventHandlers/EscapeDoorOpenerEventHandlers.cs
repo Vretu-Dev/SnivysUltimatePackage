@@ -12,8 +12,8 @@ public class EscapeDoorOpenerEventHandlers
     {
         Timing.CallDelayed(1.5f, () =>
         {
-            var EscapeDoor = DoorType.EscapeFinal;
-            Door door = Door.Get(EscapeDoor);
+            var escapeDoor = DoorType.EscapeFinal;
+            Door door = Door.Get(escapeDoor);
             door.IsOpen = true;
         });
     }
