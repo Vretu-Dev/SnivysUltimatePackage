@@ -112,6 +112,7 @@
       <Compile Include="Configs\CustomConfigs\CustomItemsConfig.cs" />
       <Compile Include="Configs\CustomConfigs\CustomRolesAbilitiesConfig.cs" />
       <Compile Include="Configs\CustomConfigs\CustomRolesConfig.cs" />
+      <Compile Include="Configs\EscapeDoorOpenerConfig.cs" />
       <Compile Include="Configs\FlamingoAdjustmentsConfig.cs" />
       <Compile Include="Configs\MasterConfig.cs" />
       <Compile Include="Configs\MicroDamageReductionConfig.cs" />
@@ -166,6 +167,7 @@
       <Compile Include="Custom\Roles\TelepathicChaos.cs" />
       <Compile Include="EventHandlers\Custom\CustomRoleEventHandler.cs" />
       <Compile Include="EventHandlers\Custom\CustomRoleMethods.cs" />
+      <Compile Include="EventHandlers\EscapeDoorOpenerEventHandlers.cs" />
       <Compile Include="EventHandlers\FlamingoAdjustmentEventHandlers.cs" />
       <Compile Include="EventHandlers\MicroDamageReductionEventHandler.cs" />
       <Compile Include="EventHandlers\MicroEvaporateEventHandlers.cs" />

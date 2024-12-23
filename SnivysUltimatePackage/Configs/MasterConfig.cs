@@ -24,5 +24,7 @@ namespace SnivysUltimatePackage.Configs
         public VoteConfig VoteConfig { get; set; } = new();
         
         public FlamingoAdjustmentsConfig FlamingoAdjustmentsConfig { get; set; } = new();
+        
+        public EscapeDoorOpenerConfig EscapeDoorOpenerConfig { get; set; } = new();
     }
 }

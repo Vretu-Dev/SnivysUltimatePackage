@@ -5,7 +5,6 @@ using Exiled.API.Features;
 using Exiled.CustomItems.API.Features;
 using Exiled.CustomRoles.API;
 using Exiled.CustomRoles.API.Features;
-using Exiled.Events.EventArgs.Scp939;
 using SnivysUltimatePackage.API;
 using SnivysUltimatePackage.Configs;
 using SnivysUltimatePackage.EventHandlers;
@@ -25,7 +24,7 @@ namespace SnivysUltimatePackage
         public override string Name { get; } = "Snivy's Ultimate Plugin Package";
         public override string Author { get; } = "Vicious Vikki";
         public override string Prefix { get; } = "VVUltimatePluginPackage";
-        public override Version Version { get; } = new Version(1, 3, 2);
+        public override Version Version { get; } = new Version(1, 4, 0);
         public override Version RequiredExiledVersion { get; } = new Version(9, 0, 1);
         public static int ActiveEvent = 0;
         
@@ -36,6 +35,7 @@ namespace SnivysUltimatePackage
         public MicroDamageReductionEventHandler MicroDamageReductionEventHandler;
         public MicroEvaporateEventHandlers MicroEvaporateEventHandlers;
         public FlamingoAdjustmentEventHandlers FlamingoAdjustmentEventHandlers;
+        public EscapeDoorOpenerEventHandlers EscapeDoorOpenerEventHandlers;
 
         public override void OnEnabled()
         {
@@ -124,6 +124,11 @@ namespace SnivysUltimatePackage
                 FlamingoAdjustmentEventHandlers = new FlamingoAdjustmentEventHandlers(this);
                 Player.Hurting += FlamingoAdjustmentEventHandlers.OnHurting;
             }
+
+            if (Instance.Config.EscapeDoorOpenerConfig.IsEnabled)
+            {
+                EscapeDoorOpenerEventHandlers = new EscapeDoorOpenerEventHandlers(this);
+            }
             
             base.OnEnabled();
         }
@@ -165,6 +170,11 @@ namespace SnivysUltimatePackage
             if (Instance.Config.FlamingoAdjustmentsConfig.IsEnabled)
             {
                 FlamingoAdjustmentEventHandlers = null;
+            }
+            
+            if (Instance.Config.EscapeDoorOpenerConfig.IsEnabled)
+            {
+                EscapeDoorOpenerEventHandlers = null;
             }
 
             Instance = null;
