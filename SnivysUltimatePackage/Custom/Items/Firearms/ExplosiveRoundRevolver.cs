@@ -66,15 +66,9 @@ namespace SnivysUltimatePackage.Custom.Items.Firearms
             Player.Shot -= OnShot;
         }
 
-        protected override void OnShooting(ShootingEventArgs ev)
-        {
-            ev.IsAllowed = false;
-            if (ev.Player.CurrentItem is Firearm firearm)
-                firearm.Ammo -= 1;
-        }
-
         private void OnShot(ShotEventArgs ev)
         {
+            ev.CanHurt = false;
             if (!Check(ev.Player.CurrentItem))
                 return;
             ExplosiveGrenade grenade = (ExplosiveGrenade)Item.Create(ItemType.GrenadeHE);

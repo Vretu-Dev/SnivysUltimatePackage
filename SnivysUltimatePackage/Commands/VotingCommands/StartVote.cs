@@ -22,7 +22,7 @@ namespace SnivysUltimatePackage.Commands.VotingCommands
         public static Dictionary<string, int> PlayerVotes = new Dictionary<string, int>();
         //public static 
         
-        public bool Execute(ArraySegment<string> arguments, ICommandSender sender, [UnscopedRef] out string response)
+        public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
             if (!VoteConfig.IsEnabled)
             {

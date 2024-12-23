@@ -22,5 +22,7 @@ namespace SnivysUltimatePackage.Configs
         public MicroEvaporateConfig MicroEvaporateConfig { get; set; } = new();
         
         public VoteConfig VoteConfig { get; set; } = new();
+        
+        public FlamingoAdjustmentsConfig FlamingoAdjustmentsConfig { get; set; } = new();
     }
 }

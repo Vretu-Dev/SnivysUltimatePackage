@@ -5,6 +5,7 @@ using Exiled.API.Features;
 using Exiled.CustomItems.API.Features;
 using Exiled.CustomRoles.API;
 using Exiled.CustomRoles.API.Features;
+using Exiled.Events.EventArgs.Scp939;
 using SnivysUltimatePackage.API;
 using SnivysUltimatePackage.Configs;
 using SnivysUltimatePackage.EventHandlers;
@@ -34,6 +35,7 @@ namespace SnivysUltimatePackage
         public ServerEventsMainEventHandler ServerEventsMainEventHandler;
         public MicroDamageReductionEventHandler MicroDamageReductionEventHandler;
         public MicroEvaporateEventHandlers MicroEvaporateEventHandlers;
+        public FlamingoAdjustmentEventHandlers FlamingoAdjustmentEventHandlers;
 
         public override void OnEnabled()
         {
@@ -117,6 +119,12 @@ namespace SnivysUltimatePackage
                 Player.Dying += MicroEvaporateEventHandlers.OnDying;
             }
 
+            if (Instance.Config.FlamingoAdjustmentsConfig.IsEnabled)
+            {
+                FlamingoAdjustmentEventHandlers = new FlamingoAdjustmentEventHandlers(this);
+                Player.Hurting += FlamingoAdjustmentEventHandlers.OnHurting;
+            }
+            
             base.OnEnabled();
         }
 
@@ -152,6 +160,11 @@ namespace SnivysUltimatePackage
             {
                 Player.Dying -= MicroEvaporateEventHandlers.OnDying;
                 MicroEvaporateEventHandlers = null;
+            }
+            
+            if (Instance.Config.FlamingoAdjustmentsConfig.IsEnabled)
+            {
+                FlamingoAdjustmentEventHandlers = null;
             }
 
             Instance = null;

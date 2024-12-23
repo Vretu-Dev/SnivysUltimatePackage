@@ -12,7 +12,7 @@ namespace SnivysUltimatePackage.Commands.VotingCommands
         public string[] Aliases { get; } = Array.Empty<string>();
         public string Description { get; } = "Votes during a vote";
         
-        public bool Execute(ArraySegment<string> arguments, ICommandSender sender, [UnscopedRef] out string response)
+        public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
             if (!VoteConfig.IsEnabled)
             {
