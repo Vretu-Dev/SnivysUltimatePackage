@@ -1,7 +1,5 @@
 ﻿using Exiled.Events.EventArgs.Player;
-using GameCore;
 using PlayerRoles;
-using Log = Exiled.API.Features.Log;
 
 namespace SnivysUltimatePackage.EventHandlers
 {
@@ -17,10 +15,12 @@ namespace SnivysUltimatePackage.EventHandlers
             
             if (ev.Attacker.Role == RoleTypeId.Flamingo || ev.Attacker.Role == RoleTypeId.AlphaFlamingo)
             {
+                float damageAmount = Plugin.Instance.Config.FlamingoAdjustmentsConfig.DamageOnHit;
+                
                 if (ev.Player.IsScp)
-                    ev.Amount = Plugin.Instance.Config.FlamingoAdjustmentsConfig.DamageOnHit * Plugin.Instance.Config.FlamingoAdjustmentsConfig.ScpDamageMultiplier;
+                    ev.Amount = damageAmount * Plugin.Instance.Config.FlamingoAdjustmentsConfig.ScpDamageMultiplier;
                 else
-                    ev.Amount = Plugin.Instance.Config.FlamingoAdjustmentsConfig.DamageOnHit;
+                    ev.Amount = damageAmount;
             }
         }
     }
