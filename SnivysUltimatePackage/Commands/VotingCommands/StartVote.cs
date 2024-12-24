@@ -56,7 +56,7 @@ namespace SnivysUltimatePackage.Commands.VotingCommands
                 VoteOptions[i] = arguments.At(i);
             
             IsVoteActive = true;
-            string optionsMessage = string.Join(",", VoteOptions.Select(pair => $"{pair.Key}: {pair.Value}"));
+            string optionsMessage = string.Join(",", VoteOptions.Select(pair => $"{pair.Key}: {pair.Value}. "));
             Map.Broadcast(Plugin.Instance.Config.VoteConfig.MapBroadcastTime, $"{Plugin.Instance.Config.VoteConfig.MapBroadcastText} Options: {optionsMessage}", Broadcast.BroadcastFlags.Normal, true);
 
             Timing.CallDelayed(Plugin.Instance.Config.VoteConfig.VoteDuration, () =>
@@ -64,7 +64,7 @@ namespace SnivysUltimatePackage.Commands.VotingCommands
                 var results = PlayerVotes.GroupBy(x => x.Value)
                     .Select(group => new { Option = group.Key, Count = group.Count() })
                     .OrderByDescending(x => x.Count);
-                string resultMessage = "<size=30>The vote has ended.</size>";
+                string resultMessage = "<size=30>The vote has ended. </size>";
                 foreach (var result in results)
                 {
                     resultMessage += $"<size=30>{VoteOptions[result.Option]} : {result.Count} votes. </size>";
