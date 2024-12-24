@@ -42,5 +42,10 @@ namespace SnivysUltimatePackage.Configs.CustomConfigs
         {
             new ExplosiveResistantArmor()
         };
+
+        public List<KySyringe> KySyringes { get; private set; } = new()
+        {
+            new KySyringe()
+        };
     }
 }
