@@ -3,7 +3,6 @@ using Exiled.Events.EventArgs.Player;
 
 namespace SnivysUltimatePackage.EventHandlers
 {
-
     public class MicroEvaporateEventHandlers
     {
         public Plugin Plugin;

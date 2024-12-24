@@ -5,12 +5,12 @@ using Exiled.API.Features;
 using Exiled.CustomItems.API.Features;
 using Exiled.CustomRoles.API;
 using Exiled.CustomRoles.API.Features;
+using Exiled.Events.EventArgs.Player;
 using SnivysUltimatePackage.API;
 using SnivysUltimatePackage.Configs;
 using SnivysUltimatePackage.EventHandlers;
 using SnivysUltimatePackage.EventHandlers.Custom;
 using SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers;
-
 using Player = Exiled.Events.Handlers.Player;
 using Scp049Events = Exiled.Events.Handlers.Scp049;
 using Server = Exiled.Events.Handlers.Server;
@@ -24,7 +24,7 @@ namespace SnivysUltimatePackage
         public override string Name { get; } = "Snivy's Ultimate Plugin Package";
         public override string Author { get; } = "Vicious Vikki";
         public override string Prefix { get; } = "VVUltimatePluginPackage";
-        public override Version Version { get; } = new Version(1, 4, 1);
+        public override Version Version { get; } = new Version(1, 5, 0);
         public override Version RequiredExiledVersion { get; } = new Version(9, 0, 1);
         public static int ActiveEvent = 0;
         
@@ -36,6 +36,7 @@ namespace SnivysUltimatePackage
         public MicroEvaporateEventHandlers MicroEvaporateEventHandlers;
         public FlamingoAdjustmentEventHandlers FlamingoAdjustmentEventHandlers;
         public EscapeDoorOpenerEventHandlers EscapeDoorOpenerEventHandlers;
+        public Scp1576SpectatorViewerEventHandlers Scp1576SpectatorViewerEventHandlers;
 
         public override void OnEnabled()
         {
@@ -130,6 +131,12 @@ namespace SnivysUltimatePackage
                 EscapeDoorOpenerEventHandlers = new EscapeDoorOpenerEventHandlers(this);
                 Server.RoundStarted += EscapeDoorOpenerEventHandlers.OnRoundStarted;
             }
+
+            if (Instance.Config.Scp1576SpectatorViewerConfig.IsEnabled)
+            {
+                Scp1576SpectatorViewerEventHandlers = new Scp1576SpectatorViewerEventHandlers(this);
+                Player.UsedItem += Scp1576SpectatorViewerEventHandlers.OnUsingItem;
+            }
             
             base.OnEnabled();
         }
@@ -177,6 +184,12 @@ namespace SnivysUltimatePackage
             {
                 Server.RoundStarted -= EscapeDoorOpenerEventHandlers.OnRoundStarted;
                 EscapeDoorOpenerEventHandlers = null;
+            }
+
+            if (Instance.Config.Scp1576SpectatorViewerConfig.IsEnabled)
+            {
+                Player.UsedItem -= Scp1576SpectatorViewerEventHandlers.OnUsingItem;
+                Scp1576SpectatorViewerEventHandlers = null;
             }
 
             Instance = null;
