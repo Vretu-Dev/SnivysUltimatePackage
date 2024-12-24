@@ -3,17 +3,27 @@ Snivy's Ultimate Package contains all of the plugins I have made into one mega p
 I do mean made, any other plugins that I have ported or currently maintain, such as Serpents Hand, UIU Rescue Squad, etc is not included here.
 
 Plugin List:
+
 Snivy's Custom Roles
+
 Snivy's Custom Roles Abilities
+
 Snivy's Server Events
+
 Micro Damage Reduction
 
 New to this plugin is also
+
 Snivy's Custom Items
+
 Surface Final Escape Door Opener
+
 Flamingo Adjustments
+
 Micro Evaportate Players
+
 SCP 1576 Spectator Viewer
+
 Voting Commands
 
 # Snivy's Custom Roles
