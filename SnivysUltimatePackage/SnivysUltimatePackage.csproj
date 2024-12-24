@@ -40,7 +40,7 @@
             <HintPath>..\packages\ExMod.Exiled.9.0.1\lib\net48\Assembly-CSharp-Publicized.dll</HintPath>
         </Reference>
         <Reference Include="Assembly-CSharp-firstpass">
-            <HintPath Condition="'$(OS)' == 'Windows_NT'">$(EXILED_REFERENCES)/Assembly-CSharp-firstpass.dll</HintPath>
+            <HintPath Condition="'$(OS)' == 'Windows_NT'">$(EXILED_REFERENCES)\Assembly-CSharp-firstpass.dll</HintPath>
             <HintPath Condition="'$(OS)' != 'Windows_NT'">..\..\..\Exiled_Resources\Assembly-CSharp-firstpass.dll</HintPath>
         </Reference>
         <Reference Include="CommandSystem.Core, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -65,7 +65,7 @@
             <HintPath>..\packages\ExMod.Exiled.9.0.1\lib\net48\Exiled.Permissions.dll</HintPath>
         </Reference>
         <Reference Include="Mirror">
-            <HintPath Condition="'$(OS)' == 'Windows_NT'">$(EXILED_REFERENCES)/Mirror.dll</HintPath>
+            <HintPath Condition="'$(OS)' == 'Windows_NT'">$(EXILED_REFERENCES)\Mirror.dll</HintPath>
             <HintPath Condition="'$(OS)' != 'Windows_NT'">..\..\..\Exiled_Resources\Mirror.dll</HintPath>
         </Reference>
         <Reference Include="NorthwoodLib, Version=1.3.1.0, Culture=neutral, processorArchitecture=MSIL">
@@ -75,11 +75,11 @@
             <HintPath>..\packages\ExMod.Exiled.9.0.1\lib\net48\PluginAPI.dll</HintPath>
         </Reference>
         <Reference Include="UnityEngine">
-            <HintPath Condition="'$(OS)' == 'Windows_NT'">$(EXILED_REFERENCES)/UnityEngine.dll</HintPath>
+            <HintPath Condition="'$(OS)' == 'Windows_NT'">$(EXILED_REFERENCES)\UnityEngine.dll</HintPath>
             <HintPath Condition="'$(OS)' != 'Windows_NT'">..\..\..\Exiled_Resources\UnityEngine.dll</HintPath>
         </Reference>
         <Reference Include="UnityEngine.CoreModule">
-            <HintPath Condition="'$(OS)' == 'Windows_NT'">$(EXILED_REFERENCES)/UnityEngine.CoreModule.dll</HintPath>
+            <HintPath Condition="'$(OS)' == 'Windows_NT'">$(EXILED_REFERENCES)\UnityEngine.CoreModule.dll</HintPath>
             <HintPath Condition="'$(OS)' != 'Windows_NT'">..\..\..\Exiled_Resources\UnityEngine.CoreModule.dll</HintPath>
         </Reference>
         <Reference Include="UnityEngine.PhysicsModule">
