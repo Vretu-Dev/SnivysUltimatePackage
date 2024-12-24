@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Exiled.API.Enums;
 using Exiled.API.Features;
+using Exiled.CustomItems.API;
 using Exiled.CustomItems.API.Features;
 using Exiled.CustomRoles.API;
 using Exiled.CustomRoles.API.Features;
@@ -41,9 +42,17 @@ namespace SnivysUltimatePackage
         public override void OnEnabled()
         {
             Instance = this;
-            
-            if(Instance.Config.CustomItemsConfig.IsEnabled)
-                CustomItem.RegisterItems();
+
+            if (Instance.Config.CustomItemsConfig.IsEnabled)
+            {
+                Config.CustomItemsConfig.SmokeGrenades.Register();
+                Config.CustomItemsConfig.ExplosiveRoundRevolvers.Register();
+                Config.CustomItemsConfig.NerveAgentGrenades.Register();
+                Config.CustomItemsConfig.DeadringerSyringes.Register();
+                Config.CustomItemsConfig.PhantomLanterns.Register();
+                Config.CustomItemsConfig.ExplosiveResistantArmor.Register();
+                Config.CustomItemsConfig.KySyringes.Register();
+            }
 
             if (Instance.Config.CustomRolesConfig.IsEnabled)
             {
