@@ -1,15 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using Exiled.API.Features.Items;
-using Exiled.API.Features.Waves;
 using Exiled.Events.EventArgs.Player;
-using Exiled.Events.Handlers;
-using InventorySystem.Items.Usables.Scp1576;
 using PlayerRoles;
 using Respawning;
 using Respawning.Waves;
-using WaveTimer = Respawning.Waves.WaveTimer;
 
 namespace SnivysUltimatePackage.EventHandlers
 {
