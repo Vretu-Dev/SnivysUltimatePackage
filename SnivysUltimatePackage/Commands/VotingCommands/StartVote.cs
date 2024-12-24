@@ -42,7 +42,7 @@ namespace SnivysUltimatePackage.Commands.VotingCommands
                 return false;
             }
 
-            if (arguments.Count is < 3 or > 7)
+            if (arguments.Count is < 3 or > 8)
             {
                 response =
                     "You provided an invalid amount of arguments \n Order: <Vote Name> <Option 1> <Option 2> [Option 3-7]";
@@ -52,7 +52,7 @@ namespace SnivysUltimatePackage.Commands.VotingCommands
             VoteOptions.Clear();
             PlayerVotes.Clear();
             
-            for (int i = 1; i <= arguments.Count; i++)
+            for (int i = 1; i < arguments.Count; i++)
                 VoteOptions[i] = arguments.At(i);
             
             IsVoteActive = true;
@@ -67,9 +67,10 @@ namespace SnivysUltimatePackage.Commands.VotingCommands
                 string resultMessage = "<size=30>The vote has ended.</size>";
                 foreach (var result in results)
                 {
-                    resultMessage += $"<size=30>{VoteOptions[result.Option]} : {result.Count} votes.</size>";
+                    resultMessage += $"<size=30>{VoteOptions[result.Option]} : {result.Count} votes. </size>";
                 }
                 Map.Broadcast(Plugin.Instance.Config.VoteConfig.MapBroadcastTime, resultMessage, Broadcast.BroadcastFlags.Normal, true);
+                IsVoteActive = false;
             });
             response = "You have started a vote";
             return true;
