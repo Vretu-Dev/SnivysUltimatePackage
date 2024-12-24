@@ -24,7 +24,7 @@ namespace SnivysUltimatePackage.Custom.Items.Grenades
         [CanBeNull]
         public override SpawnProperties SpawnProperties { get; set; } = new()
         {
-            Limit = 6,
+            Limit = 5,
             DynamicSpawnPoints = new List<DynamicSpawnPoint>
             {
                 new()
@@ -41,11 +41,6 @@ namespace SnivysUltimatePackage.Custom.Items.Grenades
                 {
                     Chance = 25,
                     Location = SpawnLocationType.InsideSurfaceNuke,
-                },
-                new()
-                {
-                    Chance = 25,
-                    Location = SpawnLocationType.InsideHczArmory,
                 },
                 new()
                 {
