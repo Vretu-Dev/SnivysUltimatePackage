@@ -13,8 +13,6 @@
         <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
         <FileAlignment>512</FileAlignment>
         <LangVersion>14</LangVersion>
-        <EXILED_REFERENCES Condition="'$(OS)' == 'Windows_NT'">$(EXILED_REFERENCES)</EXILED_REFERENCES>
-        <EXILED_REFERENCES Condition="'$(OS)' != 'Windows_NT'">/home/user/references</EXILED_REFERENCES>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
         <PlatformTarget>AnyCPU</PlatformTarget>
