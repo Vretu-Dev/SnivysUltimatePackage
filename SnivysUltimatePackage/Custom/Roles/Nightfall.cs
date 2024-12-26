@@ -7,78 +7,79 @@ using PlayerRoles;
 using SnivysCustomRolesAbilities.Abilities;
 using SnivysUltimatePackage.API;
 
-namespace SnivysUltimatePackage.Custom.Roles;
-
-[CustomRole(RoleTypeId.ChaosConscript)]
-public class Nightfall : CustomRole, ICustomRole
+namespace SnivysUltimatePackage.Custom.Roles
 {
-    public int Chance { get; set; } = 5;
-
-    public StartTeam StartTeam { get; set; } = StartTeam.Chaos;
-
-    public override uint Id { get; set; } = 35;
-
-    public override RoleTypeId Role { get; set; } = RoleTypeId.ChaosConscript;
-
-    public override int MaxHealth { get; set; } = 200;
-
-    public override string Name { get; set; } = "<color=#008f1e>Nightfall</color>";
-
-    public override string Description { get; set; } =
-        "A Chaos Insurgent that is special. You figure out the rest.";
-
-    public override string CustomInfo { get; set; } = "Nightfall";
-
-    public override SpawnProperties SpawnProperties { get; set; } = new()
+    [CustomRole(RoleTypeId.ChaosConscript)]
+    public class Nightfall : CustomRole, ICustomRole
     {
-        Limit = 1,
-        RoleSpawnPoints = new List<RoleSpawnPoint>
+        public int Chance { get; set; } = 5;
+
+        public StartTeam StartTeam { get; set; } = StartTeam.Chaos;
+
+        public override uint Id { get; set; } = 35;
+
+        public override RoleTypeId Role { get; set; } = RoleTypeId.ChaosConscript;
+
+        public override int MaxHealth { get; set; } = 200;
+
+        public override string Name { get; set; } = "<color=#008f1e>Nightfall</color>";
+
+        public override string Description { get; set; } =
+            "A Chaos Insurgent that is special. You figure out the rest.";
+
+        public override string CustomInfo { get; set; } = "Nightfall";
+
+        public override SpawnProperties SpawnProperties { get; set; } = new()
         {
-            new()
+            Limit = 1,
+            RoleSpawnPoints = new List<RoleSpawnPoint>
             {
-                Role = RoleTypeId.ChaosConscript,
-                Chance = 100,
+                new()
+                {
+                    Role = RoleTypeId.ChaosConscript,
+                    Chance = 100,
+                },
             },
-        },
-    };
+        };
 
-    public override List<string> Inventory { get; set; } = new()
-    {
-        $"{ItemType.GunRevolver}",
-        $"{ItemType.KeycardO5}",
-        $"{ItemType.SCP500}",
-        $"{ItemType.ArmorCombat}",
-    };
-
-    public override Dictionary<AmmoType, ushort> Ammo { get; set; } = new()
-    {
+        public override List<string> Inventory { get; set; } = new()
         {
-            AmmoType.Ammo44Cal, 20
-        },
-    };
+            $"{ItemType.GunRevolver}",
+            $"{ItemType.KeycardO5}",
+            $"{ItemType.SCP500}",
+            $"{ItemType.ArmorCombat}",
+        };
 
-    public override List<CustomAbility>? CustomAbilities { get; set; } = new()
-    {
-        new RestrictedItems
+        public override Dictionary<AmmoType, ushort> Ammo { get; set; } = new()
         {
-            Name = "Nightfall Ability [Passive]",
-            Description = "Yeah I am not going to tell you what this is",
-            RestrictedItemList =
             {
-                ItemType.Medkit,
-                ItemType.Painkillers,
-                ItemType.SCP500,
-                ItemType.KeycardO5,
-                ItemType.GunE11SR,
-                ItemType.GunCrossvec,
-                ItemType.GunFSP9,
-                ItemType.GunLogicer,
-                ItemType.GunAK,
-                ItemType.GunShotgun
+                AmmoType.Ammo44Cal, 20
             },
-            RestrictUsingItems = true,
-            RestrictDroppingItems = true,
-            RestrictPickingUpItems = true
-        }
-    };
+        };
+
+        public override List<CustomAbility>? CustomAbilities { get; set; } = new()
+        {
+            new RestrictedItems
+            {
+                Name = "Nightfall Ability [Passive]",
+                Description = "Yeah I am not going to tell you what this is",
+                RestrictedItemList =
+                {
+                    ItemType.Medkit,
+                    ItemType.Painkillers,
+                    ItemType.SCP500,
+                    ItemType.KeycardO5,
+                    ItemType.GunE11SR,
+                    ItemType.GunCrossvec,
+                    ItemType.GunFSP9,
+                    ItemType.GunLogicer,
+                    ItemType.GunAK,
+                    ItemType.GunShotgun
+                },
+                RestrictUsingItems = true,
+                RestrictDroppingItems = true,
+                RestrictPickingUpItems = true
+            }
+        };
+    }
 }

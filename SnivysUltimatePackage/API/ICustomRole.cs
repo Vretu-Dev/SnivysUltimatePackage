@@ -1,8 +1,9 @@
-﻿namespace SnivysUltimatePackage.API;
-
-public interface ICustomRole
+﻿namespace SnivysUltimatePackage.API
 {
-    public StartTeam StartTeam { get; set; }
+    public interface ICustomRole
+    {
+        public StartTeam StartTeam { get; set; }
 
-    public int Chance { get; set; }
+        public int Chance { get; set; }
+    }
 }

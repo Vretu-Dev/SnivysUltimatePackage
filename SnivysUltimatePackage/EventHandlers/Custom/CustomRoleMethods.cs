@@ -5,49 +5,52 @@ using Exiled.CustomRoles.API.Features;
 using Exiled.Loader;
 using SnivysUltimatePackage.API;
 
-namespace SnivysUltimatePackage.EventHandlers.Custom;
-
-public class CustomRoleMethods
+namespace SnivysUltimatePackage.EventHandlers.Custom
 {
-    private readonly Plugin Plugin;
-
-    public CustomRoleMethods(Plugin plugin) => Plugin = plugin;
-
-    public static CustomRole? GetCustomRole(ref List<ICustomRole>.Enumerator enumerator, bool checkEscape = false, bool checkRevive = false)
+    public class CustomRoleMethods
     {
-        try
-        {
-            Log.Debug("Getting role from enumerator..");
+        private readonly Plugin Plugin;
 
-            while (enumerator.MoveNext())
+        public CustomRoleMethods(Plugin plugin) => Plugin = plugin;
+
+        public static CustomRole? GetCustomRole(ref List<ICustomRole>.Enumerator enumerator, bool checkEscape = false,
+            bool checkRevive = false)
+        {
+            try
             {
-                Log.Debug(enumerator.Current?.StartTeam);
-                if (enumerator.Current is not null)
+                Log.Debug("Getting role from enumerator..");
+
+                while (enumerator.MoveNext())
                 {
-                    int r = Loader.Random.Next(100);
-                    if (enumerator.Current.StartTeam.HasFlag(StartTeam.Other)
-                        || (enumerator.Current.StartTeam.HasFlag(StartTeam.Revived) && !checkRevive)
-                        || (enumerator.Current.StartTeam.HasFlag(StartTeam.Escape) && !checkEscape)
-                        || (!enumerator.Current.StartTeam.HasFlag(StartTeam.Revived) && checkRevive)
-                        || (!enumerator.Current.StartTeam.HasFlag(StartTeam.Escape) && checkEscape)
-                        || r > enumerator.Current.Chance)
+                    Log.Debug(enumerator.Current?.StartTeam);
+                    if (enumerator.Current is not null)
                     {
-                        Log.Debug($"Validation check failed | {enumerator.Current.StartTeam} {enumerator.Current.Chance}% || {r}");
-                        continue;
+                        int r = Loader.Random.Next(100);
+                        if (enumerator.Current.StartTeam.HasFlag(StartTeam.Other)
+                            || (enumerator.Current.StartTeam.HasFlag(StartTeam.Revived) && !checkRevive)
+                            || (enumerator.Current.StartTeam.HasFlag(StartTeam.Escape) && !checkEscape)
+                            || (!enumerator.Current.StartTeam.HasFlag(StartTeam.Revived) && checkRevive)
+                            || (!enumerator.Current.StartTeam.HasFlag(StartTeam.Escape) && checkEscape)
+                            || r > enumerator.Current.Chance)
+                        {
+                            Log.Debug(
+                                $"Validation check failed | {enumerator.Current.StartTeam} {enumerator.Current.Chance}% || {r}");
+                            continue;
+                        }
+
+                        Log.Debug("Returning a role!");
+                        return (CustomRole)enumerator.Current;
                     }
-
-                    Log.Debug("Returning a role!");
-                    return (CustomRole)enumerator.Current;
                 }
+
+                Log.Debug("Cannot move next");
+
+                return null;
             }
-
-            Log.Debug("Cannot move next");
-
-            return null;
-        }
-        catch (Exception)
-        {
-            return null;
+            catch (Exception)
+            {
+                return null;
+            }
         }
     }
 }

@@ -1,20 +1,22 @@
 ﻿using Exiled.API.Enums;
 using Exiled.API.Features.Doors;
 using MEC;
-namespace SnivysUltimatePackage.EventHandlers;
 
-public class EscapeDoorOpenerEventHandlers
+namespace SnivysUltimatePackage.EventHandlers
 {
-    public Plugin Plugin;
-    public EscapeDoorOpenerEventHandlers(Plugin plugin) => Plugin = plugin;
-
-    public void OnRoundStarted()
+    public class EscapeDoorOpenerEventHandlers
     {
-        Timing.CallDelayed(1.5f, () =>
+        public Plugin Plugin;
+        public EscapeDoorOpenerEventHandlers(Plugin plugin) => Plugin = plugin;
+
+        public void OnRoundStarted()
         {
-            var escapeDoor = DoorType.EscapeFinal;
-            Door door = Door.Get(escapeDoor);
-            door.IsOpen = true;
-        });
+            Timing.CallDelayed(1.5f, () =>
+            {
+                var escapeDoor = DoorType.EscapeFinal;
+                Door door = Door.Get(escapeDoor);
+                door.IsOpen = true;
+            });
+        }
     }
 }

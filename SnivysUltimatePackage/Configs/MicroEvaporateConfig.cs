@@ -1,6 +1,7 @@
-﻿namespace SnivysUltimatePackage.Configs;
-
-public class MicroEvaporateConfig
+﻿namespace SnivysUltimatePackage.Configs
 {
-    public bool IsEnabled { get; set; } = true;
+    public class MicroEvaporateConfig
+    {
+        public bool IsEnabled { get; set; } = true;
+    }
 }
