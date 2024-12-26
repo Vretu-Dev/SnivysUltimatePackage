@@ -11,7 +11,7 @@ namespace SnivysUltimatePackage.Commands.ServerEventsCommands.EventCommands
     internal class NameRedactedCommand : ICommand
     {
         public string Command { get; set; } = "NameRedacted";
-        public string[] Aliases { get; set; } = [];
+        public string[] Aliases { get; set; } = Array.Empty<string>();
         public string Description { get; set; } = "Removes player's nicknames and sets them to something else";
         private static ServerEventsMasterConfig _config = new();
         public bool Execute(ArraySegment<string> args, ICommandSender sender, out string response)
