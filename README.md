@@ -137,3 +137,12 @@ Use %timebeforespawnwave% to get the amount of time remaining before the respawn
 Adds a simple voting command for players to vote on stuff.
 StartVote (or sv) to start a vote, this is in the RA Panel or Game Console
 .vote to vote for an option
+
+
+# Commands
+Command | Required Permission | Run Location | Description
+:---: | :---: | :---: | :------
+vve | vve.start | Remote Admin, Server Console | Starts round events. If used by itself it will show the list of events that can be used
+vve stop | vve.stop | Remote Admin, Server Console | Stops any active events.
+startvote | vvvotes.start | Remote Admin, Server Console | Starts a vote.
+.vote | None | Player Console | Responds to an active vote
