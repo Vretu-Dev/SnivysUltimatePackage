@@ -25,7 +25,7 @@ namespace SnivysUltimatePackage
         public override string Name { get; } = "Snivy's Ultimate Plugin Package";
         public override string Author { get; } = "Vicious Vikki";
         public override string Prefix { get; } = "VVUltimatePluginPackage";
-        public override Version Version { get; } = new Version(1, 5, 2);
+        public override Version Version { get; } = new Version(1, 5, 3);
         public override Version RequiredExiledVersion { get; } = new Version(9, 0, 1);
         public static int ActiveEvent = 0;
         
@@ -45,13 +45,7 @@ namespace SnivysUltimatePackage
 
             if (Instance.Config.CustomItemsConfig.IsEnabled)
             {
-                Config.CustomItemsConfig.SmokeGrenades.Register();
-                Config.CustomItemsConfig.ExplosiveRoundRevolvers.Register();
-                Config.CustomItemsConfig.NerveAgentGrenades.Register();
-                Config.CustomItemsConfig.DeadringerSyringes.Register();
-                Config.CustomItemsConfig.PhantomLanterns.Register();
-                Config.CustomItemsConfig.ExplosiveResistantArmor.Register();
-                Config.CustomItemsConfig.KySyringes.Register();
+                CustomItem.RegisterItems(overrideClass: Instance.Config.CustomItemsConfig);
             }
 
             if (Instance.Config.CustomRolesConfig.IsEnabled)
@@ -156,50 +150,35 @@ namespace SnivysUltimatePackage
             CustomRole.UnregisterRoles();
             CustomAbility.UnregisterAbilities();
 
-            if (Instance.Config.CustomRolesConfig.IsEnabled)
-            {
-                Server.RoundStarted -= CustomRoleEventHandler.OnRoundStarted;
-                Server.RespawningTeam -= CustomRoleEventHandler.OnRespawningTeam;
-                Scp049Events.FinishingRecall -= CustomRoleEventHandler.FinishingRecall;
-
-                CustomRoleEventHandler = null;
-            }
-
-            if (Instance.Config.ServerEventsMasterConfig.IsEnabled)
-            {
-                Server.RoundEnded -= ServerEventsMainEventHandler.OnEndingRound;
-                Server.WaitingForPlayers -= ServerEventsMainEventHandler.OnWaitingForPlayers;
-                ServerEventsMainEventHandler = null;
-            }
-
-            if (Instance.Config.MicroDamageReductionConfig.IsEnabled)
-            {
-                Player.Hurting -= MicroDamageReductionEventHandler.OnPlayerHurting;
-                MicroDamageReductionEventHandler = null;
-            }
+            //Custom Roles Event Handlers
+            Server.RoundStarted -= CustomRoleEventHandler.OnRoundStarted; 
+            Server.RespawningTeam -= CustomRoleEventHandler.OnRespawningTeam;
+            Scp049Events.FinishingRecall -= CustomRoleEventHandler.FinishingRecall;
+            CustomRoleEventHandler = null;
             
-            if (Instance.Config.MicroEvaporateConfig.IsEnabled)
-            {
-                Player.Dying -= MicroEvaporateEventHandlers.OnDying;
-                MicroEvaporateEventHandlers = null;
-            }
+            //Server Events Event Handlers
+            Server.RoundEnded -= ServerEventsMainEventHandler.OnEndingRound;
+            Server.WaitingForPlayers -= ServerEventsMainEventHandler.OnWaitingForPlayers;
+            ServerEventsMainEventHandler = null;
             
-            if (Instance.Config.FlamingoAdjustmentsConfig.IsEnabled)
-            {
-                FlamingoAdjustmentEventHandlers = null;
-            }
+            //Micro Damage Reduction Event Handler
+            Player.Hurting -= MicroDamageReductionEventHandler.OnPlayerHurting;
+            MicroDamageReductionEventHandler = null;
             
-            if (Instance.Config.EscapeDoorOpenerConfig.IsEnabled)
-            {
-                Server.RoundStarted -= EscapeDoorOpenerEventHandlers.OnRoundStarted;
-                EscapeDoorOpenerEventHandlers = null;
-            }
+            //Micro Evaporate Players Event Handler
+            Player.Dying -= MicroEvaporateEventHandlers.OnDying;
+            MicroEvaporateEventHandlers = null;
+            
+            //Flamingo Adjustment Event Handler
+            FlamingoAdjustmentEventHandlers = null;
+            
+            //Escape Door Opener Event Handler
+            Server.RoundStarted -= EscapeDoorOpenerEventHandlers.OnRoundStarted;
+            EscapeDoorOpenerEventHandlers = null;
 
-            if (Instance.Config.Scp1576SpectatorViewerConfig.IsEnabled)
-            {
-                Player.UsedItem -= Scp1576SpectatorViewerEventHandlers.OnUsingItem;
-                Scp1576SpectatorViewerEventHandlers = null;
-            }
+            //SCP 1576 Spectator Viewer Event Handler
+            Player.UsedItem -= Scp1576SpectatorViewerEventHandlers.OnUsingItem;
+            Scp1576SpectatorViewerEventHandlers = null;
 
             Instance = null;
             base.OnDisabled();

@@ -13,6 +13,7 @@ namespace SnivysUltimatePackage.Custom.Items.Grenades
     [CustomItem(ItemType.GrenadeFlash)]
     public class SmokeGrenade : CustomGrenade
     {
+        public override ItemType Type { get; set; } = ItemType.GrenadeFlash;
         public override uint Id { get; set; } = 20;
         public override string Name { get; set; } = "<color=#6600CC>Obscurus Veil-5</color>";
 

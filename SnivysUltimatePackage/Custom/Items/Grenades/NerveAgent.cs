@@ -16,6 +16,7 @@ namespace SnivysUltimatePackage.Custom.Items.Grenades
     [CustomItem(ItemType.GrenadeFlash)]
     public class NerveAgentGrenade : CustomGrenade
     {
+        public override ItemType Type { get; set; } = ItemType.GrenadeFlash;
         public override uint Id { get; set; } = 22;
         public override string Name { get; set; } = "<color=#FF0000>Nerve Agent Grenade</color>";
         public override string Description { get; set; } = "Deploys Nerve Agent";

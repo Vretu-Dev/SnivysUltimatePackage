@@ -13,6 +13,7 @@ namespace SnivysUltimatePackage.Custom.Items.Firearms
     [CustomItem(ItemType.GunRevolver)]
     public class ExplosiveRoundRevolver : CustomWeapon
     {
+        public override ItemType Type { get; set; } = ItemType.GunRevolver;
         public override uint Id { get; set; } = 21;
         public override string Name { get; set; } = "<color=#FF0000>Explosive Round Revolver</color>";
         public override string Description { get; set; } = "This revolver fires explosive rounds.";

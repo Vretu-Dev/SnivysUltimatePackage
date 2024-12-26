@@ -17,6 +17,7 @@ namespace SnivysUltimatePackage.Custom.Items.Other
     [CustomItem(ItemType.Lantern)]
     public class PhantomLantern : CustomItem
     {
+        public override ItemType Type { get; set; } = ItemType.Lantern;
         public override uint Id { get; set; } = 24;
         public override string Name { get; set; } = "<color=#0096FF>Phantom Lantern</color>";
         public override string Description { get; set; } = "'Limbo is no place for a soul like yours'";

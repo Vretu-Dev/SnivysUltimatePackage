@@ -19,6 +19,7 @@ namespace SnivysUltimatePackage.Custom.Items.Injections
     [CustomItem(ItemType.Adrenaline)]
     public class DeadringerSyringe : CustomItem
     {
+        public override ItemType Type { get; set; } = ItemType.Adrenaline;
         public override uint Id { get; set; } = 23;
         public override string Name { get; set; } = "Phantom Decoy Device";
         public override string Description { get; set; } = "When injected. You become light headed, which will eventually cause other effects";

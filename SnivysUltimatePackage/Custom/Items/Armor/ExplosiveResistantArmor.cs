@@ -14,6 +14,7 @@ namespace SnivysUltimatePackage.Custom.Items.Armor
     [CustomItem(ItemType.ArmorHeavy)]
     public class ExplosiveResistantArmor: CustomArmor
     {
+        public override ItemType Type { get; set; } = ItemType.ArmorHeavy;
         public override uint Id { get; set; } = 25;
         public override string Name { get; set; } = "<color=#FF0000>Explosive Resistant Armor</color>";
 
