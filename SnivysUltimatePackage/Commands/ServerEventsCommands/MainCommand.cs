@@ -37,6 +37,12 @@ namespace SnivysUltimatePackage.Commands.ServerEventsCommands
                 public MainCommand() => LoadGeneratedCommands();
                 protected override bool ExecuteParent(ArraySegment<string> arguments, ICommandSender sender, out string response)
                 {
+                        if (!Plugin.Instance.Config.ServerEventsMasterConfig.IsEnabled)
+                        {
+                                response = "This command is disabled.";
+                                return false;
+                        }
+                        
                         response = "Please enter a valid event to run:\n";
                         foreach (var x in Commands)
                         {
