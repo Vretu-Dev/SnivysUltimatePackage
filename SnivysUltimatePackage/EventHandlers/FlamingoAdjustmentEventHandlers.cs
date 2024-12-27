@@ -13,7 +13,8 @@ namespace SnivysUltimatePackage.EventHandlers
         {
             if (!Plugin.Instance.Config.FlamingoAdjustmentsConfig.IsEnabled)
                 return;
-            if (ev.Attacker.Role == RoleTypeId.AlphaFlamingo || ev.Attacker.Role == RoleTypeId.Flamingo)
+            if (ev.Attacker != ev.Player && ev.Attacker != null && ev.Player != null && 
+                (ev.Attacker.Role == RoleTypeId.AlphaFlamingo || ev.Attacker.Role == RoleTypeId.Flamingo))
             {
                 float damageAmount = Plugin.Instance.Config.FlamingoAdjustmentsConfig.DamageOnHit;
                 
