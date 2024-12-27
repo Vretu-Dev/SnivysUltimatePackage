@@ -10,6 +10,8 @@ namespace SnivysUltimatePackage.EventHandlers
 
         public void OnDying(DyingEventArgs ev)
         {
+            if (!Plugin.Instance.Config.MicroEvaporateConfig.IsEnabled)
+                return;
             if (ev.DamageHandler.Type == DamageType.MicroHid)
                 ev.Player.Vaporize();
         }

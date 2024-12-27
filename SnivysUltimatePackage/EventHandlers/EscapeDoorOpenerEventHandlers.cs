@@ -11,6 +11,8 @@ namespace SnivysUltimatePackage.EventHandlers
 
         public void OnRoundStarted()
         {
+            if (!Plugin.Instance.Config.EscapeDoorOpenerConfig.IsEnabled)
+                return;
             Timing.CallDelayed(1.5f, () =>
             {
                 var escapeDoor = DoorType.EscapeFinal;

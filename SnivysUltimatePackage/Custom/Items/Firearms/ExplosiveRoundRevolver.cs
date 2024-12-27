@@ -69,9 +69,9 @@ namespace SnivysUltimatePackage.Custom.Items.Firearms
 
         private void OnShot(ShotEventArgs ev)
         {
-            ev.CanHurt = false;
             if (!Check(ev.Player.CurrentItem))
                 return;
+            ev.CanHurt = false;
             ExplosiveGrenade grenade = (ExplosiveGrenade)Item.Create(ItemType.GrenadeHE);
             grenade.FuseTime = FuseTime;
             grenade.ScpDamageMultiplier = ScpGrenadeDamageMultiplier;

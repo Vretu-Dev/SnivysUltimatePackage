@@ -20,6 +20,8 @@ namespace SnivysUltimatePackage.EventHandlers.Custom
 
         public void OnRoundStarted()
         {
+            if (!Plugin.Instance.Config.CustomRolesConfig.IsEnabled)
+                return;
             List<ICustomRole>.Enumerator dClassRoles = new();
             List<ICustomRole>.Enumerator scientistRoles = new();
             List<ICustomRole>.Enumerator guardRoles = new();
@@ -77,6 +79,8 @@ namespace SnivysUltimatePackage.EventHandlers.Custom
 
         public void OnRespawningTeam(RespawningTeamEventArgs ev)
         {
+            if (!Plugin.Instance.Config.CustomRolesConfig.IsEnabled)
+                return;
             if (ev.Players.Count == 0)
             {
                 Log.Warn(
@@ -116,6 +120,8 @@ namespace SnivysUltimatePackage.EventHandlers.Custom
 
         public void FinishingRecall(FinishingRecallEventArgs ev)
         {
+            if (!Plugin.Instance.Config.CustomRolesConfig.IsEnabled)
+                return;
             Log.Debug($"{nameof(FinishingRecall)}: Selecting random zombie role.");
             if (Plugin.Roles.ContainsKey(StartTeam.Scp) && ev.Target is not null)
             {

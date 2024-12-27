@@ -1,5 +1,6 @@
 ﻿using Exiled.Events.EventArgs.Player;
 using PlayerRoles;
+using PluginAPI.Enums;
 
 namespace SnivysUltimatePackage.EventHandlers
 {
@@ -10,10 +11,9 @@ namespace SnivysUltimatePackage.EventHandlers
 
         public void OnHurting(HurtingEventArgs ev)
         {
-            if (ev.Attacker == null)
+            if (!Plugin.Instance.Config.FlamingoAdjustmentsConfig.IsEnabled)
                 return;
-            
-            if (ev.Attacker.Role == RoleTypeId.Flamingo || ev.Attacker.Role == RoleTypeId.AlphaFlamingo)
+            if (ev.Attacker.Role == RoleTypeId.AlphaFlamingo || ev.Attacker.Role == RoleTypeId.Flamingo)
             {
                 float damageAmount = Plugin.Instance.Config.FlamingoAdjustmentsConfig.DamageOnHit;
                 

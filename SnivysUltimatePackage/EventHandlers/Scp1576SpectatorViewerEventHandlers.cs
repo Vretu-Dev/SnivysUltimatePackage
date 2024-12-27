@@ -14,10 +14,12 @@ namespace SnivysUltimatePackage.EventHandlers
 
         public void OnUsingItem(UsedItemEventArgs ev)
         {
+            if (!Plugin.Instance.Config.Scp1576SpectatorViewerConfig.IsEnabled)
+                return;
+            
             if (ev.Item.Type != ItemType.SCP1576)
                 return;
-            //if (Scp1576Item._eventAssigned)
-            //    return;
+            
             string Scp1576DisplayText = ProcessStringVariables(Plugin.Instance.Config.Scp1576SpectatorViewerConfig.Scp1576Text);
             ev.Player.ShowHint(Scp1576DisplayText, Plugin.Instance.Config.Scp1576SpectatorViewerConfig.Scp1576TextDuration);
         }

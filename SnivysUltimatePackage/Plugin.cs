@@ -25,7 +25,7 @@ namespace SnivysUltimatePackage
         public override string Name { get; } = "Snivy's Ultimate Plugin Package";
         public override string Author { get; } = "Vicious Vikki";
         public override string Prefix { get; } = "VVUltimatePluginPackage";
-        public override Version Version { get; } = new Version(1, 5, 4);
+        public override Version Version { get; } = new Version(1, 5, 5);
         public override Version RequiredExiledVersion { get; } = new Version(9, 1, 0);
         public static int ActiveEvent = 0;
         
@@ -43,104 +43,86 @@ namespace SnivysUltimatePackage
         {
             Instance = this;
 
-            if (Instance.Config.CustomItemsConfig.IsEnabled)
-            {
-                CustomItem.RegisterItems(overrideClass: Instance.Config.CustomItemsConfig);
-            }
-
-            if (Instance.Config.CustomRolesConfig.IsEnabled)
-            {
-                CustomRoleEventHandler = new CustomRoleEventHandler(this);
-                
-                Config.CustomRolesConfig.ContainmentScientists.Register();
-                Config.CustomRolesConfig.LightGuards.Register();
-                Config.CustomRolesConfig.Biochemists.Register();
-                Config.CustomRolesConfig.ContainmentGuards.Register();
-                Config.CustomRolesConfig.BorderPatrols.Register();
-                Config.CustomRolesConfig.Nightfalls.Register();
-                Config.CustomRolesConfig.A7Chaoss.Register();
-                Config.CustomRolesConfig.Flippeds.Register();
-                Config.CustomRolesConfig.TelepathicChaos.Register();
-                Config.CustomRolesConfig.JuggernautChaos.Register();
-                Config.CustomRolesConfig.CISpies.Register();
-                Config.CustomRolesConfig.MtfWisps.Register();
-                foreach (CustomRole role in CustomRole.Registered)
-                {
-                    if (role is ICustomRole custom)
-                    {
-                        Log.Debug($"Adding {role.Name} to dictionary..");
-                        StartTeam team;
-                        if (custom.StartTeam.HasFlag(StartTeam.Chaos))
-                            team = StartTeam.Chaos;
-                        else if (custom.StartTeam.HasFlag(StartTeam.Guard))
-                            team = StartTeam.Guard;
-                        else if (custom.StartTeam.HasFlag(StartTeam.Ntf))
-                            team = StartTeam.Ntf;
-                        else if (custom.StartTeam.HasFlag(StartTeam.Scientist))
-                            team = StartTeam.Scientist;
-                        else if (custom.StartTeam.HasFlag(StartTeam.ClassD))
-                            team = StartTeam.ClassD;
-                        else if (custom.StartTeam.HasFlag(StartTeam.Scp))
-                            team = StartTeam.Scp;
-                        else
-                            team = StartTeam.Other;
-
-                        if (!Roles.ContainsKey(team))
-                            Roles.Add(team, new());
-
-                        for (int i = 0; i < role.SpawnProperties.Limit; i++)
-                            Roles[team].Add(custom);
-                        Log.Debug($"Roles {team} now has {Roles[team].Count} elements.");
-                    }
-                }
-
-                Server.RoundStarted += CustomRoleEventHandler.OnRoundStarted;
-                Server.RespawningTeam += CustomRoleEventHandler.OnRespawningTeam;
-                Scp049Events.FinishingRecall += CustomRoleEventHandler.FinishingRecall;
-            }
-
-            if (Instance.Config.CustomRolesConfig.IsEnabled)
-                CustomAbility.RegisterAbilities();
-
-            if (Instance.Config.ServerEventsMasterConfig.IsEnabled)
-            {
-                ServerEventsMainEventHandler = new ServerEventsMainEventHandler(this);
-                if(Instance.Config.ServerEventsMasterConfig.RandomlyStartingEvents)
-                    Server.RoundStarted += ServerEventsMainEventHandler.OnRoundStart;
-                Server.RoundEnded += ServerEventsMainEventHandler.OnEndingRound;
-                Server.WaitingForPlayers += ServerEventsMainEventHandler.OnWaitingForPlayers;
-            }
-
-            if (Instance.Config.MicroDamageReductionConfig.IsEnabled)
-            {
-                MicroDamageReductionEventHandler = new MicroDamageReductionEventHandler(this);
-                Player.Hurting += MicroDamageReductionEventHandler.OnPlayerHurting;
-            }
-
-            if (Instance.Config.MicroEvaporateConfig.IsEnabled)
-            {
-                MicroEvaporateEventHandlers = new MicroEvaporateEventHandlers(this);
-                Player.Dying += MicroEvaporateEventHandlers.OnDying;
-            }
-
-            if (Instance.Config.FlamingoAdjustmentsConfig.IsEnabled)
-            {
-                FlamingoAdjustmentEventHandlers = new FlamingoAdjustmentEventHandlers(this);
-                Player.Hurting += FlamingoAdjustmentEventHandlers.OnHurting;
-            }
-
-            if (Instance.Config.EscapeDoorOpenerConfig.IsEnabled)
-            {
-                EscapeDoorOpenerEventHandlers = new EscapeDoorOpenerEventHandlers(this);
-                Server.RoundStarted += EscapeDoorOpenerEventHandlers.OnRoundStarted;
-            }
-
-            if (Instance.Config.Scp1576SpectatorViewerConfig.IsEnabled)
-            {
-                Scp1576SpectatorViewerEventHandlers = new Scp1576SpectatorViewerEventHandlers(this);
-                Player.UsedItem += Scp1576SpectatorViewerEventHandlers.OnUsingItem;
-            }
+            //Custom Items
             
+            CustomItem.RegisterItems(overrideClass: Instance.Config.CustomItemsConfig);
+                
+            //Custom Roles
+            CustomRoleEventHandler = new CustomRoleEventHandler(this);
+            Config.CustomRolesConfig.ContainmentScientists.Register();
+            Config.CustomRolesConfig.LightGuards.Register();
+            Config.CustomRolesConfig.Biochemists.Register();
+            Config.CustomRolesConfig.ContainmentGuards.Register();
+            Config.CustomRolesConfig.BorderPatrols.Register();
+            Config.CustomRolesConfig.Nightfalls.Register();
+            Config.CustomRolesConfig.A7Chaoss.Register();
+            Config.CustomRolesConfig.Flippeds.Register();
+            Config.CustomRolesConfig.TelepathicChaos.Register();
+            Config.CustomRolesConfig.JuggernautChaos.Register();
+            Config.CustomRolesConfig.CISpies.Register();
+            Config.CustomRolesConfig.MtfWisps.Register();
+            foreach (CustomRole role in CustomRole.Registered)
+            {
+                if (role is ICustomRole custom)
+                {
+                    Log.Debug($"Adding {role.Name} to dictionary..");
+                    StartTeam team;
+                    if (custom.StartTeam.HasFlag(StartTeam.Chaos))
+                        team = StartTeam.Chaos;
+                    else if (custom.StartTeam.HasFlag(StartTeam.Guard))
+                        team = StartTeam.Guard;
+                    else if (custom.StartTeam.HasFlag(StartTeam.Ntf))
+                        team = StartTeam.Ntf;
+                    else if (custom.StartTeam.HasFlag(StartTeam.Scientist))
+                        team = StartTeam.Scientist;
+                    else if (custom.StartTeam.HasFlag(StartTeam.ClassD))
+                        team = StartTeam.ClassD;
+                    else if (custom.StartTeam.HasFlag(StartTeam.Scp))
+                        team = StartTeam.Scp;
+                    else
+                        team = StartTeam.Other;
+
+                    if (!Roles.ContainsKey(team))
+                        Roles.Add(team, new());
+
+                    for (int i = 0; i < role.SpawnProperties.Limit; i++)
+                        Roles[team].Add(custom); 
+                    Log.Debug($"Roles {team} now has {Roles[team].Count} elements."); 
+                }
+            }
+
+            Server.RoundStarted += CustomRoleEventHandler.OnRoundStarted;
+            Server.RespawningTeam += CustomRoleEventHandler.OnRespawningTeam;
+            Scp049Events.FinishingRecall += CustomRoleEventHandler.FinishingRecall;
+                
+            // Custom Abilities
+            CustomAbility.RegisterAbilities();
+                
+            // Server Events
+            ServerEventsMainEventHandler = new ServerEventsMainEventHandler(this);
+            Server.RoundStarted += ServerEventsMainEventHandler.OnRoundStart;
+            Server.RoundEnded += ServerEventsMainEventHandler.OnEndingRound;
+            Server.WaitingForPlayers += ServerEventsMainEventHandler.OnWaitingForPlayers;
+                
+            //Micro Damage Reduction
+            MicroDamageReductionEventHandler = new MicroDamageReductionEventHandler(this);
+            Player.Hurting += MicroDamageReductionEventHandler.OnPlayerHurting;
+                
+            //Micro Evaporate
+            MicroEvaporateEventHandlers = new MicroEvaporateEventHandlers(this);
+            Player.Dying += MicroEvaporateEventHandlers.OnDying;
+                
+            //Flamingo Adjustment
+            FlamingoAdjustmentEventHandlers = new FlamingoAdjustmentEventHandlers(this);
+            Player.Hurting += FlamingoAdjustmentEventHandlers.OnHurting;
+                
+            //Escape Door Opener
+            EscapeDoorOpenerEventHandlers = new EscapeDoorOpenerEventHandlers(this);
+            Server.RoundStarted += EscapeDoorOpenerEventHandlers.OnRoundStarted;
+                
+            //SCP 1576 Spectator Viewer
+            Scp1576SpectatorViewerEventHandlers = new Scp1576SpectatorViewerEventHandlers(this);
+            Player.UsedItem += Scp1576SpectatorViewerEventHandlers.OnUsingItem;
             base.OnEnabled();
         }
 
@@ -170,6 +152,7 @@ namespace SnivysUltimatePackage
             MicroEvaporateEventHandlers = null;
             
             //Flamingo Adjustment Event Handler
+            Player.Hurting -= FlamingoAdjustmentEventHandlers.OnHurting;
             FlamingoAdjustmentEventHandlers = null;
             
             //Escape Door Opener Event Handler
