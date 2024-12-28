@@ -134,6 +134,7 @@
       <Compile Include="Configs\ServerEventsConfigs\ShortConfig.cs" />
       <Compile Include="Configs\ServerEventsConfigs\VariableLightsConfig.cs" />
       <Compile Include="Configs\VoteConfig.cs" />
+      <Compile Include="Custom\Abilities\AbilityRemover.cs" />
       <Compile Include="Custom\Abilities\ActiveCamo.cs" />
       <Compile Include="Custom\Abilities\ChargeAbility.cs" />
       <Compile Include="Custom\Abilities\CustomRoleEscape.cs" />
