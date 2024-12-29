@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Exiled.CustomRoles.API.Features;
+using PlayerRoles;
 using SnivysUltimatePackage.API;
 using SnivysUltimatePackage.Custom.Abilities;
 
@@ -13,6 +14,7 @@ namespace SnivysUltimatePackage.Custom.Roles
         public override string Name { get; set; } = "<color=#FF0000>Dwarf SCP-049-2</color>";
         public override string Description { get; set; } = "A smaller zombie";
         public override string CustomInfo { get; set; } = "<color=#FF0000>Dwarf SCP-049-2</color>";
+        public override RoleTypeId Role { get; set; } = RoleTypeId.Scp0492;
         
         public StartTeam StartTeam { get; set; } = StartTeam.Revived;
 
