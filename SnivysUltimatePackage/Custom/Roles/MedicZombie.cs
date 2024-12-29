@@ -7,6 +7,7 @@ namespace SnivysUltimatePackage.Custom.Roles
 {
     public class MedicZombie : CustomRole
     {
+        public int Chance { get; set; } = 25;
         public override uint Id { get; set; } = 45;
         public override int MaxHealth { get; set; } = 450;
         public override string Name { get; set; } = "<color=#FF0000>Medic SCP-049-2</color>";

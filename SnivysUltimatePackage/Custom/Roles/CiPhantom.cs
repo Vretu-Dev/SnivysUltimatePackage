@@ -10,6 +10,7 @@ namespace SnivysUltimatePackage.Custom.Roles
 {
     public class CiPhantom : CustomRole
     {
+        public int Chance { get; set; } = 15;
         public override uint Id { get; set; } = 44;
         public override int MaxHealth { get; set; } = 100;
         public override string Name { get; set; } = "<color=#008f1e>Chaos Phantom</color>";

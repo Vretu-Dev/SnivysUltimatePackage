@@ -7,6 +7,7 @@ namespace SnivysUltimatePackage.Custom.Roles
 {
     public class ExplosiveZombie : CustomRole
     {
+        public int Chance { get; set; } = 25;
         public override uint Id { get; set; } = 42;
         public override int MaxHealth { get; set; } = 500;
         public override string Name { get; set; } = "<color=#FF0000>Ballistic SCP-049-2</color>";
