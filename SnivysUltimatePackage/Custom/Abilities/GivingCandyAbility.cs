@@ -24,6 +24,7 @@ namespace SnivysUltimatePackage.Custom.Abilities
         {
             Timing.CallDelayed(1.0f, () =>
             {
+                Log.Debug($"VVUP Custom Abilities: Giving Candy to {player.Nickname}");
                 foreach (var candy in StartingCandy)
                 {
                     player.TryAddCandy(candy);

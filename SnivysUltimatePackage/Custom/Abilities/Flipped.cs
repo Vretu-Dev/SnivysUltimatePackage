@@ -16,10 +16,12 @@ namespace SnivysUltimatePackage.Custom.Abilities
         
         protected override void AbilityAdded(Player player)
         {
+            Log.Debug($"VVUP Custom Abilities: Flipping {player.Nickname}");
             Timing.CallDelayed(2.5f, () => player.Scale = new Vector3(1.0f, -1.0f, 1.0f));
         }
         protected override void AbilityRemoved(Player player)
         {
+            Log.Debug($"VVUP Custom Abilities: Restoring {player.Nickname} scale");
             player.Scale = Vector3.one;
         }
     }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using CommandSystem;
+using Exiled.API.Features;
 using SnivysUltimatePackage.Configs;
 
 namespace SnivysUltimatePackage.Commands.VotingCommands
@@ -47,6 +48,7 @@ namespace SnivysUltimatePackage.Commands.VotingCommands
 
             StartVote.PlayerVotes[playerId] = voteOption;
             response = $"You voted for: {StartVote.VoteOptions[voteOption]}";
+            Log.Debug($"VVUP Votes: {sender.LogName} responded to the active vote");
             return true;
         }
     }

@@ -54,6 +54,7 @@ namespace SnivysUltimatePackage.Custom.Abilities
 
         private void ActivateDetect(Player ply)
         {
+            Log.Debug("VVUP Custom Abilities: Activating Detect");
             List<Player> detectedPlayers = new List<Player>();
 
             foreach (Player p in Player.List)
@@ -81,6 +82,7 @@ namespace SnivysUltimatePackage.Custom.Abilities
 
             if (detectedPlayers.Count > 0)
             {
+                Log.Debug($"VVUP Custom Abilities: Showing detected players to {ply.Nickname}");
                 foreach (Player detectedPlayer in detectedPlayers)
                 {
                     if (RoleNames.TryGetValue(detectedPlayer.Role, out string roleName))

@@ -1,10 +1,11 @@
 ﻿using System.ComponentModel;
 using CustomPlayerEffects;
 using Exiled.API.Enums;
+using Exiled.API.Features;
 using Exiled.API.Features.Attributes;
 using Exiled.CustomRoles.API.Features;
 using Exiled.Events.EventArgs.Player;
-using Exiled.Events.Handlers;
+using Player = Exiled.Events.Handlers.Player;
 
 namespace SnivysUltimatePackage.Custom.Abilities
 {
@@ -39,6 +40,7 @@ namespace SnivysUltimatePackage.Custom.Abilities
                 byte curIntensity = ev.Attacker.GetEffectIntensity<Scp207>();
                 if (curIntensity < IntensityLimit)
                 {
+                    Log.Debug($"VVUP Custom Abilities: Applying Speed On Kill Effect to {ev.Attacker.Nickname}");
                     //ev.Attacker.ChangeEffectIntensity<Scp207>((byte)(curIntensity + 1));
                     //ev.Attacker.GetEffect(EffectType.Scp207).Duration = Duration;
                     ev.Attacker.EnableEffect(EffectType.Scp207, (byte)(curIntensity + 1), Duration);

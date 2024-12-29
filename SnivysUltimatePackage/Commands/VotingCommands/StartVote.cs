@@ -73,6 +73,7 @@ namespace SnivysUltimatePackage.Commands.VotingCommands
                 IsVoteActive = false;
             });
             response = "You have started a vote";
+            Log.Debug($"VVUP Votes: {sender.LogName} started a vote");
             return true;
         }
     }

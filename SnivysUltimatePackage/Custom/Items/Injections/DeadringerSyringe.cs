@@ -68,6 +68,7 @@ namespace SnivysUltimatePackage.Custom.Items.Injections
                 return;
             if (!UsableAfterNuke && Warhead.IsDetonated)
                 return;
+            Log.Debug("VVUP Custom Items: Deadringer Syring, Running methods");
             ev.Player.Broadcast(new Exiled.API.Features.Broadcast(OnUseMessage, 3));
             ev.Player.EnableEffect(EffectType.Blinded, 15f, true);
             Timing.CallDelayed(3, () =>

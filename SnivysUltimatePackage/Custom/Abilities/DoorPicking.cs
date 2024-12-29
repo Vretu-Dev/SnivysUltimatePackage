@@ -48,7 +48,7 @@ namespace SnivysUltimatePackage.Custom.Abilities
             
             if (ev.Door.IsOpen)
                 return;
-            
+            Log.Debug("VVUP Custom Abilities: Door Picking Ability, processing methods");
             ev.IsAllowed = false;
             int randomTime = new Random().Next((int)TimeToDoorPickMin, (int)TimeToDoorPickMax);
             ev.Player.ShowHint(PickingDoorText, randomTime);
@@ -59,6 +59,7 @@ namespace SnivysUltimatePackage.Custom.Abilities
 
             Timing.CallDelayed(randomTime, () =>
             {
+                Log.Debug($"VVUP Custom Abilities: Opening {ev.Door.Name}");
                 ev.Door.IsOpen = true;
                 PlayersWithPickingDoorAbility.Remove(ev.Player);
                 Timing.CallDelayed(TimeForDoorToBeOpen, () =>

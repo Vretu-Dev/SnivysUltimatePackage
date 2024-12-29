@@ -35,6 +35,7 @@ namespace SnivysUltimatePackage.Custom.Abilities
             if (PlayersWithRestrictedEscapeEffect.Contains(ev.Player) && !ev.Player.IsCuffed)
             {
                 ev.IsAllowed = false;
+                Log.Debug($"VVUP Custom Abilities: Restricting Escape of {ev.Player.Nickname}");
                 if (UseHints)
                     ev.Player.ShowHint(EscapeText, EscapeTextTime);
                 else

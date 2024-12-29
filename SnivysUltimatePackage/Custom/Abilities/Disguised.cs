@@ -49,6 +49,7 @@ namespace SnivysUltimatePackage.Custom.Abilities
                 return;
             if (ev.Player.IsNTF && (ev.Attacker.IsCHI || ev.Attacker.Role.Type == RoleTypeId.ClassD))
             {
+                Log.Debug("VVUP Custom Abilities: Preventing accidental friendly fire with disguised");
                 if (DisguisedHintDisplay)
                     ev.Attacker.ShowHint(DisguisedCi, DisguisedTextDisplayTime);
                 else
@@ -57,6 +58,7 @@ namespace SnivysUltimatePackage.Custom.Abilities
             }
             else if (ev.Player.IsCHI && (ev.Attacker.IsNTF || ev.Attacker.Role.Type == RoleTypeId.Scientist))
             {
+                Log.Debug("VVUP Custom Abilities: Preventing accidental friendly fire with disguised");
                 if (DisguisedHintDisplay)
                     ev.Attacker.ShowHint(DisguisedMtf, DisguisedTextDisplayTime);
                 else
@@ -69,6 +71,7 @@ namespace SnivysUltimatePackage.Custom.Abilities
         {
             if (PlayersWithDisguisedEffect.Contains(ev.Player))
             {
+                Log.Debug("VVUP Custom Abilities: Preventing accidental friendly fire with disguised");
                 if (ev.Player.IsNTF)
                 {
                     if (ev.Target != null && Check(ev.Player) && (ev.Target.Role == RoleTypeId.ClassD || ev.Target.IsCHI))

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 using Exiled.API.Enums;
+using Exiled.API.Features;
 using Exiled.API.Features.Attributes;
 using Exiled.API.Features.Spawn;
 using Exiled.CustomItems.API.Features;
@@ -79,7 +80,10 @@ namespace SnivysUltimatePackage.Custom.Items.Armor
         private void OnHurting(HurtingEventArgs ev)
         {
             if (ev.DamageHandler.Type == DamageType.Explosion && _playersWithArmorOn.Contains(ev.Player))
+            {
+                Log.Debug("VVUP Custom Items: Explosion damage, reducing damage.");
                 ev.DamageHandler.Damage *= ExplosiveDamageReduction;
+            }
         }
     }
 }

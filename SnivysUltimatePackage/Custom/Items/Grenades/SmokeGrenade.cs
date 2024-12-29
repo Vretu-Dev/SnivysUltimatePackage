@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Exiled.API.Enums;
+using Exiled.API.Features;
 using Exiled.API.Features.Attributes;
 using Exiled.API.Features.Items;
 using Exiled.API.Features.Spawn;
@@ -61,6 +62,7 @@ namespace SnivysUltimatePackage.Custom.Items.Grenades
         protected override void OnExploding(ExplodingGrenadeEventArgs ev)
         {
             ev.IsAllowed = false;
+            Log.Debug("VVUP Custom Items: Smoke Grenade, Spawning Smoke");
             var pos = ev.Position;
             Scp244 smoke = (Scp244)Item.Create(ItemType.SCP244a);
             smoke.Scale = new Vector3(0.01f, 0.01f, 0.01f);

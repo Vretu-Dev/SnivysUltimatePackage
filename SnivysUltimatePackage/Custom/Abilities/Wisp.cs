@@ -27,6 +27,7 @@ namespace SnivysUltimatePackage.Custom.Abilities
             {
                 foreach (var effect in EffectsToApply)
                 {
+                    Log.Debug("VVUP Custom Abilities: Activating Wisp Effects");
                     player.EnableEffect(effect.Key, effect.Value, 0);
                 }
             });
@@ -36,6 +37,7 @@ namespace SnivysUltimatePackage.Custom.Abilities
         {
             foreach (var effect in EffectsToApply)
             {
+                Log.Debug("VVUP Custom Abilities: Removing Wisp Effects");
                 player.DisableEffect(effect.Key);
             }
         }

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Exiled.API.Enums;
+using Exiled.API.Features;
 using Exiled.API.Features.Attributes;
 using Exiled.API.Features.Items;
 using Exiled.API.Features.Pickups;
@@ -67,6 +68,7 @@ namespace SnivysUltimatePackage.Custom.Items.Grenades
         protected override void OnExploding(ExplodingGrenadeEventArgs ev)
         {
             ev.IsAllowed = false;
+            Log.Debug("VVUP Custom Items: Nerve Agent, Starting Routine");
             grenadePosition = ev.Position;
             Scp244 scp244 = (Scp244)Item.Create(ItemType.SCP244a);
             scp244.Scale = new Vector3(0.01f, 0.01f, 0.01f);
@@ -84,6 +86,7 @@ namespace SnivysUltimatePackage.Custom.Items.Grenades
                 pickup.Position += Vector3.down;
                 Timing.CallDelayed(5, () =>
                 {
+                    Log.Debug("VVUP Custom Items: Nerve Agent, Ending Routine");
                     scp244.Destroy();
                 });
             });

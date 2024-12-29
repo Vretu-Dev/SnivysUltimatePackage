@@ -1,10 +1,11 @@
 ﻿using System.ComponentModel;
+using Exiled.API.Features;
 using Exiled.API.Features.Attributes;
 using Exiled.API.Features.Items;
 using Exiled.CustomRoles.API.Features;
 using Exiled.Events.EventArgs.Player;
-using Exiled.Events.Handlers;
 using Item = Exiled.API.Features.Items.Item;
+using Player = Exiled.Events.Handlers.Player;
 
 namespace SnivysUltimatePackage.Custom.Abilities
 {
@@ -34,6 +35,7 @@ namespace SnivysUltimatePackage.Custom.Abilities
         {
             if (Check(ev.Player))
             {
+                Log.Debug($"VVUP Custom Abilities: Spawning Grenade at {ev.Player.Nickname} death location");
                 ExplosiveGrenade grenade = (ExplosiveGrenade)Item.Create(ItemType.GrenadeHE);
                 grenade.FuseTime = ExplosiveFuse;
                 grenade.SpawnActive(ev.Player.Position);

@@ -53,10 +53,26 @@ namespace SnivysUltimatePackage.Configs.CustomConfigs
         {
             new CISpy(),
         };
-
         public List<MtfWisp> MtfWisps { get; set; } = new()
         {
             new MtfWisp(),
+        };
+        public List<DwarfZombie> DwarfZombies { get; set; } = new()
+        {
+            new DwarfZombie(),
+        };
+        public List<ExplosiveZombie> ExplosiveZombies { get; set; } = new()
+        {
+            new ExplosiveZombie(),
+        };
+        public List<CiPhantom> CiPhantoms { get; set; } = new()
+        {
+            new CiPhantom(),
+        };
+
+        public List<MedicZombie> MedicZombies { get; set; } = new()
+        {
+            new MedicZombie(),
         };
     }
 }

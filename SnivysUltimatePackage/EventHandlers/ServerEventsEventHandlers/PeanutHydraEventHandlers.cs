@@ -11,11 +11,11 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
         private static bool _pheStarted;
         public PeanutHydraEventHandlers()
         {
-            Log.Debug("Checking if Peanut Hydra has already been started");
+            Log.Debug("VVUP Server Events, Peanut Hydra: Checking if Peanut Hydra has already been started");
             if (_pheStarted) return;
             Config = Plugin.Instance.Config.ServerEventsMasterConfig.PeanutHydraConfig;
             Plugin.ActiveEvent += 1;
-            Log.Debug("Adding On Dying and On Died Event PHE Handlers");
+            Log.Debug("VVUP Server Events, Peanut Hydra: Adding On Dying and On Died Event PHE Handlers");
             Player.Dying += Plugin.Instance.ServerEventsMainEventHandler.OnDyingPHE;
             Player.Died += Plugin.Instance.ServerEventsMainEventHandler.OnDiedPHE;
             _pheStarted = true;
@@ -24,7 +24,7 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
         public static void EndEvent()
         {
             if (!_pheStarted) return;
-            Log.Debug("Removing On Dying and On Died Event PHE Handlers");
+            Log.Debug("VVUP Server Events, Peanut Hydra: Removing On Dying and On Died Event PHE Handlers");
             Player.Dying += Plugin.Instance.ServerEventsMainEventHandler.OnDyingPHE;
             Player.Died -= Plugin.Instance.ServerEventsMainEventHandler.OnDiedPHE;
             _pheStarted = false;

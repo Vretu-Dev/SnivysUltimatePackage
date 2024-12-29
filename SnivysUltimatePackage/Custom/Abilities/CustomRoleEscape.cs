@@ -51,6 +51,7 @@ namespace SnivysUltimatePackage.Custom.Abilities
         {
             if (!PlayersWithCustomRoleEscape.Contains(ev.Player))
                 return;
+            Log.Debug($"VVUP Custom Abilities: Processing {ev.Player.Nickname} custom escape");
             storedInventory = ev.Player.Items.ToList();
             
             if (ev.Player.IsCuffed && AllowCuffedCustomRoleChange && CuffedEscapeCustomRole != String.Empty && !UseOnSpawnCuffedEscape)
@@ -84,6 +85,7 @@ namespace SnivysUltimatePackage.Custom.Abilities
         {
             if (ev.NewRole == RoleTypeId.Spectator && !PlayersWithCustomRoleEscape.Contains(ev.Player))
                 return;
+            Log.Debug($"VVUP Custom Abilities: Processing {ev.Player.Nickname} custom escape");
             if (UseOnSpawnUncuffedEscape && ev.Reason == SpawnReason.Escaped && UncuffedEscapeCustomRole != String.Empty)
             {
                 ev.SpawnFlags = RoleSpawnFlags.UseSpawnpoint;

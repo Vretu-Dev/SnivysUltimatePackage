@@ -38,23 +38,35 @@ namespace SnivysCustomRolesAbilities.Abilities
         {
             if (!RestrictUsingItems)
                 return;
-            if (PlayersWithRestrictedItemsEffect.Contains(ev.Player) && RestrictedItemList != null && RestrictedItemList.Contains(ev.Item.Type))
+            if (PlayersWithRestrictedItemsEffect.Contains(ev.Player) && RestrictedItemList != null &&
+                RestrictedItemList.Contains(ev.Item.Type))
+            {
+                Log.Debug($"VVUP Custom Abilities: Restricting {ev.Player.Nickname} from using up {ev.Item}");
                 ev.IsAllowed = false;
+            }
         }
 
         private void OnPickingUpItem(PickingUpItemEventArgs ev)
         {
             if (!RestrictPickingUpItems)
                 return;
-            if (PlayersWithRestrictedItemsEffect.Contains(ev.Player) && RestrictedItemList != null && RestrictedItemList.Contains(ev.Pickup.Type))
+            if (PlayersWithRestrictedItemsEffect.Contains(ev.Player) && RestrictedItemList != null &&
+                RestrictedItemList.Contains(ev.Pickup.Type))
+            {
+                Log.Debug($"VVUP Custom Abilities: Restricting {ev.Player.Nickname} from picking up {ev.Pickup}");
                 ev.IsAllowed = false;
+            }
         }
         private void OnDroppingItem(DroppingItemEventArgs ev)
         {
             if (!RestrictDroppingItems)
                 return;
-            if (PlayersWithRestrictedItemsEffect.Contains(ev.Player) && RestrictedItemList != null && RestrictedItemList.Contains(ev.Item.Type))
+            if (PlayersWithRestrictedItemsEffect.Contains(ev.Player) && RestrictedItemList != null &&
+                RestrictedItemList.Contains(ev.Item.Type))
+            {
+                Log.Debug($"VVUP Custom Abilities: Restricting {ev.Player.Nickname} from dropping {ev.Item}");
                 ev.IsAllowed = false;
+            }
         }
     }
 }

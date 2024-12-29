@@ -27,6 +27,7 @@ namespace SnivysCustomRolesAbilities.Abilities
 
         protected override void AbilityUsed(Player player)
         {
+            Log.Debug($"VVUP Custom Abilities: Removing {player.Nickname} disguise");
             List<Item> storedInventory = player.Items.ToList();
 
             var ammoCount = player.Ammo.ToDictionary(ammo => ammo.Key, ammo => ammo.Value);

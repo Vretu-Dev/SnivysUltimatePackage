@@ -15,7 +15,7 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
 
         public VariableLightsEventHandlers()
         {
-            Log.Debug("Checking to see if Variable Lights Event has already started");
+            Log.Debug("VVUP Server Events, Variable Lights: Checking to see if Variable Lights Event has already started");
             if (_vleStarted) return;
             _config = Plugin.Instance.Config.ServerEventsMasterConfig.VariableLightsConfig;
             Plugin.ActiveEvent += 1;
@@ -28,30 +28,30 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
         private static IEnumerator<float> VariableLightsTiming()
         {
             Random random = new Random();
-            Log.Debug("Checking if Variable Lights Event has started improperly");
+            Log.Debug("VVUP Server Events, Variable Lights: Checking if Variable Lights Event has started improperly");
             if (!_vleStarted)
             {
-                Log.Warn("Variable Lights Event has started improperly, ending event.");
+                Log.Warn("VVUP Server Events, Variable Lights: Variable Lights Event has started improperly, ending event.");
                 Map.ResetLightsColor();
                 yield break;
             }
 
             for (;;)
             {
-                Log.Debug("Checking if config is set to allow color channing or not");
+                Log.Debug("VVUP Server Events, Variable Lights: Checking if config is set to allow color channing or not");
                 if (!_config.ColorChanging)
                 {
-                    Log.Debug("Color changing is disabled, changing brightness only");
+                    Log.Debug("VVUP Server Events, Variable Lights: Color changing is disabled, changing brightness only");
                     if (_config.DifferentLightsPerRoom)
                     {
-                        Log.Debug("Different lights per room is enabled, changing brightness");
+                        Log.Debug("VVUP Server Events, Variable Lights: Different lights per room is enabled, changing brightness");
                         foreach (Room room in Room.List)
                             room.Color = new Color(1, 1, 1, (float)random.NextDouble());
                     }
                     else
                     {
                         Log.Debug(
-                            "Different lights per room is disabled, setting brightness to be the same across rooms");
+                            "VVUP Server Events, Variable Lights: Different lights per room is disabled, setting brightness to be the same across rooms");
                         float aRandomNumber = (float)random.NextDouble();
                         foreach (Room room in Room.List)
                             room.Color = new Color(1, 1, 1, aRandomNumber);
@@ -59,17 +59,17 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
                 }
                 else
                 {
-                    Log.Debug("Color changing is enabled");
+                    Log.Debug("VVUP Server Events, Variable Lights: Color changing is enabled");
                     if (_config.DifferentLightsPerRoom)
                     {
-                        Log.Debug("Different room lights is enabled, setting different lights per room");
+                        Log.Debug("VVUP Server Events, Variable Lights: Different room lights is enabled, setting different lights per room");
                         foreach (Room room in Room.List)
                             room.Color = new Color((float)random.NextDouble(), (float)random.NextDouble(),
                                 (float)random.NextDouble(), (float)random.NextDouble());
                     }
                     else
                     {
-                        Log.Debug("Different room lights is disabled, setting the same lights per room");
+                        Log.Debug("VVUP Server Events, Variable Lights: Different room lights is disabled, setting the same lights per room");
                         float aRandomNumber = (float)random.NextDouble();
                         Log.Debug(aRandomNumber);
                         float rRandomNumber = (float)random.NextDouble();
@@ -83,7 +83,7 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
                     }
                 }
 
-                Log.Debug($"Waiting for {_config.TimeForChange} seconds");
+                Log.Debug($"VVUP Server Events, Variable Lights: Waiting for {_config.TimeForChange} seconds");
                 yield return Timing.WaitForSeconds(_config.TimeForChange);
             }
         }
@@ -92,7 +92,7 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
         {
             if (!_vleStarted) return;
             _vleStarted = false;
-            Log.Debug("Killing Coroutine for lights");
+            Log.Debug("VVUP Server Events, Variable Lights: Killing Coroutine for lights");
             Timing.KillCoroutines(_lightChangingHandle);
             Map.ResetLightsColor();
             Plugin.ActiveEvent -= 1;

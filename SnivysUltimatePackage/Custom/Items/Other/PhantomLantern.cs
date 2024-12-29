@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Exiled.API.Enums;
+using Exiled.API.Features;
 using Exiled.API.Features.Attributes;
 using Exiled.API.Features.Spawn;
 using Exiled.CustomItems.API.Features;
@@ -98,6 +99,7 @@ namespace SnivysUltimatePackage.Custom.Items.Other
                 return;
             if (!Check(ev.Player.CurrentItem))
                 return;
+            Log.Debug("VVUP Custom Items: Activating Phantom Lantern Effects");
             _effectActive = true;
             _playersWithEffect.Add(ev.Player);
             ev.Player.EnableEffect(EffectType.Ghostly);
@@ -187,7 +189,7 @@ namespace SnivysUltimatePackage.Custom.Items.Other
         public void EndOfEffect(PlayerAPI player)
         {
             if (player == null) return;
-            
+            Log.Debug("VVUP Custom Items: Ending Phantom Lantern's Effects");
             player.DisableEffect(EffectType.Ghostly);
             player.DisableEffect(EffectType.Invisible);
             player.DisableEffect(EffectType.Slowness);

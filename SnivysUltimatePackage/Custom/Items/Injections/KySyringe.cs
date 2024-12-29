@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Exiled.API.Enums;
+using Exiled.API.Features;
 using Exiled.API.Features.Attributes;
 using Exiled.API.Features.Spawn;
 using Exiled.CustomItems.API.Features;
@@ -55,6 +56,7 @@ namespace SnivysUltimatePackage.Custom.Items.Injections
         {
             if (!Check(ev.Player.CurrentItem))
                 return;
+            Log.Debug($"VVUP Custom Items: KY Syringe, Killing {ev.Player.Nickname}");
             ev.Player.Kill(KillReason);
             ev.Player.Health = 1f;
             ev.Player.EnableEffect(EffectType.Bleeding, 500f);
@@ -65,6 +67,7 @@ namespace SnivysUltimatePackage.Custom.Items.Injections
         {
             if (!Check(ev.Player.CurrentItem))
                 return;
+            Log.Debug($"VVUP Custom Items: KY Syringe, Killing {ev.Player.Nickname}");
             ev.Player.Kill(KillReason);
             ev.Player.Health = 1f;
             ev.Player.EnableEffect(EffectType.Bleeding, 500f);

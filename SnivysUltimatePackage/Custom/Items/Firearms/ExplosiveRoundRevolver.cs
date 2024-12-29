@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Exiled.API.Enums;
+using Exiled.API.Features;
 using Exiled.API.Features.Attributes;
 using Exiled.API.Features.Items;
 using Exiled.API.Features.Spawn;
@@ -71,6 +72,7 @@ namespace SnivysUltimatePackage.Custom.Items.Firearms
         {
             if (!Check(ev.Player.CurrentItem))
                 return;
+            Log.Debug("VVUP Custom Items: Explosive Round Revolver, spawning grenade at bullet impact location");
             ev.CanHurt = false;
             ExplosiveGrenade grenade = (ExplosiveGrenade)Item.Create(ItemType.GrenadeHE);
             grenade.FuseTime = FuseTime;

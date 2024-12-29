@@ -30,30 +30,30 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
         //Ending round
         public void OnEndingRound(RoundEndedEventArgs ev)
         {
-            Log.Debug("Checking if an event is active at round end");
+            Log.Debug("VVUP Server Events: Checking if an event is active at round end");
             EndEvents();
         }
         
         //Waiting for Players
         public void OnWaitingForPlayers()
         {
-            Log.Debug("Checking if an event is active at waiting for players");
+            Log.Debug("VVUP Server Events: Checking if an event is active at waiting for players");
             EndEvents();
         }
 
         //Stop Events Command
         public static void StopEventsCommand()
         {
-            Log.Debug("Killing events due to the stop command being used");
+            Log.Debug("VVUP Server Events: Killing events due to the stop command being used");
             EndEvents();
         }
 
         //Ends Events method, On Round End, On Waiting For Players, and Stop Commands points here
         private static void EndEvents()
         {
-            Log.Debug("Checking again if there's events active");
+            Log.Debug("VVUP Server Events: Checking again if there's events active");
             if (Plugin.ActiveEvent == 0) return;
-            Log.Debug("Disabling Event Handlers, Clearing Generator Count");
+            Log.Debug("VVUP Server Events: Disabling Event Handlers, Clearing Generator Count");
             _activatedGenerators = 0;
             BlackoutEventHandlers.EndEvent();
             PeanutHydraEventHandlers.EndEvent();
@@ -69,73 +69,73 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
         //On round start, basically to see if events can start randomly
         public void OnRoundStart()
         {
-            Log.Debug("Checking if Random Events config is set to true");
+            Log.Debug("VVUP Server Events: Checking if Random Events config is set to true");
             if (!Plugin.Instance.Config.ServerEventsMasterConfig.RandomlyStartingEvents) return;
             
             Random random = new(); 
             int chance = random.Next(100);
-            Log.Debug($"Chance is {chance}, comparing to the chance to the defined chance {Plugin.Instance.Config.ServerEventsMasterConfig.RandomlyStartingEvents}");
+            Log.Debug($"VVUP Server Events: Chance is {chance}, comparing to the chance to the defined chance {Plugin.Instance.Config.ServerEventsMasterConfig.RandomlyStartingEvents}");
             if (chance < Plugin.Instance.Config.ServerEventsMasterConfig.RandomEventStartingChance)
             {
-                Log.Debug("Getting the list of events that are able to be randomly started");
+                Log.Debug("VVUP Server Events: Getting the list of events that are able to be randomly started");
                 List<string> events = Plugin.Instance.Config.ServerEventsMasterConfig.RandomEventsAllowedToStart;
-                Log.Debug("Getting a random event that is defined");
+                Log.Debug("VVUP Server Events: Getting a random event that is defined");
                 string selectedEvent = events[random.Next(events.Count)];
-                Log.Debug($"Random event selected: {selectedEvent}");
+                Log.Debug($"VVUP Server Events: Random event selected: {selectedEvent}");
                 switch (selectedEvent)
                 {
                     case "Blackout":
-                        Log.Debug("Activating Blackout Event");
+                        Log.Debug("VVUP Server Events: Activating Blackout Event");
                         var blackoutEventHandlers = new BlackoutEventHandlers();
                         break;
                     case "173Infection":
-                        Log.Debug("Activating Peanut Infection Event");
+                        Log.Debug("VVUP Server Events: Activating Peanut Infection Event");
                         var infectionEventHandlers = new PeanutInfectionEventHandlers();
                         break;
                     case "173Hydra":
-                        Log.Debug("Activating Peanut Hydra Event");
+                        Log.Debug("VVUP Server Events: Activating Peanut Hydra Event");
                         var hydraEventHandlers = new PeanutHydraEventHandlers();
                         break;
                     case "Chaotic":
-                        Log.Debug("Activating Chaotic Event");
+                        Log.Debug("VVUP Server Events: Activating Chaotic Event");
                         var chaoticHandlers = new ChaoticEventHandlers();
                         break;
                     case "Short":
-                        Log.Debug("Activating Short People Event");
+                        Log.Debug("VVUP Server Events: Activating Short People Event");
                         var shortEventHandlers = new ShortEventHandlers();
                         break;
                     case "FreezingTemps":
-                        Log.Debug("Activating Freezing Temperatures Event");
+                        Log.Debug("VVUP Server Events: Activating Freezing Temperatures Event");
                         var freezingTemperaturesHandlers = new FreezingTemperaturesEventHandlers();
                         break;
                     case "NameRedacted":
-                        Log.Debug("Activating Name Redacted Event");
+                        Log.Debug("VVUP Server Events: Activating Name Redacted Event");
                         var nameRedactedHandler = new NameRedactedEventHandlers();
                         break;
                     case "VariableLights":
-                        Log.Debug("Activating Variable Lights Event");
+                        Log.Debug("VVUP Server Events: Activating Variable Lights Event");
                         var variableEventHandlers = new VariableLightsEventHandlers();
                         break;
                     default:
-                        Log.Warn($"Unknown event: {selectedEvent}");
-                        Log.Warn("Valid Events: Valid options: Blackout, 173Infection, 173Hydra, Chaotic, Short, FreezingTemps, NameRedacted, VariableLights");
-                        Log.Warn("If this error randomly appears and you are sure you put in a valid event, please let the developer know as soon as possible");
+                        Log.Warn($"VVUP Server Events: Unknown event: {selectedEvent}");
+                        Log.Warn("VVUP Server Events: Valid Events: Valid options: Blackout, 173Infection, 173Hydra, Chaotic, Short, FreezingTemps, NameRedacted, VariableLights");
+                        Log.Warn("VVUP Server Events: If this error randomly appears and you are sure you put in a valid event, please let the developer know as soon as possible");
                         break;
                 }
             }
             else
-                Log.Debug("No random event was triggered.");
+                Log.Debug("VVUP Server Events: No random event was triggered.");
         }
         
         //Blackout
         public void OnGeneratorEngagedBOE(GeneratorActivatingEventArgs ev)
         {
-            Log.Debug("Adding amount of generators to count");
+            Log.Debug("VVUP Server Events: Adding amount of generators to count");
             _activatedGenerators = Generator.Get(GeneratorState.Engaged).Count();
             Log.Debug("Checking if generators is 3");
             if (_activatedGenerators == 3)
             {
-                Log.Debug("Disabling Blackout Event");
+                Log.Debug("VVUP Server Events: Disabling Blackout Event");
                 BlackoutEventHandlers.EndEvent();
                 Plugin.ActiveEvent -= 1;
                 _activatedGenerators = 0;
@@ -145,10 +145,10 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
         // Peanut Infection
         public void OnKillingPIE(DiedEventArgs ev)
         {
-            Log.Debug("Checking if the killer was 173");
+            Log.Debug("VVUP Server Events: Checking if the killer was 173");
             if (ev.Attacker.Role == RoleTypeId.Scp173 && ev.DamageHandler.Type == DamageType.Scp173)
             {
-                Log.Debug("Setting the killed to 173");
+                Log.Debug("VVUP Server Events: Setting the killed to 173");
                 Timing.CallDelayed(0.5f, () => ev.Player.Role.Set(RoleTypeId.Scp173, SpawnReason.ForceClass, RoleSpawnFlags.None));
             }
         }
@@ -156,7 +156,7 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
         // Peanut Hydra
         public void OnDyingPHE(DyingEventArgs ev)
         {
-            Log.Debug("Checking if the died is SCP-173");
+            Log.Debug("VVUP Server Events: Checking if the died is SCP-173");
             if (ev.Player.Role != RoleTypeId.Scp173) return;
             _PHELastKnownHeath = ev.Player.Health;
             _PHELastKnownScale = ev.Player.Scale.y;
@@ -166,27 +166,27 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
         {
             if (ev.TargetOldRole != RoleTypeId.Scp173) return;
             //Get the player who died and set them back as 173 
-            Log.Debug("Get the player who died and set them back as 173");
+            Log.Debug("VVUP Server Events: Get the player who died and set them back as 173");
             ev.Player.Role.Set(RoleTypeId.Scp173, SpawnReason.ForceClass, RoleSpawnFlags.None);
             //calculate the new scale and health
-            Log.Debug("Calculating the new scale and health");
+            Log.Debug("VVUP Server Events: Calculating the new scale and health");
             _PHEScale = Mathf.Max(0.1f, _PHELastKnownScale / 2);
             _PHENewHealth = _PHELastKnownHeath / 2;
             //apply them to the formerly dead player
-            Log.Debug("Applying them to the formerly dead player");
+            Log.Debug("VVUP Server Events: Applying them to the formerly dead player");
             ev.Player.Health = Mathf.Max(_PHENewHealth, 1);
             ev.Player.Scale.Set(_PHEScale, _PHEScale, _PHEScale);
             //Get a random spectator and set them as a duplicate 173
-            Log.Debug("Getting a random spectator and set them as a duplicate 173");
+            Log.Debug("VVUP Server Events: Getting a random spectator and set them as a duplicate 173");
             Player newPlayer = GetRandomSpectator();
             switch (newPlayer)
             {
                 case null when PeanutHydraEventHandlers.Config.UseAttackersIfNeeded:
-                    Log.Debug("No spectators found to become the new SCP-173, using attacker...");
+                    Log.Debug("VVUP Server Events: No spectators found to become the new SCP-173, using attacker...");
                     newPlayer = ev.Attacker;
                     break;
                 case null:
-                    Log.Debug("No spectators found to become the new SCP-173");
+                    Log.Debug("VVUP Server Events: No spectators found to become the new SCP-173");
                     return;
             }
             newPlayer.Role.Set(RoleTypeId.Scp173, SpawnReason.ForceClass, RoleSpawnFlags.None);
@@ -198,16 +198,16 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
         private static Player GetRandomSpectator()
         {
             // Get a list of players with the Spectator role
-            Log.Debug("Getting a list of players who are spectators");
+            Log.Debug("VVUP Server Events: Getting a list of players who are spectators");
             List<Player> spectators = Player.List.Where(p => p.Role == RoleTypeId.Spectator).ToList();
 
             // If there are no spectators, return null
-            Log.Debug("Checking if there is any spectators");
+            Log.Debug("VVUP Server Events: Checking if there is any spectators");
             if (spectators.Count == 0)
                 return null;
 
             // Select a random spectator
-            Log.Debug("Selecting a random spectator");
+            Log.Debug("VVUP Server Events: Selecting a random spectator");
             Random random = new();
             int index = random.Next(spectators.Count);
             return spectators[index];
@@ -216,7 +216,7 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
         {
             foreach (var player in Player.List)
             {
-                Log.Debug($"Setting {player} size to {ShortEventHandlers.GetPlayerSize()}");
+                Log.Debug($"VVUP Server Events: Setting {player} size to {ShortEventHandlers.GetPlayerSize()}");
                 player.Scale = new Vector3(ShortEventHandlers.GetPlayerSize(), ShortEventHandlers.GetPlayerSize(), ShortEventHandlers.GetPlayerSize());
             }
         }
@@ -224,15 +224,15 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
         //Chaos Event
         public void OnUsingMedicalItemCE(UsingItemCompletedEventArgs ev)
         {
-            Log.Debug("Checking if the item is used was a medical item of some sort");
+            Log.Debug("VVUP Server Events: Checking if the item is used was a medical item of some sort");
             if (ev.Usable.Type is ItemType.Adrenaline or ItemType.Painkillers or ItemType.Medkit or ItemType.SCP500)
             {
                 Random random = new();
-                Log.Debug("Doing a half half chance to see if an effect should be applied");
+                Log.Debug("VVUP Server Events: Doing a half half chance to see if an effect should be applied");
                 int chance = random.Next(minValue: 1, maxValue: 2);
                 if (chance == 1)
                     return;
-                Log.Debug("Chance passed, getting a random effect");
+                Log.Debug("VVUP Server Events: Chance passed, getting a random effect");
                 chance = random.Next(minValue: 1, maxValue: 41);
                 switch (chance)
                 {

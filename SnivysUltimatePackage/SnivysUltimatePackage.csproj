@@ -143,6 +143,7 @@
       <Compile Include="Custom\Abilities\DoorPicking.cs" />
       <Compile Include="Custom\Abilities\DwarfAbility.cs" />
       <Compile Include="Custom\Abilities\Flipped.cs" />
+      <Compile Include="Custom\Abilities\FriendlyFireRemover.cs" />
       <Compile Include="Custom\Abilities\GivingCandyAbility.cs" />
       <Compile Include="Custom\Abilities\HealingMist.cs" />
       <Compile Include="Custom\Abilities\HealOnKill.cs" />
@@ -164,12 +165,16 @@
       <Compile Include="Custom\Roles\A7Chaos.cs" />
       <Compile Include="Custom\Roles\Biochemist.cs" />
       <Compile Include="Custom\Roles\BorderPatrol.cs" />
+      <Compile Include="Custom\Roles\CiPhantom.cs" />
       <Compile Include="Custom\Roles\CISpy.cs" />
       <Compile Include="Custom\Roles\ContainmentGuard.cs" />
       <Compile Include="Custom\Roles\ContainmentScientist.cs" />
+      <Compile Include="Custom\Roles\DwarfZombie.cs" />
+      <Compile Include="Custom\Roles\ExplosiveZombie.cs" />
       <Compile Include="Custom\Roles\Flipped.cs" />
       <Compile Include="Custom\Roles\JuggernautChaos.cs" />
       <Compile Include="Custom\Roles\LightGuard.cs" />
+      <Compile Include="Custom\Roles\MedicZombie.cs" />
       <Compile Include="Custom\Roles\MtfWisp.cs" />
       <Compile Include="Custom\Roles\Nightfall.cs" />
       <Compile Include="Custom\Roles\TelepathicChaos.cs" />

@@ -11,11 +11,11 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
         
         public ShortEventHandlers()
         {
-            Log.Debug("Checking if Short People Event has already started");
+            Log.Debug("VVUP Server Events, Short People: Checking if Short People Event has already started");
             if (_seStarted) return;
             _config = Plugin.Instance.Config.ServerEventsMasterConfig.ShortConfig;
             Plugin.ActiveEvent += 1;
-            Log.Debug("Adding On Changing Role SE Event Handlers");
+            Log.Debug("VVUP Server Events, Short People: Adding On Changing Role SE Event Handlers");
             Exiled.Events.Handlers.Player.ChangingRole += Plugin.Instance.ServerEventsMainEventHandler.OnRoleSwapSE;
             _seStarted = true;
             foreach (var player in Player.List)
@@ -23,31 +23,31 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
                 var startingItems = GetStartingItems(_config.StartingItems);
                 foreach (var item in startingItems)
                 {
-                    Log.Debug($"Adding {item} to {player}");
+                    Log.Debug($"VVUP Server Events, Short People: Adding {item} to {player}");
                     player.AddItem(item);
                 }
                 player.Scale = new UnityEngine.Vector3(GetPlayerSize(), GetPlayerSize(), GetPlayerSize());
-                Log.Debug($"Set {player} size to {GetPlayerSize()}");
+                Log.Debug($"VVUP Server Events, Short People: Set {player} size to {GetPlayerSize()}");
             }
             Cassie.MessageTranslated(_config.StartEventCassieMessage, _config.StartEventCassieText);
         }
         
         public static float GetPlayerSize()
         {
-            Log.Debug("Getting Config Defined Player Size");
+            Log.Debug("VVUP Server Events, Short People: Getting Config Defined Player Size");
             return _config.PlayerSize;
         }
 
         private static List<ItemType> GetStartingItems(List<ItemType> items)
         {
-            Log.Debug("Getting config defined starting items");
+            Log.Debug("VVUP Server Events, Short People: Getting config defined starting items");
             return items;
         }
         public static void EndEvent()
         {
             if (!_seStarted) return;
             Cassie.MessageTranslated(_config.EndEventCassieMessage, _config.EndEventCassieText);
-            Log.Debug("Unregistering ChangingRole (SE) Event Handlers");
+            Log.Debug("VVUP Server Events, Short People: Unregistering ChangingRole (SE) Event Handlers");
             Exiled.Events.Handlers.Player.ChangingRole -= Plugin.Instance.ServerEventsMainEventHandler.OnRoleSwapSE;
             _seStarted = false;
             Plugin.ActiveEvent -= 1;
