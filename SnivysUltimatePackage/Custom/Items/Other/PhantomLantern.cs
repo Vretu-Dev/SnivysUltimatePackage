@@ -9,6 +9,7 @@ using JetBrains.Annotations;
 using MEC;
 using PlayerRoles;
 using UnityEngine;
+using YamlDotNet.Serialization;
 using PlayerAPI = Exiled.API.Features.Player;
 using PlayerEvent = Exiled.Events.Handlers.Player;
 using Server = Exiled.Events.Handlers.Server;
@@ -18,6 +19,7 @@ namespace SnivysUltimatePackage.Custom.Items.Other
     [CustomItem(ItemType.Lantern)]
     public class PhantomLantern : CustomItem
     {
+        [YamlIgnore]
         public override ItemType Type { get; set; } = ItemType.Lantern;
         public override uint Id { get; set; } = 24;
         public override string Name { get; set; } = "<color=#0096FF>Phantom Lantern</color>";

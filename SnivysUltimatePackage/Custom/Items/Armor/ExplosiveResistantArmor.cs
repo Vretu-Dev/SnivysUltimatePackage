@@ -7,6 +7,7 @@ using Exiled.API.Features.Spawn;
 using Exiled.CustomItems.API.Features;
 using Exiled.Events.EventArgs.Player;
 using JetBrains.Annotations;
+using YamlDotNet.Serialization;
 using PlayerAPI = Exiled.API.Features.Player;
 using PlayerEvent = Exiled.Events.Handlers.Player;
 
@@ -15,6 +16,7 @@ namespace SnivysUltimatePackage.Custom.Items.Armor
     [CustomItem(ItemType.ArmorHeavy)]
     public class ExplosiveResistantArmor: CustomArmor
     {
+        [YamlIgnore]
         public override ItemType Type { get; set; } = ItemType.ArmorHeavy;
         public override uint Id { get; set; } = 25;
         public override string Name { get; set; } = "<color=#FF0000>Explosive Resistant Armor</color>";

@@ -11,6 +11,7 @@ using Exiled.Events.EventArgs.Player;
 using JetBrains.Annotations;
 using MEC;
 using UnityEngine;
+using YamlDotNet.Serialization;
 using Player = Exiled.Events.Handlers.Player;
 using Random = System.Random;
 
@@ -19,6 +20,7 @@ namespace SnivysUltimatePackage.Custom.Items.Injections
     [CustomItem(ItemType.Adrenaline)]
     public class DeadringerSyringe : CustomItem
     {
+        [YamlIgnore]
         public override ItemType Type { get; set; } = ItemType.Adrenaline;
         public override uint Id { get; set; } = 23;
         public override string Name { get; set; } = "Phantom Decoy Device";

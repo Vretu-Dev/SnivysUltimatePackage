@@ -10,6 +10,7 @@ using Exiled.Events.EventArgs.Map;
 using JetBrains.Annotations;
 using MEC;
 using UnityEngine;
+using YamlDotNet.Serialization;
 using PlayerAPI = Exiled.API.Features.Player;
 
 namespace SnivysUltimatePackage.Custom.Items.Grenades
@@ -17,6 +18,7 @@ namespace SnivysUltimatePackage.Custom.Items.Grenades
     [CustomItem(ItemType.GrenadeFlash)]
     public class NerveAgentGrenade : CustomGrenade
     {
+        [YamlIgnore]
         public override ItemType Type { get; set; } = ItemType.GrenadeFlash;
         public override uint Id { get; set; } = 22;
         public override string Name { get; set; } = "<color=#FF0000>Nerve Agent Grenade</color>";

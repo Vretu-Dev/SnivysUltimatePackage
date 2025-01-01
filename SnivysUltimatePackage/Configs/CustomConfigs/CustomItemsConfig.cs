@@ -47,5 +47,30 @@ namespace SnivysUltimatePackage.Configs.CustomConfigs
         {
             new KySyringe()
         };
+
+        public List<MediGun> MediGuns { get; private set; } = new()
+        {
+            new MediGun()
+        };
+
+        public List<Tranquilizer> Tranquilizers { get; private set; } = new()
+        {
+            new Tranquilizer()
+        };
+
+        public List<Scp1499> Scp1499s { get; private set; } = new()
+        {
+            new Scp1499()
+        };
+
+        public List<EmpGrenade> EmpGrenades { get; private set; } = new()
+        {
+            new EmpGrenade()
+        };
+
+        public List<AntiScp096Pills> AntiScp096Pills { get; private set; } = new()
+        {
+            new AntiScp096Pills()
+        };
     }
 }

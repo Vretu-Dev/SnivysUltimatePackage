@@ -103,6 +103,7 @@
     <ItemGroup>
       <Compile Include="API\ICustomRole.cs" />
       <Compile Include="API\StartTeam.cs" />
+      <Compile Include="Commands\C4Detonate.cs" />
       <Compile Include="Commands\ServerEventsCommands\EventCommands\BlackoutCommand.cs" />
       <Compile Include="Commands\ServerEventsCommands\EventCommands\ChaoticCommand.cs" />
       <Compile Include="Commands\ServerEventsCommands\EventCommands\FreezingTemperaturesCommand.cs" />
@@ -157,11 +158,17 @@
       <Compile Include="Custom\Abilities\Wisp.cs" />
       <Compile Include="Custom\Items\Armor\ExplosiveResistantArmor.cs" />
       <Compile Include="Custom\Items\Firearms\ExplosiveRoundRevolver.cs" />
+      <Compile Include="Custom\Items\Firearms\MediGun.cs" />
+      <Compile Include="Custom\Items\Firearms\Tranquilizer.cs" />
+      <Compile Include="Custom\Items\Grenades\C4.cs" />
+      <Compile Include="Custom\Items\Grenades\EmpGrenade.cs" />
       <Compile Include="Custom\Items\Grenades\NerveAgent.cs" />
       <Compile Include="Custom\Items\Grenades\SmokeGrenade.cs" />
       <Compile Include="Custom\Items\Injections\DeadringerSyringe.cs" />
       <Compile Include="Custom\Items\Injections\KySyringe.cs" />
+      <Compile Include="Custom\Items\Other\AntiScp096Pills.cs" />
       <Compile Include="Custom\Items\Other\PhantomLantern.cs" />
+      <Compile Include="Custom\Items\Other\Scp1499.cs" />
       <Compile Include="Custom\Roles\A7Chaos.cs" />
       <Compile Include="Custom\Roles\Biochemist.cs" />
       <Compile Include="Custom\Roles\BorderPatrol.cs" />

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Exiled.API.Enums;
 using Exiled.API.Features.Spawn;
 using Exiled.CustomRoles.API.Features;
 using Exiled.Events.EventArgs.Player;
@@ -35,16 +36,22 @@ namespace SnivysUltimatePackage.Custom.Roles
 
         public override List<string> Inventory { get; set; } = new List<string>
         {
-            "<color=#FF0000>Abyssal Retributor</color>",
-            "<color=#6600CC>Vortex Grenade</color>",
             "<color=#6600CC>PB-42</color>",
             "<color=#6600CC>Obscurus Veil-5</color>",
+            $"{ItemType.GunCrossvec}",
             $"{ItemType.Medkit}",
             $"{ItemType.KeycardChaosInsurgency}",
             $"{ItemType.Adrenaline}",
             $"{ItemType.ArmorCombat}",
         };
 
+        public override Dictionary<AmmoType, ushort> Ammo { get; set; } = new()
+        {
+            {
+                AmmoType.Nato9, 80
+            },
+        };
+        
         public override List<CustomAbility> CustomAbilities { get; set; } = new List<CustomAbility>
         {
             new ActiveCamo

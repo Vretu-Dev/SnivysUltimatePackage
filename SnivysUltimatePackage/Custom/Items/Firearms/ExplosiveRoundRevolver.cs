@@ -7,6 +7,7 @@ using Exiled.API.Features.Spawn;
 using Exiled.CustomItems.API.Features;
 using Exiled.Events.EventArgs.Player;
 using JetBrains.Annotations;
+using YamlDotNet.Serialization;
 using Player = Exiled.Events.Handlers.Player;
 
 namespace SnivysUltimatePackage.Custom.Items.Firearms
@@ -14,6 +15,7 @@ namespace SnivysUltimatePackage.Custom.Items.Firearms
     [CustomItem(ItemType.GunRevolver)]
     public class ExplosiveRoundRevolver : CustomWeapon
     {
+        [YamlIgnore]
         public override ItemType Type { get; set; } = ItemType.GunRevolver;
         public override uint Id { get; set; } = 21;
         public override string Name { get; set; } = "<color=#FF0000>Explosive Round Revolver</color>";
@@ -72,7 +74,7 @@ namespace SnivysUltimatePackage.Custom.Items.Firearms
         {
             if (!Check(ev.Player.CurrentItem))
                 return;
-            Log.Debug("VVUP Custom Items: Explosive Round Revolver, spawning grenade at bullet impact location");
+            Log.Debug($"VVUP Custom Items: Explosive Round Revolver, spawning grenade at {ev.Position}");
             ev.CanHurt = false;
             ExplosiveGrenade grenade = (ExplosiveGrenade)Item.Create(ItemType.GrenadeHE);
             grenade.FuseTime = FuseTime;
