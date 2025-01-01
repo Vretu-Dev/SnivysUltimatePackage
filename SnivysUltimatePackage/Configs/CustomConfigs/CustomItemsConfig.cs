@@ -73,6 +73,11 @@ namespace SnivysUltimatePackage.Configs.CustomConfigs
             new AntiScp096Pills()
         };
 
+        public List<C4> C4s { get; private set; } = new()
+        {
+            new C4()
+        };
+
         public List<Scp2818> Scp2818s { get; private set; } = new()
         {
             new Scp2818()

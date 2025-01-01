@@ -20,7 +20,7 @@ namespace SnivysUltimatePackage.Custom.Items.Firearms
     [CustomItem(ItemType.GunE11SR)]
     public class Scp2818 : CustomWeapon
     {
-        public override uint Id { get; set; } = 32;
+        public override uint Id { get; set; } = 33;
         public override string Name { get; set; } = "<color=#FF0000>SCP-2818</color>";
 
         public override string Description { get; set; } =
