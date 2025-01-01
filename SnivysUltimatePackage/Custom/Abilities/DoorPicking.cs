@@ -48,6 +48,10 @@ namespace SnivysUltimatePackage.Custom.Abilities
             
             if (ev.Door.IsOpen)
                 return;
+
+            if (ev.Player.CurrentItem != null)
+                return;
+            
             Log.Debug("VVUP Custom Abilities: Door Picking Ability, processing methods");
             ev.IsAllowed = false;
             int randomTime = new Random().Next((int)TimeToDoorPickMin, (int)TimeToDoorPickMax);

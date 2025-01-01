@@ -159,6 +159,7 @@
       <Compile Include="Custom\Items\Armor\ExplosiveResistantArmor.cs" />
       <Compile Include="Custom\Items\Firearms\ExplosiveRoundRevolver.cs" />
       <Compile Include="Custom\Items\Firearms\MediGun.cs" />
+      <Compile Include="Custom\Items\Firearms\Scp2818.cs" />
       <Compile Include="Custom\Items\Firearms\Tranquilizer.cs" />
       <Compile Include="Custom\Items\Grenades\C4.cs" />
       <Compile Include="Custom\Items\Grenades\EmpGrenade.cs" />
@@ -181,6 +182,7 @@
       <Compile Include="Custom\Roles\Flipped.cs" />
       <Compile Include="Custom\Roles\JuggernautChaos.cs" />
       <Compile Include="Custom\Roles\LightGuard.cs" />
+      <Compile Include="Custom\Roles\LockpickingClassD.cs" />
       <Compile Include="Custom\Roles\MedicZombie.cs" />
       <Compile Include="Custom\Roles\MtfWisp.cs" />
       <Compile Include="Custom\Roles\Nightfall.cs" />

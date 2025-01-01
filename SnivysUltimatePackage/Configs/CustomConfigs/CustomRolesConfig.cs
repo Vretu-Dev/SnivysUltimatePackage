@@ -74,5 +74,10 @@ namespace SnivysUltimatePackage.Configs.CustomConfigs
         {
             new MedicZombie(),
         };
+
+        public List<LockpickingClassD> LockpickingClassDs { get; set; } = new()
+        {
+            new LockpickingClassD(),
+        };
     }
 }

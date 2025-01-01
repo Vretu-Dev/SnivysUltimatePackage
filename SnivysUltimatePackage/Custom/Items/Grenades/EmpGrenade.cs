@@ -131,10 +131,10 @@ namespace SnivysUltimatePackage.Custom.Items.Grenades
             {
                 if (door == null ||
                     BlackListedDoors.Contains(door.Type) ||
-                    (door.DoorLockType > 0 && !OpenLockedDoors) ||
-                    (door.RequiredPermissions.RequiredPermissions != (KeycardPermissions)Exiled.API.Enums.KeycardPermissions.None && !OpenKeycardDoors) ||
-                    !door.Type.IsElevator())
-                    continue;
+                    (door.DoorLockType != 0 && !OpenLockedDoors) ||
+                    (door.RequiredPermissions.RequiredPermissions != KeycardPermissions.None && !OpenKeycardDoors) ||
+                    door.Type.IsElevator())
+                    return;
 
                 Log.Debug($"VVUP Custom Items: EMP Grenade, Opening and locking {door}");
 
