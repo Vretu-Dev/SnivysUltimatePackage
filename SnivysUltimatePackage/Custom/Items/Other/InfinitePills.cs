@@ -24,7 +24,7 @@ namespace SnivysUltimatePackage.Custom.Items.Other
             {
                 new LockerSpawnPoint()
                 {
-                    Chance = 0,
+                    Chance = 100,
                     Type = LockerType.Misc,
                     UseChamber = true,
                     Offset = Vector3.zero,
