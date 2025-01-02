@@ -163,3 +163,4 @@ vve | vve.start | Remote Admin, Server Console | Starts round events. If used by
 vve stop | vve.stop | Remote Admin, Server Console | Stops any active events.
 startvote | vvvotes.start | Remote Admin, Server Console | Starts a vote.
 .vote | None | Player Console | Responds to an active vote
+.detonate | None | Player Console | Detonates C4, assuming requirements are met.
