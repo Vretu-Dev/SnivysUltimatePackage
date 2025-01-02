@@ -47,7 +47,7 @@ Juggernaut Chaos | 39 | Give Candy Ability | During a Chaos Insurgency Respawn W
 Chaos Insurgency Spy | 40 | Disguised, Remove Disguise | During a MTF Respawn Wave | A Chaos Member that is disguised as an MTF Member.
 MTF Wisp | 41 | Wisp | During a MTF Respawn Wave | A MTF Member that can go through doors, but has reduced sprint and some item limitations.
 Ballistic SCP-049-2 | 42 | Martyrdom | Chance during revive from SCP-049 | A zombie that goes boom on death.
-Dwarf SCP-049-2 | 43 | Dwawf | Chance during revive from SCP-049 | A smaller zombie.
+Dwarf SCP-049-2 | 43 | Dwarf | Chance during revive from SCP-049 | A smaller zombie.
 Chaos Phantom | 44 | Active Camo | Immediately when a round begins | A Chaos Insurgent that takes place of a guard, can go invisible.
 Medic SCP-049-2 | 45 | Healing Mist | Chance during revive from SCP-049 | A zombie that can heal other SCPs
 Lock-picker Class D | 46 | Door Picking | Immediately when a round begins | A Class D that used to be a lock picker, can open some keycard doors if they dont have the keycard.
