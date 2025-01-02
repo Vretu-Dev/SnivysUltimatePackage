@@ -23,7 +23,7 @@ namespace SnivysUltimatePackage
         public override string Name { get; } = "Snivy's Ultimate Plugin Package";
         public override string Author { get; } = "Vicious Vikki";
         public override string Prefix { get; } = "VVUltimatePluginPackage";
-        public override Version Version { get; } = new Version(1, 7, 2);
+        public override Version Version { get; } = new Version(1, 7, 3);
         public override Version RequiredExiledVersion { get; } = new Version(9, 2, 1);
         public static int ActiveEvent = 0;
         
