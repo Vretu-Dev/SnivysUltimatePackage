@@ -88,12 +88,12 @@ namespace SnivysUltimatePackage.Configs.ServerEventsConfigs
 
         [Description("If giving all weapons is false, what weapons can be given?")]
         [CanBeNull]
-        public List<ItemType> GiveRandomWeaponsDefined { get; set; } =
-        [
+        public List<ItemType> GiveRandomWeaponsDefined { get; set; } = new()
+        {
             ItemType.GunCOM15,
             ItemType.GunCOM18,
-            ItemType.GunCrossvec
-        ];
+            ItemType.GunCrossvec,
+        };
 
         [Description("Should the death match event be active?")]
         public bool DeathMatchEvent { get; set; } = true;

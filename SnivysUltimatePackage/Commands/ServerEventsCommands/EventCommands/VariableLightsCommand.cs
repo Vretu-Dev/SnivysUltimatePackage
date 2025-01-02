@@ -11,7 +11,7 @@ namespace SnivysUltimatePackage.Commands.ServerEventsCommands.EventCommands
     internal class VariableLightCommand : ICommand
     {
         public string Command { get; set; } = "VariableLights";
-        public string[] Aliases { get; set; } = ["RandomLights", "ColorfulLights"];
+        public string[] Aliases { get; set; } = { "RandomLights", "ColorfulLights" };
         public string Description { get; set; } = "Starts the Variable Lights Event. (PHOTOSENSITIVITY WARNING!)";
         private static ServerEventsMasterConfig _config = new();
         public bool Execute(ArraySegment<string> args, ICommandSender sender, out string response)

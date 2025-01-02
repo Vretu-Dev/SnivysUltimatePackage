@@ -11,7 +11,7 @@ namespace SnivysUltimatePackage.Commands.ServerEventsCommands
         {
                 public override string Command { get; } = "VVE";
                 public override string Description { get; } = "Main command for Snivy's Server Events";
-                public override string[] Aliases { get; } = ["SSE", "SnivysServerEvents"];
+                public override string[] Aliases { get; } = { "SSE", "SnivysServerEvents" };
                 
                 public override void LoadGeneratedCommands()
                 {

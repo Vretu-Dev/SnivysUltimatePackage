@@ -15,6 +15,9 @@ namespace SnivysUltimatePackage.Configs.ServerEventsConfigs
         public bool GeneratorEndsEvent { get; set; } = true;
 
         [Description("What item should the player recieve when the blackout event starts?")]
-        public List<ItemType> BlackoutEventStartingItem { get; set; } = [ItemType.Lantern];
+        public List<ItemType> BlackoutEventStartingItem { get; set; } = new()
+        {
+            ItemType.Lantern
+        };
     }
 }

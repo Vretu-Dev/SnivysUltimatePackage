@@ -11,7 +11,7 @@ namespace SnivysUltimatePackage.Commands.ServerEventsCommands.EventCommands
     internal class PeanutInfectionCommand : ICommand
     {
         public string Command { get; set; } = "173Infection";
-        public string[] Aliases { get; set; } = ["PeanutInfection", "Infection"];
+        public string[] Aliases { get; set; } = { "PeanutInfection", "Infection" };
         public string Description { get; set; } = "Starts the 173 Infection";
         private static ServerEventsMasterConfig _config = new();
         public bool Execute(ArraySegment<string> args, ICommandSender sender, out string response)

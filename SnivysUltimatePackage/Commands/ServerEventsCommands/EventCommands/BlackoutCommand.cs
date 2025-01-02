@@ -11,7 +11,7 @@ namespace SnivysUltimatePackage.Commands.ServerEventsCommands.EventCommands
     internal class BlackoutCommand : ICommand
     {
         public string Command { get; set; } = "Blackout";
-        public string[] Aliases { get; set; } = ["LightsOut"];
+        public string[] Aliases { get; set; } = { "LightsOut" };
         public string Description { get; set; } = "Starts the Blackout Event";
         private static ServerEventsMasterConfig _config = new();
         public bool Execute(ArraySegment<string> args, ICommandSender sender, out string response)

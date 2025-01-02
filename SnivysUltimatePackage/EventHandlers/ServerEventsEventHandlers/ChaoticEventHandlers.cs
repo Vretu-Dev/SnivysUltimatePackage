@@ -280,7 +280,7 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
                                 if (player.Role.Team != Team.SCPs || player.Role.Team != Team.Dead)
                                 {
                                     Log.Debug($"VVUP Server Events, Chaotic: Checking if {player} is able to get a random weapon");
-                                    ItemType randomWeapon = WeaponTypes[random.Next(WeaponTypes.Length)];
+                                    ItemType randomWeapon = WeaponTypes[random.Next(WeaponTypes.Count)];
                                     if (_config.GiveRandomWeaponsToUnarmedPlayers)
                                     {
                                         foreach (var item in player.Items)
@@ -1049,8 +1049,8 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
             }
         }
 
-        private static readonly ItemType[] WeaponTypes =
-        [
+        private static readonly List<ItemType> WeaponTypes = new()
+        {
             ItemType.GunA7,
             ItemType.GunCom45,
             ItemType.GunCrossvec,
@@ -1067,7 +1067,7 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
             ItemType.ParticleDisruptor,
             ItemType.GrenadeFlash,
             ItemType.GrenadeHE
-        ];
+        };
 
         private static bool IsWeapon(Item item)
         {

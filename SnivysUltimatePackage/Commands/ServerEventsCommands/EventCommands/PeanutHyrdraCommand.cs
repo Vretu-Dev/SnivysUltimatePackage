@@ -11,7 +11,7 @@ namespace SnivysUltimatePackage.Commands.ServerEventsCommands.EventCommands
     internal class PeanutHydraCommand : ICommand
     {
         public string Command { get; set; } = "173Hydra";
-        public string[] Aliases { get; set; } = ["PeanutHydra", "Hydra"];
+        public string[] Aliases { get; set; } = { "PeanutHydra", "Hydra" };
         public string Description { get; set; } = "Starts the 173 Hydra";
         private static ServerEventsMasterConfig _config = new();
         public bool Execute(ArraySegment<string> args, ICommandSender sender, out string response)

@@ -15,7 +15,7 @@ namespace SnivysUltimatePackage.Commands.VotingCommands
     public class StartVote : ICommand
     {
         public string Command { get; } = "StartVote";
-        public string[] Aliases { get; } = ["SV"];
+        public string[] Aliases { get; } = {"SV"};
         public string Description { get; } = "Starts a vote, shown to all players";
         public static bool IsVoteActive { get; set; } = false;
         public static Dictionary<int, string> VoteOptions = new Dictionary<int, string>();

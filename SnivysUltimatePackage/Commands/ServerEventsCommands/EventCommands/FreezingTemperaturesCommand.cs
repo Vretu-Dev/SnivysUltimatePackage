@@ -11,7 +11,7 @@ namespace SnivysUltimatePackage.Commands.ServerEventsCommands.EventCommands
     internal class FreezingTemperaturesCommand : ICommand
     {
         public string Command { get; set; } = "FreezingTemps";
-        public string[] Aliases { get; set; } = ["Cold", "Freezing"];
+        public string[] Aliases { get; set; } = { "Cold", "Freezing" };
         public string Description { get; set; } = "Starts the Freezing Temperature Event";
         private static ServerEventsMasterConfig _config = new();
         public bool Execute(ArraySegment<string> args, ICommandSender sender, out string response)
