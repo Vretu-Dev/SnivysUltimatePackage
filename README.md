@@ -12,7 +12,9 @@ Snivy's Server Events
 
 Micro Damage Reduction
 
-New to this plugin is also
+-------------------------------------------------
+
+New to this plugin is also:
 
 Snivy's Custom Items
 
@@ -44,6 +46,12 @@ Telepathic Chaos | 38 | Detect | During a Chaos Insurgency Respawn Wave | A Chao
 Juggernaut Chaos | 39 | Give Candy Ability | During a Chaos Insurgency Respawn Wave | A Chaos Member that specializes in explosives.
 Chaos Insurgency Spy | 40 | Disguised, Remove Disguise | During a MTF Respawn Wave | A Chaos Member that is disguised as an MTF Member.
 MTF Wisp | 41 | Wisp | During a MTF Respawn Wave | A MTF Member that can go through doors, but has reduced sprint and some item limitations.
+Ballistic SCP-049-2 | 42 | Martyrdom | Chance during revive from SCP-049 | A zombie that goes boom on death.
+Dwarf SCP-049-2 | 43 | Dwawf | Chance during revive from SCP-049 | A smaller zombie.
+Chaos Phantom | 44 | Active Camo | Immediately when a round begins | A Chaos Insurgent that takes place of a guard, can go invisible.
+Medic SCP-049-2 | 45 | Healing Mist | Chance during revive from SCP-049 | A zombie that can heal other SCPs
+Lock-picker Class D | 46 | Door Picking | Immediately when a round begins | A Class D that used to be a lock picker, can open some keycard doors if they dont have the keycard.
+MTF Demolitionist | 47 | None | During a MTF Spawn Wave | A MTF Member that specializes in explosives.
 
 # Snivy's Custom Roles Abilities
 This contains Joker's original custom roles abilities as well
@@ -54,6 +62,7 @@ Below is a list of every ability (currently) with a short discription of what it
 Custom Ability | AbilityName | Ability Type | Description
 :---: | :---: | :---: | :------
 Active Camo | ActiveCamo | Active Ability | For a set amount of time, allows the player to go invisible unless they fire their weapon, opening/closing doors will reapply the effect.
+Ability Remover | AbilityRemover | Passive Ability | Clears abilities, helpful if you have multiple plugins with custom roles and some custom role abilities are given to the wrong custom role.
 Custom Role Escape | CustomRoleEscape | Passive Ability | When a player that has this ability tries to escape, you can give them a set custom role.
 Charge | ChargeAbility | Active Ability | Charges towards a location.
 Detect | Detect | Active Ability | Detects any hostiles of the Chaos Insurgency nearby.
@@ -77,15 +86,23 @@ Wisp | Wisp | Passive Ability | Gives the ability to go through doors, but at th
 
 A collection of custom items that I have made over the time (plus one from Jamwolff)
 
-Item Name | Item Type | ItemID | Spawn Locations | Description
-:---: | :---: | :---: | :---: | :------
-Obscurus Veil-5 | Flash Bang | 20 | 25% Chance in HCZ Armory, GR18, Surface Nuke Room, LCZ Armory, Nuke Armory, Spawn Limit: 5 | When thrown, causes a permament smoke cloud to appear at place of detonation.
-Explosive Round Revolver | Revolver | 21 | 10% Chance in MicroHID, HCZ Armory, 096s Room, 20% Chance in Nuke Armory and 049's Armory, Spawn Limit: 1 | When used, bullets becomes short fused grenades at point of impact they land.
-Nerve Agent Grenade | Flash Bang | 22 | 25% Chance in LCZ Armory, HCZ Armory, Nuke Armory, 049 Armory, and Surface Nuke Room, Spawn Limit: 2 | When thrown, causes a customizable duration nerve agent that causes damage when walked through.
-Phantom Decoy Device | Adrenline | 23 | 25% Chance to spawn in a random locker, Spawn Limit: 1 | When used, teleports the player randomly to a different room while dropping a fake corspe. Giving massive debuffs when used.
-Phantom Lantern | Lantern | 24 | 10% Chance to spawn in MicroHID, 096s room, GR18, 106s Room, HczTestRoom, Spawn Limit: 1 | When toggled, makes the player go incredibly slowly, become invisible, and walk through doors, while locking out the inventory.
-Explosive Resistant Armor | Heavy Armor | 25 | 25% Chance to spawn in MicroHID, HCZ Armory, 049 Armory, Spawn Limit: 1 | When equipped, makes the user more resistant to explosives.
-KY Syringe | Adrenline | 42 | 100% Chance to spawn in 096s room, Spawn Limit: 1 | When used, the player dies.
+Item Name | Item Type | ItemID | Spawn Locations | Spawn Limit | Description
+:---: | :---: | :---: | :---: | :---: | :------
+Obscurus Veil-5 | Flash Bang | 20 | 25% Chance in HCZ Armory, GR18, Surface Nuke Room, LCZ Armory, Nuke Armory. | 5 | When thrown, causes a permament smoke cloud to appear at place of detonation.
+Explosive Round Revolver | Revolver | 21 | 10% Chance in MicroHID, HCZ Armory, 096s Room, 20% Chance in Nuke Armory and 049's Armory. | 1 | When used, bullets becomes short fused grenades at point of impact they land.
+Nerve Agent Grenade | Flash Bang | 22 | 25% Chance in LCZ Armory, HCZ Armory, Nuke Armory, 049 Armory, and Surface Nuke Room. | 2 | When thrown, causes a customizable duration nerve agent that causes damage when walked through.
+Phantom Decoy Device | Adrenline | 23 | 25% Chance to spawn in a random locker. | 1 | When used, teleports the player randomly to a different room while dropping a fake corspe. Giving massive debuffs when used.
+Phantom Lantern | Lantern | 24 | 10% Chance to spawn in MicroHID, 096s room, GR18, 106s Room, HczTestRoom. | 1 | When toggled, makes the player go incredibly slowly, become invisible, and walk through doors, while locking out the inventory.
+Explosive Resistant Armor | Heavy Armor | 25 | 25% Chance to spawn in MicroHID, HCZ Armory, 049 Armory. | 1 | When equipped, makes the user more resistant to explosives.
+LJ-429 | Adrenline | 26 | 100% Chance to spawn in 096s room. | 1 | When used, the player dies.
+Phantom Pulse | FSP-9 | 27 | 25% Chance in Gate A, Gate B, GR-18. | 1 | When firing at friendlies, it will heal them, applying AHP if they have full health, when fired at zombies, gives them a chance to be revived back to a human role.
+Silent Serenade | COM-18 | 28 | 20% Chance in 173 Armory, GR-18, 096 Room, PC-15. | 1 | When fired at someone, they will become tranquilized, SCPs have a resistance chance for it not to work, applying multiple tranquilizations will make the target more resistant to it.
+SCP-1499 | SCP-268 | 29 | 10% Chance in MicroHID, 079's Room, In the escape hall building. | 1 | When putting on, will teleport you to a fixed point on the map for a specified amount of time.
+PB-42 | Flash Bang | 30 | 50% Chance in Nuke Armory, Surface Nuke Room. | 5 | When throwing, will open doors and disconnect SCP-079 if 079 is at that camera.
+Amnesioflux | SCP500 | 31 | 100% Chance in 096s room. | 1 | When consumed, removes you as a target from 096, just make sure you're not looking at him when you take it.
+C4 | Grenade | 32 | 10% Chance in Light Armory, 25% Chance in Heavy Armory, 50% Chance in Nuke Armory and 049 Armory, 100% Chance in Surface Nuke | 5 | A grenade that can be remotely detonated, requires a radio to detonate (by base).
+SCP-2818 | E11SR | 33 | 10% Chance in MicroHID | 1 | When fired, you are the bullet. This will kill the shooter but will do a lot of damage to the target.
+Infinite Pills | Painkillers | 34 | 100% Chance to appear in a Misc Locker | 1 | When consumed, the pills dont go away, it wont heal you however. This is entirely a joke item.
 
 # Snivy's Server Events
 
