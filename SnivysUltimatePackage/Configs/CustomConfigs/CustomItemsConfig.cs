@@ -82,5 +82,10 @@ namespace SnivysUltimatePackage.Configs.CustomConfigs
         {
             new Scp2818()
         };
+
+        public List<InfinitePills> InfinitePills { get; private set; } = new()
+        {
+            new InfinitePills()
+        };
     }
 }

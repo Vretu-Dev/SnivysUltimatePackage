@@ -168,6 +168,7 @@
       <Compile Include="Custom\Items\Injections\DeadringerSyringe.cs" />
       <Compile Include="Custom\Items\Injections\KySyringe.cs" />
       <Compile Include="Custom\Items\Other\AntiScp096Pills.cs" />
+      <Compile Include="Custom\Items\Other\InfinitePills.cs" />
       <Compile Include="Custom\Items\Other\PhantomLantern.cs" />
       <Compile Include="Custom\Items\Other\Scp1499.cs" />
       <Compile Include="Custom\Roles\A7Chaos.cs" />
@@ -177,6 +178,7 @@
       <Compile Include="Custom\Roles\CISpy.cs" />
       <Compile Include="Custom\Roles\ContainmentGuard.cs" />
       <Compile Include="Custom\Roles\ContainmentScientist.cs" />
+      <Compile Include="Custom\Roles\Demolitionist.cs" />
       <Compile Include="Custom\Roles\DwarfZombie.cs" />
       <Compile Include="Custom\Roles\ExplosiveZombie.cs" />
       <Compile Include="Custom\Roles\Flipped.cs" />

@@ -25,7 +25,7 @@ namespace SnivysUltimatePackage.Custom.Roles
         public override string Name { get; set; } = "<color=#008f1e>Telepathic Chaos</color>";
 
         public override string Description { get; set; } =
-            "You have the ability to FEEL enemies of the Chaos Insergency near you";
+            "You have the ability to FEEL enemies of the Chaos Insurgency near you";
 
         public override string CustomInfo { get; set; } = "Telepathic Chaos";
 

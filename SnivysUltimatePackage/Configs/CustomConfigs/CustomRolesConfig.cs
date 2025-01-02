@@ -79,5 +79,10 @@ namespace SnivysUltimatePackage.Configs.CustomConfigs
         {
             new LockpickingClassD(),
         };
+
+        public List<Demolitionist> Demolitionists { get; set; } = new()
+        {
+            new Demolitionist(),
+        };
     }
 }
