@@ -70,7 +70,7 @@ namespace SnivysUltimatePackage.Custom.Items.Grenades
                 },
             },
         };
-        public override string Description { get; set; } = "Explosive charge that can be remotly detonated.";
+        public override string Description { get; set; } = "Explosive charge that can be remotely detonated.";
         
         [Description("Should C4 require a specific item to be detonated.")]
         public bool RequireDetonator { get; set; } = true;
