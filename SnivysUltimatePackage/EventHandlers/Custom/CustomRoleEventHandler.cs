@@ -81,6 +81,10 @@ namespace SnivysUltimatePackage.EventHandlers.Custom
         {
             if (!Plugin.Instance.Config.CustomRolesConfig.IsEnabled)
                 return;
+
+            if (API.ExternalTeams.CustomTeamAPI.SerpentsHandSpawnable || API.ExternalTeams.CustomTeamAPI.UiuSpawnable)
+                return;
+            
             if (ev.Players.Count == 0)
             {
                 Log.Warn(

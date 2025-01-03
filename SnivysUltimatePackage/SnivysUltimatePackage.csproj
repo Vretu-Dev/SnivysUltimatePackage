@@ -101,6 +101,10 @@
       <None Include="packages.config" />
     </ItemGroup>
     <ItemGroup>
+      <Compile Include="API\ExternalTeams\CustomTeamAPI.cs" />
+      <Compile Include="API\ExternalTeams\ExternalTeamChecker.cs" />
+      <Compile Include="API\ExternalTeams\SerpentsHandCheck.cs" />
+      <Compile Include="API\ExternalTeams\UiuCheck.cs" />
       <Compile Include="API\ICustomRole.cs" />
       <Compile Include="API\StartTeam.cs" />
       <Compile Include="Commands\C4Detonate.cs" />
