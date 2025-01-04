@@ -6,6 +6,7 @@ using UnityEngine;
 
 namespace SnivysUltimatePackage.Commands
 {
+    [CommandHandler(typeof(ClientCommandHandler))]
     public class C4Detonate : ICommand
     {
         public string Command { get; } = "detonate";
