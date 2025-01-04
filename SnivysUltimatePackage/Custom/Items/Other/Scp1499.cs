@@ -41,7 +41,7 @@ namespace SnivysUltimatePackage.Custom.Items.Other
                 new()
                 {
                     Chance = 10,
-                    Location = SpawnLocationType.InsideHid,
+                    Location = SpawnLocationType.InsideHidChamber,
                 },
                 new()
                 {

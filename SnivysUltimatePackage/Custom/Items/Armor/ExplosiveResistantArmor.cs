@@ -37,7 +37,7 @@ namespace SnivysUltimatePackage.Custom.Items.Armor
                 new()
                 {
                     Chance = 25,
-                    Location = SpawnLocationType.InsideHid,
+                    Location = SpawnLocationType.InsideHidChamber,
                 },
                 new()
                 {

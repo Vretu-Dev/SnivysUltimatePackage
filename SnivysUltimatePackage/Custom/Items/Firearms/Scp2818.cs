@@ -48,7 +48,7 @@ namespace SnivysUltimatePackage.Custom.Items.Firearms
                 new()
                 {
                     Chance = 10,
-                    Location = SpawnLocationType.InsideHid,
+                    Location = SpawnLocationType.InsideHidChamber,
                 },
             },
         };
