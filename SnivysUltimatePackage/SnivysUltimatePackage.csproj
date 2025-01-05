@@ -76,6 +76,10 @@
         <Reference Include="PluginAPI, Version=13.1.5.0, Culture=neutral, processorArchitecture=Amd64">
             <HintPath>..\packages\ExMod.Exiled.9.2.2\lib\net48\PluginAPI.dll</HintPath>
         </Reference>
+        <Reference Include="Unity.TextMeshPro">
+            <HintPath Condition="'$(OS)' == 'Windows_NT'">$(EXILED_REFERENCES)\Unity.TextMeshPro.dll</HintPath>
+            <HintPath Condition="'$(OS)' != 'Windows_NT'">..\..\..\Exiled_Resources\Unity.TextMeshPro.dll</HintPath>
+        </Reference>
         <Reference Include="UnityEngine">
             <HintPath Condition="'$(OS)' == 'Windows_NT'">$(EXILED_REFERENCES)\UnityEngine.dll</HintPath>
             <HintPath Condition="'$(OS)' != 'Windows_NT'">..\..\..\Exiled_Resources\UnityEngine.dll</HintPath>
@@ -209,7 +213,9 @@
       <Compile Include="EventHandlers\ServerEventsEventHandlers\ServerEventsMainEventHandler.cs" />
       <Compile Include="EventHandlers\ServerEventsEventHandlers\ShortEventHandlers.cs" />
       <Compile Include="EventHandlers\ServerEventsEventHandlers\VariableLightsEventHandlers.cs" />
+      <Compile Include="EventHandlers\SsssEventHandler.cs" />
       <Compile Include="Plugin.cs" />
+      <Compile Include="Ssss.cs" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
     <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

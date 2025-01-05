@@ -10,6 +10,7 @@ using SnivysUltimatePackage.Configs;
 using SnivysUltimatePackage.EventHandlers;
 using SnivysUltimatePackage.EventHandlers.Custom;
 using SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers;
+using UserSettings.ServerSpecific;
 using Player = Exiled.Events.Handlers.Player;
 using Scp049Events = Exiled.Events.Handlers.Scp049;
 using Server = Exiled.Events.Handlers.Server;
@@ -23,7 +24,7 @@ namespace SnivysUltimatePackage
         public override string Name { get; } = "Snivy's Ultimate Plugin Package";
         public override string Author { get; } = "Vicious Vikki";
         public override string Prefix { get; } = "VVUltimatePluginPackage";
-        public override Version Version { get; } = new Version(1, 8, 1);
+        public override Version Version { get; } = new Version(1, 9, 0);
         public override Version RequiredExiledVersion { get; } = new Version(9, 2, 2);
         public static int ActiveEvent = 0;
         
@@ -36,6 +37,7 @@ namespace SnivysUltimatePackage
         public FlamingoAdjustmentEventHandlers FlamingoAdjustmentEventHandlers;
         public EscapeDoorOpenerEventHandlers EscapeDoorOpenerEventHandlers;
         public Scp1576SpectatorViewerEventHandlers Scp1576SpectatorViewerEventHandlers;
+        public SsssEventHandler SsssEventHandler;
 
         public override void OnEnabled()
         {
@@ -131,6 +133,12 @@ namespace SnivysUltimatePackage
             //SCP 1576 Spectator Viewer
             Scp1576SpectatorViewerEventHandlers = new Scp1576SpectatorViewerEventHandlers(this);
             Player.UsedItem += Scp1576SpectatorViewerEventHandlers.OnUsingItem;
+            
+            //SSSS
+            SsssEventHandler = new SsssEventHandler(this);
+            Player.ChangingRole += SsssEventHandler.OnChangingRole;
+            ServerSpecificSettingsSync.ServerOnSettingValueReceived += SsssEventHandler.OnSettingValueReceived;
+            
             base.OnEnabled();
         }
 
@@ -171,6 +179,11 @@ namespace SnivysUltimatePackage
             Player.UsedItem -= Scp1576SpectatorViewerEventHandlers.OnUsingItem;
             Scp1576SpectatorViewerEventHandlers = null;
 
+            //SSSS
+            Player.ChangingRole -= SsssEventHandler.OnChangingRole;
+            ServerSpecificSettingsSync.ServerOnSettingValueReceived -= SsssEventHandler.OnSettingValueReceived;
+            SsssEventHandler = null;
+            
             Instance = null;
             base.OnDisabled();
         }
