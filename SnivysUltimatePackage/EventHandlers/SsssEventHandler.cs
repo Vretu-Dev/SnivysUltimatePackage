@@ -1,9 +1,10 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using Exiled.API.Features;
 using Exiled.CustomRoles.API.Features;
 using Exiled.Events.EventArgs.Player;
-using PluginAPI.Core;
-using SnivysCustomRolesAbilities.Abilities;
 using SnivysUltimatePackage.Custom.Abilities;
+using UnityEngine;
 using UserSettings.ServerSpecific;
 using Player = Exiled.API.Features.Player;
 
@@ -16,6 +17,11 @@ namespace SnivysUltimatePackage.EventHandlers
 
         public void OnChangingRole(ChangingRoleEventArgs ev)
         {
+            if (!Plugin.Instance.Config.SsssConfig.IsEnabled)
+                return;
+            if (ev.Player == null)
+                return;
+            
             Log.Debug("VVUP: Adding SSSS functions to players");
             ServerSpecificSettingsSync.DefinedSettings = Ssss.VVUltimatePluginPackage();
             ServerSpecificSettingsSync.SendToPlayer(ev.Player.ReferenceHub);
@@ -23,81 +29,142 @@ namespace SnivysUltimatePackage.EventHandlers
 
         public void OnSettingValueReceived(ReferenceHub hub, ServerSpecificSettingBase settingBase)
         {
+            if (!Plugin.Instance.Config.SsssConfig.IsEnabled)
+                return;
+            
             if (!Player.TryGet(hub, out Player player))
                 return;
 
-            if (settingBase is SSKeybindSetting ssKeybindSetting /*&& ssKeybindSetting.SettingId == 10000*/ &&
-                ssKeybindSetting.SyncIsPressed && ActiveAbility.AllActiveAbilities.TryGetValue(player, out var abilities))
+            if (player == null)
+                return;
+
+            if (settingBase is SSKeybindSetting ssKeybindSetting && ssKeybindSetting.SyncIsPressed)
             {
-                switch (ssKeybindSetting.SettingId)
+                if ((ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.ActiveCamoId
+                     || ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.ChargeId
+                     || ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.DetectId
+                     || ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.DoorPickingId
+                     || ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.HealingMistId
+                     || ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.RemoveDisguiseId)
+                    && ActiveAbility.AllActiveAbilities.TryGetValue(player, out var abilities))
                 {
-                    case 10000:
+                    string response = String.Empty;
+                    if (ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.ActiveCamoId)
                     {
                         var activeCamoAbility = abilities.FirstOrDefault(abilities => abilities.GetType() == typeof(ActiveCamo));
-                        if (activeCamoAbility != null && activeCamoAbility.CanUseAbility(player, out string response))
+                        if (activeCamoAbility != null && activeCamoAbility.CanUseAbility(player, out response))
                         {
                             activeCamoAbility.SelectAbility(player);
                             activeCamoAbility.UseAbility(player);
+                            player.ShowHint(response);
                         }
-
-                        break;
+                        else
+                        {
+                            player.ShowHint(response);
+                        }
                     }
-                    case 10001:
+                    else if (ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.ChargeId)
                     {
                         var chargeAbility = abilities.FirstOrDefault(abilities => abilities.GetType() == typeof(ChargeAbility));
-                        if (chargeAbility != null && chargeAbility.CanUseAbility(player, out string response))
+                        if (chargeAbility != null && chargeAbility.CanUseAbility(player, out response))
                         {
                             chargeAbility.SelectAbility(player);
                             chargeAbility.UseAbility(player);
+                            player.ShowHint(response);
                         }
-
-                        break;
+                        else
+                        {
+                            player.ShowHint(response);
+                        }
                     }
-                    case 10002:
+                    else if (ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.DetectId)
                     {
                         var detectAbility = abilities.FirstOrDefault(abilities => abilities.GetType() == typeof(Detect));
-                        if (detectAbility != null && detectAbility.CanUseAbility(player, out string response))
+                        if (detectAbility != null && detectAbility.CanUseAbility(player, out response))
                         {
                             detectAbility.SelectAbility(player);
                             detectAbility.UseAbility(player);
+                            player.ShowHint(response);
                         }
-
-                        break;
+                        else
+                        {
+                            player.ShowHint(response);
+                        }
                     }
-                    case 10003:
+                    else if (ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.DoorPickingId)
                     {
                         var doorPickingAbility = abilities.FirstOrDefault(abilities => abilities.GetType() == typeof(DoorPicking));
-                        if (doorPickingAbility != null && doorPickingAbility.CanUseAbility(player, out string response))
+                        if (doorPickingAbility != null && doorPickingAbility.CanUseAbility(player, out response))
                         {
                             doorPickingAbility.SelectAbility(player);
                             doorPickingAbility.UseAbility(player);
+                            player.ShowHint(response);
                         }
-
-                        break;
+                        else
+                        {
+                            player.ShowHint(response);
+                        }
                     }
-                    case 10004:
+                    else if (ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.HealingMistId)
                     {
                         var healingMistAbility = abilities.FirstOrDefault(abilities => abilities.GetType() == typeof(HealingMist));
-                        if (healingMistAbility != null && healingMistAbility.CanUseAbility(player, out string response))
+                        if (healingMistAbility != null && healingMistAbility.CanUseAbility(player, out response))
                         {
                             healingMistAbility.SelectAbility(player);
-                            healingMistAbility.UseAbility(player);
+                            healingMistAbility.UseAbility(player);player.ShowHint(response);
                         }
-
-                        break;
+                        else
+                        {
+                            player.ShowHint(response);
+                        }
                     }
-                    case 10005:
+                    else if (ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.RemoveDisguiseId)
                     {
                         var removeDisguiseAbility = abilities.FirstOrDefault(abilities => abilities.GetType() == typeof(RemoveDisguise));
-                        if (removeDisguiseAbility != null && removeDisguiseAbility.CanUseAbility(player, out string response))
+                        if (removeDisguiseAbility != null && removeDisguiseAbility.CanUseAbility(player, out response))
                         {
                             removeDisguiseAbility.SelectAbility(player);
                             removeDisguiseAbility.UseAbility(player);
+                            player.ShowHint(response);
                         }
-
-                        break;
+                        else
+                        {
+                            player.ShowHint(response);
+                        }
                     }
                 }
+            }
+            else if (settingBase is SSKeybindSetting ssKeybindSettingItems && ssKeybindSettingItems.SyncIsPressed && ssKeybindSettingItems.SettingId == Plugin.Instance.Config.SsssConfig.DetonateC4Id)
+            {
+                if (!SnivysUltimatePackage.Custom.Items.Grenades.C4.PlacedCharges.ContainsValue(player))
+                {
+                    player.SendConsoleMessage("\n<color=red>You've haven't placed any C4 charges!</color>", "red"); 
+                    return;
+                }
+
+                if (SnivysUltimatePackage.Custom.Items.Grenades.C4.Instance.RequireDetonator 
+                    && (player.CurrentItem is null || player.CurrentItem.Type !=
+                        SnivysUltimatePackage.Custom.Items.Grenades.C4.Instance.DetonatorItem))
+                {
+                    player.SendConsoleMessage($"\n<color=red>You need to have a Remote Detonator ({SnivysUltimatePackage.Custom.Items.Grenades.C4.Instance.DetonatorItem}) in your hand to detonate C4!</color>", "red"); 
+                    return;
+                } 
+                int i = 0;
+                foreach (var charge in SnivysUltimatePackage.Custom.Items.Grenades.C4.PlacedCharges.ToList())
+                {
+                    if (charge.Value != player) 
+                        continue; 
+                    float distance = Vector3.Distance(charge.Key.Position, player.Position);
+                    if (distance < SnivysUltimatePackage.Custom.Items.Grenades.C4.Instance.MaxDistance)
+                    {
+                        SnivysUltimatePackage.Custom.Items.Grenades.C4.Instance.C4Handler(charge.Key); i++;
+                    }
+                    else
+                    {
+                        player.SendConsoleMessage($"One of your charges is out of range. You need to get closer by {Mathf.Round(distance - SnivysUltimatePackage.Custom.Items.Grenades.C4.Instance.MaxDistance)} meters.", "yellow");
+                    }
+                } 
+                string response = i == 1 ? $"\n<color=green>{i} C4 charge has been detonated!</color>" : $"\n<color=green>{i} C4 charges have been detonated!</color>"; player.SendConsoleMessage(response, "green");
             }
         }
     }

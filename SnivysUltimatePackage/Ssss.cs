@@ -54,16 +54,19 @@ namespace SnivysUltimatePackage
             }
 
             // Add the collected abilities to the settings
-            settings.Add(new SSGroupHeader("VV Custom Roles"));
+            settings.Add(new SSGroupHeader("VV Custom Roles Info"));
             settings.Add(new SSTextArea(null, StringBuilderPool.Shared.ToStringReturn(customRoleStringBuilder), SSTextArea.FoldoutMode.ExtendedByDefault));
 
             settings.Add(new SSGroupHeader("VV Custom Abilities Key Activators"));
-            settings.Add(new SSKeybindSetting(10000, "Active Camo", KeyCode.B, true, null));
-            settings.Add(new SSKeybindSetting(10001, "Charge", KeyCode.B, true, null));
-            settings.Add(new SSKeybindSetting(10002, "Detect", KeyCode.B, true, null));
-            settings.Add(new SSKeybindSetting(10003, "Door Picking", KeyCode.B, true, null));
-            settings.Add(new SSKeybindSetting(10004, "Healing Mist", KeyCode.B, true, null));
-            settings.Add(new SSKeybindSetting(10005, "Remove Disguise", KeyCode.B, true, null));
+            settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.ActiveCamoId, "Active Camo", KeyCode.B, true, null));
+            settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.ChargeId, "Charge", KeyCode.B, true, null));
+            settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.DetectId, "Detect", KeyCode.B, true, null));
+            settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.DoorPickingId, "Door Picking", KeyCode.B, true, null));
+            settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.HealingMistId, "Healing Mist", KeyCode.B, true, null));
+            settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.RemoveDisguiseId, "Remove Disguise", KeyCode.B, true, null));
+            
+            settings.Add(new SSGroupHeader("VV Custom Items Activators"));
+            settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.DetonateC4Id, "Detonate C4", KeyCode.H, true, null));
             
             return settings.ToArray();
         }
