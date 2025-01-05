@@ -79,6 +79,7 @@ namespace SnivysUltimatePackage.Custom.Items.Other
             PlayerEvent.Interacted += OnInteracted;
             PlayerEvent.Died += OnDied;
             PlayerEvent.Left += OnDisconnect;
+            PlayerEvent.ChangingItem += OnChangingItem;
             Server.WaitingForPlayers += OnWaitingForPlayers;
             base.SubscribeEvents();
         }
@@ -91,6 +92,7 @@ namespace SnivysUltimatePackage.Custom.Items.Other
             PlayerEvent.Interacted -= OnInteracted;
             PlayerEvent.Died -= OnDied;
             PlayerEvent.Left -= OnDisconnect;
+            PlayerEvent.ChangingItem -= OnChangingItem;
             Server.WaitingForPlayers -= OnWaitingForPlayers;
             base.UnsubscribeEvents();
         }
@@ -104,11 +106,11 @@ namespace SnivysUltimatePackage.Custom.Items.Other
             Log.Debug("VVUP Custom Items: Activating Phantom Lantern Effects");
             _effectActive = true;
             _playersWithEffect.Add(ev.Player);
-            ev.Player.EnableEffect(EffectType.Ghostly);
-            ev.Player.EnableEffect(EffectType.Invisible);
-            ev.Player.EnableEffect(EffectType.FogControl, 5);
-            ev.Player.EnableEffect(EffectType.Slowness, 50);
-            ev.Player.EnableEffect(EffectType.AmnesiaItems);
+            ev.Player.EnableEffect(EffectType.Ghostly, EffectDuration);
+            ev.Player.EnableEffect(EffectType.Invisible, EffectDuration);
+            ev.Player.EnableEffect(EffectType.FogControl, 5, EffectDuration);
+            ev.Player.EnableEffect(EffectType.Slowness, 50, EffectDuration);
+            ev.Player.EnableEffect(EffectType.AmnesiaItems, EffectDuration);
             phantomLanternCoroutine = Timing.RunCoroutine(PhantomLanternCoroutine(ev.Player));
         }
 
@@ -116,9 +118,7 @@ namespace SnivysUltimatePackage.Custom.Items.Other
         {
             if (!Check(ev.Player.CurrentItem)) 
                 return;
-            if (!_effectActive)
-                return;
-            if (!_playersWithEffect.Contains(ev.Player))
+            if (!_playersWithEffect.Contains(ev.Player) && !_effectActive)
                 return;
             Timing.CallDelayed(.5f, () =>
             {
@@ -128,7 +128,7 @@ namespace SnivysUltimatePackage.Custom.Items.Other
 
         private void OnInteractingElevator(InteractingElevatorEventArgs ev)
         {
-            if (!_playersWithEffect.Contains(ev.Player))
+            if (!_playersWithEffect.Contains(ev.Player) && !_effectActive)
                 return;
             Timing.KillCoroutines(phantomLanternCoroutine);
             EndOfEffect(ev.Player);
@@ -136,14 +136,14 @@ namespace SnivysUltimatePackage.Custom.Items.Other
 
         private void OnInteractingLocker(InteractingLockerEventArgs ev)
         {
-            if (!_playersWithEffect.Contains(ev.Player))
+            if (!_playersWithEffect.Contains(ev.Player) && !_effectActive)
                 return;
             Timing.KillCoroutines(phantomLanternCoroutine);
             EndOfEffect(ev.Player);
         }
         private void OnInteracted(InteractedEventArgs ev)
         {
-            if (!_playersWithEffect.Contains(ev.Player))
+            if (!_playersWithEffect.Contains(ev.Player) && !_effectActive)
                 return;
             Timing.KillCoroutines(phantomLanternCoroutine);
             EndOfEffect(ev.Player);
@@ -151,7 +151,7 @@ namespace SnivysUltimatePackage.Custom.Items.Other
         private void OnDied(DiedEventArgs ev)
         {
             // Check if the player is not null and has an active lantern effect
-            if (ev.Player != null && _playersWithEffect.Contains(ev.Player))
+            if (ev.Player != null && _playersWithEffect.Contains(ev.Player) && _effectActive)
             {
                 Timing.KillCoroutines(phantomLanternCoroutine);
                 _effectActive = false;
@@ -162,7 +162,7 @@ namespace SnivysUltimatePackage.Custom.Items.Other
         private void OnDisconnect(LeftEventArgs ev)
         {
             // Check if the player is not null and has an active lantern effect
-            if (ev.Player != null && _playersWithEffect.Contains(ev.Player))
+            if (ev.Player != null && _playersWithEffect.Contains(ev.Player) && _effectActive)
             {
                 Timing.KillCoroutines(phantomLanternCoroutine);
                 _effectActive = false;
@@ -187,7 +187,11 @@ namespace SnivysUltimatePackage.Custom.Items.Other
             }
             EndOfEffect(player);
         }
-
+        public void OnChangingItem(ChangingItemEventArgs ev)
+        {
+            if (ev.Player != null && _playersWithEffect.Contains(ev.Player) && _effectActive)
+                ev.IsAllowed = false;
+        }
         public void EndOfEffect(PlayerAPI player)
         {
             if (player == null) return;
@@ -199,7 +203,8 @@ namespace SnivysUltimatePackage.Custom.Items.Other
             player.DisableEffect(EffectType.AmnesiaItems);
             player.CurrentItem?.Destroy();
             _effectActive = false;
-            _playersWithEffect.Remove(player);
+            if (_playersWithEffect.Contains(player))
+                _playersWithEffect.Remove(player);
         }
     }
 }
