@@ -6,6 +6,7 @@ using Exiled.API.Features;
 using Exiled.API.Features.Attributes;
 using Exiled.API.Features.Spawn;
 using Exiled.CustomItems.API.Features;
+using Exiled.CustomRoles.API.Features;
 using Exiled.Events.EventArgs.Player;
 using JetBrains.Annotations;
 using PlayerRoles;
@@ -37,13 +38,18 @@ namespace SnivysUltimatePackage.Custom.Items.Firearms
         public bool HealZombies { get; set; } = true;
 
         [Description("1 = 100%, 0.5 = 50%, 2 = 200% healing rate")]
-
         public float AhpRequiredForZombieHeal { get; set; } = 200f;
+        [Description("Determines if Serpents Hand can revive zombies to their side")]
+        public bool ZombieHealingBySerpents { get; set; } = false;
+
+        [Description("What is the CustomRole ID for Serpents Hand to set the revive zombie to")]
+        public uint SerpentsHandCustomRoleId { get; set; } = 27;
         public float HealingModifer { get; set; } = 1f;
         [Description("Determines how much AHP human players can get")]
         public float MaxAhpAmount { get; set; } = 30f;
         [Description("Deterimines if AHP drains")]
         public bool AhpDecay { get; set; } = false;
+        
 
         [CanBeNull]
         public override SpawnProperties SpawnProperties { get; set; } = new()
@@ -99,7 +105,20 @@ namespace SnivysUltimatePackage.Custom.Items.Firearms
                     ev.Player.ArtificialHealth += ev.Amount;
 
                     if (ev.Player.ArtificialHealth >= ev.Player.MaxArtificialHealth)
-                        ev.Player.Role.Set(ev.Attacker.Role.Side == Side.Mtf ? RoleTypeId.NtfPrivate : RoleTypeId.ChaosConscript, RoleSpawnFlags.None);
+                    {
+                        switch (ev.Attacker.Role.Side)
+                        {
+                            case Side.Mtf:
+                                ev.Player.Role.Set(RoleTypeId.NtfPrivate, SpawnReason.None);
+                                break;
+                            case Side.ChaosInsurgency:
+                                ev.Player.Role.Set(RoleTypeId.ChaosConscript, SpawnReason.None);
+                                break;
+                            case Side.Tutorial when ZombieHealingBySerpents:
+                                CustomRole.Get(SerpentsHandCustomRoleId).AddRole(ev.Player);
+                                break;
+                        }
+                    }
 
                     ev.IsAllowed = false;
                 }
