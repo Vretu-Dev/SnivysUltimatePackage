@@ -19,7 +19,7 @@ namespace SnivysUltimatePackage
 {
     public class Plugin : Plugin<MasterConfig>
     {
-        public override PluginPriority Priority { get; } = PluginPriority.Higher;
+        public override PluginPriority Priority { get; } = PluginPriority.Low;
         public static Plugin Instance;
         public override string Name { get; } = "Snivy's Ultimate Plugin Package";
         public override string Author { get; } = "Vicious Vikki";
