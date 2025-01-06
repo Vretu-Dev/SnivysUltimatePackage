@@ -1,4 +1,4 @@
-﻿using System;
+﻿/*using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -52,9 +52,9 @@ namespace SnivysUltimatePackage.Custom.Items.Firearms
                 },
             },
         };
-        
+
         protected override void OnShooting(ShootingEventArgs ev)
-        { 
+        {
             try
             {
                 foreach (Item item in ev.Player.Items.ToList())
@@ -79,7 +79,7 @@ namespace SnivysUltimatePackage.Custom.Items.Firearms
                 Log.Error(e);
             }
         }
-
+        
         private IEnumerator<float> ShooterProjectile(Player player, Vector3 targetPos, Player? target = null)
         {
             RoleTypeId playerRole = player.Role;
@@ -136,4 +136,4 @@ namespace SnivysUltimatePackage.Custom.Items.Firearms
                 target?.Kill(DeathReasonTarget);
         }
     }
-}
+}*/

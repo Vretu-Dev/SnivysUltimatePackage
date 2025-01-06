@@ -27,9 +27,14 @@ namespace SnivysUltimatePackage
 
             var customRoles = new List<CustomRole>
             {
+                A7Chaos.Get(typeof(A7Chaos)),
                 Biochemist.Get(typeof(Biochemist)),
+                BorderPatrol.Get(typeof(BorderPatrol)),
                 CiPhantom.Get(typeof(CiPhantom)),
                 CISpy.Get(typeof(CISpy)),
+                ContainmentGuard.Get(typeof(ContainmentGuard)),
+                ContainmentScientist.Get(typeof(ContainmentScientist)),
+                Demolitionist.Get(typeof(Demolitionist)),
                 DwarfZombie.Get(typeof(DwarfZombie)),
                 ExplosiveZombie.Get(typeof(ExplosiveZombie)),
                 Custom.Roles.Flipped.Get(typeof(Flipped)),
@@ -55,7 +60,7 @@ namespace SnivysUltimatePackage
 
             // Add the collected abilities to the settings
             settings.Add(new SSGroupHeader("VV Custom Roles Info"));
-            settings.Add(new SSTextArea(null, StringBuilderPool.Shared.ToStringReturn(customRoleStringBuilder), SSTextArea.FoldoutMode.ExtendedByDefault));
+            settings.Add(new SSTextArea(null, StringBuilderPool.Shared.ToStringReturn(customRoleStringBuilder), SSTextArea.FoldoutMode.CollapsedByDefault));
 
             settings.Add(new SSGroupHeader("VV Custom Abilities Key Activators"));
             settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.ActiveCamoId, "Active Camo", KeyCode.B, true, null));
@@ -66,7 +71,7 @@ namespace SnivysUltimatePackage
             settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.RemoveDisguiseId, "Remove Disguise", KeyCode.B, true, null));
             
             settings.Add(new SSGroupHeader("VV Custom Items Activators"));
-            settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.DetonateC4Id, "Detonate C4", KeyCode.H, true, null));
+            settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.DetonateC4Id, "Detonate C4", KeyCode.J, true, null));
             
             return settings.ToArray();
         }

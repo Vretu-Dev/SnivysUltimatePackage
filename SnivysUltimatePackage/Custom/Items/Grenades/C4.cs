@@ -180,6 +180,9 @@ namespace SnivysUltimatePackage.Custom.Items.Grenades
 
         private void OnDied(DiedEventArgs ev)
         {
+            if (ev.Player == null)
+                return;
+            
             foreach (var charge in PlacedCharges.ToList())
             {
                 if (charge.Value == ev.Player)

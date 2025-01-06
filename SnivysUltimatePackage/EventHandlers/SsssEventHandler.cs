@@ -6,7 +6,7 @@ using Exiled.Events.EventArgs.Player;
 using SnivysUltimatePackage.Custom.Abilities;
 using UnityEngine;
 using UserSettings.ServerSpecific;
-using Player = Exiled.API.Features.Player;
+using PlayerAPI = Exiled.API.Features.Player;
 
 namespace SnivysUltimatePackage.EventHandlers
 {
@@ -132,39 +132,41 @@ namespace SnivysUltimatePackage.EventHandlers
                             player.ShowHint(response);
                         }
                     }
+                    
+                    
                 }
-            }
-            else if (settingBase is SSKeybindSetting ssKeybindSettingItems && ssKeybindSettingItems.SyncIsPressed && ssKeybindSettingItems.SettingId == Plugin.Instance.Config.SsssConfig.DetonateC4Id)
-            {
-                if (!SnivysUltimatePackage.Custom.Items.Grenades.C4.PlacedCharges.ContainsValue(player))
+                else if (ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.DetonateC4Id)
                 {
-                    player.SendConsoleMessage("\n<color=red>You've haven't placed any C4 charges!</color>", "red"); 
-                    return;
-                }
+                    if (!SnivysUltimatePackage.Custom.Items.Grenades.C4.PlacedCharges.ContainsValue(player))
+                    {
+                        player.SendConsoleMessage("\n<color=red>You've haven't placed any C4 charges!</color>", "red"); 
+                        return;
+                    }
 
-                if (SnivysUltimatePackage.Custom.Items.Grenades.C4.Instance.RequireDetonator 
-                    && (player.CurrentItem is null || player.CurrentItem.Type !=
-                        SnivysUltimatePackage.Custom.Items.Grenades.C4.Instance.DetonatorItem))
-                {
-                    player.SendConsoleMessage($"\n<color=red>You need to have a Remote Detonator ({SnivysUltimatePackage.Custom.Items.Grenades.C4.Instance.DetonatorItem}) in your hand to detonate C4!</color>", "red"); 
-                    return;
-                } 
-                int i = 0;
-                foreach (var charge in SnivysUltimatePackage.Custom.Items.Grenades.C4.PlacedCharges.ToList())
-                {
-                    if (charge.Value != player) 
-                        continue; 
-                    float distance = Vector3.Distance(charge.Key.Position, player.Position);
-                    if (distance < SnivysUltimatePackage.Custom.Items.Grenades.C4.Instance.MaxDistance)
+                    if (SnivysUltimatePackage.Custom.Items.Grenades.C4.Instance.RequireDetonator 
+                        && (player.CurrentItem is null || player.CurrentItem.Type !=
+                            SnivysUltimatePackage.Custom.Items.Grenades.C4.Instance.DetonatorItem))
                     {
-                        SnivysUltimatePackage.Custom.Items.Grenades.C4.Instance.C4Handler(charge.Key); i++;
-                    }
-                    else
+                        player.SendConsoleMessage($"\n<color=red>You need to have a Remote Detonator ({SnivysUltimatePackage.Custom.Items.Grenades.C4.Instance.DetonatorItem}) in your hand to detonate C4!</color>", "red"); 
+                        return;
+                    } 
+                    int i = 0;
+                    foreach (var charge in SnivysUltimatePackage.Custom.Items.Grenades.C4.PlacedCharges.ToList())
                     {
-                        player.SendConsoleMessage($"One of your charges is out of range. You need to get closer by {Mathf.Round(distance - SnivysUltimatePackage.Custom.Items.Grenades.C4.Instance.MaxDistance)} meters.", "yellow");
-                    }
-                } 
-                string response = i == 1 ? $"\n<color=green>{i} C4 charge has been detonated!</color>" : $"\n<color=green>{i} C4 charges have been detonated!</color>"; player.SendConsoleMessage(response, "green");
+                        if (charge.Value != player) 
+                            continue; 
+                        float distance = Vector3.Distance(charge.Key.Position, player.Position);
+                        if (distance < SnivysUltimatePackage.Custom.Items.Grenades.C4.Instance.MaxDistance)
+                        {
+                            SnivysUltimatePackage.Custom.Items.Grenades.C4.Instance.C4Handler(charge.Key); i++;
+                        }
+                        else
+                        {
+                            player.SendConsoleMessage($"One of your charges is out of range. You need to get closer by {Mathf.Round(distance - SnivysUltimatePackage.Custom.Items.Grenades.C4.Instance.MaxDistance)} meters.", "yellow");
+                        }
+                    } 
+                    //string response = i == 1 ? $"\n<color=green>{i} C4 charge has been detonated!</color>" : $"\n<color=green>{i} C4 charges have been detonated!</color>"; player.SendConsoleMessage(response, "green");
+                }
             }
         }
     }

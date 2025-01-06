@@ -78,10 +78,10 @@ namespace SnivysUltimatePackage.Configs.CustomConfigs
             new C4()
         };
 
-        public List<Scp2818> Scp2818s { get; private set; } = new()
+        /*public List<Scp2818> Scp2818s { get; private set; } = new()
         {
             new Scp2818()
-        };
+        };*/
 
         public List<InfinitePills> InfinitePills { get; private set; } = new()
         {
