@@ -53,6 +53,8 @@ namespace SnivysUltimatePackage.Custom.Items.Firearms
             },
         };
 
+        private Player TargetPlayer = null;
+
         protected override void OnShooting(ShootingEventArgs ev)
         {
             try
@@ -64,22 +66,30 @@ namespace SnivysUltimatePackage.Custom.Items.Firearms
                         ev.Player.RemoveItem(item);
                     }
 
-                Player target = ev.ClaimedTarget;
-                if (ev.Direction == Vector3.zero || (ev.Player.Position - ev.Direction).sqrMagnitude > 1000f)
+                if (ev.Direction == Vector3.zero || (ev.Player.Position - ev.Direction).sqrMagnitude < 1000f)
                 {
                     ev.Player.Kill(DeathReasonUser);
                     ev.IsAllowed = false;
                     return;
                 }
 
-                Timing.RunCoroutine(ShooterProjectile(ev.Player, ev.Direction, target));
+                Timing.CallDelayed(0.25f,
+                    () => { Timing.RunCoroutine(ShooterProjectile(ev.Player, ev.Direction, TargetPlayer)); });
             }
             catch (Exception e)
             {
                 Log.Error(e);
             }
         }
-        
+        protected override void OnShot(ShotEventArgs ev)
+        {
+            if (ev.Target != null)
+            {
+                TargetPlayer = ev.Target;
+                ev.CanHurt = false;
+            }
+        }
+
         private IEnumerator<float> ShooterProjectile(Player player, Vector3 targetPos, Player? target = null)
         {
             RoleTypeId playerRole = player.Role;
