@@ -6,7 +6,7 @@ using SnivysUltimatePackage.Custom.Abilities;
 
 namespace SnivysUltimatePackage.Custom.Roles
 {
-    public class MedicZombie : CustomRole
+    public class MedicZombie : CustomRole, ICustomRole
     {
         public int Chance { get; set; } = 25;
         public override uint Id { get; set; } = 45;
@@ -16,7 +16,7 @@ namespace SnivysUltimatePackage.Custom.Roles
         public override string CustomInfo { get; set; } = "<color=#FF0000>Medic SCP-049-2</color>";
         public override RoleTypeId Role { get; set; } = RoleTypeId.Scp0492;
         
-        public StartTeam StartTeam { get; set; } = StartTeam.Revived;
+        public StartTeam StartTeam { get; set; } = StartTeam.Scp | StartTeam.Revived;
 
         public override List<CustomAbility> CustomAbilities { get; set; } = new List<CustomAbility>
         {
