@@ -4,7 +4,7 @@ using Exiled.API.Features.Attributes;
 using Exiled.CustomRoles.API.Features;
 using Exiled.Events.EventArgs.Player;
 
-namespace SnivysCustomRolesAbilities.Abilities
+namespace SnivysUltimatePackage.Custom.Abilities
 {
     [CustomAbility]
     public class RestrictedItems : PassiveAbility

@@ -56,7 +56,7 @@ namespace SnivysUltimatePackage.EventHandlers
                         {
                             activeCamoAbility.SelectAbility(player);
                             activeCamoAbility.UseAbility(player);
-                            player.ShowHint(response);
+                            player.ShowHint(Plugin.Instance.Config.SsssConfig.SsssActiveCamoActivationMessage);
                         }
                         else
                         {
@@ -70,7 +70,7 @@ namespace SnivysUltimatePackage.EventHandlers
                         {
                             chargeAbility.SelectAbility(player);
                             chargeAbility.UseAbility(player);
-                            player.ShowHint(response);
+                            player.ShowHint(Plugin.Instance.Config.SsssConfig.SsssChargeActivationMessage);
                         }
                         else
                         {
@@ -84,7 +84,6 @@ namespace SnivysUltimatePackage.EventHandlers
                         {
                             detectAbility.SelectAbility(player);
                             detectAbility.UseAbility(player);
-                            player.ShowHint(response);
                         }
                         else
                         {
@@ -98,7 +97,7 @@ namespace SnivysUltimatePackage.EventHandlers
                         {
                             doorPickingAbility.SelectAbility(player);
                             doorPickingAbility.UseAbility(player);
-                            player.ShowHint(response);
+                            player.ShowHint(Plugin.Instance.Config.SsssConfig.SsssDoorPickingActivationMessage);
                         }
                         else
                         {
@@ -112,6 +111,7 @@ namespace SnivysUltimatePackage.EventHandlers
                         {
                             healingMistAbility.SelectAbility(player);
                             healingMistAbility.UseAbility(player);player.ShowHint(response);
+                            player.ShowHint(Plugin.Instance.Config.SsssConfig.SsssHealingMistActivationMessage);
                         }
                         else
                         {
@@ -125,20 +125,19 @@ namespace SnivysUltimatePackage.EventHandlers
                         {
                             removeDisguiseAbility.SelectAbility(player);
                             removeDisguiseAbility.UseAbility(player);
-                            player.ShowHint(response);
+                            player.ShowHint(Plugin.Instance.Config.SsssConfig.SsssRemoveDisguiseActivationMessage);
                         }
                         else
                         {
                             player.ShowHint(response);
                         }
                     }
-                    
-                    
                 }
                 else if (ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.DetonateC4Id)
                 {
                     if (!SnivysUltimatePackage.Custom.Items.Grenades.C4.PlacedCharges.ContainsValue(player))
                     {
+                        player.ShowHint(Plugin.Instance.Config.SsssConfig.SsssC4NoC4Deployed);
                         player.SendConsoleMessage("\n<color=red>You've haven't placed any C4 charges!</color>", "red"); 
                         return;
                     }
@@ -147,6 +146,7 @@ namespace SnivysUltimatePackage.EventHandlers
                         && (player.CurrentItem is null || player.CurrentItem.Type !=
                             SnivysUltimatePackage.Custom.Items.Grenades.C4.Instance.DetonatorItem))
                     {
+                        player.ShowHint(Plugin.Instance.Config.SsssConfig.SsssC4DetonatorNeeded);
                         player.SendConsoleMessage($"\n<color=red>You need to have a Remote Detonator ({SnivysUltimatePackage.Custom.Items.Grenades.C4.Instance.DetonatorItem}) in your hand to detonate C4!</color>", "red"); 
                         return;
                     } 
@@ -162,9 +162,11 @@ namespace SnivysUltimatePackage.EventHandlers
                         }
                         else
                         {
+                            player.ShowHint(Plugin.Instance.Config.SsssConfig.SsssC4TooFarAway);
                             player.SendConsoleMessage($"One of your charges is out of range. You need to get closer by {Mathf.Round(distance - SnivysUltimatePackage.Custom.Items.Grenades.C4.Instance.MaxDistance)} meters.", "yellow");
                         }
                     } 
+                    player.ShowHint(Plugin.Instance.Config.SsssConfig.SsssDetonateC4ActivationMessage);
                     //string response = i == 1 ? $"\n<color=green>{i} C4 charge has been detonated!</color>" : $"\n<color=green>{i} C4 charges have been detonated!</color>"; player.SendConsoleMessage(response, "green");
                 }
             }

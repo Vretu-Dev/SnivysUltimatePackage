@@ -4,8 +4,8 @@ using Exiled.API.Features.Attributes;
 using Exiled.API.Features.Spawn;
 using Exiled.CustomRoles.API.Features;
 using PlayerRoles;
-using SnivysCustomRolesAbilities.Abilities;
 using SnivysUltimatePackage.API;
+using SnivysUltimatePackage.Custom.Abilities;
 
 namespace SnivysUltimatePackage.Custom.Roles
 {
