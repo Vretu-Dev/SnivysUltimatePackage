@@ -6,7 +6,7 @@ using SnivysUltimatePackage.Custom.Abilities;
 
 namespace SnivysUltimatePackage.Custom.Roles
 {
-    public class DwarfZombie : CustomRole
+    public class DwarfZombie : CustomRole, ICustomRole
     {
         public int Chance { get; set; } = 20;
         public override uint Id { get; set; } = 43;

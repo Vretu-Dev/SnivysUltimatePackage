@@ -6,7 +6,7 @@ using SnivysUltimatePackage.Custom.Abilities;
 
 namespace SnivysUltimatePackage.Custom.Roles
 {
-    public class ExplosiveZombie : CustomRole
+    public class ExplosiveZombie : CustomRole, ICustomRole
     {
         public int Chance { get; set; } = 25;
         public override uint Id { get; set; } = 42;
