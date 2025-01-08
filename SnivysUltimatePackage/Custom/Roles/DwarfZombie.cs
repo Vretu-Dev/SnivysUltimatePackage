@@ -13,7 +13,7 @@ namespace SnivysUltimatePackage.Custom.Roles
         public override int MaxHealth { get; set; } = 200;
         public override string Name { get; set; } = "<color=#FF0000>Dwarf SCP-049-2</color>";
         public override string Description { get; set; } = "A smaller zombie";
-        public override string CustomInfo { get; set; } = "<color=#FF0000>Dwarf SCP-049-2</color>";
+        public override string CustomInfo { get; set; } = "Dwarf SCP-049-2";
         public override RoleTypeId Role { get; set; } = RoleTypeId.Scp0492;
         
         public StartTeam StartTeam { get; set; } = StartTeam.Scp | StartTeam.Revived;

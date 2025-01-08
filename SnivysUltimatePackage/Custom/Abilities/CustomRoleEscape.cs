@@ -36,12 +36,14 @@ namespace SnivysUltimatePackage.Custom.Abilities
         
         protected override void AbilityAdded(Player player)
         {
+            Log.Debug($"VVUP Custom Abilities: Custom Role Escape, Adding Custom Role Escape Ability to {player.Nickname}");
             PlayersWithCustomRoleEscape.Add(player);
             Exiled.Events.Handlers.Player.Escaping += OnEscaping;
             Exiled.Events.Handlers.Player.ChangingRole += OnRoleChange;
         }
         protected override void AbilityRemoved(Player player)
         {
+            Log.Debug($"VVUP Custom Abilities: Custom Role Escape, Removing Custom Role Escape Ability from {player.Nickname}");
             PlayersWithCustomRoleEscape.Remove(player);
             Exiled.Events.Handlers.Player.Escaping -= OnEscaping;
             Exiled.Events.Handlers.Player.ChangingRole -= OnRoleChange;

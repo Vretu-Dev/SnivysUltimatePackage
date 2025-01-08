@@ -18,6 +18,7 @@ namespace SnivysUltimatePackage.Custom.Abilities
         {
             Timing.CallDelayed(11f, () =>
             {
+                Log.Debug($"Removing any left over ability data from {player.Nickname}");
                 player.DisableAllEffects();
                 player.Scale = Vector3.one;
             });

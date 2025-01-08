@@ -19,12 +19,14 @@ namespace SnivysUltimatePackage.Custom.Abilities
         
         protected override void AbilityAdded(Player player)
         {
+            Log.Debug($"VVUP Custom Abilities: Dwarf, Adding Dwarf Ability to {player.Nickname}");
             PlayersWithDwarfEffect.Add(player);
             Timing.CallDelayed(2.5f, () => player.Scale = new Vector3(0.75f, 0.75f, 0.75f));
             player.IsUsingStamina = false;
         }
         protected override void AbilityRemoved(Player player)
         {
+            Log.Debug($"VVUP Custom Abilities: Dwarf, Removing Dwarf Ability from {player.Nickname}");
             PlayersWithDwarfEffect.Remove(player);
             player.Scale = Vector3.one;
             player.IsUsingStamina = true;

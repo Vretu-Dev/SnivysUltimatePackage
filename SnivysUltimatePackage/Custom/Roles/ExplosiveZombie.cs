@@ -20,16 +20,16 @@ namespace SnivysUltimatePackage.Custom.Roles
 
         public override List<CustomAbility> CustomAbilities { get; set; } = new List<CustomAbility>
         {
-            new FriendlyFireRemover
-            {
-                Name = "Friendly Fire Remover [Passive]",
-                Description = "Removes friendly fire to your team",
-            },
             new Martyrdom
             {
                 Name = "Explode on Death [Passive]",
                 Description = "Causes you to explode on death",
                 ExplosiveFuse = 0.5f,
+            },
+            new FriendlyFireRemover
+            {
+                Name = "Friendly Fire Remover [Passive]",
+                Description = "Removes friendly fire to your team",
             },
         };
     }

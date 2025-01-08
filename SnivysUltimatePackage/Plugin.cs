@@ -136,7 +136,7 @@ namespace SnivysUltimatePackage
             
             //SSSS
             SsssEventHandler = new SsssEventHandler(this);
-            Player.ChangingRole += SsssEventHandler.OnChangingRole;
+            Server.RoundStarted += SsssEventHandler.OnRoundStarted;
             ServerSpecificSettingsSync.ServerOnSettingValueReceived += SsssEventHandler.OnSettingValueReceived;
             
             base.OnEnabled();
@@ -180,7 +180,7 @@ namespace SnivysUltimatePackage
             Scp1576SpectatorViewerEventHandlers = null;
 
             //SSSS
-            Player.ChangingRole -= SsssEventHandler.OnChangingRole;
+            Server.RoundStarted -= SsssEventHandler.OnRoundStarted;
             ServerSpecificSettingsSync.ServerOnSettingValueReceived -= SsssEventHandler.OnSettingValueReceived;
             SsssEventHandler = null;
             

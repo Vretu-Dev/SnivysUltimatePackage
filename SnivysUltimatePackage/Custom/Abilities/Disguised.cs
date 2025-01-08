@@ -30,12 +30,14 @@ namespace SnivysUltimatePackage.Custom.Abilities
         public List<Player> PlayersWithDisguisedEffect = new List<Player>();
         protected override void AbilityAdded(Player player)
         {
+            Log.Debug($"VVUP Custom Abilities: Disguised, Adding Disguised Ability to {player.Nickname}");
             PlayersWithDisguisedEffect.Add(player);
             Exiled.Events.Handlers.Player.Hurting += OnHurting;
             Exiled.Events.Handlers.Player.Shot += OnShot;
         }
         protected override void AbilityRemoved(Player player)
         {
+            Log.Debug($"VVUP Custom Abilities: Disguised, Removing Disguised Ability from {player.Nickname}");
             PlayersWithDisguisedEffect.Remove(player);
             Exiled.Events.Handlers.Player.Hurting -= OnHurting;
             Exiled.Events.Handlers.Player.Shot -= OnShot;

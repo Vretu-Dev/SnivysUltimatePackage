@@ -19,6 +19,10 @@ namespace SnivysUltimatePackage.Custom.Abilities
         [Description("How long should the fuse be?")]
         public float ExplosiveFuse { get; set; } = 3f;
 
+        protected override void AbilityAdded(Exiled.API.Features.Player player)
+        {
+            Log.Debug($"VVUP Custom Abilities: Explode on Death, Adding Explode on Death to {player.Nickname}");
+        }
         protected override void SubscribeEvents()
         {
             Player.Dying += OnDying;

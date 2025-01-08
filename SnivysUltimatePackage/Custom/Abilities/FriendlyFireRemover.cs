@@ -63,6 +63,9 @@ namespace SnivysUltimatePackage.Custom.Abilities
         {
             if (!HasNoFf.ContainsKey(ev.Attacker))
                 return;
+
+            if (ev.Player == null)
+                return;
             
             bool containsScp = ScpRoleTypes.Any(roles => HasNoFf.ContainsValue(roles));
 

@@ -16,7 +16,7 @@ namespace SnivysUltimatePackage.Custom.Roles
         public override int MaxHealth { get; set; } = 100;
         public override string Name { get; set; } = "<color=#008f1e>Chaos Phantom</color>";
         public override string Description { get; set; } = "A Chaos Insurgent specialized in espionage";
-        public override string CustomInfo { get; set; } = "<color=#008f1e>Chaos Phantom</color>";
+        public override string CustomInfo { get; set; } = "Chaos Phantom";
         public override RoleTypeId Role { get; set; } = RoleTypeId.ChaosConscript;
 
         public StartTeam StartTeam { get; set; } = StartTeam.Guard;
