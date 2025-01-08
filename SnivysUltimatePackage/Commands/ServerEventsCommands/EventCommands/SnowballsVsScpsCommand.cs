@@ -28,9 +28,9 @@ namespace SnivysUltimatePackage.Commands.ServerEventsCommands.EventCommands
                 return false;
             }
             
-            var blackoutEventHandlers = new BlackoutEventHandlers();
-            response = "Starting Blackout Event";
-            Log.Debug($"{sender} has started the Blackout Event");
+            var SnowballVsScpsEventHandlers = new SnowballsVsScpsEventHandlers();
+            response = "Starting Snowballs Vs Scps Event";
+            Log.Debug($"{sender} has started Snowballs Vs Scps Event");
             return true;
         }
     }
