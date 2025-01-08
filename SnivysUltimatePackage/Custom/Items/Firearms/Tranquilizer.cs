@@ -104,6 +104,7 @@ namespace SnivysUltimatePackage.Custom.Items.Firearms
             Scp096.Charging += OnDeniableEvent;
             Scp096.Enraging += OnDeniableEvent;
             Scp096.AddingTarget += OnDeniableEvent;
+            Scp173.Blinking += OnDeniableEvent;
             Scp939.PlacingAmnesticCloud += OnDeniableEvent;
             base.SubscribeEvents();
         }
@@ -118,6 +119,7 @@ namespace SnivysUltimatePackage.Custom.Items.Firearms
             Scp096.Charging -= OnDeniableEvent;
             Scp096.Enraging -= OnDeniableEvent;
             Scp096.AddingTarget -= OnDeniableEvent;
+            Scp173.Blinking -= OnDeniableEvent;
             Scp939.PlacingAmnesticCloud -= OnDeniableEvent;
             base.UnsubscribeEvents();
         }
