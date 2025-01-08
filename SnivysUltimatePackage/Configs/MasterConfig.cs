@@ -40,7 +40,7 @@ namespace SnivysUltimatePackage.Configs
         public SsssConfig SsssConfig { get; set; } = null!;
 
         public string ConfigFolder { get; set; } =
-            Path.Combine(Paths.Config, "ViciousVikkisUltimatePluginPackage");
+            Path.Combine(Paths.Configs, "ViciousVikkisUltimatePluginPackage");
         
         public string CustomItemConfigFile { get; set; } = "vvCustomItems.yml";
         public string CustomRolesConfigFile { get; set; } = "vvCustomRoles.yml";
