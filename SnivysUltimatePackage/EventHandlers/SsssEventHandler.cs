@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using Exiled.API.Enums;
 using Exiled.API.Features;
 using Exiled.CustomRoles.API.Features;
 using Exiled.Events.EventArgs.Player;
@@ -24,15 +25,16 @@ namespace SnivysUltimatePackage.EventHandlers
             foreach (PlayerAPI player in Player.List)
             {
                 Log.Debug($"VVUP: Adding SSSS functions to {player.Nickname}");
-                ServerSpecificSettingsSync.DefinedSettings = Ssss.VVUltimatePluginPackage();
-                ServerSpecificSettingsSync.SendToPlayer(player.ReferenceHub);
+                try
+                {
+                    ServerSpecificSettingsSync.DefinedSettings = SsssHelper.GetSettings();
+                    ServerSpecificSettingsSync.SendToPlayer(player.ReferenceHub);
+                }
+                catch (InvalidCastException ex)
+                {
+                    Log.Error($"VVUP: InvalidCastException occurred: {ex.Message}");
+                }
             }
-            /*if (ev.Player == null)
-                return;
-            if (ev.NewRole == RoleTypeId.Spectator)
-                return;*/
-            
-            
         }
 
         public void OnSettingValueReceived(ReferenceHub hub, ServerSpecificSettingBase settingBase)

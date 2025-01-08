@@ -3,6 +3,7 @@ using System.Text;
 using Exiled.API.Features.Items;
 using Exiled.CustomItems.API.Features;
 using Exiled.CustomRoles.API.Features;
+using MEC;
 using NorthwoodLib.Pools;
 using SnivysUltimatePackage.Custom.Items.Armor;
 using SnivysUltimatePackage.Custom.Items.Firearms;
@@ -16,23 +17,14 @@ using Flipped = SnivysUltimatePackage.Custom.Abilities.Flipped;
 
 namespace SnivysUltimatePackage
 {
-    public class Ssss
-    {
-        public static ServerSpecificSettingBase[] VVUltimatePluginPackage()
-        {
-            return SsssHelper.GetSettings();
-        }
-    }
-
     public class SsssHelper
     {
         public static ServerSpecificSettingBase[] GetSettings()
         {
             List<ServerSpecificSettingBase> settings = new List<ServerSpecificSettingBase>();
-            if (Plugin.Instance.Config.SsssConfig.SsssCustomRoleInfo)
+            StringBuilder stringBuilder = StringBuilderPool.Shared.Rent();
+            if (Plugin.Instance.Config.CustomRolesConfig.IsEnabled)
             {
-                StringBuilder customRoleStringBuilder = StringBuilderPool.Shared.Rent();
-
                 var customRoles = new List<CustomRole>
                 {
                     A7Chaos.Get(typeof(A7Chaos)),
@@ -58,55 +50,60 @@ namespace SnivysUltimatePackage
                 {
                     if (role == null || role.CustomAbilities == null) continue;
 
-                    customRoleStringBuilder.AppendLine($"Role: {role.Name}");
-                    customRoleStringBuilder.AppendLine($"- Description: {role.Description}");
+                    stringBuilder.AppendLine($"Role: {role.Name}");
+                    stringBuilder.AppendLine($"- Description: {role.Description}");
                     foreach (var ability in role.CustomAbilities)
                     {
-                        customRoleStringBuilder.AppendLine($"-- Ability: {ability.Name}, {ability.Description}");
+                        stringBuilder.AppendLine($"-- Ability: {ability.Name}, {ability.Description}");
                     }
                 }
 
-
                 settings.Add(new SSGroupHeader("VV Custom Roles Info"));
-                settings.Add(new SSTextArea(null, StringBuilderPool.Shared.ToStringReturn(customRoleStringBuilder),
+                settings.Add(new SSTextArea(null, StringBuilderPool.Shared.ToStringReturn(stringBuilder),
                     SSTextArea.FoldoutMode.CollapsedByDefault));
+                stringBuilder.Clear();
             }
 
-            if (Plugin.Instance.Config.SsssConfig.SsssCustomItemInfo)
+            if (Plugin.Instance.Config.CustomItemsConfig.IsEnabled)
             {
-                StringBuilder customItemStringBuilder = StringBuilderPool.Shared.Rent();
-                var customItems = new List<CustomItem>
+                var customItems = new List<IEnumerable<CustomItem>>
                 {
-                    (CustomItem)ExplosiveResistantArmor.Get(typeof(ExplosiveResistantArmor)),
-                    (CustomItem)ExplosiveRoundRevolver.Get(typeof(ExplosiveRoundRevolver)),
-                    (CustomItem)MediGun.Get(typeof(MediGun)),
-                    (CustomItem)Tranquilizer.Get(typeof(Tranquilizer)),
-                    (CustomItem)C4.Get(typeof(C4)),
-                    (CustomItem)EmpGrenade.Get(typeof(EmpGrenade)),
-                    (CustomItem)NerveAgentGrenade.Get(typeof(NerveAgentGrenade)),
-                    (CustomItem)SmokeGrenade.Get(typeof(SmokeGrenade)),
-                    (CustomItem)DeadringerSyringe.Get(typeof(DeadringerSyringe)),
-                    (CustomItem)KySyringe.Get(typeof(KySyringe)),
-                    (CustomItem)AntiScp096Pills.Get(typeof(AntiScp096Pills)),
-                    (CustomItem)InfinitePills.Get(typeof(InfinitePills)),
-                    (CustomItem)PhantomLantern.Get(typeof(PhantomLantern)),
-                    (CustomItem)Scp1499.Get(typeof(Scp1499)),
+                    ExplosiveResistantArmor.Get(typeof(ExplosiveResistantArmor)),
+                    ExplosiveRoundRevolver.Get(typeof(ExplosiveRoundRevolver)),
+                    MediGun.Get(typeof(MediGun)),
+                    Tranquilizer.Get(typeof(Tranquilizer)),
+                    C4.Get(typeof(C4)),
+                    EmpGrenade.Get(typeof(EmpGrenade)),
+                    NerveAgentGrenade.Get(typeof(NerveAgentGrenade)),
+                    SmokeGrenade.Get(typeof(SmokeGrenade)),
+                    DeadringerSyringe.Get(typeof(DeadringerSyringe)),
+                    KySyringe.Get(typeof(KySyringe)),
+                    AntiScp096Pills.Get(typeof(AntiScp096Pills)),
+                    InfinitePills.Get(typeof(InfinitePills)),
+                    PhantomLantern.Get(typeof(PhantomLantern)),
+                    Scp1499.Get(typeof(Scp1499)),
                 };
 
-                foreach (var item in customItems)
+                foreach (var itemCollection in customItems)
                 {
-                    if (item == null) continue;
+                    if (itemCollection == null) continue;
 
-                    customItemStringBuilder.AppendLine($"Item: {item.Name}");
-                    customItemStringBuilder.AppendLine($"- Description: {item.Description}");
+                    foreach (var items in itemCollection)
+                    {
+                        stringBuilder.AppendLine($"Item: {items.Name}");
+                        stringBuilder.AppendLine($"- Description: {items.Description}");
+                    }
+                    
                 }
 
                 settings.Add(new SSGroupHeader("VV Custom Items Info"));
-                settings.Add(new SSTextArea(null, StringBuilderPool.Shared.ToStringReturn(customItemStringBuilder),
+                settings.Add(new SSTextArea(null, StringBuilderPool.Shared.ToStringReturn(stringBuilder),
                     SSTextArea.FoldoutMode.CollapsedByDefault));
+                stringBuilder.Clear();
             }
 
-            if (Plugin.Instance.Config.SsssConfig.SsssCustomRoleAbilityToggle)
+            if (Plugin.Instance.Config.CustomRolesConfig.IsEnabled &&
+                Plugin.Instance.Config.CustomRolesAbilitiesConfig.IsEnabled)
             {
                 settings.Add(new SSGroupHeader("VV Custom Abilities Key Activators"));
                 settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.ActiveCamoId, "Active Camo",
@@ -123,7 +120,7 @@ namespace SnivysUltimatePackage
                     KeyCode.B, true, null));
             }
 
-            if (Plugin.Instance.Config.SsssConfig.SsssC4DetonateToggle)
+            if (Plugin.Instance.Config.CustomItemsConfig.IsEnabled)
             {
                 settings.Add(new SSGroupHeader("VV Custom Items Activators"));
                 settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.DetonateC4Id, "Detonate C4",
@@ -133,5 +130,4 @@ namespace SnivysUltimatePackage
             return settings.ToArray();
         }
     }
-
 }
