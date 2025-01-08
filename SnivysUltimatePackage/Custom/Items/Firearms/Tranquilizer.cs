@@ -99,6 +99,7 @@ namespace SnivysUltimatePackage.Custom.Items.Firearms
             PlayerEvent.PickingUpItem += OnDeniableEvent;
             PlayerEvent.ChangingItem += OnDeniableEvent;
             PlayerEvent.VoiceChatting += OnDeniableEvent;
+            PlayerEvent.ReloadingWeapon += OnReloading;
             Scp049.StartingRecall += OnDeniableEvent;
             Scp106.Teleporting += OnDeniableEvent;
             Scp096.Charging += OnDeniableEvent;
@@ -115,6 +116,7 @@ namespace SnivysUltimatePackage.Custom.Items.Firearms
             PlayerEvent.PickingUpItem -= OnDeniableEvent;
             PlayerEvent.ChangingItem -= OnDeniableEvent;
             PlayerEvent.VoiceChatting -= OnDeniableEvent;
+            PlayerEvent.ReloadingWeapon -= OnReloading;
             Scp049.StartingRecall -= OnDeniableEvent;
             Scp106.Teleporting -= OnDeniableEvent;
             Scp096.Charging -= OnDeniableEvent;
@@ -125,7 +127,15 @@ namespace SnivysUltimatePackage.Custom.Items.Firearms
             Scp939.PlacingAmnesticCloud -= OnDeniableEvent;
             base.UnsubscribeEvents();
         }
-        
+        private void OnReloading(ReloadingWeaponEventArgs ev)
+        {
+            if (!Check(ev.Player.CurrentItem))
+                return;
+            Timing.CallDelayed(2f, () =>
+            {
+                ev.Firearm.MagazineAmmo = ClipSize;
+            });
+        }
         protected override void OnHurting(HurtingEventArgs ev)
         {
             if (ev.Attacker == ev.Player)

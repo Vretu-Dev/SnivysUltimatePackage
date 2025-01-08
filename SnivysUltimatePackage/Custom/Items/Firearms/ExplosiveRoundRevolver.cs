@@ -7,6 +7,7 @@ using Exiled.API.Features.Spawn;
 using Exiled.CustomItems.API.Features;
 using Exiled.Events.EventArgs.Player;
 using JetBrains.Annotations;
+using MEC;
 using YamlDotNet.Serialization;
 using Player = Exiled.Events.Handlers.Player;
 
@@ -63,13 +64,24 @@ namespace SnivysUltimatePackage.Custom.Items.Firearms
         protected override void SubscribeEvents()
         {
             Player.Shot += OnShot;
+            Player.ReloadingWeapon += OnReloading;
         }
 
         protected override void UnsubscribeEvents()
         {
             Player.Shot -= OnShot;
+            Player.ReloadingWeapon -= OnReloading;
         }
 
+        private void OnReloading(ReloadingWeaponEventArgs ev)
+        {
+            if (!Check(ev.Player.CurrentItem))
+                return;
+            Timing.CallDelayed(3f, () =>
+            {
+                ev.Firearm.MagazineAmmo = ClipSize;
+            });
+        }
         private void OnShot(ShotEventArgs ev)
         {
             if (!Check(ev.Player.CurrentItem))

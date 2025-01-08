@@ -9,8 +9,10 @@ using Exiled.CustomItems.API.Features;
 using Exiled.CustomRoles.API.Features;
 using Exiled.Events.EventArgs.Player;
 using JetBrains.Annotations;
+using MEC;
 using PlayerRoles;
 using YamlDotNet.Serialization;
+using PlayerEvent = Exiled.Events.Handlers.Player;
 
 namespace SnivysUltimatePackage.Custom.Items.Firearms
 {
@@ -74,6 +76,26 @@ namespace SnivysUltimatePackage.Custom.Items.Firearms
                 },
             }
         };
+        
+        protected override void SubscribeEvents()
+        {
+            PlayerEvent.ReloadingWeapon += OnReloading;
+        }
+
+        protected override void UnsubscribeEvents()
+        {
+            PlayerEvent.ReloadingWeapon -= OnReloading;
+        }
+        
+        private void OnReloading(ReloadingWeaponEventArgs ev)
+        {
+            if (!Check(ev.Player.CurrentItem))
+                return;
+            Timing.CallDelayed(4f, () =>
+            {
+                ev.Firearm.MagazineAmmo = ClipSize - 1;
+            });
+        }
 
         protected override void OnHurting(HurtingEventArgs ev)
         {
