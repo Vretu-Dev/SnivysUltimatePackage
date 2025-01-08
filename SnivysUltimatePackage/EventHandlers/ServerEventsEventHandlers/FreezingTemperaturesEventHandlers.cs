@@ -91,7 +91,7 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
             {
                 if (player.Zone == ZoneType.LightContainment)
                 {
-                    Log.Debug($"VVUP Server Events, Freezing Temperatures: Killing {player} as they are in Light Containment Zone");
+                    Log.Debug($"VVUP Server Events, Freezing Temperatures: Killing {player.Nickname} as they are in Light Containment Zone");
                     player.Kill(_config.PlayersDeathReason);
                 }
             }
@@ -145,7 +145,7 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
             {
                 if (player.Zone == ZoneType.HeavyContainment)
                 {
-                    Log.Debug($"VVUP Server Events, Freezing Temperatures: Killing {player} as they are in Heavy Containment Zone");
+                    Log.Debug($"VVUP Server Events, Freezing Temperatures: Killing {player.Nickname} as they are in Heavy Containment Zone");
                     player.Kill(_config.PlayersDeathReason);
                 }
             }
@@ -193,7 +193,7 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
             {
                 if (player.Zone == ZoneType.Entrance)
                 {
-                    Log.Debug($"VVUP Server Events, Freezing Temperatures: Killing {player} as they are in Entrance Zone");
+                    Log.Debug($"VVUP Server Events, Freezing Temperatures: Killing {player.Nickname} as they are in Entrance Zone");
                     player.Kill(_config.PlayersDeathReason);
                 }
             }

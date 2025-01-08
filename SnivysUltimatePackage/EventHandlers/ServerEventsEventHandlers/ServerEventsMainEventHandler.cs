@@ -63,6 +63,7 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
             FreezingTemperaturesEventHandlers.EndEvent();
             ChaoticEventHandlers.EndEvent();
             NameRedactedEventHandlers.EndEvent();
+            SnowballsVsScpsEventHandlers.EndEvent();
             Plugin.ActiveEvent = 0;
         }
 
@@ -216,7 +217,7 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
         {
             foreach (var player in Player.List)
             {
-                Log.Debug($"VVUP Server Events: Setting {player} size to {ShortEventHandlers.GetPlayerSize()}");
+                Log.Debug($"VVUP Server Events: Setting {player.Nickname} size to {ShortEventHandlers.GetPlayerSize()}");
                 player.Scale = new Vector3(ShortEventHandlers.GetPlayerSize(), ShortEventHandlers.GetPlayerSize(), ShortEventHandlers.GetPlayerSize());
             }
         }
@@ -363,6 +364,13 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
                 }
 
             }
+        }
+
+        public void OnDyingSvs(DyingEventArgs ev)
+        {
+            Log.Debug($"VVUP Server Events: Snowballs Vs Scps, Setting {ev.Player.Nickname} to Overwatch because they died");
+            Timing.CallDelayed(0.5f, () => ev.Player.Role.Set(RoleTypeId.Overwatch));
+            SnowballsVsScpsEventHandlers.PlayersInOverwatchFromEvent.Add(ev.Player);
         }
     }
 }

@@ -23,11 +23,11 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
                 var startingItems = GetStartingItems(_config.StartingItems);
                 foreach (var item in startingItems)
                 {
-                    Log.Debug($"VVUP Server Events, Short People: Adding {item} to {player}");
+                    Log.Debug($"VVUP Server Events, Short People: Adding {item} to {player.Nickname}");
                     player.AddItem(item);
                 }
                 player.Scale = new UnityEngine.Vector3(GetPlayerSize(), GetPlayerSize(), GetPlayerSize());
-                Log.Debug($"VVUP Server Events, Short People: Set {player} size to {GetPlayerSize()}");
+                Log.Debug($"VVUP Server Events, Short People: Set {player.Nickname} size to {GetPlayerSize()}");
             }
             Cassie.MessageTranslated(_config.StartEventCassieMessage, _config.StartEventCassieText);
         }

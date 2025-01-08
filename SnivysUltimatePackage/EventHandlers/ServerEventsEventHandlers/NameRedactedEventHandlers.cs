@@ -23,7 +23,7 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
             Cassie.MessageTranslated(_config.StartEventCassieMessage, _config.StartEventCassieText);
             foreach (PlayerAPI player in PlayerAPI.List)
             {
-                Log.Debug($"VVUP Server Events, Name Redacted: Setting {player} name to {_config.NameRedactedName}");
+                Log.Debug($"VVUP Server Events, Name Redacted: Setting {player.Nickname} name to {_config.NameRedactedName}");
                 player.DisplayNickname = _config.NameRedactedName;
             }
         }
@@ -44,7 +44,7 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
             PlayerEvent.Verified -= OnVerified;
             foreach (PlayerAPI player in PlayerAPI.List)
             {
-                Log.Debug($"VVUP Server Events, Name Redacted: Restoring {player} name");
+                Log.Debug($"VVUP Server Events, Name Redacted: Restoring {player.Nickname} name");
                 player.DisplayNickname = player.Nickname;
             }
         }

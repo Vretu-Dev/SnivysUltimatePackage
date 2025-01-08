@@ -119,6 +119,7 @@
       <Compile Include="Commands\ServerEventsCommands\EventCommands\PeanutHyrdraCommand.cs" />
       <Compile Include="Commands\ServerEventsCommands\EventCommands\PeanutInfectionCommand.cs" />
       <Compile Include="Commands\ServerEventsCommands\EventCommands\ShortCommand.cs" />
+      <Compile Include="Commands\ServerEventsCommands\EventCommands\SnowballsVsScpsCommand.cs" />
       <Compile Include="Commands\ServerEventsCommands\EventCommands\VariableLightsCommand.cs" />
       <Compile Include="Commands\ServerEventsCommands\MainCommand.cs" />
       <Compile Include="Commands\ServerEventsCommands\StopCommand.cs" />
@@ -141,6 +142,7 @@
       <Compile Include="Configs\ServerEventsConfigs\PeanutInfectionConfig.cs" />
       <Compile Include="Configs\ServerEventsConfigs\ServerEventsMasterConfig.cs" />
       <Compile Include="Configs\ServerEventsConfigs\ShortConfig.cs" />
+      <Compile Include="Configs\ServerEventsConfigs\SnowballsVsScpsConfig.cs" />
       <Compile Include="Configs\ServerEventsConfigs\VariableLightsConfig.cs" />
       <Compile Include="Configs\SsssConfig.cs" />
       <Compile Include="Configs\VoteConfig.cs" />
@@ -213,6 +215,7 @@
       <Compile Include="EventHandlers\ServerEventsEventHandlers\PeanutInfectionEventHandlers.cs" />
       <Compile Include="EventHandlers\ServerEventsEventHandlers\ServerEventsMainEventHandler.cs" />
       <Compile Include="EventHandlers\ServerEventsEventHandlers\ShortEventHandlers.cs" />
+      <Compile Include="EventHandlers\ServerEventsEventHandlers\SnowballsVsScpsEventHandlers.cs" />
       <Compile Include="EventHandlers\ServerEventsEventHandlers\VariableLightsEventHandlers.cs" />
       <Compile Include="EventHandlers\SsssEventHandler.cs" />
       <Compile Include="Plugin.cs" />

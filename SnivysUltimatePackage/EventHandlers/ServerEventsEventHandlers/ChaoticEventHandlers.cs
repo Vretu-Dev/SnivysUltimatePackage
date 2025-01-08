@@ -84,10 +84,10 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
                                 Log.Debug("VVUP Server Events, Chaotic: Checking if players aren't a SCP or is dead");
                                 if (player.Role.Team != Team.SCPs || player.Role.Team != Team.Dead)
                                 {
-                                    Log.Debug($"VVUP Server Events, Chaotic: Showing Broadcast to {player} saying their items got stolen");
+                                    Log.Debug($"VVUP Server Events, Chaotic: Showing Broadcast to {player.Nickname} saying their items got stolen");
                                     player.Broadcast(new Exiled.API.Features.Broadcast(_config.ItemStolenText,
                                         (ushort)_config.BroadcastDisplayTime));
-                                    Log.Debug($"VVUP Server Events, Chaotic: Clearing Items from {player}");
+                                    Log.Debug($"VVUP Server Events, Chaotic: Clearing Items from {player.Nickname}");
                                     player.ClearItems();
                                 }
                             }
@@ -115,7 +115,7 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
                                 if (player.Role.Team != Team.SCPs || player.Role.Team != Team.Dead)
                                 {
                                     int randomItemGiveRng = random.Next(minValue: 1, maxValue: 2);
-                                    Log.Debug($"VVUP Server Events, Chaotic: Deciding if {player} gets a Custom Item or a Regular Item");
+                                    Log.Debug($"VVUP Server Events, Chaotic: Deciding if {player.Nickname} gets a Custom Item or a Regular Item");
                                     if (_config.GiveRandomItemCustomitems)
                                     {
 
@@ -125,13 +125,13 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
                                                 CustomItem randomCustomItem =
                                                     customItems[random.Next(customItems.Count)];
                                                 randomCustomItem.Give(player);
-                                                Log.Debug($"VVUP Server Events, Chaotic: {player} has received custom item id {randomCustomItem}");
+                                                Log.Debug($"VVUP Server Events, Chaotic: {player.Nickname} has received custom item id {randomCustomItem}");
                                                 break;
                                             case 2:
                                                 ItemType randomStandardItem =
                                                     standardItems[random.Next(standardItems.Length)];
                                                 player.AddItem(randomStandardItem);
-                                                Log.Debug($"VVUP Server Events, Chaotic: {player} has received item id {randomStandardItem}");
+                                                Log.Debug($"VVUP Server Events, Chaotic: {player.Nickname} has received item id {randomStandardItem}");
                                                 break;
                                         }
                                     }
@@ -166,7 +166,7 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
                             {
                                 if (!_config.TeleportToFacilityAfterNuke && Warhead.IsDetonated)
                                 {
-                                    Log.Debug($"VVUP Server Events, Chaotic: Warhead has been detonated, teleporting {player} somewhere on Surface");
+                                    Log.Debug($"VVUP Server Events, Chaotic: Warhead has been detonated, teleporting {player.Nickname} somewhere on Surface");
                                     player.Teleport(Room.List.Where(r => r.Type is RoomType.Surface).GetRandomValue());
                                 }
 
@@ -174,14 +174,14 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
                                          Map.DecontaminationState == DecontaminationState.Finish)
                                 {
                                     Log.Debug(
-                                        $"VVUP Server Events, Chaotic: Light has been decontaminated, teleporting {player} somewhere else in the facility");
+                                        $"VVUP Server Events, Chaotic: Light has been decontaminated, teleporting {player.Nickname} somewhere else in the facility");
                                     player.Teleport(Room.List.Where(r => r.Zone is not ZoneType.LightContainment)
                                         .GetRandomValue());
                                 }
 
                                 else
                                 {
-                                    Log.Debug($"VVUP Server Events, Chaotic: Teleporting {player} randomly into the facility");
+                                    Log.Debug($"VVUP Server Events, Chaotic: Teleporting {player.Nickname} randomly into the facility");
                                     player.Teleport(Room.List.GetRandomValue());
                                 }
 
@@ -217,7 +217,7 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
                                     Warhead.IsLocked = true;
                                 foreach (PlayerAPI player in PlayerAPI.List)
                                 {
-                                    Log.Debug($"VVUP Server Events, Chaotic: Displaying the fake autonuke start message to {player}");
+                                    Log.Debug($"VVUP Server Events, Chaotic: Displaying the fake autonuke start message to {player.Nickname}");
                                     player.Broadcast(new Exiled.API.Features.Broadcast(_config.FakeAutoNukeStartText,
                                         (ushort)_config.BroadcastDisplayTime));
                                 }
@@ -248,10 +248,10 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
                                 {
                                     foreach (var item in player.Items)
                                     {
-                                        Log.Debug($"VVUP Server Events, Chaotic: Checking if {player} has a weapon");
+                                        Log.Debug($"VVUP Server Events, Chaotic: Checking if {player.Nickname} has a weapon");
                                         if (IsWeapon(item))
                                         {
-                                            Log.Debug($"VVUP Server Events, Chaotic: Taking away {player}'s {item}");
+                                            Log.Debug($"VVUP Server Events, Chaotic: Taking away {player.Nickname}'s {item}");
                                             player.RemoveItem(item);
                                             player.Broadcast(new Exiled.API.Features.Broadcast(
                                                 _config.RemoveWeaponsText,
@@ -279,16 +279,16 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
                             {
                                 if (player.Role.Team != Team.SCPs || player.Role.Team != Team.Dead)
                                 {
-                                    Log.Debug($"VVUP Server Events, Chaotic: Checking if {player} is able to get a random weapon");
+                                    Log.Debug($"VVUP Server Events, Chaotic: Checking if {player.Nickname} is able to get a random weapon");
                                     ItemType randomWeapon = WeaponTypes[random.Next(WeaponTypes.Count)];
                                     if (_config.GiveRandomWeaponsToUnarmedPlayers)
                                     {
                                         foreach (var item in player.Items)
                                         {
-                                            Log.Debug($"VVUP Server Events, Chaotic: Checking if {player} has a weapon");
+                                            Log.Debug($"VVUP Server Events, Chaotic: Checking if {player.Nickname} has a weapon");
                                             if (IsWeapon(item))
                                             {
-                                                Log.Debug($"VVUP Server Events, Chaotic: {player} has a weapon, not granting another");
+                                                Log.Debug($"VVUP Server Events, Chaotic: {player.Nickname} has a weapon, not granting another");
                                                 player.Broadcast(new Exiled.API.Features.Broadcast(
                                                     _config.GiveRandomWeaponsTextFail,
                                                     (ushort)_config.BroadcastDisplayTime));
@@ -298,7 +298,7 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
                                             {
                                                 if (_config.GiveAllRandomWeapons)
                                                 {
-                                                    Log.Debug($"VVUP Server Events, Chaotic: Giving {player} a random weapon");
+                                                    Log.Debug($"VVUP Server Events, Chaotic: Giving {player.Nickname} a random weapon");
                                                     player.AddItem(randomWeapon);
                                                 }
 
@@ -311,7 +311,7 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
 
                                                 else
                                                 {
-                                                    Log.Debug($"VVUP Server Events, Chaotic: Giving {player} a predefined weapon");
+                                                    Log.Debug($"VVUP Server Events, Chaotic: Giving {player.Nickname} a predefined weapon");
                                                     player.AddItem(
                                                         _config.GiveRandomWeaponsDefined[
                                                             random.Next(_config.GiveRandomWeaponsDefined.Count)]);
@@ -328,7 +328,7 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
                                     {
                                         if (player.IsInventoryFull)
                                         {
-                                            Log.Debug($"VVUP Server Events, Chaotic: {player}'s inventory is full, not giving any weapon");
+                                            Log.Debug($"VVUP Server Events, Chaotic: {player.Nickname}'s inventory is full, not giving any weapon");
                                             player.Broadcast(new Exiled.API.Features.Broadcast(
                                                 _config.GiveRandomWeaponsTextFail,
                                                 (ushort)_config.BroadcastDisplayTime));
@@ -338,7 +338,7 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
                                         {
                                             if (_config.GiveAllRandomWeapons)
                                             {
-                                                Log.Debug($"VVUP Server Events, Chaotic: Giving {player} a random weapon");
+                                                Log.Debug($"VVUP Server Events, Chaotic: Giving {player.Nickname} a random weapon");
                                                 player.AddItem(randomWeapon);
                                             }
 
@@ -351,7 +351,7 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
 
                                             else
                                             {
-                                                Log.Debug($"VVUP Server Events, Chaotic: Giving {player} a predefined weapon");
+                                                Log.Debug($"VVUP Server Events, Chaotic: Giving {player.Nickname} a predefined weapon");
                                                 player.AddItem(
                                                     _config.GiveRandomWeaponsDefined[
                                                         random.Next(_config.GiveRandomWeaponsDefined.Count)]);
@@ -387,7 +387,7 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
                                     Log.Debug("VVUP Server Events, Chaotic: SCPs aren't affected");
                                     if (player.Role.Team != Team.SCPs || player.Role.Team != Team.Dead)
                                     {
-                                        Log.Debug($"VVUP Server Events, Chaotic: Setting {player}'s health to {_config.DeathMatchHealth}");
+                                        Log.Debug($"VVUP Server Events, Chaotic: Setting {player.Nickname}'s health to {_config.DeathMatchHealth}");
                                         player.Health = _config.DeathMatchHealth;
                                         player.Broadcast(new Exiled.API.Features.Broadcast(_config.DeathMatchText,
                                             (ushort)_config.BroadcastDisplayTime));
@@ -397,7 +397,7 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
                                 else
                                 {
                                     Log.Debug("VVUP Server Events, Chaotic: SCPs are affected");
-                                    Log.Debug($"VVUP Server Events, Chaotic: Setting {player}'s health to {_config.DeathMatchHealth}");
+                                    Log.Debug($"VVUP Server Events, Chaotic: Setting {player.Nickname}'s health to {_config.DeathMatchHealth}");
                                     player.Health = _config.DeathMatchHealth;
                                     player.Broadcast(new Exiled.API.Features.Broadcast(_config.DeathMatchText,
                                         (ushort)_config.BroadcastDisplayTime));
@@ -525,10 +525,10 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
                             {
                                 if (player.Role.Team == Team.FoundationForces)
                                 {
-                                    Log.Debug($"VVUP Server Events, Chaotic: {player} is on the MTF, Showing warning text");
+                                    Log.Debug($"VVUP Server Events, Chaotic: {player.Nickname} is on the MTF, Showing warning text");
                                     player.Broadcast(new Exiled.API.Features.Broadcast(_config.FBIOpenUpMTFText,
                                         (ushort)_config.BroadcastDisplayTime));
-                                    Log.Debug($"VVUP Server Events, Chaotic: Teleporting {player} to {FBIOpenUpTarget}");
+                                    Log.Debug($"VVUP Server Events, Chaotic: Teleporting {player.Nickname} to {FBIOpenUpTarget}");
                                     player.Teleport(FBIOpenUpTarget.Position);
                                 }
                             }
@@ -549,7 +549,7 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
                             Log.Debug("VVUP Server Events, Chaotic: Grenade Feet Event active, running code");
                             foreach (PlayerAPI player in PlayerAPI.List)
                             {
-                                Log.Debug($"VVUP Server Events, Chaotic: Grenade feet warning being shown to {player}");
+                                Log.Debug($"VVUP Server Events, Chaotic: Grenade feet warning being shown to {player.Nickname}");
                                 player.Broadcast(new Exiled.API.Features.Broadcast(_config.GrenadeFeetText,
                                     (ushort)_config.BroadcastDisplayTime));
                             }
@@ -558,7 +558,7 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
 
                             foreach (PlayerAPI player in PlayerAPI.List)
                             {
-                                Log.Debug($"VVUP Server Events, Chaotic: Spawning a grenade on {player}");
+                                Log.Debug($"VVUP Server Events, Chaotic: Spawning a grenade on {player.Nickname}");
                                 ExplosiveGrenade grenade = (ExplosiveGrenade)Item.Create(ItemType.GrenadeHE);
                                 if (_config.GrenadeFeetRandomFuse)
                                     grenade.FuseTime = random.Next(minValue: 1, maxValue: 50);
@@ -589,7 +589,7 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
                             {
                                 if (player.Role.Team != Team.SCPs)
                                 {
-                                    Log.Debug($"VVUP Server Events, Chaotic: Displaying Unsafe Medical Items Warning to {player}");
+                                    Log.Debug($"VVUP Server Events, Chaotic: Displaying Unsafe Medical Items Warning to {player.Nickname}");
                                     player.Broadcast(new Exiled.API.Features.Broadcast(_config.UnsafeMedicalItemsText,
                                         (ushort)_config.BroadcastDisplayTime));
                                 }
@@ -607,7 +607,7 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
                             {
                                 if (player.Role.Team != Team.SCPs)
                                 {
-                                    Log.Debug($"VVUP Server Events, Chaotic: Displaying Unsafe Medical Items Warning to {player}");
+                                    Log.Debug($"VVUP Server Events, Chaotic: Displaying Unsafe Medical Items Warning to {player.Nickname}");
                                     player.Broadcast(new Exiled.API.Features.Broadcast(
                                         _config.UnsafeMedicalItemsSafeToUseText,
                                         (ushort)_config.BroadcastDisplayTime));
@@ -760,7 +760,7 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
                             Log.Debug("VVUP Server Events, Chaotic: Player shitting pants is active, running code");
                             foreach (PlayerAPI player in PlayerAPI.List)
                             {
-                                Log.Debug($"VVUP Server Events, Chaotic: Spawning a tantrum where {player} is at");
+                                Log.Debug($"VVUP Server Events, Chaotic: Spawning a tantrum where {player.Nickname} is at");
                                 TantrumHazard.PlaceTantrum(player.Position);
                                 player.Broadcast(new Exiled.API.Features.Broadcast(_config.PlayerShittingPantsBroadcast,
                                     (ushort)_config.BroadcastDisplayTime));
@@ -782,7 +782,7 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
                             _ceRouterKickingSimulator = true;
                             foreach (PlayerAPI player in PlayerAPI.List)
                             {
-                                Log.Debug($"VVUP Server Events, Chaotic: Showing Router Kicking Simulator start message to {player}");
+                                Log.Debug($"VVUP Server Events, Chaotic: Showing Router Kicking Simulator start message to {player.Nickname}");
                                 player.Broadcast(new Exiled.API.Features.Broadcast(
                                     _config.RouterKickingSimulatorStartBroadcast,
                                     (ushort)_config.BroadcastDisplayTime));
@@ -839,11 +839,11 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
                             Log.Debug("VVUP Server Events, Chaotic: Super speed event is active, running code");
                             foreach (PlayerAPI player in PlayerAPI.List)
                             {
-                                Log.Debug($"VVUP Server Events, Chaotic: Showing Super Speed message to {player}");
+                                Log.Debug($"VVUP Server Events, Chaotic: Showing Super Speed message to {player.Nickname}");
                                 player.Broadcast(new Exiled.API.Features.Broadcast(_config.SuperSpeedBroadcast,
                                     (ushort)_config.BroadcastDisplayTime));
                                 Log.Debug(
-                                    $"VVUP Server Events, Chaotic: Giving super speed to {player}, with an intensity of {_config.SuperSpeedIntensity} & a duration of {_config.SuperSpeedDuration}");
+                                    $"VVUP Server Events, Chaotic: Giving super speed to {player.Nickname}, with an intensity of {_config.SuperSpeedIntensity} & a duration of {_config.SuperSpeedDuration}");
                                 player.EnableEffect(EffectType.MovementBoost, _config.SuperSpeedIntensity,
                                     _config.SuperSpeedDuration, true);
                             }
@@ -882,7 +882,7 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
                     Warhead.Stop();
                     foreach (PlayerAPI player in PlayerAPI.List)
                     {
-                        Log.Debug($"VVUP Server Events, Chaotic: Displaying the fake out message to {player}");
+                        Log.Debug($"VVUP Server Events, Chaotic: Displaying the fake out message to {player.Nickname}");
                         player.Broadcast(new Exiled.API.Features.Broadcast(_config.FakeAutoNukeFakeoutText,
                             (ushort)_config.BroadcastDisplayTime));
                     }
@@ -980,7 +980,7 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
                     foreach (PlayerAPI player in PlayerAPI.List)
                         if (player.Role.Team != Team.Dead)
                         {
-                            Log.Debug($"VVUP Server Events, Chaotic: {player} is not dead, logging position");
+                            Log.Debug($"VVUP Server Events, Chaotic: {player.Nickname} is not dead, logging position");
                             playerPositions[player.Id] = player.Position;
                         }
 
@@ -991,12 +991,12 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
                     {
                         if (playerPositions.TryGetValue(player.Id, out Vector3 position))
                         {
-                            Log.Debug($"VVUP Server Events, Chaotic: Getting {player} previously logged position");
+                            Log.Debug($"VVUP Server Events, Chaotic: Getting {player.Nickname} previously logged position");
                             player.Position = position;
                         }
                         else
                             Log.Debug(
-                                $"VVUP Server Events, Chaotic: {player} isn't in the list. Most likely due to not being connected or alive during the last cycle.");
+                                $"VVUP Server Events, Chaotic: {player.Nickname} isn't in the list. Most likely due to not being connected or alive during the last cycle.");
                     }
 
                     routerKickCount++;
@@ -1007,7 +1007,7 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
                     Log.Debug("VVUP Server Events, Chaotic: Amount of router kicks has been reached, ending event");
                     foreach (PlayerAPI player in PlayerAPI.List)
                     {
-                        Log.Debug($"VVUP Server Events, Chaotic: Showing Router Kicking Simulator end message to {player}");
+                        Log.Debug($"VVUP Server Events, Chaotic: Showing Router Kicking Simulator end message to {player.Nickname}");
                         player.Broadcast(new Exiled.API.Features.Broadcast(
                             _config.RouterKickingSimulatorEndBroadcast,
                             (ushort)_config.BroadcastDisplayTime));

@@ -25,7 +25,7 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
             Map.TurnOffAllLights(432000);
             foreach (var player in Player.List)
             {
-                Log.Debug($"VVUP Server Events, Blackout: Adding {_config.BlackoutEventStartingItem} to {player}");
+                Log.Debug($"VVUP Server Events, Blackout: Adding {_config.BlackoutEventStartingItem} to {player.Nickname}");
                 player.AddItem(_config.BlackoutEventStartingItem);
             }
 
