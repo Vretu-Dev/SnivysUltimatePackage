@@ -28,6 +28,8 @@ SCP 1576 Spectator Viewer
 
 Voting Commands
 
+Server Specific Setting System
+
 # Snivy's Custom Roles
 ### Role List
 Below is a table of all the current custom roles, followed by a breif description of them. Many of them rely on special abilities also added by this plugin, refer to the list of abilities for more details about what each does.
@@ -117,6 +119,7 @@ Currently the events part of the plugin is provided below
 - Chaos Event
 - Name Redacted Event
 - Freezing Temperatures Event
+- Snowballs Vs SCPs
 
 Exiled Permission: vvevents.run
 
@@ -124,14 +127,7 @@ RA Command: vve
 
 RA Sub Commands: Blackout, Chaotic, FreezingTemps, NameRedacted, 173Hydra, 173Infection, ShortPeople, VariableLights
 
-Feel free to fork and contribute to this plugin.
-
 This plugin is not designed to add new gamemodes that takes place instead of the main gameplay loop, these events are meant to add to the main gameplay loop.
-
-# Credits
-@Mostly-Lucid for helping a lot with the SCP-173 Hydra event (and by that I mean doing it entirely because I had a very smooth brain moment)
-
-@Jamwolff for the Short Players Event
 
 # Micro Damage Reduction
 Allows for a configurable damage reduction to what ever class is specificed in the Config.
@@ -155,6 +151,8 @@ Adds a simple voting command for players to vote on stuff.
 StartVote (or sv) to start a vote, this is in the RA Panel or Game Console
 .vote to vote for an option
 
+# Server Specific Settings System
+Adds a simple (and questionably coded) Server Specifics Setting System.
 
 # Commands
 Command | Required Permission | Run Location | Description
@@ -164,3 +162,8 @@ vve stop | vve.stop | Remote Admin, Server Console | Stops any active events.
 startvote | vvvotes.start | Remote Admin, Server Console | Starts a vote.
 .vote | None | Player Console | Responds to an active vote
 .detonate | None | Player Console | Detonates C4, assuming requirements are met.
+
+# Credits
+@Mostly-Lucid for helping a lot with the SCP-173 Hydra event (and by that I mean doing it entirely because I had a very smooth brain moment)
+
+@Jamwolff for the Short Players Event and Ky Syringe
