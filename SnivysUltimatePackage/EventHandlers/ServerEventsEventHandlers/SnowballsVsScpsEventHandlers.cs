@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Exiled.API.Enums;
 using Exiled.API.Features;
+using Exiled.API.Features.Doors;
 using MEC;
 using PlayerRoles;
 using SnivysUltimatePackage.Configs.ServerEventsConfigs;
+using UnityEngine;
 using PlayerEvent = Exiled.Events.Handlers.Player;
+using Random = System.Random;
 
 namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
 {
@@ -32,16 +34,44 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
             Random random = new Random();
             _players = Player.List.ToList();
             _randomPlayer = _players[random.Next(0, _players.Count)];
-            _randomPlayer.Role.Set(_config.ScpRoles[random.Next(0, _config.ScpRoles.Count)]);
+            _randomPlayer.Role.Set(_config.ScpRoles[random.Next(0, _config.ScpRoles.Count)], RoleSpawnFlags.UseSpawnpoint);
             Log.Debug($"VVUP Server Events: Snowballs Vs Scps, random player is {_randomPlayer.Nickname} and their role is {_randomPlayer.Role}");
             foreach (var player in _players)
             {
                 if (player != _randomPlayer)
                 {
                     player.Role.Set(_config.HumanRoles[random.Next(0, _config.HumanRoles.Count)], SpawnReason.ForceClass, RoleSpawnFlags.None);
+                    player.Position = Room.Get(RoomType.EzPcs).Position + Vector3.up;
                     Timing.CallDelayed(0.25f, () =>
                         player.ClearInventory());
                     Log.Debug($"VVUP Server Events: Snowballs Vs Scps, setting {player.Nickname} to {player.Role} and clearing inventory");
+                }
+            }
+
+            foreach (Door door in Door.List)
+            {
+                if (door.Type is DoorType.GateA or DoorType.GateB or DoorType.Scp914Gate 
+                    or DoorType.Scp079First or DoorType.Scp079Second)
+                {
+                    if (!door.IsLocked)
+                    {
+                        Log.Debug($"VVUP Server Events: Snowball Vs Scps, opening and locking {door}");
+                        door.ChangeLock(DoorLockType.AdminCommand);
+                        door.IsOpen = true;
+                    }
+                }
+                else if (door.Type is DoorType.EntranceDoor or DoorType.HeavyBulkDoor or DoorType.HeavyContainmentDoor 
+                         or DoorType.LightContainmentDoor or DoorType.PrisonDoor)
+                {
+                    Log.Debug($"VVUP Server Events: Snowball Vs Scps, opening and locking {door}");
+                    door.ChangeLock(DoorLockType.AdminCommand);
+                    door.IsOpen = true;
+                }
+                else if (door.Type is DoorType.ElevatorNuke or DoorType.ElevatorScp049 or DoorType.ElevatorGateA
+                         or DoorType.ElevatorGateB or DoorType.UnknownElevator)
+                {
+                    Log.Debug($"VVUP Server Events: Snowball Vs Scps, locking {door}");
+                    door.ChangeLock(DoorLockType.AdminCommand);
                 }
             }
 
