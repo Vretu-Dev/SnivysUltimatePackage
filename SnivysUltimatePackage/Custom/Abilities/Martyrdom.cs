@@ -22,8 +22,14 @@ namespace SnivysUltimatePackage.Custom.Abilities
         protected override void AbilityAdded(Exiled.API.Features.Player player)
         {
             Log.Debug($"VVUP Custom Abilities: Explode on Death, Adding Explode on Death to {player.Nickname}");
+            Player.Dying += OnDying;
         }
-        protected override void SubscribeEvents()
+        protected override void AbilityRemoved(Exiled.API.Features.Player player)
+        {
+            Log.Debug($"VVUP Custom Abilities: Explode on Death, Removing Explode on Death from {player.Nickname}");
+            Player.Dying -= OnDying;
+        }
+        /*protected override void SubscribeEvents()
         {
             Player.Dying += OnDying;
             base.SubscribeEvents();
@@ -33,7 +39,7 @@ namespace SnivysUltimatePackage.Custom.Abilities
         {
             Player.Dying -= OnDying;
             base.UnsubscribeEvents();
-        }
+        }*/
 
         private void OnDying(DyingEventArgs ev)
         {
