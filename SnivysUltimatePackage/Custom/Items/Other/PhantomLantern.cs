@@ -179,7 +179,7 @@ namespace SnivysUltimatePackage.Custom.Items.Other
         public IEnumerator<float> PhantomLanternCoroutine(PlayerAPI player)
         {
             float durationRemaining = EffectDuration;
-            while (durationRemaining > 0)
+            while (durationRemaining > 0 && _playersWithEffect.Contains(player))
             {
                 player.Stamina = 0;
                 durationRemaining -= .5f;
