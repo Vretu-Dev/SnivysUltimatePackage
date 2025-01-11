@@ -107,24 +107,24 @@ namespace SnivysUltimatePackage
             {
                 settings.Add(new SSGroupHeader("VV Custom Abilities Key Activators"));
                 settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.ActiveCamoId, "Active Camo",
-                    KeyCode.B, true, null));
+                    KeyCode.B, true, "B"));
                 settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.ChargeId, "Charge", KeyCode.B, true,
-                    null));
+                    "B"));
                 settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.DetectId, "Detect", KeyCode.B, true,
-                    null));
+                    "B"));
                 settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.DoorPickingId, "Door Picking",
-                    KeyCode.B, true, null));
+                    KeyCode.B, true, "B"));
                 settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.HealingMistId, "Healing Mist",
-                    KeyCode.B, true, null));
+                    KeyCode.B, true, "B"));
                 settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.RemoveDisguiseId, "Remove Disguise",
-                    KeyCode.B, true, null));
+                    KeyCode.B, true, "B"));
             }
 
             if (Plugin.Instance.Config.CustomItemsConfig.IsEnabled)
             {
                 settings.Add(new SSGroupHeader("VV Custom Items Activators"));
                 settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.DetonateC4Id, "Detonate C4",
-                    KeyCode.J, true, null));
+                    KeyCode.J, true, "J"));
             }
 
             return settings.ToArray();

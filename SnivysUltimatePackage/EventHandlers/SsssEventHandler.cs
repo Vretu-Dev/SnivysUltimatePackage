@@ -45,6 +45,9 @@ namespace SnivysUltimatePackage.EventHandlers
             if (!Player.TryGet(hub, out Player player))
                 return;
 
+            if (hub == null)
+                return;
+            
             if (player == null)
                 return;
 
