@@ -11,9 +11,15 @@ using SnivysUltimatePackage.Custom.Items.Grenades;
 using SnivysUltimatePackage.Custom.Items.Injections;
 using SnivysUltimatePackage.Custom.Items.Other;
 using SnivysUltimatePackage.Custom.Roles;
+using SnivysUltimatePackage.Custom.Roles.Chaos;
+using SnivysUltimatePackage.Custom.Roles.ClassD;
+using SnivysUltimatePackage.Custom.Roles.Foundation;
+using SnivysUltimatePackage.Custom.Roles.Other;
+using SnivysUltimatePackage.Custom.Roles.Scientist;
+using SnivysUltimatePackage.Custom.Roles.Scps;
 using UnityEngine;
 using UserSettings.ServerSpecific;
-using Flipped = SnivysUltimatePackage.Custom.Abilities.Flipped;
+using Flipped = SnivysUltimatePackage.Custom.Abilities.Passive.Flipped;
 
 namespace SnivysUltimatePackage
 {
@@ -37,7 +43,7 @@ namespace SnivysUltimatePackage
                     Demolitionist.Get(typeof(Demolitionist)),
                     DwarfZombie.Get(typeof(DwarfZombie)),
                     ExplosiveZombie.Get(typeof(ExplosiveZombie)),
-                    Custom.Roles.Flipped.Get(typeof(Flipped)),
+                    Custom.Roles.Other.Flipped.Get(typeof(Flipped)),
                     JuggernautChaos.Get(typeof(JuggernautChaos)),
                     LockpickingClassD.Get(typeof(LockpickingClassD)),
                     MedicZombie.Get(typeof(MedicZombie)),

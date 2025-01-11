@@ -1,6 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 using SnivysUltimatePackage.Custom.Roles;
+using SnivysUltimatePackage.Custom.Roles.Chaos;
+using SnivysUltimatePackage.Custom.Roles.ClassD;
+using SnivysUltimatePackage.Custom.Roles.Foundation;
+using SnivysUltimatePackage.Custom.Roles.Other;
+using SnivysUltimatePackage.Custom.Roles.Scientist;
+using SnivysUltimatePackage.Custom.Roles.Scps;
 
 namespace SnivysUltimatePackage.Configs.CustomConfigs
 {

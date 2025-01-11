@@ -6,6 +6,7 @@ using Exiled.CustomRoles.API.Features;
 using Exiled.Events.EventArgs.Player;
 using PlayerRoles;
 using SnivysUltimatePackage.Custom.Abilities;
+using SnivysUltimatePackage.Custom.Abilities.Active;
 using UnityEngine;
 using UserSettings.ServerSpecific;
 using PlayerAPI = Exiled.API.Features.Player;
