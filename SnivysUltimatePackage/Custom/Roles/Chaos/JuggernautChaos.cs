@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Exiled.API.Enums;
 using Exiled.API.Features.Attributes;
 using Exiled.API.Features.Spawn;
 using Exiled.CustomRoles.API.Features;
@@ -48,10 +49,17 @@ namespace SnivysUltimatePackage.Custom.Roles.Chaos
             $"{ItemType.GrenadeHE}",
             $"{ItemType.GrenadeFlash}",
             $"{ItemType.ArmorHeavy}",
-            $"{ItemType.GunRevolver}",
+            "<color=#FF0000>Explosive Round Revolver</color>",
             "<color=#6600CC>Obscurus Veil-5</color>",
         };
-
+        
+        public override Dictionary<AmmoType, ushort> Ammo { get; set; } = new()
+        {
+            {
+                AmmoType.Ammo44Cal, 8
+            },
+        };
+        
         public override List<CustomAbility>? CustomAbilities { get; set; } = new()
         {
             new GivingCandyAbility

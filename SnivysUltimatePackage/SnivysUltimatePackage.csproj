@@ -178,6 +178,7 @@
       <Compile Include="Custom\Items\Grenades\SmokeGrenade.cs" />
       <Compile Include="Custom\Items\Injections\DeadringerSyringe.cs" />
       <Compile Include="Custom\Items\Injections\KySyringe.cs" />
+      <Compile Include="Custom\Items\Keycards\ContainmentScientistKeycard.cs" />
       <Compile Include="Custom\Items\Other\AntiScp096Pills.cs" />
       <Compile Include="Custom\Items\Other\InfinitePills.cs" />
       <Compile Include="Custom\Items\Other\PhantomLantern.cs" />

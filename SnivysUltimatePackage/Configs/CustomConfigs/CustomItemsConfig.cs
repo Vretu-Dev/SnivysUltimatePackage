@@ -4,6 +4,7 @@ using SnivysUltimatePackage.Custom.Items.Armor;
 using SnivysUltimatePackage.Custom.Items.Firearms;
 using SnivysUltimatePackage.Custom.Items.Grenades;
 using SnivysUltimatePackage.Custom.Items.Injections;
+//using SnivysUltimatePackage.Custom.Items.Keycards;
 using SnivysUltimatePackage.Custom.Items.Other;
 
 namespace SnivysUltimatePackage.Configs.CustomConfigs
@@ -87,5 +88,10 @@ namespace SnivysUltimatePackage.Configs.CustomConfigs
         {
             new InfinitePills()
         };
+        
+        //public List<ContainmentScientistKeycard> ContainmentScientistKeycards { get; private set; } = new()
+        //{
+        //    new ContainmentScientistKeycard()
+        //};
     }
 }
