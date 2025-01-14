@@ -26,7 +26,6 @@ namespace SnivysUltimatePackage.Custom.Items.Other
         public override string Description { get; set; } = "'Limbo is no place for a soul like yours'";
         public override float Weight { get; set; } = 0.5f;
         public float EffectDuration { get; set; } = 150f;
-        private bool _effectActive = false;
         private List<PlayerAPI> _playersWithEffect = new List<PlayerAPI>();
         private CoroutineHandle phantomLanternCoroutine;
         [CanBeNull]
@@ -99,12 +98,11 @@ namespace SnivysUltimatePackage.Custom.Items.Other
 
         private void UsingFlashlight(TogglingFlashlightEventArgs ev)
         {
-            if (_effectActive && _playersWithEffect.Contains(ev.Player))
+            if (_playersWithEffect.Contains(ev.Player))
                 return;
             if (!Check(ev.Player.CurrentItem))
                 return;
             Log.Debug("VVUP Custom Items: Activating Phantom Lantern Effects");
-            _effectActive = true;
             _playersWithEffect.Add(ev.Player);
             ev.Player.EnableEffect(EffectType.Ghostly, EffectDuration);
             ev.Player.EnableEffect(EffectType.Invisible, EffectDuration);
@@ -118,7 +116,7 @@ namespace SnivysUltimatePackage.Custom.Items.Other
         {
             if (!Check(ev.Player.CurrentItem)) 
                 return;
-            if (!_playersWithEffect.Contains(ev.Player) && !_effectActive)
+            if (!_playersWithEffect.Contains(ev.Player))
                 return;
             Timing.CallDelayed(.5f, () =>
             {
@@ -128,7 +126,7 @@ namespace SnivysUltimatePackage.Custom.Items.Other
 
         private void OnInteractingElevator(InteractingElevatorEventArgs ev)
         {
-            if (!_playersWithEffect.Contains(ev.Player) && !_effectActive)
+            if (!_playersWithEffect.Contains(ev.Player))
                 return;
             Timing.KillCoroutines(phantomLanternCoroutine);
             EndOfEffect(ev.Player);
@@ -136,14 +134,14 @@ namespace SnivysUltimatePackage.Custom.Items.Other
 
         private void OnInteractingLocker(InteractingLockerEventArgs ev)
         {
-            if (!_playersWithEffect.Contains(ev.Player) && !_effectActive)
+            if (!_playersWithEffect.Contains(ev.Player))
                 return;
             Timing.KillCoroutines(phantomLanternCoroutine);
             EndOfEffect(ev.Player);
         }
         private void OnInteracted(InteractedEventArgs ev)
         {
-            if (!_playersWithEffect.Contains(ev.Player) && !_effectActive)
+            if (!_playersWithEffect.Contains(ev.Player))
                 return;
             Timing.KillCoroutines(phantomLanternCoroutine);
             EndOfEffect(ev.Player);
@@ -151,10 +149,9 @@ namespace SnivysUltimatePackage.Custom.Items.Other
         private void OnDied(DiedEventArgs ev)
         {
             // Check if the player is not null and has an active lantern effect
-            if (ev.Player != null && _playersWithEffect.Contains(ev.Player) && _effectActive)
+            if (ev.Player != null && _playersWithEffect.Contains(ev.Player))
             {
                 Timing.KillCoroutines(phantomLanternCoroutine);
-                _effectActive = false;
                 EndOfEffect(ev.Player);
             }
         }
@@ -162,10 +159,9 @@ namespace SnivysUltimatePackage.Custom.Items.Other
         private void OnDisconnect(LeftEventArgs ev)
         {
             // Check if the player is not null and has an active lantern effect
-            if (ev.Player != null && _playersWithEffect.Contains(ev.Player) && _effectActive)
+            if (ev.Player != null && _playersWithEffect.Contains(ev.Player))
             {
                 Timing.KillCoroutines(phantomLanternCoroutine);
-                _effectActive = false;
                 _playersWithEffect.Remove(ev.Player);
             }
         }
@@ -173,7 +169,6 @@ namespace SnivysUltimatePackage.Custom.Items.Other
         public void OnWaitingForPlayers()
         {
             Timing.KillCoroutines(phantomLanternCoroutine);
-            _effectActive = false;
             _playersWithEffect.Clear();
         }
         public IEnumerator<float> PhantomLanternCoroutine(PlayerAPI player)
@@ -189,12 +184,13 @@ namespace SnivysUltimatePackage.Custom.Items.Other
         }
         public void OnChangingItem(ChangingItemEventArgs ev)
         {
-            if (ev.Player != null && _playersWithEffect.Contains(ev.Player) && _effectActive)
+            if (ev.Player != null && _playersWithEffect.Contains(ev.Player))
                 ev.IsAllowed = false;
         }
         public void EndOfEffect(PlayerAPI player)
         {
-            if (player == null) return;
+            if (player == null) 
+                return;
             Log.Debug("VVUP Custom Items: Ending Phantom Lantern's Effects");
             player.DisableEffect(EffectType.Ghostly);
             player.DisableEffect(EffectType.Invisible);
@@ -202,7 +198,6 @@ namespace SnivysUltimatePackage.Custom.Items.Other
             player.DisableEffect(EffectType.FogControl);
             player.DisableEffect(EffectType.AmnesiaItems);
             player.CurrentItem?.Destroy();
-            _effectActive = false;
             if (_playersWithEffect.Contains(player))
                 _playersWithEffect.Remove(player);
         }
