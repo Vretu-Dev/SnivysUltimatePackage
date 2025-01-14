@@ -48,6 +48,7 @@ namespace SnivysUltimatePackage.Custom.Abilities.Passive
                 Log.Debug($"VVUP Custom Abilities: Spawning Grenade at {ev.Player.Nickname} death location");
                 ExplosiveGrenade grenade = (ExplosiveGrenade)Item.Create(ItemType.GrenadeHE);
                 grenade.FuseTime = ExplosiveFuse;
+                grenade.ChangeItemOwner(Server.Host, ev.Player);
                 grenade.SpawnActive(ev.Player.Position);
             }
         }

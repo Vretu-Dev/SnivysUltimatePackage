@@ -4,6 +4,7 @@ using Exiled.API.Features;
 using Exiled.API.Features.Attributes;
 using Exiled.CustomRoles.API.Features;
 using Exiled.Events.EventArgs.Player;
+using MEC;
 using PlayerRoles;
 
 namespace SnivysUltimatePackage.Custom.Abilities.Passive
@@ -15,6 +16,8 @@ namespace SnivysUltimatePackage.Custom.Abilities.Passive
 
         public override string Description { get; set; } =
             "Removes friendly fire, usually used in conjunction with other abilities";
+
+        public float TimeBeforeRemovingAbility { get; set; } = 5f;
         
         public Dictionary<Player, RoleTypeId> HasNoFf = new Dictionary<Player, RoleTypeId>();
 
@@ -55,8 +58,11 @@ namespace SnivysUltimatePackage.Custom.Abilities.Passive
         }
         protected override void AbilityRemoved(Player player)
         {
-            HasNoFf.Remove(player);
-            Exiled.Events.Handlers.Player.Hurting -= OnHurting;
+            Timing.CallDelayed(TimeBeforeRemovingAbility, () =>
+            {
+                HasNoFf.Remove(player);
+                Exiled.Events.Handlers.Player.Hurting -= OnHurting;
+            });
         }
 
         private void OnHurting(HurtingEventArgs ev)

@@ -93,6 +93,7 @@ namespace SnivysUltimatePackage.Custom.Items.Firearms
                 return;
             Timing.CallDelayed(4f, () =>
             {
+                Log.Debug($"VVUP Custom Items: Medigun, {ev.Player.Nickname} has started reloading, setting correct ammo");
                 ev.Firearm.MagazineAmmo = ClipSize - 1;
             });
         }

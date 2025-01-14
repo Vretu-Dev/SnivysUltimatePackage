@@ -5,7 +5,9 @@ using Exiled.API.Features.Attributes;
 using Exiled.API.Features.Items;
 using Exiled.API.Features.Spawn;
 using Exiled.CustomItems.API.Features;
+using Exiled.Events.EventArgs.Item;
 using Exiled.Events.EventArgs.Player;
+using InventorySystem.Items.Firearms.Attachments;
 using JetBrains.Annotations;
 using MEC;
 using YamlDotNet.Serialization;
@@ -56,32 +58,52 @@ namespace SnivysUltimatePackage.Custom.Items.Firearms
             }
         };
 
+        public override AttachmentName[] Attachments { get; set; } = new[]
+        {
+            AttachmentName.CylinderMag5,
+            AttachmentName.ExtendedBarrel,
+            AttachmentName.IronSights,
+        };
+
         public override float Damage { get; set; } = 0;
         public override byte ClipSize { get; set; } = 2;
         public float FuseTime { get; set; } = 2.5f;
         public float ScpGrenadeDamageMultiplier { get; set; } = .5f;
+        public bool AllowAttachmentChanging { get; set; } = false;
 
         protected override void SubscribeEvents()
         {
             Player.Shot += OnShot;
             Player.ReloadingWeapon += OnReloading;
+            Exiled.Events.Handlers.Item.ChangingAttachments += OnChangingAttachments;
         }
 
         protected override void UnsubscribeEvents()
         {
             Player.Shot -= OnShot;
             Player.ReloadingWeapon -= OnReloading;
+            Exiled.Events.Handlers.Item.ChangingAttachments -= OnChangingAttachments;
         }
-
+        
+        private void OnChangingAttachments(ChangingAttachmentsEventArgs ev)
+        {
+            if (Check(ev.Player.CurrentItem) && !AllowAttachmentChanging)
+            {
+                Log.Debug($"VVUP Custom Items: Explosive Round Revolver, {ev.Player.Nickname} tried changing attachments, but it's disallowed");
+                ev.IsAllowed = false;
+            }
+        }
         private void OnReloading(ReloadingWeaponEventArgs ev)
         {
             if (!Check(ev.Player.CurrentItem))
                 return;
             Timing.CallDelayed(3f, () =>
             {
+                Log.Debug($"VVUP Custom Items: Explosive Round Revolver, {ev.Player.Nickname} has started reloading, setting correct ammo");
                 ev.Firearm.MagazineAmmo = ClipSize;
             });
         }
+        
         private void OnShot(ShotEventArgs ev)
         {
             if (!Check(ev.Player.CurrentItem))
@@ -91,6 +113,7 @@ namespace SnivysUltimatePackage.Custom.Items.Firearms
             ExplosiveGrenade grenade = (ExplosiveGrenade)Item.Create(ItemType.GrenadeHE);
             grenade.FuseTime = FuseTime;
             grenade.ScpDamageMultiplier = ScpGrenadeDamageMultiplier;
+            grenade.ChangeItemOwner(Server.Host, ev.Player);
             grenade.SpawnActive(ev.Position);
         }
     }

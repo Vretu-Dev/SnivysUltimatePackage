@@ -13,7 +13,7 @@ namespace SnivysUltimatePackage.Custom.Roles.Scps
         public override int MaxHealth { get; set; } = 500;
         public override string Name { get; set; } = "<color=#FF0000>Ballistic SCP-049-2</color>";
         public override string Description { get; set; } = "A zombie that explodes on death";
-        public override string CustomInfo { get; set; } = "<color=#FF0000>Ballistic SCP-049-2</color>";
+        public override string CustomInfo { get; set; } = "Ballistic SCP-049-2";
         public override RoleTypeId Role { get; set; } = RoleTypeId.Scp0492;
         
         public StartTeam StartTeam { get; set; } = StartTeam.Scp | StartTeam.Revived;
@@ -30,6 +30,7 @@ namespace SnivysUltimatePackage.Custom.Roles.Scps
             {
                 Name = "Friendly Fire Remover [Passive]",
                 Description = "Removes friendly fire to your team",
+                TimeBeforeRemovingAbility = 1f,
             },
         };
     }

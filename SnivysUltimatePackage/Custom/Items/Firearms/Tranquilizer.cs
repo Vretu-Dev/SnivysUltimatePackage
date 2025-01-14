@@ -133,6 +133,7 @@ namespace SnivysUltimatePackage.Custom.Items.Firearms
                 return;
             Timing.CallDelayed(2f, () =>
             {
+                Log.Debug($"VVUP Custom Items: Tranquilizer, {ev.Player.Nickname} has started reloading, setting correct ammo");
                 ev.Firearm.MagazineAmmo = ClipSize;
             });
         }
