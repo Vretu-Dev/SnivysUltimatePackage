@@ -63,7 +63,12 @@ namespace SnivysUltimatePackage.Custom.Items.Grenades
                 new()
                 {
                     Chance = 50,
-                    Location = SpawnLocationType.InsideNukeArmory,
+                    Location = SpawnLocationType.Inside096,
+                },
+                new()
+                {
+                    Chance = 50,
+                    Location = SpawnLocationType.InsideHczArmory,
                 },
                 new()
                 {

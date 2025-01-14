@@ -37,11 +37,6 @@ namespace SnivysUltimatePackage.Custom.Items.Firearms
                 },
                 new()
                 {
-                    Chance = 20,
-                    Location = SpawnLocationType.InsideNukeArmory,
-                },
-                new()
-                {
                     Chance = 10,
                     Location = SpawnLocationType.InsideHczArmory,
                 },
