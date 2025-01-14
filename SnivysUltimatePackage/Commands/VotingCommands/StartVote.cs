@@ -29,13 +29,12 @@ namespace SnivysUltimatePackage.Commands.VotingCommands
                 response = "This command is disabled.";
                 return false;
             }
-            
+
             if (!sender.CheckPermission("vvvotes.start"))
             {
                 response = "You do not have permission to use this command.";
                 return false;
             }
-
             if (IsVoteActive)
             {
                 response = "A vote is already active, please wait until it finishes";
@@ -44,20 +43,34 @@ namespace SnivysUltimatePackage.Commands.VotingCommands
 
             if (arguments.Count is < 3 or > 8)
             {
-                response =
-                    "You provided an invalid amount of arguments \n Order: <Vote Name> <Option 1> <Option 2> [Option 3-7]";
+                response = "You provided an invalid amount of arguments \n Order: <Vote Name> <Option 1> <Option 2> [Option 3-7]";
                 return false;
             }
-            
+
+            string votePrompt = arguments.At(0);
             VoteOptions.Clear();
             PlayerVotes.Clear();
-            
+
             for (int i = 1; i < arguments.Count; i++)
                 VoteOptions[i] = arguments.At(i);
-            
+
             IsVoteActive = true;
-            string optionsMessage = string.Join(",", VoteOptions.Select(pair => $"{pair.Key}: {pair.Value}. "));
-            Map.Broadcast(Plugin.Instance.Config.VoteConfig.MapBroadcastTime, $"{Plugin.Instance.Config.VoteConfig.MapBroadcastText} Options: {optionsMessage}", Broadcast.BroadcastFlags.Normal, true);
+            string broadcastText = Plugin.Instance.Config.VoteConfig.MapBroadcastText
+                .Replace("%prompt%", votePrompt);
+
+            for (int i = 1; i <= 7; i++)
+            {
+                if (VoteOptions.ContainsKey(i))
+                {
+                    broadcastText = broadcastText.Replace($"%option{i}%", VoteOptions[i]);
+                }
+                else
+                {
+                    broadcastText = broadcastText.Replace($"%option{i}%", string.Empty);
+                }
+            }
+
+            Map.Broadcast(Plugin.Instance.Config.VoteConfig.MapBroadcastTime, broadcastText, Broadcast.BroadcastFlags.Normal, true);
 
             Timing.CallDelayed(Plugin.Instance.Config.VoteConfig.VoteDuration, () =>
             {
@@ -72,6 +85,7 @@ namespace SnivysUltimatePackage.Commands.VotingCommands
                 Map.Broadcast(Plugin.Instance.Config.VoteConfig.MapBroadcastTime, resultMessage, Broadcast.BroadcastFlags.Normal, true);
                 IsVoteActive = false;
             });
+
             response = "You have started a vote";
             Log.Debug($"VVUP Votes: {sender.LogName} started a vote");
             return true;
