@@ -93,5 +93,10 @@ namespace SnivysUltimatePackage.Configs.CustomConfigs
         //{
         //    new ContainmentScientistKeycard()
         //};
+
+        public List<ClusterGrenade> ClusterGrenades { get; private set; } = new()
+        {
+            new ClusterGrenade()
+        };
     }
 }
