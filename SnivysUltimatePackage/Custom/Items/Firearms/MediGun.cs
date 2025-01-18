@@ -102,9 +102,6 @@ namespace SnivysUltimatePackage.Custom.Items.Firearms
         {
             if (Check(ev.Attacker.CurrentItem) && ev.Attacker != ev.Player && ev.DamageHandler.Type == DamageType.Fsp9)
             {
-                if (Damage != 0)
-                    ev.Amount = Damage;
-
                 if (ev.Player.Role.Side == ev.Attacker.Role.Side)
                 {
                     float amount = ev.Amount * HealingModifer;
@@ -145,6 +142,8 @@ namespace SnivysUltimatePackage.Custom.Items.Firearms
 
                     ev.IsAllowed = false;
                 }
+                else if (Damage != 0)
+                    ev.Amount = Damage;
             }
         }
     }
