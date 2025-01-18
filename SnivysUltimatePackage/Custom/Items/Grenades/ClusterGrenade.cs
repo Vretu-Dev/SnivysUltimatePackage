@@ -8,9 +8,11 @@ using Exiled.CustomItems.API.Features;
 using Exiled.Events.EventArgs.Map;
 using JetBrains.Annotations;
 using MEC;
+using UnityEngine;
 using YamlDotNet.Serialization;
 using Item = Exiled.API.Features.Items.Item;
 using Log = Exiled.API.Features.Log;
+using Random = System.Random;
 using Server = Exiled.API.Features.Server;
 
 namespace SnivysUltimatePackage.Custom.Items.Grenades
@@ -64,38 +66,38 @@ namespace SnivysUltimatePackage.Custom.Items.Grenades
         public float ClusterGrenadeFuseTime { get; set; } = 1.5f;
 
         public int ClusterGrenadeCount { get; set; } = 5;
-        [YamlIgnore]
-        private bool _detonating = false;
 
         protected override void OnExploding(ExplodingGrenadeEventArgs ev)
         {
             Log.Debug("VVUP Custom Items: Cluster Grenade, initial grenade detonated, running methods");
-            if (_detonating)
-            {
-                Log.Debug("VVUP Custom Items: Cluster Grenade, initial grenade has already detonated, breaking out of loop");
-                _detonating = false;
-                return;
-            }
             Log.Debug("VVUP Custom Items: Cluster Grenade, running spawning cluster grenades");
-            _detonating = true;
             Timing.CallDelayed(0.1f, () =>
             {
                 Log.Debug("VVUP Custom Items: Cluster Grenade, Spawning a small grenade to scatter the other grenades");
                 ExplosiveGrenade grenade = (ExplosiveGrenade)Item.Create(ItemType.GrenadeHE);
+                grenade.ChangeItemOwner(Server.Host, ev.Player);
                 grenade.FuseTime = 0.25f;
                 grenade.ScpDamageMultiplier = 0.5f;
                 Log.Debug($"VVUP Custom Items: Cluster Grenade, setting grenades ownership from the server to {ev.Player.Nickname}");
-                grenade.ChangeItemOwner(Server.Host, ev.Player);
                 grenade.SpawnActive(ev.Position);
-                
                 grenade.FuseTime = ClusterGrenadeFuseTime;
                 grenade.ScpDamageMultiplier = 3;
                 for (int i = 0; i <= ClusterGrenadeCount; i++)
                 {
                     Log.Debug($"VVUP Custom Items: Cluster Grenade, spawning {ClusterGrenadeCount - i} more grenades at {ev.Position}");
-                    grenade.SpawnActive(ev.Position);
+                    grenade.ChangeItemOwner(Server.Host, ev.Player);
+                    grenade.SpawnActive(GrenadeOffset(ev.Position));
                 }
             });
+        }
+
+        private Vector3 GrenadeOffset(Vector3 position)
+        {
+            Random random = new Random();
+            float x = position.x + random.Next(-1, 1);
+            float y = position.y;
+            float z = position.z + random.Next(-1, 1);
+            return new Vector3(x, y, z);
         }
     }
 }
