@@ -27,7 +27,7 @@ namespace SnivysUltimatePackage.Commands.ServerEventsCommands.EventCommands
                 response = "You do not have the required permission to use this command";
                 return false;
             }
-            var hydraEventHandlers = new PeanutHydraEventHandlers();
+            PeanutHydraEventHandlers hydraEventHandlers = new PeanutHydraEventHandlers();
             response = "Starting Peanut Hydra Event";
             Log.Debug($"{sender} has started the Peanut Hydra Event");
             return true;

@@ -27,7 +27,7 @@ namespace SnivysUltimatePackage.Commands.ServerEventsCommands.EventCommands
                 response = "You do not have the required permission to use this command";
                 return false;
             }
-            var infectionEventHandlers = new PeanutInfectionEventHandlers();
+            PeanutInfectionEventHandlers infectionEventHandlers = new PeanutInfectionEventHandlers();
             response = "Starting Peanut Infection Event";
             Log.Debug($"{sender} has started the Peanut Infection Event");
             return true;

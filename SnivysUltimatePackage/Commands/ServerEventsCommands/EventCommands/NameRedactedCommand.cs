@@ -27,7 +27,7 @@ namespace SnivysUltimatePackage.Commands.ServerEventsCommands.EventCommands
                 response = "You do not have the required permission to use this command";
                 return false;
             }
-            var nameRedactedHandler = new NameRedactedEventHandlers();
+            NameRedactedEventHandlers nameRedactedHandler = new NameRedactedEventHandlers();
             response = "Starting Name Redacted Event";
             Log.Debug($"{sender} has started the Name Redacted Event");
             return true;

@@ -76,10 +76,16 @@ namespace SnivysUltimatePackage.Custom.Roles.Foundation
                 RestrictPickingUpItems = true,
                 RestrictDroppingItems = false
             },
-            new Wisp
+            new EffectEnabler
             {
                 Name = "Wisp [Passive]",
                 Description = "Enables walking through doors, Fog Control, Reduced Sprint",
+                EffectsToApply = new Dictionary<EffectType, byte>()
+                {
+                    {EffectType.Exhausted, 1},
+                    {EffectType.Ghostly, 1},
+                    {EffectType.FogControl, 5},
+                },
             },
         };
     }

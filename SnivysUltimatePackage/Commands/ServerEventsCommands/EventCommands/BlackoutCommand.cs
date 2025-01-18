@@ -28,7 +28,7 @@ namespace SnivysUltimatePackage.Commands.ServerEventsCommands.EventCommands
                 return false;
             }
             
-            var blackoutEventHandlers = new BlackoutEventHandlers();
+            BlackoutEventHandlers blackoutEventHandlers = new BlackoutEventHandlers();
             response = "Starting Blackout Event";
             Log.Debug($"{sender} has started the Blackout Event");
             return true;

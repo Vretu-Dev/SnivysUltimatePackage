@@ -27,8 +27,15 @@ namespace SnivysUltimatePackage.Commands.ServerEventsCommands.EventCommands
                 response = "You do not have the required permission to use this command";
                 return false;
             }
-            
-            var SnowballVsScpsEventHandlers = new SnowballsVsScpsEventHandlers();
+
+            Enum.TryParse(typeof(Holidays).ToString(), out Holidays holiday);
+            if (holiday != Holidays.Christmas)
+            {
+                response = "The christmas event (what is responsible for having snowballs in the game) is not active.";
+                return false;
+            }
+
+            SnowballsVsScpsEventHandlers snowballsVsScpsEventHandlers = new SnowballsVsScpsEventHandlers();
             response = "Starting Snowballs Vs Scps Event";
             Log.Debug($"{sender} has started Snowballs Vs Scps Event");
             return true;

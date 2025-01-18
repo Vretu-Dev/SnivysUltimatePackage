@@ -3,6 +3,7 @@ using Exiled.CustomRoles.API.Features;
 using PlayerRoles;
 using SnivysUltimatePackage.API;
 using SnivysUltimatePackage.Custom.Abilities.Passive;
+using UnityEngine;
 
 namespace SnivysUltimatePackage.Custom.Roles.Scps
 {
@@ -20,10 +21,11 @@ namespace SnivysUltimatePackage.Custom.Roles.Scps
 
         public override List<CustomAbility> CustomAbilities { get; set; } = new List<CustomAbility>
         {
-            new DwarfAbility
+            new ScaleAbility()
             {
                 Name = "Dwarf [Passive]",
                 Description = "Makes you small as a dwarf zombie",
+                ScaleForPlayers = new Vector3(0.75f, 0.75f, 0.75f),
             },
         };
     }

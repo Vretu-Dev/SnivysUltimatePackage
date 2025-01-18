@@ -27,7 +27,7 @@ namespace SnivysUltimatePackage.Commands.ServerEventsCommands.EventCommands
                 response = "You do not have the required permission to use this command";
                 return false;
             }
-            var variableEventHandlers = new VariableLightsEventHandlers();
+            VariableLightsEventHandlers variableEventHandlers = new VariableLightsEventHandlers();
             response = "Starting Variable Lights Event.";
             Log.Debug($"{sender} has started the Variable Lights Event");
             return true;

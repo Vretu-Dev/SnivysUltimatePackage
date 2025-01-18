@@ -27,7 +27,7 @@ namespace SnivysUltimatePackage.Commands.ServerEventsCommands.EventCommands
                 response = "You do not have the required permission to use this command";
                 return false;
             }
-            var shortEventHandlers = new ShortEventHandlers();
+            ShortEventHandlers shortEventHandlers = new ShortEventHandlers();
             response = "Starting Short People Event";
             Log.Debug($"{sender} has started the Short People Event");
             return true;

@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using CommandSystem;
 using Exiled.API.Features;
 using Exiled.Permissions.Extensions;
 using MEC;
-using SnivysUltimatePackage.Configs;
 
 namespace SnivysUltimatePackage.Commands.VotingCommands
 {

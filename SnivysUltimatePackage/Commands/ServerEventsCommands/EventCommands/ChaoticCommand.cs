@@ -27,7 +27,7 @@ namespace SnivysUltimatePackage.Commands.ServerEventsCommands.EventCommands
                 response = "You do not have the required permission to use this command";
                 return false;
             }
-            var chaoticHandlers = new ChaoticEventHandlers();
+            ChaoticEventHandlers chaoticHandlers = new ChaoticEventHandlers();
             response = "Starting Chaotic Event";
             Log.Debug($"{sender} has started the Chaotic Event");
             return true;

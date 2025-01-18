@@ -3,11 +3,9 @@ using Exiled.API.Enums;
 using Exiled.API.Features;
 using Exiled.CustomRoles.API;
 using Exiled.CustomRoles.API.Features;
-using Exiled.Events.EventArgs.Player;
 using Exiled.Events.EventArgs.Scp049;
 using Exiled.Events.EventArgs.Server;
 using PlayerRoles;
-using Respawning;
 using SnivysUltimatePackage.API;
 
 namespace SnivysUltimatePackage.EventHandlers.Custom

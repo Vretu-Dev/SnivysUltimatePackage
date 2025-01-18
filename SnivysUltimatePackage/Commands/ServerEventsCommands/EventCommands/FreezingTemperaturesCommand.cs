@@ -27,7 +27,7 @@ namespace SnivysUltimatePackage.Commands.ServerEventsCommands.EventCommands
                 response = "You do not have the required permission to use this command";
                 return false;
             }
-            var freezingTemperaturesHandlers = new FreezingTemperaturesEventHandlers();
+            FreezingTemperaturesEventHandlers freezingTemperaturesHandlers = new FreezingTemperaturesEventHandlers();
             response = "Starting Freezing Temperature Event";
             Log.Debug($"{sender} has started the Freezing Temperatures Event");
             return true;

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Exiled.API.Enums;
 using Exiled.CustomRoles.API.Features;
 using PlayerRoles;
 using SnivysUltimatePackage.API;
@@ -21,10 +22,14 @@ namespace SnivysUltimatePackage.Custom.Roles.Scps
 
         public override List<CustomAbility> CustomAbilities { get; set; } = new List<CustomAbility>
         {
-            new MoveSpeedReduction
+            new EffectEnabler()
             {
                 Name = "Move Speed Reduction [Passive]",
                 Description = "Slows you down",
+                EffectsToApply = new Dictionary<EffectType, byte>()
+                {
+                    {EffectType.Slowness, 30},
+                },
             },
             new HealingMist
             {

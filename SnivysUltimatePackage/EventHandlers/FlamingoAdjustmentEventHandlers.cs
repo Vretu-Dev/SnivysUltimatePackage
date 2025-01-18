@@ -1,7 +1,6 @@
 ﻿using Exiled.API.Features;
 using Exiled.Events.EventArgs.Player;
 using PlayerRoles;
-using PluginAPI.Enums;
 
 namespace SnivysUltimatePackage.EventHandlers
 {

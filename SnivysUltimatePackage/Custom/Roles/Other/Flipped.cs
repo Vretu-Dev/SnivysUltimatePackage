@@ -4,6 +4,8 @@ using Exiled.API.Features.Spawn;
 using Exiled.CustomRoles.API.Features;
 using PlayerRoles;
 using SnivysUltimatePackage.API;
+using SnivysUltimatePackage.Custom.Abilities.Passive;
+using UnityEngine;
 
 namespace SnivysUltimatePackage.Custom.Roles.Other
 {
@@ -40,10 +42,11 @@ namespace SnivysUltimatePackage.Custom.Roles.Other
 
         public override List<CustomAbility>? CustomAbilities { get; set; } = new()
         {
-            new Abilities.Passive.Flipped
+            new ScaleAbility()
             {
                 Name = "Flipped Ability [Passive]",
                 Description = "Handles being upside down",
+                ScaleForPlayers = new Vector3(1, -1, 1),
             },
         };
     }

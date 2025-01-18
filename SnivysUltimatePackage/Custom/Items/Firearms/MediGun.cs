@@ -46,6 +46,7 @@ namespace SnivysUltimatePackage.Custom.Items.Firearms
 
         [Description("What is the CustomRole ID for Serpents Hand to set the revive zombie to")]
         public uint SerpentsHandCustomRoleId { get; set; } = 27;
+        [Description("What is the healing modifier? (Example: 1 = Damage * 1, so a bullet that does 5 damage will heal 5 health instead.")]
         public float HealingModifer { get; set; } = 1f;
         [Description("Determines how much AHP human players can get")]
         public float MaxAhpAmount { get; set; } = 30f;
@@ -135,7 +136,7 @@ namespace SnivysUltimatePackage.Custom.Items.Firearms
                                 ev.Player.Role.Set(RoleTypeId.ChaosConscript, SpawnReason.None);
                                 break;
                             case Side.Tutorial when ZombieHealingBySerpents:
-                                CustomRole.Get(SerpentsHandCustomRoleId).AddRole(ev.Player);
+                                CustomRole.Get(SerpentsHandCustomRoleId)?.AddRole(ev.Player);
                                 break;
                         }
                     }

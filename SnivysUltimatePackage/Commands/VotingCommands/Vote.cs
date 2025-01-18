@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
 using CommandSystem;
 using Exiled.API.Features;
-using SnivysUltimatePackage.Configs;
 
 namespace SnivysUltimatePackage.Commands.VotingCommands
 {
