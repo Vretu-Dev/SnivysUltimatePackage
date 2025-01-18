@@ -175,11 +175,12 @@
       <Compile Include="Custom\Items\Grenades\EmpGrenade.cs" />
       <Compile Include="Custom\Items\Grenades\NerveAgent.cs" />
       <Compile Include="Custom\Items\Grenades\SmokeGrenade.cs" />
-      <Compile Include="Custom\Items\Injections\DeadringerSyringe.cs" />
-      <Compile Include="Custom\Items\Injections\KySyringe.cs" />
+      <Compile Include="Custom\Items\MedicalItems\AntiScp096Pills.cs" />
+      <Compile Include="Custom\Items\MedicalItems\DeadringerSyringe.cs" />
+      <Compile Include="Custom\Items\MedicalItems\InfinitePills.cs" />
+      <Compile Include="Custom\Items\MedicalItems\KySyringe.cs" />
       <Compile Include="Custom\Items\Keycards\ContainmentScientistKeycard.cs" />
-      <Compile Include="Custom\Items\Other\AntiScp096Pills.cs" />
-      <Compile Include="Custom\Items\Other\InfinitePills.cs" />
+      <Compile Include="Custom\Items\Other\AdditionalHealth207.cs" />
       <Compile Include="Custom\Items\Other\PhantomLantern.cs" />
       <Compile Include="Custom\Items\Other\Scp1499.cs" />
       <Compile Include="Custom\Roles\Chaos\A7Chaos.cs" />

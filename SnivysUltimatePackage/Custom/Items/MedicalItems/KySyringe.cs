@@ -9,7 +9,7 @@ using JetBrains.Annotations;
 using YamlDotNet.Serialization;
 using Player = Exiled.Events.Handlers.Player;
 
-namespace SnivysUltimatePackage.Custom.Items.Injections
+namespace SnivysUltimatePackage.Custom.Items.MedicalItems
 {
     [CustomItem(ItemType.Adrenaline)]
     public class KySyringe : CustomItem

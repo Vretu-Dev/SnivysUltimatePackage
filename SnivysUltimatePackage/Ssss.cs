@@ -6,7 +6,7 @@ using NorthwoodLib.Pools;
 using SnivysUltimatePackage.Custom.Items.Armor;
 using SnivysUltimatePackage.Custom.Items.Firearms;
 using SnivysUltimatePackage.Custom.Items.Grenades;
-using SnivysUltimatePackage.Custom.Items.Injections;
+using SnivysUltimatePackage.Custom.Items.MedicalItems;
 using SnivysUltimatePackage.Custom.Items.Other;
 using SnivysUltimatePackage.Custom.Roles.Chaos;
 using SnivysUltimatePackage.Custom.Roles.ClassD;

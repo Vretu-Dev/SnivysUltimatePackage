@@ -15,7 +15,7 @@ using YamlDotNet.Serialization;
 using Player = Exiled.Events.Handlers.Player;
 using Random = System.Random;
 
-namespace SnivysUltimatePackage.Custom.Items.Injections
+namespace SnivysUltimatePackage.Custom.Items.MedicalItems
 {
     [CustomItem(ItemType.Adrenaline)]
     public class DeadringerSyringe : CustomItem

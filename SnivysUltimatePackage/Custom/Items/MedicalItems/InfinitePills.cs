@@ -6,7 +6,7 @@ using Exiled.Events.EventArgs.Player;
 using UnityEngine;
 using YamlDotNet.Serialization;
 
-namespace SnivysUltimatePackage.Custom.Items.Other
+namespace SnivysUltimatePackage.Custom.Items.MedicalItems
 {
     [CustomItem(ItemType.Painkillers)]
     public class InfinitePills : CustomItem

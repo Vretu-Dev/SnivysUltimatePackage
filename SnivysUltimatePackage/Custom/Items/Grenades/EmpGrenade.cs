@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net.Mail;
 using Exiled.API.Enums;
 using Exiled.API.Extensions;
 using Exiled.API.Features;
@@ -20,7 +18,6 @@ using JetBrains.Annotations;
 using MEC;
 using YamlDotNet.Serialization;
 using Attachment = InventorySystem.Items.Firearms.Attachments.Components.Attachment;
-using Item = Exiled.Events.Handlers.Item;
 using KeycardPermissions = Interactables.Interobjects.DoorUtils.KeycardPermissions;
 using PlayerAPI = Exiled.API.Features.Player;
 using PlayerEvent = Exiled.Events.Handlers.Player;

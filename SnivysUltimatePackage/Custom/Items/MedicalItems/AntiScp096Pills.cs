@@ -1,6 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel;
-using CustomPlayerEffects;
 using Exiled.API.Enums;
 using Exiled.API.Features;
 using Exiled.API.Features.Attributes;
@@ -13,7 +11,7 @@ using MEC;
 using PlayerRoles;
 using YamlDotNet.Serialization;
 
-namespace SnivysUltimatePackage.Custom.Items.Other
+namespace SnivysUltimatePackage.Custom.Items.MedicalItems
 {
     [CustomItem(ItemType.SCP500)]
     public class AntiScp096Pills : CustomItem
