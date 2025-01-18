@@ -6,6 +6,8 @@ using Exiled.API.Features.Items;
 using Exiled.API.Features.Spawn;
 using Exiled.CustomItems.API.Features;
 using Exiled.Events.EventArgs.Map;
+using InventorySystem.Items;
+using InventorySystem.Items.ThrowableProjectiles;
 using JetBrains.Annotations;
 using MEC;
 using UnityEngine;
@@ -75,18 +77,19 @@ namespace SnivysUltimatePackage.Custom.Items.Grenades
             {
                 Log.Debug("VVUP Custom Items: Cluster Grenade, Spawning a small grenade to scatter the other grenades");
                 ExplosiveGrenade grenade = (ExplosiveGrenade)Item.Create(ItemType.GrenadeHE);
-                grenade.ChangeItemOwner(Server.Host, ev.Player);
                 grenade.FuseTime = 0.25f;
                 grenade.ScpDamageMultiplier = 0.5f;
                 Log.Debug($"VVUP Custom Items: Cluster Grenade, setting grenades ownership from the server to {ev.Player.Nickname}");
-                grenade.SpawnActive(ev.Position);
+                grenade.SpawnActive(ev.Position, ev.Player);
                 grenade.FuseTime = ClusterGrenadeFuseTime;
                 grenade.ScpDamageMultiplier = 3;
                 for (int i = 0; i <= ClusterGrenadeCount; i++)
                 {
-                    Log.Debug($"VVUP Custom Items: Cluster Grenade, spawning {ClusterGrenadeCount - i} more grenades at {ev.Position}");
-                    grenade.ChangeItemOwner(Server.Host, ev.Player);
-                    grenade.SpawnActive(GrenadeOffset(ev.Position));
+                    Log.Debug(
+                        $"VVUP Custom Items: Cluster Grenade, spawning {ClusterGrenadeCount - i} more grenades at {ev.Position}");
+                    //grenade.Base.Owner = ev.Player.ReferenceHub;
+                    //I am so confused why no work on owner
+                    grenade.SpawnActive(GrenadeOffset(ev.Position), owner: ev.Player);
                 }
             });
         }
@@ -94,9 +97,9 @@ namespace SnivysUltimatePackage.Custom.Items.Grenades
         private Vector3 GrenadeOffset(Vector3 position)
         {
             Random random = new Random();
-            float x = position.x + random.Next(-1, 1);
+            float x = position.x - 1 + ((float)random.NextDouble() * random.Next(0, 3));
             float y = position.y;
-            float z = position.z + random.Next(-1, 1);
+            float z = position.z - 1 + ((float)random.NextDouble() * random.Next(0, 3));
             return new Vector3(x, y, z);
         }
     }
