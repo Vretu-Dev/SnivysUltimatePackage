@@ -114,7 +114,7 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
                                 Log.Debug("VVUP Server Events, Chaotic: Checking if players aren't a SCP or is dead");
                                 if (player.Role.Team != Team.SCPs || player.Role.Team != Team.Dead)
                                 {
-                                    int randomItemGiveRng = random.Next(minValue: 1, maxValue: 2);
+                                    int randomItemGiveRng = random.Next(minValue: 0, maxValue: 2);
                                     Log.Debug($"VVUP Server Events, Chaotic: Deciding if {player.Nickname} gets a Custom Item or a Regular Item");
                                     if (_config.GiveRandomItemCustomitems)
                                     {
