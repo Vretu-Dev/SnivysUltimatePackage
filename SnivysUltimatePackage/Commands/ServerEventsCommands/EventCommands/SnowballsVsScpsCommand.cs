@@ -11,12 +11,14 @@ namespace SnivysUltimatePackage.Commands.ServerEventsCommands.EventCommands
     internal class SnowballsVsScpsCommand : ICommand
     {
         public string Command { get; set; } = "SnowballsVsScps";
-        public string[] Aliases { get; set; } = { "Svs", "SnowballFight" };
-        public string Description { get; set; } = "Starts the Snowballs Vs Scps Event";
+        public string[] Aliases { get; set; } = { "SvS", "SnowballFight" };
+        public string Description { get; set; } = "[DOESN'T WORK] Starts the Snowballs Vs Scps Event";
         private static ServerEventsMasterConfig _config = new();
         public bool Execute(ArraySegment<string> args, ICommandSender sender, out string response)
         {
-            if (!_config.IsEnabled)
+            response = "I am sorry, the snowballs has been removed from the game, this event cannot run";
+            return false;
+            /*if (!_config.IsEnabled)
             {
                 response = "The custom events part of this plugin is disabled.";
                 return false;
@@ -28,17 +30,10 @@ namespace SnivysUltimatePackage.Commands.ServerEventsCommands.EventCommands
                 return false;
             }
 
-            Enum.TryParse(typeof(Holidays).ToString(), out Holidays holiday);
-            if (holiday != Holidays.Christmas)
-            {
-                response = "The christmas event (what is responsible for having snowballs in the game) is not active.";
-                return false;
-            }
-
             SnowballsVsScpsEventHandlers snowballsVsScpsEventHandlers = new SnowballsVsScpsEventHandlers();
             response = "Starting Snowballs Vs Scps Event";
             Log.Debug($"{sender} has started Snowballs Vs Scps Event");
-            return true;
+            return true;*/
         }
     }
 }
