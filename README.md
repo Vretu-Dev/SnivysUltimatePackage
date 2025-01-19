@@ -187,4 +187,4 @@ startvote | vvvotes.start | Remote Admin, Server Console | Starts a vote.
 # Credits
 @Mostly-Lucid for helping a lot with the SCP-173 Hydra event (and by that I mean doing it entirely because I had a very smooth brain moment)
 
-@Jamwolff for the Short Players Event and Ky Syringe
+@Jamwolff for the Short Players Event and LJ-429 Custom Item
