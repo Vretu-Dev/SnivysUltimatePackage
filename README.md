@@ -32,7 +32,7 @@ Server Specific Setting System
 
 # Snivy's Custom Roles
 ### Role List
-Below is a table of all the current custom roles, followed by a breif description of them. Many of them rely on special abilities also added by this plugin, refer to the list of abilities for more details about what each does.
+Below is a table of all the current custom roles, followed by a breif description of them. Many of them rely on special abilities also added by this plugin, refer to the list of abilities for more details about what each does. This is default settings and can be customized by the server owner.
 
 RoleName | RoleID | Abilities | Spawn Type | Description
 :---: | :---: | :---: | :---: | :------
@@ -43,15 +43,15 @@ Containment Guard | 33 | None | Immediately when a round begins | A Facility Gua
 Border Patrol | 34 | None | Given by Admin Command only | A facility guard specialized in ensuring safe passage from Enterance and Heavy Checkpoints.
 Nightfall | 35 | Data Missing | Data Missing | Data Missing.
 A7 Chaos | 36 | None | During a Chaos Insurgency Respawn Wave | A Chaos Member that spawns with an A7.
-Flipped | 37 | Flipped | Given by Admin Command only | For those people who complains about dwarfs when they spawn in as it.
+Flipped | 37 | Scale Ability | Given by Admin Command only | For those people who complains about dwarfs when they spawn in as it.
 Telepathic Chaos | 38 | Detect | During a Chaos Insurgency Respawn Wave | A Chaos Member that can detect hostiles to the Chaos Insurgency near by.
 Juggernaut Chaos | 39 | Give Candy Ability | During a Chaos Insurgency Respawn Wave | A Chaos Member that specializes in explosives.
 Chaos Insurgency Spy | 40 | Disguised, Remove Disguise | During a MTF Respawn Wave | A Chaos Member that is disguised as an MTF Member.
-MTF Wisp | 41 | Wisp | During a MTF Respawn Wave | A MTF Member that can go through doors, but has reduced sprint and some item limitations.
+MTF Wisp | 41 | Effect Enabler | During a MTF Respawn Wave | A MTF Member that can go through doors, but has reduced sprint and some item limitations.
 Ballistic SCP-049-2 | 42 | Martyrdom | Chance during revive from SCP-049 | A zombie that goes boom on death.
-Dwarf SCP-049-2 | 43 | Dwarf | Chance during revive from SCP-049 | A smaller zombie.
+Dwarf SCP-049-2 | 43 | Scale Ability | Chance during revive from SCP-049 | A smaller zombie.
 Chaos Phantom | 44 | Active Camo | Immediately when a round begins | A Chaos Insurgent that takes place of a guard, can go invisible.
-Medic SCP-049-2 | 45 | Healing Mist | Chance during revive from SCP-049 | A zombie that can heal other SCPs
+Medic SCP-049-2 | 45 | Healing Mist, Effect Enabler | Chance during revive from SCP-049 | A zombie that can heal other SCPs at the cost of being a bit more slow
 Lock-picker Class D | 46 | Door Picking | Immediately when a round begins | A Class D that used to be a lock picker, can open some keycard doors if they dont have the keycard.
 MTF Demolitionist | 47 | None | During a MTF Spawn Wave | A MTF Member that specializes in explosives.
 
@@ -59,7 +59,7 @@ MTF Demolitionist | 47 | None | During a MTF Spawn Wave | A MTF Member that spec
 This contains Joker's original custom roles abilities as well
 
 ### Ability List
-Below is a list of every ability (currently) with a short discription of what it does
+Below is a list of every ability (currently) with a short discription of what it does.
 
 Custom Ability | AbilityName | Ability Type | Description
 :---: | :---: | :---: | :------
@@ -70,23 +70,21 @@ Charge | ChargeAbility | Active Ability | Charges towards a location.
 Detect | Detect | Active Ability | Detects any hostiles of the Chaos Insurgency nearby.
 Disguised | Disguised | Passive Ability | This handles all things related to being disguised, such as preventing accidental friendly fire.
 Door Picking Ability | DoorPicking | Active Ability | When activated, the player is able to open a door.
-Dwarf Ability | DwarfAbility | Passive Ability | This handles everything in regards to being a dwarf, size, stamina usage, and some item restrictions.
-Flipped Ability | Flipped | Passive Ability | This handles everything in regards to being vertically flipped.
+Effect Enabler Ability | EffectEnabler| Passive Ability| Handles giving effects to players
 Giving Candy Ability | GivingCandyAbility | Passive Ability | Gives candy that's listed at spawn.
 Healing Mist | HealingMist | Active Ability | Activates a short term healing AOE effect.
 Heal on Kill | HealOnKill | Passive Ability | Heals on kill, hopefully self explainitory on what that does.
 Martyrdom | Martyrdom | Passive Ability | Explosive death.
-Reduced Movement Speed | MoveSpeedReduction | Passive Ability | Makes the player moves slower.
 Reactive Hume Shield | ReactiveHume | Passive Ability | A Hume Shield that builds up, that reduces incoming damage.
 Remove Disguise | RemoveDisguise | Active Ability | The ability to remove their disguise, I.E. If MTF, become CI, and vise versa.
 Restricted Escape | RestrictedEscape | Passive Ability | This just restricts player escapes for custom roles that has this ability.
 Restricted Items | RestrictedItem | Passive Ability | This allows a specific set of restricted items. This is usually complemented with other abilities.
+Scale Ability | ScaleAbility | Passive Ability | This sets a players scale.
 Speed On Kill | SpeedOnKill | Passive Ability | Gives a speed boost on kill.
-Wisp | Wisp | Passive Ability | Gives the ability to go through doors, but at the cost of not being able to see as far and a reduced sprint time.
 
 # Snivy's Custom Items
 
-A collection of custom items that I have made over the time (plus one from Jamwolff)
+A collection of custom items that I have made over the time (plus one from Jamwolff). This is default settings and can be customized by the server owner.
 
 Item Name | Item Type | ItemID | Spawn Locations | Spawn Limit | Description
 :---: | :---: | :---: | :---: | :---: | :------
@@ -105,29 +103,52 @@ Amnesioflux | SCP500 | 31 | 100% Chance in 096s room. | 1 | When consumed, remov
 C4 | Grenade | 32 | 10% Chance in Light Armory, 25% Chance in Heavy Armory, 50% Chance in Nuke Armory and 049 Armory, 100% Chance in Surface Nuke | 5 | A grenade that can be remotely detonated, requires a radio to detonate (by base).
 SCP-2818 | E11SR | 33 | 10% Chance in MicroHID | 1 | When fired, you are the bullet. This will kill the shooter but will do a lot of damage to the target.
 Infinite Pills | Painkillers | 34 | 100% Chance to appear in a Misc Locker | 1 | When consumed, the pills dont go away, it wont heal you however. This is entirely a joke item.
+Cluster Grenade | Grenade | 36 | 15% Chance to appear in Light Armory, Heavy Armory, 049/173 Armory, Surface Nuke | 1 | When exploding, it spawns more grenades.
+Additional Health 207 | Anti SCP-207 | 25% Chance to appear in MicroHID | 1 | When consumed, it adds more health to the player until they die.
 
 # Snivy's Server Events
 
-A plugin meant to add some togglable events that adds onto the normal round structure
+A plugin meant to add some togglable events, mostly to add to a round and not to replace a round
 
 Currently the events part of the plugin is provided below
-- Blackout
-- SCP 173 Infection (when 173 kills someone, they become 173)
-- SCP 173 Hydra (when 173 dies, they respawn with another player both as 173, which are smaller)
-- Variable Lights
-- Short Players Event
-- Chaos Event
-- Name Redacted Event
-- Freezing Temperatures Event
-- Snowballs Vs SCPs
 
-Exiled Permission: vvevents.run
+Event Name | Description
+:---: | :------
+Blackout | Turns off the lights in the facility, restores them either at round end or if all generators are activated
+SCP 173 Infection | When 173 Kills someone, they become 173 as well
+SCP 173 Hydra | When 173 Dies, they respawn as 173, along with another person, reducing their size and health count
+Variable Lights | Activates disco mode to the facility (effectively)
+Short People | Makes everyone short
+Chaos Event | Causes chaos in the facility, see below for what Chaos Event can do to a round
+Name Redacted | Removes everyones names
+Freezing Temperatures | The thermostat in the facility broke and its slowly freezing over, best to get out as fast as you can.
+Snowballs Vs SCPs | Causes a snowball fight to start. Currently this event is broken as Snowballs aren't in the game currently
 
-RA Command: vve
-
-RA Sub Commands: Blackout, Chaotic, FreezingTemps, NameRedacted, 173Hydra, 173Infection, ShortPeople, VariableLights
-
-This plugin is not designed to add new gamemodes that takes place instead of the main gameplay loop, these events are meant to add to the main gameplay loop.
+Chaos Event Functions, a lot of this can be customized to your hearts content.
+Function | Description
+:---: | :------
+Item Steal | Steals everyones items
+Item Give | Gives every human a random item (custom items included)
+Random Teleport | Randomly Teleports each player to somewhere random
+Fake Auto Nuke | Starts a fake auto nuke
+Remove Weapons | Removes weapons from players
+Give Random Weapons | Gives every human a random weapon
+Death Match | Sets every players health to 1 HP
+Enable Blackout | Starts the Blackout Event
+Enable Freezing Temperatures | Starts Freezing Temperatures
+Enable SCP 173 Hydra | Starts SCP 173 Hydra Event
+Enable SCP 173 Infection | Starts SCP 173 Infection Event
+Enable Short People | Starts the Short People Event
+Enable Variable Lights | Starts Variable Lights
+FBI Open Up | Picks a random, non foundation side player, then teleports every foundation member to them
+Grenade Feet | Spawns a grenade at everyones feet
+Unsafe Medical Items | Medical Items may cause more harm than good
+Enable Name Redacted | Starts Name Redacted event
+Fake Cassie Respawn Announcement | Makes a fake Cassie respawn announcement, with a random chance to be MTF, CI, UIU, or SH
+Rapid Fire Teslas | Causes Tesla Gates to rapidly fire
+Player Tauntrum | Causes all players to have SCP-173's tantrum spawn on them
+Router Kicking Simulator | Gives players fake lag and teleports them back a distance after a bit of time
+Super Speed | Makes all the players super speed
 
 # Micro Damage Reduction
 Allows for a configurable damage reduction to what ever class is specificed in the Config.
