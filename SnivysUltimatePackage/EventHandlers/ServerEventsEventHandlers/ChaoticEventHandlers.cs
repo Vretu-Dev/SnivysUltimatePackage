@@ -643,7 +643,7 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
                         if (_config.FakeoutRespawnAnnouncementsEvent)
                         {
                             Log.Debug("VVUP Server Events, Chaotic: Fakeout Respawn Announcements active, running code");
-                            float fakeoutRespawnRandom = random.Next(minValue: 1, maxValue: 4);
+                            float fakeoutRespawnRandom = random.Next(minValue: 0, maxValue: 4);
                             string cassieMessage = string.Empty;
                             string cassieText = string.Empty;
                             int scpCount = 0;
