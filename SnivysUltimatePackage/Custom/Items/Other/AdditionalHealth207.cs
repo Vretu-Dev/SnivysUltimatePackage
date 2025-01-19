@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Exiled.API.Enums;
 using Exiled.API.Features;
 using Exiled.API.Features.Attributes;
@@ -22,6 +23,12 @@ namespace SnivysUltimatePackage.Custom.Items.Other
         public override string Description { get; set; } = "Adds additional health on consumption";
         public override float Weight { get; set; } = 1;
         public float HealthToBeAdded { get; set; } = 15;
+        public bool AllowWhen207OrAnti207IsActive { get; set; } = false;
+
+        public string TextToShowToPlayerOnFail { get; set; } =
+            "I dont think mixing this along with a cola effect is the best idea";
+        public bool UseHints { get; set; } = false;
+        public ushort TextDisplayDuration { get; set; } = 5;
 
         public override SpawnProperties SpawnProperties { get; set; } = new()
         {
@@ -39,7 +46,7 @@ namespace SnivysUltimatePackage.Custom.Items.Other
         protected override void SubscribeEvents()
         {
             Exiled.Events.Handlers.Player.UsingItem += OnUsingItem;
-            Exiled.Events.Handlers.Player.UsingItemCompleted += OnUsingItemCompleted;
+            Exiled.Events.Handlers.Player.UsedItem += OnUsingItemCompleted;
             Exiled.Events.Handlers.Player.ChangingItem += OnChangingItem;
             base.SubscribeEvents();
         }
@@ -47,7 +54,7 @@ namespace SnivysUltimatePackage.Custom.Items.Other
         protected override void UnsubscribeEvents()
         {
             Exiled.Events.Handlers.Player.UsingItem -= OnUsingItem;
-            Exiled.Events.Handlers.Player.UsingItemCompleted -= OnUsingItemCompleted;
+            Exiled.Events.Handlers.Player.UsedItem -= OnUsingItemCompleted;
             Exiled.Events.Handlers.Player.ChangingItem -= OnChangingItem;
             base.UnsubscribeEvents();
         }
@@ -56,6 +63,25 @@ namespace SnivysUltimatePackage.Custom.Items.Other
         {
             if (!Check(ev.Player.CurrentItem))
                 return;
+            
+            if ((ev.Player.GetEffect(EffectType.Scp207) || (ev.Player.GetEffect(EffectType.AntiScp207)) && !AllowWhen207OrAnti207IsActive))
+            {
+                Log.Debug(
+                    $"VVUP Custom Items: Additional Health 207, {ev.Player.Nickname} tried using Additional Health 207, but has Anti-207 or 207 active, but allowing to use this is disabled with either effect active");
+                
+                if (UseHints)
+                {
+                    Log.Debug($"VVUP Custom Items: Additional Health 207, displaying use fail hint to {ev.Player.Nickname}");
+                    ev.Player.ShowHint(TextToShowToPlayerOnFail, TextDisplayDuration);
+                }
+                else
+                {
+                    Log.Debug($"VVUP Custom Items: Additional Health 207, displaying use fail broadcast to {ev.Player.Nickname}");
+                    ev.Player.Broadcast(new Exiled.API.Features.Broadcast(TextToShowToPlayerOnFail, TextDisplayDuration));
+                }
+                ev.IsAllowed = false;
+                return;
+            }
             Log.Debug(
                 $"VVUP Custom Items: Additional Health 207, {ev.Player.Nickname} is consuming Addition Health 207, locking inventory for a moment");
             _consuming207 = true;
@@ -69,11 +95,10 @@ namespace SnivysUltimatePackage.Custom.Items.Other
             });
         }
 
-        private void OnUsingItemCompleted(UsingItemCompletedEventArgs ev)
+        private void OnUsingItemCompleted(UsedItemEventArgs ev)
         {
             if (!Check(ev.Player.CurrentItem))
                 return;
-            ev.IsAllowed = false;
             Log.Debug($"VVUP Custom Items: Additional Health 207, {ev.Player.Nickname} finished drinking Additional Health 207, Unlocking inventory. Applying additional health");
             _consuming207 = false;
             ev.Player.MaxHealth += HealthToBeAdded;
