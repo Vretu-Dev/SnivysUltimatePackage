@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using Exiled.API.Enums;
 using Exiled.API.Features;
@@ -25,9 +26,14 @@ namespace SnivysUltimatePackage.Custom.Items.Other
         public float HealthToBeAdded { get; set; } = 15;
         public bool AllowWhen207OrAnti207IsActive { get; set; } = false;
 
-        public string TextToShowToPlayerOnFail { get; set; } =
+        public string TextToShowToPlayerOnFailCola { get; set; } =
             "I dont think mixing this along with a cola effect is the best idea";
+        [Description("If UseHints is true, it will show a hint to the player, otherwise it will be a broadcast")]
         public bool UseHints { get; set; } = false;
+        [Description("If this is false, users can just drink a lot of additional health 207")]
+        public bool CapMaxHealth { get; set; } = true;
+        public float MaxUserHpLimit { get; set; } = 130;
+        public string TextToShowToPlayerOnFailHpLimit { get; set; } = "I had too much, I don't need any more";
         public ushort TextDisplayDuration { get; set; } = 5;
 
         public override SpawnProperties SpawnProperties { get; set; } = new()
@@ -72,19 +78,42 @@ namespace SnivysUltimatePackage.Custom.Items.Other
                 if (UseHints)
                 {
                     Log.Debug($"VVUP Custom Items: Additional Health 207, displaying use fail hint to {ev.Player.Nickname}");
-                    ev.Player.ShowHint(TextToShowToPlayerOnFail, TextDisplayDuration);
+                    ev.Player.ShowHint(TextToShowToPlayerOnFailCola, TextDisplayDuration);
                 }
                 else
                 {
                     Log.Debug($"VVUP Custom Items: Additional Health 207, displaying use fail broadcast to {ev.Player.Nickname}");
-                    ev.Player.Broadcast(new Exiled.API.Features.Broadcast(TextToShowToPlayerOnFail, TextDisplayDuration));
+                    ev.Player.Broadcast(new Exiled.API.Features.Broadcast(TextToShowToPlayerOnFailHpLimit, TextDisplayDuration));
                 }
                 ev.IsAllowed = false;
                 return;
             }
+
+            if (ev.Player.MaxHealth >= MaxUserHpLimit && CapMaxHealth)
+            {
+                Log.Debug(
+                    $"VVUP Custom Items: Additional Health 207, {ev.Player.Nickname} tried using Additional Health 207, " +
+                    $"but has the max health cap, {ev.Player.Nickname} has {ev.Player.MaxHealth} max health, " +
+                    $"and the limit is set to {MaxUserHpLimit}");
+                
+                if (UseHints)
+                {
+                    Log.Debug($"VVUP Custom Items: Additional Health 207, displaying use fail hint to {ev.Player.Nickname}");
+                    ev.Player.ShowHint(TextToShowToPlayerOnFailHpLimit, TextDisplayDuration);
+                }
+                else
+                {
+                    Log.Debug($"VVUP Custom Items: Additional Health 207, displaying use fail broadcast to {ev.Player.Nickname}");
+                    ev.Player.Broadcast(new Exiled.API.Features.Broadcast(TextToShowToPlayerOnFailHpLimit, TextDisplayDuration));
+                }
+                ev.IsAllowed = false;
+                return;
+            }
+            
             Log.Debug(
                 $"VVUP Custom Items: Additional Health 207, {ev.Player.Nickname} is consuming Addition Health 207, locking inventory for a moment");
             _consuming207 = true;
+            
             Timing.CallDelayed(10f, () =>
             {
                 if (_consuming207)
