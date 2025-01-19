@@ -101,10 +101,10 @@ SCP-1499 | SCP-268 | 29 | 10% Chance in MicroHID, 079's Room, In the escape hall
 PB-42 | Flash Bang | 30 | 50% Chance in Surface Nuke Room, HCZ Armory, 096s Room. | 5 | When throwing, will open doors and disconnect SCP-079 if 079 is at that camera.
 Amnesioflux | SCP500 | 31 | 100% Chance in 096s room. | 1 | When consumed, removes you as a target from 096, just make sure you're not looking at him when you take it.
 C4 | Grenade | 32 | 10% Chance in Light Armory, 25% Chance in Heavy Armory, 50% Chance in 049 Armory, 100% Chance in Surface Nuke | 5 | A grenade that can be remotely detonated, requires a radio to detonate (by base).
-SCP-2818 | E11SR | 33 | 10% Chance in MicroHID | 1 | When fired, you are the bullet. This will kill the shooter but will do a lot of damage to the target.
+SCP-2818 [Disabled] | E11SR | 33 | 10% Chance in MicroHID | 1 | When fired, you are the bullet. This will kill the shooter but will do a lot of damage to the target.
 Infinite Pills | Painkillers | 34 | 100% Chance to appear in a Misc Locker | 1 | When consumed, the pills dont go away, it wont heal you however. This is entirely a joke item.
 Cluster Grenade | Grenade | 36 | 15% Chance to appear in Light Armory, Heavy Armory, 049/173 Armory, Surface Nuke | 1 | When exploding, it spawns more grenades.
-Additional Health 207 | Anti SCP-207 | 25% Chance to appear in MicroHID | 1 | When consumed, it adds more health to the player until they die.
+Additional Health 207 | Anti SCP-207 | 37 | 25% Chance to appear in MicroHID | 1 | When consumed, it adds more health to the player until they die.
 
 # Snivy's Server Events
 
@@ -122,7 +122,7 @@ Short People | Makes everyone short
 Chaos Event | Causes chaos in the facility, see below for what Chaos Event can do to a round
 Name Redacted | Removes everyones names
 Freezing Temperatures | The thermostat in the facility broke and its slowly freezing over, best to get out as fast as you can.
-Snowballs Vs SCPs | Causes a snowball fight to start. Currently this event is broken as Snowballs aren't in the game currently
+Snowballs Vs SCPs [Disabled] | Causes a snowball fight to start.
 
 Chaos Event Functions, a lot of this can be customized to your hearts content.
 Function | Description
