@@ -726,6 +726,12 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
                                         MtfFakeoutCassie(cassieMessage, cassieText, scpCount);
 
                                     break;
+                                
+                                default:
+                                    if (_config.FakeoutRespawnAnnouncementsMTFAllow)
+                                        MtfFakeoutCassie(cassieMessage, cassieText, scpCount);
+
+                                    break;
                             }
                         }
 
