@@ -103,6 +103,7 @@ namespace SnivysUltimatePackage.Custom.Items.Other
             _consuming207 = false;
             ev.Player.MaxHealth += HealthToBeAdded;
             ev.Player.Heal(HealthToBeAdded);
+            Timing.CallDelayed(0.25f, () => ev.Player.DisableEffect(EffectType.AntiScp207));
         }
 
         private void OnChangingItem(ChangingItemEventArgs ev)
