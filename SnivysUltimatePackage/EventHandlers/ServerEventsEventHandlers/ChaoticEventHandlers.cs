@@ -58,7 +58,7 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
             for (;;)
             {
                 float chaoticEventCycle = _config.TimeForChaosEvent;
-                int chaosRandomNumber = random.Next(minValue: 1, maxValue: 22);
+                int chaosRandomNumber = random.Next(minValue: 1, maxValue: 23);
                 Log.Debug(chaosRandomNumber);
                 if (_config.ChaosEventEndsOtherEvents)
                 {
@@ -856,6 +856,14 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
                         }
 
                         break;
+                    
+                    default:
+                    {
+                        Log.Debug("VVUP Server Events, Chaotic: Something out of range has occured");
+                        if (_config.ChaoticEventRerollIfASpecificEventIsDisabled)
+                            chaoticEventCycle = 1;
+                        break;
+                    }
                 }
 
                 Log.Debug($"VVUP Server Events, Chaotic: The next event will run in {chaoticEventCycle} seconds");
