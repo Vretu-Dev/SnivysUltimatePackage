@@ -86,6 +86,7 @@ namespace SnivysUltimatePackage
                     Scp1499.Get(typeof(Scp1499)),
                     InfinitePills.Get(typeof(InfinitePills)),
                     ClusterGrenade.Get(typeof(ClusterGrenade)),
+                    AdditionalHealth207.Get(typeof(AdditionalHealth207))
                 };
 
                 foreach (var itemCollection in customItems)
