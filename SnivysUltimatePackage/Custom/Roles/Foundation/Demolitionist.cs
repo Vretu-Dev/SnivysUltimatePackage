@@ -26,7 +26,7 @@ namespace SnivysUltimatePackage.Custom.Roles.Foundation
             "<color=#FF0000>C4</color>",
             "<color=#FF0000>C4</color>",
             "<color=#FF0000>C4</color>",
-            ItemType.GrenadeHE.ToString(),
+            "<color=#FF0000>Cluster Grenade</color>",
             ItemType.GrenadeHE.ToString(),
             ItemType.Radio.ToString(),
         };
