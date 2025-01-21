@@ -108,6 +108,7 @@ namespace SnivysUltimatePackage.Custom.Items.Firearms
             ExplosiveGrenade grenade = (ExplosiveGrenade)Item.Create(ItemType.GrenadeHE);
             grenade.FuseTime = FuseTime;
             grenade.ScpDamageMultiplier = ScpGrenadeDamageMultiplier;
+            grenade.ChangeItemOwner(null, ev.Player);
             grenade.ChangeItemOwner(Server.Host, ev.Player);
             grenade.SpawnActive(ev.Position);
         }

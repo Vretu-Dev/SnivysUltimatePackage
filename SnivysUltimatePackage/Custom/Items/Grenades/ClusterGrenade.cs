@@ -80,6 +80,7 @@ namespace SnivysUltimatePackage.Custom.Items.Grenades
                 grenade.FuseTime = 0.25f;
                 grenade.ScpDamageMultiplier = 0.5f;
                 Log.Debug($"VVUP Custom Items: Cluster Grenade, setting grenades ownership from the server to {ev.Player.Nickname}");
+                grenade.ChangeItemOwner(null, ev.Player);
                 grenade.SpawnActive(ev.Position, ev.Player);
                 grenade.FuseTime = ClusterGrenadeFuseTime;
                 grenade.ScpDamageMultiplier = 3;
@@ -89,6 +90,7 @@ namespace SnivysUltimatePackage.Custom.Items.Grenades
                         $"VVUP Custom Items: Cluster Grenade, spawning {ClusterGrenadeCount - i} more grenades at {ev.Position}");
                     //grenade.Base.Owner = ev.Player.ReferenceHub;
                     //I am so confused why no work on owner
+                    grenade.ChangeItemOwner(null, ev.Player);
                     grenade.SpawnActive(GrenadeOffset(ev.Position), owner: ev.Player);
                 }
             });
