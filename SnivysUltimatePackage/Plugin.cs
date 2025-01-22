@@ -35,7 +35,7 @@ namespace SnivysUltimatePackage
         public ServerEventsMainEventHandler ServerEventsMainEventHandler;
         public MicroDamageReductionEventHandler MicroDamageReductionEventHandler;
         public MicroEvaporateEventHandlers MicroEvaporateEventHandlers;
-        public FlamingoAdjustmentEventHandlers FlamingoAdjustmentEventHandlers;
+        //public FlamingoAdjustmentEventHandlers FlamingoAdjustmentEventHandlers;
         public EscapeDoorOpenerEventHandlers EscapeDoorOpenerEventHandlers;
         public Scp1576SpectatorViewerEventHandlers Scp1576SpectatorViewerEventHandlers;
         public SsssEventHandler SsssEventHandler;
@@ -125,8 +125,8 @@ namespace SnivysUltimatePackage
             Player.Dying += MicroEvaporateEventHandlers.OnDying;
                 
             //Flamingo Adjustment
-            FlamingoAdjustmentEventHandlers = new FlamingoAdjustmentEventHandlers(this);
-            Player.Hurting += FlamingoAdjustmentEventHandlers.OnHurting;
+            //FlamingoAdjustmentEventHandlers = new FlamingoAdjustmentEventHandlers(this);
+            //Player.Hurting += FlamingoAdjustmentEventHandlers.OnHurting;
                 
             //Escape Door Opener
             EscapeDoorOpenerEventHandlers = new EscapeDoorOpenerEventHandlers(this);
@@ -170,8 +170,8 @@ namespace SnivysUltimatePackage
             MicroEvaporateEventHandlers = null;
             
             //Flamingo Adjustment Event Handler
-            Player.Hurting -= FlamingoAdjustmentEventHandlers.OnHurting;
-            FlamingoAdjustmentEventHandlers = null;
+            //Player.Hurting -= FlamingoAdjustmentEventHandlers.OnHurting;
+            //FlamingoAdjustmentEventHandlers = null;
             
             //Escape Door Opener Event Handler
             Server.RoundStarted -= EscapeDoorOpenerEventHandlers.OnRoundStarted;

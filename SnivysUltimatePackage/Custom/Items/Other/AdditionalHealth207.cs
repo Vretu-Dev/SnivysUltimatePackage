@@ -89,7 +89,7 @@ namespace SnivysUltimatePackage.Custom.Items.Other
                 return;
             }
 
-            if (ev.Player.MaxHealth >= MaxUserHpLimit && CapMaxHealth)
+            if (CapMaxHealth && ev.Player.MaxHealth >= MaxUserHpLimit)
             {
                 Log.Debug(
                     $"VVUP Custom Items: Additional Health 207, {ev.Player.Nickname} tried using Additional Health 207, " +

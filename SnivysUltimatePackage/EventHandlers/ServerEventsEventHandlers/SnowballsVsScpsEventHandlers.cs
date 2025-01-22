@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿/*using System.Collections.Generic;
 using System.Linq;
 using Exiled.API.Enums;
 using Exiled.API.Features;
@@ -123,4 +123,4 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
             PlayersInOverwatchFromEvent.Clear();
         }
     }
-}
+}*/

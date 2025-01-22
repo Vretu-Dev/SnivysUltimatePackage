@@ -141,7 +141,7 @@ namespace SnivysUltimatePackage.Custom.Items.Firearms
         {
             if (ev.Attacker == ev.Player)
                 return;
-            
+
             ev.Amount = Damage;
 
             if (ev.Player.Role.Team == Team.SCPs)
