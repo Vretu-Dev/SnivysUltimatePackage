@@ -73,26 +73,28 @@ namespace SnivysUltimatePackage.Custom.Items.Grenades
             scp244.MaxDiameter = 0f;
             pickup = scp244.CreatePickup(grenadePosition);
             nerveAgentHandle = Timing.RunCoroutine(NerveAgentCoroutine());
-            Timing.CallDelayed(NerveAgentDuration, () =>
-            {
-                Timing.KillCoroutines(nerveAgentHandle);
-                pickup.Position += Vector3.down;
-                pickup.Position += Vector3.down;
-                pickup.Position += Vector3.down;
-                pickup.Position += Vector3.down;
-                pickup.Position += Vector3.down;
-                Timing.CallDelayed(5, () =>
-                {
-                    Log.Debug("VVUP Custom Items: Nerve Agent, Ending Routine");
-                    scp244.Destroy();
-                });
-            });
         }
 
         public IEnumerator<float> NerveAgentCoroutine()
         {
+            float timeRemaining = NerveAgentDuration;
             for (;;)
             {
+                if (timeRemaining <= 0 || Round.IsEnded || Round.IsLobby)
+                {
+                    pickup.Position += Vector3.down;
+                    pickup.Position += Vector3.down;
+                    pickup.Position += Vector3.down;
+                    pickup.Position += Vector3.down;
+                    pickup.Position += Vector3.down;
+                    Timing.CallDelayed(5, () =>
+                    {
+                        Log.Debug("VVUP Custom Items: Nerve Agent, Ending Routine");
+                        pickup.Destroy();
+                    });
+                    Timing.KillCoroutines(nerveAgentHandle);
+                    yield break;
+                }
                 foreach (PlayerAPI player in PlayerAPI.List)
                 {
                     if(Vector3.Distance(player.Position, grenadePosition) <= NerveAgentRadius)
@@ -101,6 +103,8 @@ namespace SnivysUltimatePackage.Custom.Items.Grenades
                         player.Hurt(NerveAgentImmediateDamage, DamageType.Poison);
                     }
                 }
+
+                timeRemaining -= 0.5f;
                 yield return Timing.WaitForSeconds(0.5f);
             }
         }
