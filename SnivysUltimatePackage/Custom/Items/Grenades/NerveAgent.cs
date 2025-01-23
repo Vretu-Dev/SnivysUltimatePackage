@@ -92,6 +92,7 @@ namespace SnivysUltimatePackage.Custom.Items.Grenades
                         Log.Debug("VVUP Custom Items: Nerve Agent, Ending Routine");
                         pickup.Destroy();
                     });
+                    grenadePosition = Vector3.zero;
                     Timing.KillCoroutines(nerveAgentHandle);
                     yield break;
                 }
