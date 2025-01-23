@@ -18,6 +18,7 @@ using MEC;
 using Mirror;
 using PlayerRoles;
 using UnityEngine;
+using YamlDotNet.Serialization;
 using DamageType = PluginAPI.Enums.DamageType;
 using Item = Exiled.API.Features.Items.Item;
 using PlayerAPI = Exiled.API.Features.Player;
@@ -30,6 +31,7 @@ namespace SnivysUltimatePackage.Custom.Items.Firearms
     [CustomItem(ItemType.GunCOM18)]
     public class Tranquilizer : CustomWeapon
     {
+        [YamlIgnore]
         public override ItemType Type { get; set; } = ItemType.GunCOM18;
         public override uint Id { get; set; } = 28;
         public override string Name { get; set; } = "<color=#0096FF>Silent Serenade</color>";
