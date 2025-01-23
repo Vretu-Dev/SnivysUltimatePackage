@@ -66,8 +66,9 @@ namespace SnivysUltimatePackage.Custom.Items.Grenades
         public override float FuseTime { get; set; } = 5;
         [Description("How long is the additional grenades fuse times")]
         public float ClusterGrenadeFuseTime { get; set; } = 1.5f;
-
         public int ClusterGrenadeCount { get; set; } = 5;
+        [Description("Enables a random spread of the cluster grenades, if its off it will spawn all of them on top of the detonation point")]
+        public bool ClusterGrenadeRandomSpread { get; set; } = true;
 
         protected override void OnExploding(ExplodingGrenadeEventArgs ev)
         {
@@ -88,10 +89,11 @@ namespace SnivysUltimatePackage.Custom.Items.Grenades
                 {
                     Log.Debug(
                         $"VVUP Custom Items: Cluster Grenade, spawning {ClusterGrenadeCount - i} more grenades at {ev.Position}");
-                    //grenade.Base.Owner = ev.Player.ReferenceHub;
-                    //I am so confused why no work on owner
                     grenade.ChangeItemOwner(null, ev.Player);
-                    grenade.SpawnActive(GrenadeOffset(ev.Position), owner: ev.Player);
+                    if (ClusterGrenadeRandomSpread)
+                        grenade.SpawnActive(GrenadeOffset(ev.Position), owner: ev.Player);
+                    else
+                        grenade.SpawnActive(ev.Position, owner: ev.Player);
                 }
             });
         }

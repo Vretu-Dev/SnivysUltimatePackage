@@ -137,10 +137,13 @@ namespace SnivysUltimatePackage
             Player.UsedItem += Scp1576SpectatorViewerEventHandlers.OnUsingItem;
             
             //SSSS
-            SsssEventHandler = new SsssEventHandler(this);
-            Server.RoundStarted += SsssEventHandler.OnRoundStarted;
-            ServerSpecificSettingsSync.ServerOnSettingValueReceived += SsssEventHandler.OnSettingValueReceived;
-            
+            if (Instance.Config.SsssConfig.IsEnabled)
+            {
+                SsssEventHandler = new SsssEventHandler(this);
+                Server.RoundStarted += SsssEventHandler.OnRoundStarted;
+                ServerSpecificSettingsSync.ServerOnSettingValueReceived += SsssEventHandler.OnSettingValueReceived;
+            }
+
             base.OnEnabled();
         }
 

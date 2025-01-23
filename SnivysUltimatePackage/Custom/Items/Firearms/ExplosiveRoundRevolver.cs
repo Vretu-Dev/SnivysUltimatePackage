@@ -8,6 +8,7 @@ using Exiled.CustomItems.API.Features;
 using Exiled.Events.EventArgs.Item;
 using Exiled.Events.EventArgs.Player;
 using InventorySystem.Items.Firearms.Attachments;
+using InventorySystem.Items.ThrowableProjectiles;
 using JetBrains.Annotations;
 using MEC;
 using YamlDotNet.Serialization;
@@ -105,12 +106,12 @@ namespace SnivysUltimatePackage.Custom.Items.Firearms
                 return;
             Log.Debug($"VVUP Custom Items: Explosive Round Revolver, spawning grenade at {ev.Position}");
             ev.CanHurt = false;
+            
             ExplosiveGrenade grenade = (ExplosiveGrenade)Item.Create(ItemType.GrenadeHE);
             grenade.FuseTime = FuseTime;
             grenade.ScpDamageMultiplier = ScpGrenadeDamageMultiplier;
-            grenade.ChangeItemOwner(null, ev.Player);
             grenade.ChangeItemOwner(Server.Host, ev.Player);
-            grenade.SpawnActive(ev.Position);
+            grenade.SpawnActive(ev.Position, owner: ev.Player);
         }
     }
 }

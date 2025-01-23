@@ -45,7 +45,7 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
             foreach (PlayerAPI player in PlayerAPI.List)
             {
                 Log.Debug($"VVUP Server Events, Name Redacted: Restoring {player.Nickname} name");
-                player.DisplayNickname = player.Nickname;
+                player.DisplayNickname = null;
             }
         }
     }
