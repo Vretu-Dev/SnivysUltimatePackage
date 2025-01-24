@@ -297,7 +297,7 @@ namespace SnivysUltimatePackage.Custom.Items.Firearms
             if (Warhead.IsDetonated && player.Zone != ZoneType.Surface)
             {
                 Log.Debug($"VVUP Custom Items: Tranquilizer, {player.Nickname}'s is in the facility when nuke went off, killing them");
-                player.Kill((Exiled.API.Enums.DamageType)DamageType.Warhead);
+                player.Kill(Exiled.API.Enums.DamageType.Warhead);
             }
             
             player.Position = oldPos;

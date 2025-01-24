@@ -2,7 +2,7 @@
 {
     public class SsssConfig
     {
-        public bool IsEnabled { get; set; } = true;
+        public bool IsEnabled { get; set; } = false;
 
         public int ActiveCamoId { get; set; } = 10000;
         public int ChargeId { get; set; } = 10001;

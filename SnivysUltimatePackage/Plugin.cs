@@ -25,7 +25,7 @@ namespace SnivysUltimatePackage
         public override string Author { get; } = "Vicious Vikki";
         public override string Prefix { get; } = "VVUltimatePluginPackage";
         public override Version Version { get; } = new Version(2, 1, 1);
-        public override Version RequiredExiledVersion { get; } = new Version(9, 4, 0);
+        public override Version RequiredExiledVersion { get; } = new Version(9, 5, 0);
         
         public static int ActiveEvent = 0;
         
