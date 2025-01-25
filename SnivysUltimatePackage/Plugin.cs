@@ -24,7 +24,7 @@ namespace SnivysUltimatePackage
         public override string Name { get; } = "Snivy's Ultimate Plugin Package";
         public override string Author { get; } = "Vicious Vikki";
         public override string Prefix { get; } = "VVUltimatePluginPackage";
-        public override Version Version { get; } = new Version(2, 1, 1);
+        public override Version Version { get; } = new Version(2, 1, 2);
         public override Version RequiredExiledVersion { get; } = new Version(9, 5, 0);
         
         public static int ActiveEvent = 0;
@@ -111,31 +111,46 @@ namespace SnivysUltimatePackage
                 CustomAbility.RegisterAbilities();
                 
             // Server Events
-            ServerEventsMainEventHandler = new ServerEventsMainEventHandler(this);
-            Server.RoundStarted += ServerEventsMainEventHandler.OnRoundStart;
-            Server.RoundEnded += ServerEventsMainEventHandler.OnEndingRound;
-            Server.WaitingForPlayers += ServerEventsMainEventHandler.OnWaitingForPlayers;
+            if (Instance.Config.ServerEventsMasterConfig.IsEnabled)
+            {
+                ServerEventsMainEventHandler = new ServerEventsMainEventHandler(this);
+                Server.RoundStarted += ServerEventsMainEventHandler.OnRoundStart;
+                Server.RoundEnded += ServerEventsMainEventHandler.OnEndingRound;
+                Server.WaitingForPlayers += ServerEventsMainEventHandler.OnWaitingForPlayers;
+            }
                 
             //Micro Damage Reduction
-            MicroDamageReductionEventHandler = new MicroDamageReductionEventHandler(this);
-            Player.Hurting += MicroDamageReductionEventHandler.OnPlayerHurting;
-                
+            if (Instance.Config.MicroDamageReductionConfig.IsEnabled)
+            {
+                MicroDamageReductionEventHandler = new MicroDamageReductionEventHandler(this);
+                Player.Hurting += MicroDamageReductionEventHandler.OnPlayerHurting;
+            }
+
             //Micro Evaporate
-            MicroEvaporateEventHandlers = new MicroEvaporateEventHandlers(this);
-            Player.Dying += MicroEvaporateEventHandlers.OnDying;
-                
+            if (Instance.Config.MicroEvaporateConfig.IsEnabled)
+            {
+                MicroEvaporateEventHandlers = new MicroEvaporateEventHandlers(this);
+                Player.Dying += MicroEvaporateEventHandlers.OnDying;
+            }
+
             //Flamingo Adjustment
             //FlamingoAdjustmentEventHandlers = new FlamingoAdjustmentEventHandlers(this);
             //Player.Hurting += FlamingoAdjustmentEventHandlers.OnHurting;
                 
             //Escape Door Opener
-            EscapeDoorOpenerEventHandlers = new EscapeDoorOpenerEventHandlers(this);
-            Server.RoundStarted += EscapeDoorOpenerEventHandlers.OnRoundStarted;
-                
+            if (Instance.Config.EscapeDoorOpenerConfig.IsEnabled)
+            {
+                EscapeDoorOpenerEventHandlers = new EscapeDoorOpenerEventHandlers(this);
+                Server.RoundStarted += EscapeDoorOpenerEventHandlers.OnRoundStarted;
+            }
+
             //SCP 1576 Spectator Viewer
-            Scp1576SpectatorViewerEventHandlers = new Scp1576SpectatorViewerEventHandlers(this);
-            Player.UsedItem += Scp1576SpectatorViewerEventHandlers.OnUsingItem;
-            
+            if (Instance.Config.Scp1576SpectatorViewerConfig.IsEnabled)
+            {
+                Scp1576SpectatorViewerEventHandlers = new Scp1576SpectatorViewerEventHandlers(this);
+                Player.UsedItem += Scp1576SpectatorViewerEventHandlers.OnUsingItem;
+            }
+
             //SSSS
             if (Instance.Config.SsssConfig.IsEnabled)
             {
