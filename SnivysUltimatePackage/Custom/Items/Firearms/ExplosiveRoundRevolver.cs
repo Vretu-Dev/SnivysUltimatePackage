@@ -70,14 +70,14 @@ namespace SnivysUltimatePackage.Custom.Items.Firearms
         protected override void SubscribeEvents()
         {
             Player.Shot += OnShot;
-            Player.ReloadingWeapon += OnReloading;
+            //Player.ReloadingWeapon += OnReloading;
             Exiled.Events.Handlers.Item.ChangingAttachments += OnChangingAttachments;
         }
 
         protected override void UnsubscribeEvents()
         {
             Player.Shot -= OnShot;
-            Player.ReloadingWeapon -= OnReloading;
+            //Player.ReloadingWeapon -= OnReloading;
             Exiled.Events.Handlers.Item.ChangingAttachments -= OnChangingAttachments;
         }
         
@@ -89,7 +89,7 @@ namespace SnivysUltimatePackage.Custom.Items.Firearms
                 ev.IsAllowed = false;
             }
         }
-        private void OnReloading(ReloadingWeaponEventArgs ev)
+       /* private void OnReloading(ReloadingWeaponEventArgs ev)
         {
             if (!Check(ev.Player.CurrentItem))
                 return;
@@ -98,7 +98,7 @@ namespace SnivysUltimatePackage.Custom.Items.Firearms
                 Log.Debug($"VVUP Custom Items: Explosive Round Revolver, {ev.Player.Nickname} has started reloading, setting correct ammo");
                 ev.Firearm.MagazineAmmo = ClipSize;
             });
-        }
+        }*/
         
         private void OnShot(ShotEventArgs ev)
         {
