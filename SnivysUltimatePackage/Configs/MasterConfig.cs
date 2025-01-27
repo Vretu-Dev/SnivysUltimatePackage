@@ -30,8 +30,8 @@ namespace SnivysUltimatePackage.Configs
         public MicroEvaporateConfig MicroEvaporateConfig { get; set; } = null!;
         [YamlIgnore]
         public VoteConfig VoteConfig { get; set; } = null!;
-        [YamlIgnore]
-        public FlamingoAdjustmentsConfig FlamingoAdjustmentsConfig { get; set; } = null!;
+        /*[YamlIgnore]
+        public FlamingoAdjustmentsConfig FlamingoAdjustmentsConfig { get; set; } = null!;*/
         [YamlIgnore]
         public EscapeDoorOpenerConfig EscapeDoorOpenerConfig { get; set; } = null!;
         [YamlIgnore]
@@ -143,7 +143,7 @@ namespace SnivysUltimatePackage.Configs
                 File.WriteAllText(vFilePath, Loader.Serializer.Serialize(VoteConfig));
             }
             
-            string fFilePath = Path.Combine(ConfigFolder, FlamingoAdjustmentsConfigFile);
+            /*string fFilePath = Path.Combine(ConfigFolder, FlamingoAdjustmentsConfigFile);
             if (!File.Exists(fFilePath))
             {
                 FlamingoAdjustmentsConfig = new FlamingoAdjustmentsConfig();
@@ -153,7 +153,7 @@ namespace SnivysUltimatePackage.Configs
             {
                 FlamingoAdjustmentsConfig = Loader.Deserializer.Deserialize<FlamingoAdjustmentsConfig>(File.ReadAllText(fFilePath));
                 File.WriteAllText(fFilePath, Loader.Serializer.Serialize(FlamingoAdjustmentsConfig));
-            }
+            }*/
             
             string edoFilePath = Path.Combine(ConfigFolder, EscapeDoorOpenerConfigFile);
             if (!File.Exists(edoFilePath))

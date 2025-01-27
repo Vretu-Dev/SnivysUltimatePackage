@@ -1,4 +1,4 @@
-﻿namespace SnivysUltimatePackage.Configs
+﻿/*namespace SnivysUltimatePackage.Configs
 {
     public class FlamingoAdjustmentsConfig
     {
@@ -8,4 +8,4 @@
         
         public float ScpDamageMultiplier { get; set; } = 1.5f;
     }
-}
+}*/
