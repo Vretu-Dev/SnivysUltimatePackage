@@ -18,9 +18,11 @@ namespace SnivysUltimatePackage.EventHandlers
                 return;
             if (Plugin.Instance.Config.MicroDamageReductionConfig.ScpDamageReduction == null)
                 return;
+            if (ev.DamageHandler.Type != DamageType.MicroHid)
+                return;
             
             Log.Debug("VVUP Micro Damage Reduction: Checking if damage can be reduced");
-            if (ev.Attacker != ev.Player && ev.DamageHandler.Type == DamageType.MicroHid &&
+            if (ev.Attacker != ev.Player &&
                 Plugin.Instance.Config.MicroDamageReductionConfig.ScpDamageReduction.Contains(ev.Player.Role))
             {
                 if (Plugin.Instance.Config.MicroDamageReductionConfig.ScpDamageReductionValue == 0)
