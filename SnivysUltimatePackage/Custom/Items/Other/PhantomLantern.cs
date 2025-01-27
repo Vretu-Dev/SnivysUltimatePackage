@@ -98,8 +98,12 @@ namespace SnivysUltimatePackage.Custom.Items.Other
 
         private void UsingFlashlight(TogglingFlashlightEventArgs ev)
         {
-            if (_playersWithEffect.Contains(ev.Player))
-                return;
+            if (_playersWithEffect.Contains(ev.Player) && Check(ev.Player.CurrentItem))
+            {
+                Log.Debug("VVUP Custom Items: Phantom Lantern, Disabling Effects");
+                EndOfEffect(ev.Player);
+            }
+                
             if (!Check(ev.Player.CurrentItem))
                 return;
             Log.Debug("VVUP Custom Items: Activating Phantom Lantern Effects");
