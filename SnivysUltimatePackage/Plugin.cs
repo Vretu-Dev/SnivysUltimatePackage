@@ -73,13 +73,15 @@ namespace SnivysUltimatePackage
                 Config.CustomRolesConfig.Demolitionists.Register();
                 
                 //Free Custom Roles
-                Config.CustomRolesConfig.FreeCustomRoles1.Register();
-                Config.CustomRolesConfig.FreeCustomRoles2.Register();
-                Config.CustomRolesConfig.FreeCustomRoles3.Register();
-                Config.CustomRolesConfig.FreeCustomRoles4.Register();
-                Config.CustomRolesConfig.FreeCustomRoles5.Register();
-                
-                
+                if (Instance.Config.CustomRolesConfig.EnableFreeCustomRoles)
+                {
+                    Config.CustomRolesConfig.FreeCustomRoles1.Register();
+                    Config.CustomRolesConfig.FreeCustomRoles2.Register();
+                    Config.CustomRolesConfig.FreeCustomRoles3.Register();
+                    Config.CustomRolesConfig.FreeCustomRoles4.Register();
+                    Config.CustomRolesConfig.FreeCustomRoles5.Register();
+                }
+
                 foreach (CustomRole role in CustomRole.Registered)
                 {
                     if (role is ICustomRole custom)

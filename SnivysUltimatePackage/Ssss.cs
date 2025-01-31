@@ -11,6 +11,7 @@ using SnivysUltimatePackage.Custom.Items.Other;
 using SnivysUltimatePackage.Custom.Roles.Chaos;
 using SnivysUltimatePackage.Custom.Roles.ClassD;
 using SnivysUltimatePackage.Custom.Roles.Foundation;
+using SnivysUltimatePackage.Custom.Roles.OpenCustomRoles;
 using SnivysUltimatePackage.Custom.Roles.Other;
 using SnivysUltimatePackage.Custom.Roles.Scientist;
 using SnivysUltimatePackage.Custom.Roles.Scps;
@@ -48,6 +49,29 @@ namespace SnivysUltimatePackage
                     TelepathicChaos.Get(typeof(TelepathicChaos)),
                 };
 
+                if (Plugin.Instance.Config.CustomRolesConfig.EnableFreeCustomRoles)
+                {
+                    var freeCustomRoles = new List<CustomRole>
+                    {
+                        FreeCustomRole1.Get(typeof(FreeCustomRole1)),
+                        FreeCustomRole2.Get(typeof(FreeCustomRole2)),
+                        FreeCustomRole3.Get(typeof(FreeCustomRole3)),
+                        FreeCustomRole4.Get(typeof(FreeCustomRole4)),
+                        FreeCustomRole5.Get(typeof(FreeCustomRole5)),
+                    };
+                    foreach (var role in freeCustomRoles)
+                    {
+                        if (role == null || role.CustomAbilities == null) continue;
+
+                        stringBuilder.AppendLine($"Role: {role.Name}");
+                        stringBuilder.AppendLine($"- Description: {role.Description}");
+                        foreach (var ability in role.CustomAbilities)
+                        {
+                            stringBuilder.AppendLine($"-- Ability: {ability.Name}, {ability.Description}");
+                        }
+                    }
+                }
+
                 foreach (var role in customRoles)
                 {
                     if (role == null || role.CustomAbilities == null) continue;
@@ -59,7 +83,7 @@ namespace SnivysUltimatePackage
                         stringBuilder.AppendLine($"-- Ability: {ability.Name}, {ability.Description}");
                     }
                 }
-
+                
                 settings.Add(new SSGroupHeader("VV Custom Roles Info"));
                 settings.Add(new SSTextArea(null, StringBuilderPool.Shared.ToStringReturn(stringBuilder),
                     SSTextArea.FoldoutMode.CollapsedByDefault));

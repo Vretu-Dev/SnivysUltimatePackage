@@ -14,6 +14,9 @@ namespace SnivysUltimatePackage.Configs.CustomConfigs
     {
         [Description("Enables Custom Roles")]
         public bool IsEnabled { get; set; } = true;
+
+        [Description("Enables the 5 free custom roles")]
+        public bool EnableFreeCustomRoles { get; set; } = false;
         
         public List<ContainmentScientist> ContainmentScientists { get; set; } = new()
         {
