@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿/*using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using Exiled.API.Enums;
@@ -90,17 +90,6 @@ namespace SnivysUltimatePackage.Custom.Items.Firearms
             //PlayerEvent.Hurting -= OnHurting;
             //PlayerEvent.ReloadingWeapon -= OnReloading;
         }
-        
-        /*private void OnReloading(ReloadingWeaponEventArgs ev)
-        {
-            if (!Check(ev.Player.CurrentItem))
-                return;
-            Timing.CallDelayed(4f, () =>
-            {
-                Log.Debug($"VVUP Custom Items: Medigun, {ev.Player.Nickname} has started reloading, setting correct ammo");
-                ev.Firearm.MagazineAmmo = ClipSize - 1;
-            });
-        }*/
         protected override void OnHurting(HurtingEventArgs ev)
         {
             if (ev.Attacker == ev.Player) 
@@ -150,4 +139,4 @@ namespace SnivysUltimatePackage.Custom.Items.Firearms
                 ev.Amount = Damage;
         }
     }
-}
+}*/

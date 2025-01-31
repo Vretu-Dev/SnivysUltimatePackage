@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
-using SnivysUltimatePackage.Custom.Roles;
 using SnivysUltimatePackage.Custom.Roles.Chaos;
 using SnivysUltimatePackage.Custom.Roles.ClassD;
 using SnivysUltimatePackage.Custom.Roles.Foundation;
+using SnivysUltimatePackage.Custom.Roles.OpenCustomRoles;
 using SnivysUltimatePackage.Custom.Roles.Other;
 using SnivysUltimatePackage.Custom.Roles.Scientist;
 using SnivysUltimatePackage.Custom.Roles.Scps;
@@ -89,6 +89,28 @@ namespace SnivysUltimatePackage.Configs.CustomConfigs
         public List<Demolitionist> Demolitionists { get; set; } = new()
         {
             new Demolitionist(),
+        };
+        
+        [Description("These custom roles are for the server owner to make some custom roles themselves, there will be no support for any custom roles that you make with these")]
+        public List<FreeCustomRole1> FreeCustomRoles1 { get; set; } = new()
+        {
+            new FreeCustomRole1(),
+        };
+        public List<FreeCustomRole2> FreeCustomRoles2 { get; set; } = new()
+        {
+            new FreeCustomRole2(),
+        };
+        public List<FreeCustomRole3> FreeCustomRoles3 { get; set; } = new()
+        {
+            new FreeCustomRole3(),
+        };
+        public List<FreeCustomRole4> FreeCustomRoles4 { get; set; } = new()
+        {
+            new FreeCustomRole4(),
+        };
+        public List<FreeCustomRole5> FreeCustomRoles5 { get; set; } = new()
+        {
+            new FreeCustomRole5(),
         };
     }
 }
