@@ -7,10 +7,9 @@ using SnivysUltimatePackage.API;
 
 namespace SnivysUltimatePackage.Custom.Roles.Foundation
 {
-    public class Demolitionist : CustomRole
+    public class Demolitionist : CustomRole, ICustomRole
     {
         public int Chance { get; set; } = 15;
-
         public StartTeam StartTeam { get; set; } = StartTeam.Ntf;
         public override uint Id { get; set; } = 47;
         public override RoleTypeId Role { get; set; } = RoleTypeId.NtfSpecialist;
