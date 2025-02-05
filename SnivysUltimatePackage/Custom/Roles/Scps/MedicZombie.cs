@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Exiled.API.Enums;
+using Exiled.API.Features.Spawn;
 using Exiled.CustomRoles.API.Features;
 using PlayerRoles;
 using SnivysUltimatePackage.API;
@@ -36,6 +37,10 @@ namespace SnivysUltimatePackage.Custom.Roles.Scps
                 Name = "Healing Mist [Active]",
                 Description = "Emits an invisible mist that can heal other SCPs",
             },
+        };
+        public override SpawnProperties SpawnProperties { get; set; } = new()
+        {
+            Limit = 5,
         };
     }
 }

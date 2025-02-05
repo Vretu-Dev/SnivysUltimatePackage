@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Exiled.API.Features.Spawn;
 using Exiled.CustomRoles.API.Features;
 using PlayerRoles;
 using SnivysUltimatePackage.API;
@@ -23,6 +24,10 @@ namespace SnivysUltimatePackage.Custom.Roles.ClassD
                 Name = "Lock-picking Ability [Active]",
                 Description = "Allows you to open any door for a short period of time, but limited by some external factors",
             }
+        };
+        public override SpawnProperties SpawnProperties { get; set; } = new()
+        {
+            Limit = 1,
         };
     }
 }

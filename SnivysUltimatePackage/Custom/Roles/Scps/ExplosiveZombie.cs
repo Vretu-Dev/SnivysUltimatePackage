@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Exiled.API.Features.Spawn;
 using Exiled.CustomRoles.API.Features;
 using PlayerRoles;
 using SnivysUltimatePackage.API;
@@ -32,6 +33,10 @@ namespace SnivysUltimatePackage.Custom.Roles.Scps
                 Description = "Removes friendly fire to your team",
                 TimeBeforeRemovingAbility = 1f,
             },
+        };
+        public override SpawnProperties SpawnProperties { get; set; } = new()
+        {
+            Limit = 5,
         };
     }
 }

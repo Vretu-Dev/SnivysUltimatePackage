@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Exiled.API.Features.Spawn;
 using Exiled.CustomRoles.API.Features;
 using PlayerRoles;
 using SnivysUltimatePackage.API;
@@ -27,6 +28,10 @@ namespace SnivysUltimatePackage.Custom.Roles.Scps
                 Description = "Makes you small as a dwarf zombie",
                 ScaleForPlayers = new Vector3(0.75f, 0.75f, 0.75f),
             },
+        };
+        public override SpawnProperties SpawnProperties { get; set; } = new()
+        {
+            Limit = 5,
         };
     }
 }
