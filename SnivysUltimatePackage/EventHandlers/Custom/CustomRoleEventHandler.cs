@@ -27,7 +27,7 @@ namespace SnivysUltimatePackage.EventHandlers.Custom
 
             foreach (KeyValuePair<StartTeam, List<ICustomRole>> kvp in Plugin.Roles)
             {
-                Log.Debug($"Setting enumerator for {kvp.Key} - {kvp.Value.Count}");
+                Log.Debug($"VVUP Custom Roles: Setting enumerator for {kvp.Key} - {kvp.Value.Count}");
                 switch (kvp.Key)
                 {
                     case StartTeam.ClassD:
@@ -48,7 +48,7 @@ namespace SnivysUltimatePackage.EventHandlers.Custom
 
             foreach (Player player in Player.List)
             {
-                Log.Debug($"Trying to give {player.Nickname} a role | {player.Role.Type}");
+                Log.Debug($"VVUP Custom Roles: Trying to give {player.Nickname} a role | {player.Role.Type}");
                 CustomRole? role = null;
                 switch (player.Role.Type)
                 {
@@ -86,7 +86,7 @@ namespace SnivysUltimatePackage.EventHandlers.Custom
             if (ev.Players.Count == 0)
             {
                 Log.Warn(
-                    $"{nameof(OnRespawningTeam)}: The respawn list is empty ?!? -- {ev.NextKnownTeam} / {ev.MaximumRespawnAmount}");
+                    $"VVUP Custom Roles: {nameof(OnRespawningTeam)}: The respawn list is empty ?!? -- {ev.NextKnownTeam} / {ev.MaximumRespawnAmount}");
 
                 foreach (Player player in Player.Get(RoleTypeId.Spectator))
                     ev.Players.Add(player);
@@ -124,16 +124,31 @@ namespace SnivysUltimatePackage.EventHandlers.Custom
         {
             if (!Plugin.Instance.Config.CustomRolesConfig.IsEnabled)
                 return;
-            Log.Debug($"{nameof(FinishingRecall)}: Selecting random zombie role.");
+            Log.Debug($"VVUP Custom Roles: {nameof(FinishingRecall)}: Selecting random zombie role.");
             if (Plugin.Roles.ContainsKey(StartTeam.Scp) && ev.Target is not null)
             {
-                Log.Debug($"{nameof(FinishingRecall)}: List count {Plugin.Roles[StartTeam.Scp].Count}");
+                Log.Debug($"VVUP Custom Roles: {nameof(FinishingRecall)}: List count {Plugin.Roles[StartTeam.Scp].Count}");
                 List<ICustomRole>.Enumerator roles = Plugin.Roles[StartTeam.Scp].GetEnumerator();
                 CustomRole? role = CustomRoleMethods.GetCustomRole(ref roles, false, true);
 
-                Log.Debug($"Got custom role {role?.Name}");
-                if (ev.Target.GetCustomRoles().Count == 0)
-                    role?.AddRole(ev.Target);
+                Log.Debug($"VVUP Custom Roles: Got custom role {role?.Name}");
+
+                if (role != null)
+                {
+                    int activeRoleCount = role.TrackedPlayers.Count;
+                    Log.Debug($"VVUP Custom Roles: Active count for role {role.Name} is {activeRoleCount}");
+
+                    if (activeRoleCount < role.SpawnProperties.Limit)
+                    {
+                        if (ev.Target.GetCustomRoles().Count == 0)
+                            role.AddRole(ev.Target);
+                    }
+                    else
+                    {
+                        Log.Debug($"VVUP Custom Roles: Role {role.Name} has reached its spawn limit. Not Spawning");
+                    }
+                }
+
                 roles.Dispose();
             }
         }

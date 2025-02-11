@@ -18,7 +18,7 @@ namespace SnivysUltimatePackage.EventHandlers.Custom
         {
             try
             {
-                Log.Debug("Getting role from enumerator..");
+                Log.Debug("VVUP Custom Roles: Getting role from enumerator..");
 
                 while (enumerator.MoveNext())
                 {
@@ -34,16 +34,16 @@ namespace SnivysUltimatePackage.EventHandlers.Custom
                             || r > enumerator.Current.Chance)
                         {
                             Log.Debug(
-                                $"Validation check failed | {enumerator.Current.StartTeam} {enumerator.Current.Chance}% || {r}");
+                                $"VVUP Custom Roles: Validation check failed | {enumerator.Current.StartTeam} {enumerator.Current.Chance}% || {r}");
                             continue;
                         }
 
-                        Log.Debug("Returning a role!");
+                        Log.Debug("VVUP Custom Roles: Returning a role!");
                         return (CustomRole)enumerator.Current;
                     }
                 }
 
-                Log.Debug("Cannot move next");
+                Log.Debug("VVUP Custom Roles: Cannot move next");
 
                 return null;
             }
