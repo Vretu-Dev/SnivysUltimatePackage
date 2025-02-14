@@ -4,9 +4,9 @@ I do mean made, any other plugins that I have ported or currently maintain, such
 
 # Installing this plugin
 > [!IMPORTANT]
-> In releases, there is 2 versions available, `SnivysUltimatePackage.dll` and `SnivysUltimatePackageOneConfig.dll`. I would advise using `SnivysUltimatePackage.dll`, due to how many config options there are, mainly with Custom Items and Roles, `SnivysUltimatePackage.dll` seperates each of their configs into a file per section. (I.E. all the custom item config stuff is together and its just that in a file). Some servers may not play nice with `SnivysUltimatePackage.dll` and may throw null pointer errors and things may not work as intended. If this happens, you can try `SnivysUltimatePackageOneConfig.dll` which throws everyone into one config, either your (port)-config.yml (Exiled Combined Configs) or Plugins/VVUltimatePluginPackageOneConfig/(port).yml (Exiled Seperated Configs)
+> In releases, there is 2 versions available, `SnivysUltimatePackage.dll` and `SnivysUltimatePackageOneConfig.dll`. I would advise using `SnivysUltimatePackage.dll`, due to how many config options there are, mainly with Custom Items and Roles, `SnivysUltimatePackage.dll` seperates each of their configs into a file per section. (I.E. all the custom item config stuff is together and its just that in a file). Some servers may not play nice with `SnivysUltimatePackage.dll` and may throw null pointer errors and things may not work as intended. If this happens, you can try `SnivysUltimatePackageOneConfig.dll` which throws everyone into one config, either your `(port)-config.yml` (Exiled Combined Configs) or `Plugins/VVUltimatePluginPackageOneConfig/(port).yml` (Exiled Seperated Configs)
 
-> [!WARNING]
+> [!DANGER]
 > There is no checks in either plugin to see if the other is present. Meaning that you could, in theory, use both plugins provided at the same time on your server. This is highly **NOT RECOMMENDED**, there will most likely be errors as both try to load their configs. In the future there maybe an update that adds a check to see if both are present in your server and disables one.
 
 # Plugin List:
