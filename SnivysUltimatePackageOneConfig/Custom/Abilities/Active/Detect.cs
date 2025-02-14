@@ -6,7 +6,7 @@ using MEC;
 using PlayerRoles;
 using UnityEngine;
 
-namespace SnivysUltimatePackage.Custom.Abilities.Active
+namespace SnivysUltimatePackageOneConfig.Custom.Abilities.Active
 {
     [CustomAbility]
     public class Detect : ActiveAbility

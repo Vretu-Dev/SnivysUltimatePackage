@@ -1,29 +1,29 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Exiled.API.Enums;
 using Exiled.API.Features;
 using Exiled.CustomItems.API.Features;
 using Exiled.CustomRoles.API;
 using Exiled.CustomRoles.API.Features;
-using SnivysUltimatePackage.API;
-using SnivysUltimatePackage.Configs;
-using SnivysUltimatePackage.EventHandlers;
-using SnivysUltimatePackage.EventHandlers.Custom;
-using SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers;
+using SnivysUltimatePackageOneConfig.API;
+using SnivysUltimatePackageOneConfig.Configs;
+using SnivysUltimatePackageOneConfig.EventHandlers;
+using SnivysUltimatePackageOneConfig.EventHandlers.Custom;
+using SnivysUltimatePackageOneConfig.EventHandlers.ServerEventsEventHandlers;
 using UserSettings.ServerSpecific;
 using Player = Exiled.Events.Handlers.Player;
 using Scp049Events = Exiled.Events.Handlers.Scp049;
 using Server = Exiled.Events.Handlers.Server;
 
-namespace SnivysUltimatePackage
+namespace SnivysUltimatePackageOneConfig
 {
     public class Plugin : Plugin<MasterConfig>
     {
         public override PluginPriority Priority { get; } = PluginPriority.Low;
         public static Plugin Instance;
-        public override string Name { get; } = "Snivy's Ultimate Plugin Package";
+        public override string Name { get; } = "Snivy's Ultimate Plugin Package One Config";
         public override string Author { get; } = "Vicious Vikki";
-        public override string Prefix { get; } = "VVUltimatePluginPackage";
+        public override string Prefix { get; } = "VVUltimatePluginPackageOneConfig";
         public override Version Version { get; } = new Version(2, 2, 4);
         public override Version RequiredExiledVersion { get; } = new Version(9, 5, 0);
         
@@ -39,11 +39,10 @@ namespace SnivysUltimatePackage
         public EscapeDoorOpenerEventHandlers EscapeDoorOpenerEventHandlers;
         public Scp1576SpectatorViewerEventHandlers Scp1576SpectatorViewerEventHandlers;
         public SsssEventHandler SsssEventHandler;
-
+        
         public override void OnEnabled()
         {
             Instance = this;
-            Config.LoadConfigs();
             
             //Custom Items
             if (Instance.Config.CustomItemsConfig.IsEnabled)
@@ -169,6 +168,7 @@ namespace SnivysUltimatePackage
                 Server.RoundStarted += SsssEventHandler.OnRoundStarted;
                 ServerSpecificSettingsSync.ServerOnSettingValueReceived += SsssEventHandler.OnSettingValueReceived;
             }
+
             base.OnEnabled();
         }
 
@@ -194,7 +194,7 @@ namespace SnivysUltimatePackage
             MicroDamageReductionEventHandler = null;
             
             //Micro Evaporate Players Event Handler
-            Player.Dying -= MicroEvaporateEventHandlers.OnDying;
+            Player.Dying -= MicroEvaporateEventHandlers.OnDying; 
             MicroEvaporateEventHandlers = null;
             
             //Flamingo Adjustment Event Handler
