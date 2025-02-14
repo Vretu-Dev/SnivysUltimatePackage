@@ -2,7 +2,14 @@ Snivy's Ultimate Package contains all of the plugins I have made into one mega p
 
 I do mean made, any other plugins that I have ported or currently maintain, such as Serpents Hand, UIU Rescue Squad, etc is not included here.
 
-Plugin List:
+# Installing this plugin
+> [!IMPORTANT]
+> In releases, there is 2 versions available, `SnivysUltimatePackage.dll` and `SnivysUltimatePackageOneConfig.dll`. I would advise using `SnivysUltimatePackage.dll`, due to how many config options there are, mainly with Custom Items and Roles, `SnivysUltimatePackage.dll` seperates each of their configs into a file per section. (I.E. all the custom item config stuff is together and its just that in a file). Some servers may not play nice with `SnivysUltimatePackage.dll` and may throw null pointer errors and things may not work as intended. If this happens, you can try `SnivysUltimatePackageOneConfig.dll` which throws everyone into one config, either your (port)-config.yml (Exiled Combined Configs) or Plugins/VVUltimatePluginPackageOneConfig/(port).yml (Exiled Seperated Configs)
+
+> [!WARNING]
+> There is no checks in either plugin to see if the other is present. Meaning that you could, in theory, use both plugins provided at the same time on your server. This is highly **NOT RECOMMENDED**, there will most likely be errors as both try to load their configs. In the future there maybe an update that adds a check to see if both are present in your server and disables one.
+
+# Plugin List:
 
 Snivy's Custom Roles
 
@@ -69,7 +76,7 @@ Active Camo | ActiveCamo | Active Ability | For a set amount of time, allows the
 Ability Remover | AbilityRemover | Passive Ability | Clears abilities, helpful if you have multiple plugins with custom roles and some custom role abilities are given to the wrong custom role.
 Custom Role Escape | CustomRoleEscape | Passive Ability | When a player that has this ability tries to escape, you can give them a set custom role.
 Charge | ChargeAbility | Active Ability | Charges towards a location.
-Detect | Detect | Active Ability | Detects any hostiles of the Chaos Insurgency nearby.
+Detect | Detect | Active Ability | Detects any hostiles of the player's role nearby.
 Disguised | Disguised | Passive Ability | This handles all things related to being disguised, such as preventing accidental friendly fire.
 Door Picking Ability | DoorPicking | Active Ability | When activated, the player is able to open a door.
 Effect Enabler Ability | EffectEnabler| Passive Ability| Handles giving effects to players
