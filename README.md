@@ -104,7 +104,7 @@ Phantom Decoy Device | Adrenline | 23 | 25% Chance to spawn in a random locker. 
 Phantom Lantern | Lantern | 24 | 10% Chance to spawn in MicroHID, 096s room, GR18, 106s Room, HczTestRoom. | 1 | When toggled, makes the player go incredibly slowly, become invisible, and walk through doors, while locking out the inventory.
 Explosive Resistant Armor | Heavy Armor | 25 | 25% Chance to spawn in MicroHID, HCZ Armory, 049 Armory. | 1 | When equipped, makes the user more resistant to explosives.
 LJ-429 | Adrenline | 26 | 100% Chance to spawn in 096s room. | 1 | When used, the player dies.
-Phantom Pulse | FSP-9 | 27 | 25% Chance in Gate A, Gate B, GR-18. | 1 | When firing at friendlies, it will heal them, applying AHP if they have full health, when fired at zombies, gives them a chance to be revived back to a human role.
+Phantom Pulse [Disabled] | FSP-9 | 27 | 25% Chance in Gate A, Gate B, GR-18. | 1 | When firing at friendlies, it will heal them, applying AHP if they have full health, when fired at zombies, gives them a chance to be revived back to a human role.
 Silent Serenade | COM-18 | 28 | 20% Chance in 173 Armory, GR-18, 096 Room, PC-15. | 1 | When fired at someone, they will become tranquilized, SCPs have a resistance chance for it not to work, applying multiple tranquilizations will make the target more resistant to it.
 SCP-1499 | SCP-268 | 29 | 10% Chance in MicroHID, 079's Room, In the escape hall building. | 1 | When putting on, will teleport you to a fixed point on the map for a specified amount of time.
 PB-42 | Flash Bang | 30 | 50% Chance in Surface Nuke Room, HCZ Armory, 096s Room. | 5 | When throwing, will open doors and disconnect SCP-079 if 079 is at that camera.
