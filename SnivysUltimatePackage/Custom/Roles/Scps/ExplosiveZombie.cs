@@ -27,12 +27,6 @@ namespace SnivysUltimatePackage.Custom.Roles.Scps
                 Description = "Causes you to explode on death",
                 ExplosiveFuse = 0.5f,
             },
-            new FriendlyFireRemover
-            {
-                Name = "Friendly Fire Remover [Passive]",
-                Description = "Removes friendly fire to your team",
-                TimeBeforeRemovingAbility = 1f,
-            },
         };
         public override SpawnProperties SpawnProperties { get; set; } = new()
         {

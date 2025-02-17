@@ -49,7 +49,7 @@ namespace SnivysUltimatePackageOneConfig.Custom.Abilities.Passive
                 ExplosiveGrenade grenade = (ExplosiveGrenade)Item.Create(ItemType.GrenadeHE);
                 grenade.FuseTime = ExplosiveFuse;
                 grenade.ChangeItemOwner(Server.Host, ev.Player);
-                grenade.SpawnActive(ev.Player.Position);
+                grenade.SpawnActive(ev.Player.Position, ev.Player);
             }
         }
     }

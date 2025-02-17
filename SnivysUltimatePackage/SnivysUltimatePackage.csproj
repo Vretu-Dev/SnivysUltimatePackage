@@ -157,7 +157,6 @@
         <Compile Include="Custom\Abilities\Passive\DebugAbility.cs" />
         <Compile Include="Custom\Abilities\Passive\Disguised.cs" />
         <Compile Include="Custom\Abilities\Passive\EffectEnabler.cs" />
-        <Compile Include="Custom\Abilities\Passive\FriendlyFireRemover.cs" />
         <Compile Include="Custom\Abilities\Passive\GivingCandyAbility.cs" />
         <Compile Include="Custom\Abilities\Passive\HealOnKill.cs" />
         <Compile Include="Custom\Abilities\Passive\Martyrdom.cs" />
