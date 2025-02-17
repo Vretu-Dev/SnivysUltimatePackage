@@ -2,6 +2,8 @@ Snivy's Ultimate Package contains all of the plugins I have made into one mega p
 
 I do mean made, any other plugins that I have ported or currently maintain, such as Serpents Hand, UIU Rescue Squad, etc is not included here.
 
+![Downloads](https://img.shields.io/github/downloads/SnivyFilms/SnivysUltimatePackage/total.svg)
+
 # Installing this plugin
 > [!IMPORTANT]
 > In releases, there is 2 versions available, `SnivysUltimatePackage.dll` and `SnivysUltimatePackageOneConfig.dll`. I would advise using `SnivysUltimatePackage.dll`, due to how many config options there are, mainly with Custom Items and Roles, `SnivysUltimatePackage.dll` seperates each of their configs into a file per section. (I.E. all the custom item config stuff is together and its just that in a file). Some servers may not play nice with `SnivysUltimatePackage.dll` and may throw null pointer errors and things may not work as intended. If this happens, you can try `SnivysUltimatePackageOneConfig.dll` which throws everyone into one config, either your `(port)-config.yml` (Exiled Combined Configs) or `Plugins/VVUltimatePluginPackageOneConfig/(port).yml` (Exiled Seperated Configs)
