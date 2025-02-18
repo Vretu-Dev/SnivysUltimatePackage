@@ -19,6 +19,9 @@ namespace SnivysUltimatePackage.Custom.Abilities.Passive
         [Description("How long should the fuse be?")]
         public float ExplosiveFuse { get; set; } = 3f;
 
+        [Description("Should the explosive from player death be related to the player or the server")]
+        public bool ShouldServerBeKiller { get; set; } = false;
+
         protected override void AbilityAdded(Exiled.API.Features.Player player)
         {
             Log.Debug($"VVUP Custom Abilities: Explode on Death, Adding Explode on Death to {player.Nickname}");
@@ -48,8 +51,13 @@ namespace SnivysUltimatePackage.Custom.Abilities.Passive
                 Log.Debug($"VVUP Custom Abilities: Spawning Grenade at {ev.Player.Nickname} death location");
                 ExplosiveGrenade grenade = (ExplosiveGrenade)Item.Create(ItemType.GrenadeHE);
                 grenade.FuseTime = ExplosiveFuse;
-                grenade.ChangeItemOwner(Server.Host, ev.Player);
-                grenade.SpawnActive(ev.Player.Position);
+                if (ShouldServerBeKiller)
+                    grenade.SpawnActive(ev.Player.Position, Server.Host);
+                else
+                {
+                    grenade.ChangeItemOwner(Server.Host, ev.Player);
+                    grenade.SpawnActive(ev.Player.Position);
+                }
             }
         }
     }
