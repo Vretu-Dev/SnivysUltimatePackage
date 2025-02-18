@@ -24,9 +24,12 @@ namespace SnivysUltimatePackageOneConfig.Custom.Items.Armor
             "This armor is so light-weight that it feels like you're far lighter";
 
         public override float Weight { get; set; } = 0.75f;
-        public float XGravity { get; set; } = 1;
-        public float YGravity { get; set; } = 0.5f;
-        public float ZGravity { get; set; } = 1;
+        public Vector3 GravityChanges { get; set; } = new Vector3()
+        {
+            x = 1,
+            y = 0.75f,
+            z = 1
+        };
         [YamlIgnore]
         private List<PlayerAPI> _playersWithArmorOn = new List<PlayerAPI>();
         public override SpawnProperties SpawnProperties { get; set; }
@@ -46,10 +49,10 @@ namespace SnivysUltimatePackageOneConfig.Custom.Items.Armor
         {
             if (!_playersWithArmorOn.Contains(ev.Player))
             {
-                Log.Warn($"VVUP Custom Items: Low Gravity Armor. Hi this is a WIP item using the new LabAPI stuff, this is effectively a debug statement without the debug flag on.\n{ev.Player.Nickname} has put on Low Gravity Armor, setting gravity to x = {XGravity}, y = {YGravity}, z = {ZGravity}.\nFeedback is greatly appreciated, even if I say something snarky");
+                Log.Warn($"VVUP Custom Items: Low Gravity Armor. Hi this is a WIP item using the new LabAPI stuff, this is effectively a debug statement without the debug flag on.\n{ev.Player.Nickname} has put on Low Gravity Armor, setting gravity to {GravityChanges}.\nFeedback is greatly appreciated, even if I say something snarky");
                 Log.Warn($"VVUP Custom Items: Low Gravity Armor, {ev.Player.Nickname} gravity is currently {PlayerLab.Get(ev.Player.NetworkIdentity).Gravity.ToString()}");
                 _playersWithArmorOn.Add(ev.Player);
-                PlayerLab.Get(ev.Player.NetworkIdentity).Gravity = new Vector3(XGravity, YGravity, ZGravity);
+                PlayerLab.Get(ev.Player.NetworkIdentity).Gravity = GravityChanges;
                 Log.Warn($"VVUP Custom Items: Low Gravity Armor, {ev.Player.Nickname} gravity is currently {PlayerLab.Get(ev.Player.NetworkIdentity).Gravity.ToString()}");
             }
         }
