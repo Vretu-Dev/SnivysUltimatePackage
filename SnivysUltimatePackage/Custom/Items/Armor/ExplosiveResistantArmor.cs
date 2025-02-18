@@ -61,20 +61,23 @@ namespace SnivysUltimatePackage.Custom.Items.Armor
         protected override void SubscribeEvents()
         {
             PlayerEvent.Hurting += OnHurting;
+            PlayerEvent.Dying += OnDying;
             base.SubscribeEvents();
         }
         protected override void UnsubscribeEvents()
         {
             PlayerEvent.Hurting -= OnHurting;
+            PlayerEvent.Dying -= OnDying;
             base.UnsubscribeEvents();
         }
 
         protected override void OnPickingUp(PickingUpItemEventArgs ev)
         {
-            _playersWithArmorOn.Add(ev.Player);
+            if (!_playersWithArmorOn.Contains(ev.Player))
+                _playersWithArmorOn.Add(ev.Player);
         }
 
-        protected override void OnDropping(DroppingItemEventArgs ev)
+        protected override void OnDroppingItem(DroppingItemEventArgs ev)
         {
             _playersWithArmorOn.Remove(ev.Player);
         }
@@ -86,6 +89,12 @@ namespace SnivysUltimatePackage.Custom.Items.Armor
                 Log.Debug("VVUP Custom Items: Explosion damage, reducing damage.");
                 ev.DamageHandler.Damage *= ExplosiveDamageReduction;
             }
+        }
+
+        private void OnDying(DyingEventArgs ev)
+        {
+            if (_playersWithArmorOn.Contains(ev.Player))
+                _playersWithArmorOn.Remove(ev.Player);
         }
     }
 }

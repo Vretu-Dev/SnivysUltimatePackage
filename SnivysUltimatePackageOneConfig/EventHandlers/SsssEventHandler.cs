@@ -39,13 +39,7 @@ namespace SnivysUltimatePackageOneConfig.EventHandlers
             if (!Plugin.Instance.Config.SsssConfig.IsEnabled)
                 return;
             
-            if (!Player.TryGet(hub, out Player player))
-                return;
-
-            if (hub == null)
-                return;
-            
-            if (player == null)
+            if (!PlayerAPI.TryGet(hub, out PlayerAPI player) || hub == null || player == null)
                 return;
 
             if (settingBase is SSKeybindSetting ssKeybindSetting && ssKeybindSetting.SyncIsPressed)

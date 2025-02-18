@@ -19,7 +19,6 @@ using Mirror;
 using PlayerRoles;
 using UnityEngine;
 using YamlDotNet.Serialization;
-using DamageType = PluginAPI.Enums.DamageType;
 using Item = Exiled.API.Features.Items.Item;
 using PlayerAPI = Exiled.API.Features.Player;
 using PlayerEvent = Exiled.Events.Handlers.Player;

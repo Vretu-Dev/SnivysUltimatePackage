@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 using Exiled.API.Enums;
 using Exiled.API.Features;
 using Exiled.API.Features.Attributes;
@@ -22,6 +23,8 @@ namespace SnivysUltimatePackageOneConfig.Custom.Items.MedicalItems
         public override string Name { get; set; } = "<color=#0000CC>LJ-429</color>";
         public override string Description { get; set; } = "When injected, the user has a quick death.";
         public override float Weight { get; set; } = 1.15f;
+        [Description("Removes the Syringe on use, otherwise it just drops on the floor after the player dies (it's really funny ngl)")]
+        public bool RemoveSyringeOnUse { get; set; } = true;
         [CanBeNull]
         public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties()
         {
@@ -59,6 +62,8 @@ namespace SnivysUltimatePackageOneConfig.Custom.Items.MedicalItems
             if (!Check(ev.Player.CurrentItem))
                 return;
             Log.Debug($"VVUP Custom Items: KY Syringe, Killing {ev.Player.Nickname}");
+            if (RemoveSyringeOnUse)
+                ev.Player.RemoveItem(ev.Item);
             ev.Player.Kill(KillReason);
             ev.Player.Health = 1f;
             ev.Player.EnableEffect(EffectType.Bleeding, 500f);
@@ -70,6 +75,8 @@ namespace SnivysUltimatePackageOneConfig.Custom.Items.MedicalItems
             if (!Check(ev.Player.CurrentItem))
                 return;
             Log.Debug($"VVUP Custom Items: KY Syringe, Killing {ev.Player.Nickname}");
+            if (RemoveSyringeOnUse)
+                ev.Player.RemoveItem(ev.Item);
             ev.Player.Kill(KillReason);
             ev.Player.Health = 1f;
             ev.Player.EnableEffect(EffectType.Bleeding, 500f);

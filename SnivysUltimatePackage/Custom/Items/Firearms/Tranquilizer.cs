@@ -19,7 +19,6 @@ using Mirror;
 using PlayerRoles;
 using UnityEngine;
 using YamlDotNet.Serialization;
-using DamageType = PluginAPI.Enums.DamageType;
 using Item = Exiled.API.Features.Items.Item;
 using PlayerAPI = Exiled.API.Features.Player;
 using PlayerEvent = Exiled.Events.Handlers.Player;
@@ -297,7 +296,7 @@ namespace SnivysUltimatePackage.Custom.Items.Firearms
             if (Warhead.IsDetonated && player.Zone != ZoneType.Surface)
             {
                 Log.Debug($"VVUP Custom Items: Tranquilizer, {player.Nickname}'s is in the facility when nuke went off, killing them");
-                player.Kill(Exiled.API.Enums.DamageType.Warhead);
+                player.Kill(DamageType.Warhead);
             }
             
             player.Position = oldPos;
