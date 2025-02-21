@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Exiled.API.Enums;
 using Exiled.API.Features;
 using Exiled.CustomItems.API.Features;
 using Exiled.CustomRoles.API;
 using Exiled.CustomRoles.API.Features;
+using Exiled.Loader;
 using SnivysUltimatePackage.API;
 using SnivysUltimatePackage.Configs;
 using SnivysUltimatePackage.EventHandlers;
@@ -24,7 +26,7 @@ namespace SnivysUltimatePackage
         public override string Name { get; } = "Snivy's Ultimate Plugin Package";
         public override string Author { get; } = "Vicious Vikki";
         public override string Prefix { get; } = "VVUltimatePluginPackage";
-        public override Version Version { get; } = new Version(2, 2, 5);
+        public override Version Version { get; } = new Version(2, 2, 6);
         public override Version RequiredExiledVersion { get; } = new Version(9, 5, 0);
         
         public static int ActiveEvent = 0;
@@ -43,6 +45,14 @@ namespace SnivysUltimatePackage
         public override void OnEnabled()
         {
             Instance = this;
+            
+            if (Loader.Plugins.Any(plugin => plugin.Name == "Snivy's Ultimate Plugin Package One Config"))
+            {
+                Log.Error("VVUltimatePluginPackage: The other version of this plugin is already loaded. This plugin will now disable. Please consider removing either this plugin or the other one, as these plugins will fight each other for functions and may cause weird things to happen");
+                base.OnDisabled();
+                return;
+            }
+            
             Config.LoadConfigs();
             
             //Custom Items
