@@ -105,12 +105,13 @@ namespace SnivysUltimatePackage
                     DeadringerSyringe.Get(typeof(DeadringerSyringe)),
                     KySyringe.Get(typeof(KySyringe)),
                     AntiScp096Pills.Get(typeof(AntiScp096Pills)),
-                    InfinitePills.Get(typeof(InfinitePills)),
                     PhantomLantern.Get(typeof(PhantomLantern)),
                     Scp1499.Get(typeof(Scp1499)),
                     InfinitePills.Get(typeof(InfinitePills)),
                     ClusterGrenade.Get(typeof(ClusterGrenade)),
-                    AdditionalHealth207.Get(typeof(AdditionalHealth207))
+                    AdditionalHealth207.Get(typeof(AdditionalHealth207)),
+                    LowGravityArmor.Get(typeof(LowGravityArmor)),
+                    ViperPdw.Get(typeof(ViperPdw)),
                 };
 
                 foreach (var itemCollection in customItems)

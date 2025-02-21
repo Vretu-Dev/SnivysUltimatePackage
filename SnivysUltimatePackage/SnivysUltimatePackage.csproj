@@ -171,6 +171,7 @@
         <Compile Include="Custom\Items\Firearms\MediGun.cs" />
         <Compile Include="Custom\Items\Firearms\Scp2818.cs" />
         <Compile Include="Custom\Items\Firearms\Tranquilizer.cs" />
+        <Compile Include="Custom\Items\Firearms\ViperPdw.cs" />
         <Compile Include="Custom\Items\Grenades\C4.cs" />
         <Compile Include="Custom\Items\Grenades\ClusterGrenade.cs" />
         <Compile Include="Custom\Items\Grenades\EmpGrenade.cs" />

@@ -108,5 +108,10 @@ namespace SnivysUltimatePackage.Configs.CustomConfigs
         {
             new LowGravityArmor()
         };
+
+        public List<ViperPdw> ViperPdws { get; private set; } = new()
+        {
+            new ViperPdw()
+        };
     }
 }
