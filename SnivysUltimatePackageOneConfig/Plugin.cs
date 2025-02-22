@@ -174,7 +174,7 @@ namespace SnivysUltimatePackageOneConfig
             if (Instance.Config.SsssConfig.IsEnabled)
             {
                 SsssEventHandler = new SsssEventHandler(this);
-                Server.RoundStarted += SsssEventHandler.OnRoundStarted;
+                Player.Verified += SsssEventHandler.OnVerified;
                 ServerSpecificSettingsSync.ServerOnSettingValueReceived += SsssEventHandler.OnSettingValueReceived;
             }
 
@@ -219,7 +219,7 @@ namespace SnivysUltimatePackageOneConfig
             Scp1576SpectatorViewerEventHandlers = null;
 
             //SSSS
-            Server.RoundStarted -= SsssEventHandler.OnRoundStarted;
+            Player.Verified -= SsssEventHandler.OnVerified;
             ServerSpecificSettingsSync.ServerOnSettingValueReceived -= SsssEventHandler.OnSettingValueReceived;
             SsssEventHandler = null;
             

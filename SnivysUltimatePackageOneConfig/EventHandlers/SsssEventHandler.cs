@@ -2,6 +2,7 @@
 using System.Linq;
 using Exiled.API.Features;
 using Exiled.CustomRoles.API.Features;
+using Exiled.Events.EventArgs.Player;
 using SnivysUltimatePackageOneConfig.Custom.Abilities.Active;
 using UnityEngine;
 using UserSettings.ServerSpecific;
@@ -14,23 +15,20 @@ namespace SnivysUltimatePackageOneConfig.EventHandlers
         public Plugin Plugin;
         public SsssEventHandler(Plugin plugin) => Plugin = plugin;
 
-        public void OnRoundStarted()
+        public void OnVerified(VerifiedEventArgs ev)
         {
             if (!Plugin.Instance.Config.SsssConfig.IsEnabled)
                 return;
             
-            foreach (PlayerAPI player in Player.List)
+            Log.Debug($"VVUP: Adding SSSS functions to {ev.Player.Nickname}");
+            try
             {
-                Log.Debug($"VVUP: Adding SSSS functions to {player.Nickname}");
-                try
-                {
-                    ServerSpecificSettingsSync.DefinedSettings = SsssHelper.GetSettings();
-                    ServerSpecificSettingsSync.SendToPlayer(player.ReferenceHub);
-                }
-                catch (InvalidCastException ex)
-                {
-                    Log.Error($"VVUP: InvalidCastException occurred: {ex.Message}");
-                }
+                ServerSpecificSettingsSync.DefinedSettings = SsssHelper.GetSettings();
+                ServerSpecificSettingsSync.SendToPlayer(ev.Player.ReferenceHub);
+            }
+            catch (InvalidCastException ex)
+            {
+                Log.Error($"VVUP: InvalidCastException occurred: {ex.Message}");
             }
         }
 
