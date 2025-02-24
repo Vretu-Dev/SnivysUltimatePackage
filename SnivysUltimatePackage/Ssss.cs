@@ -47,6 +47,7 @@ namespace SnivysUltimatePackage
                     MtfWisp.Get(typeof(MtfWisp)),
                     Nightfall.Get(typeof(Nightfall)),
                     TelepathicChaos.Get(typeof(TelepathicChaos)),
+                    Vanguard.Get(typeof(Vanguard)),
                 };
 
                 if (Plugin.Instance.Config.CustomRolesConfig.EnableFreeCustomRoles)
@@ -84,7 +85,7 @@ namespace SnivysUltimatePackage
                     }
                 }
                 
-                settings.Add(new SSGroupHeader("VV Custom Roles Info"));
+                settings.Add(new SSGroupHeader(Plugin.Instance.Config.SsssConfig.CustomRoleHeader));
                 settings.Add(new SSTextArea(null, StringBuilderPool.Shared.ToStringReturn(stringBuilder),
                     SSTextArea.FoldoutMode.CollapsedByDefault));
                 stringBuilder.Clear();
@@ -112,6 +113,7 @@ namespace SnivysUltimatePackage
                     AdditionalHealth207.Get(typeof(AdditionalHealth207)),
                     LowGravityArmor.Get(typeof(LowGravityArmor)),
                     ViperPdw.Get(typeof(ViperPdw)),
+                    Pathfinder.Get(typeof(Pathfinder)),
                 };
 
                 foreach (var itemCollection in customItems)
@@ -126,7 +128,7 @@ namespace SnivysUltimatePackage
                     
                 }
 
-                settings.Add(new SSGroupHeader("VV Custom Items Info"));
+                settings.Add(new SSGroupHeader(Plugin.Instance.Config.SsssConfig.CustomItemHeader));
                 settings.Add(new SSTextArea(null, StringBuilderPool.Shared.ToStringReturn(stringBuilder),
                     SSTextArea.FoldoutMode.CollapsedByDefault));
                 stringBuilder.Clear();
@@ -135,25 +137,25 @@ namespace SnivysUltimatePackage
             if (Plugin.Instance.Config.CustomRolesConfig.IsEnabled &&
                 Plugin.Instance.Config.CustomRolesAbilitiesConfig.IsEnabled)
             {
-                settings.Add(new SSGroupHeader("VV Custom Abilities Key Activators"));
-                settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.ActiveCamoId, "Active Camo",
+                settings.Add(new SSGroupHeader(Plugin.Instance.Config.SsssConfig.CustomAbilityActivatorHeader));
+                settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.ActiveCamoId, Plugin.Instance.Config.SsssConfig.ActiveCamoSsssText,
                     KeyCode.B, true, "B"));
-                settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.ChargeId, "Charge", KeyCode.B, true,
+                settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.ChargeId, Plugin.Instance.Config.SsssConfig.ChargeSsssText, KeyCode.B, true,
                     "B"));
-                settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.DetectId, "Detect", KeyCode.B, true,
+                settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.DetectId, Plugin.Instance.Config.SsssConfig.DetectSsssText, KeyCode.B, true,
                     "B"));
-                settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.DoorPickingId, "Door Picking",
+                settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.DoorPickingId, Plugin.Instance.Config.SsssConfig.DoorPickingSsssText,
                     KeyCode.B, true, "B"));
-                settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.HealingMistId, "Healing Mist",
+                settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.HealingMistId, Plugin.Instance.Config.SsssConfig.HealingMistSsssText,
                     KeyCode.B, true, "B"));
-                settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.RemoveDisguiseId, "Remove Disguise",
+                settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.RemoveDisguiseId, Plugin.Instance.Config.SsssConfig.RemoveDisguiseSsssText,
                     KeyCode.B, true, "B"));
             }
 
             if (Plugin.Instance.Config.CustomItemsConfig.IsEnabled)
             {
-                settings.Add(new SSGroupHeader("VV Custom Items Activators"));
-                settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.DetonateC4Id, "Detonate C4",
+                settings.Add(new SSGroupHeader(Plugin.Instance.Config.SsssConfig.CustomItemActivators));
+                settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.DetonateC4Id, Plugin.Instance.Config.SsssConfig.DetonateC4SsssText,
                     KeyCode.J, true, "J"));
             }
 

@@ -17,7 +17,9 @@ namespace SnivysUltimatePackage.Custom.Items.Firearms
     [CustomItem(ItemType.GunCrossvec)]
     public class ViperPdw : CustomWeapon
     {
-        [YamlIgnore] public override uint Id { get; set; } = 39;
+        [YamlIgnore] 
+        public override ItemType Type { get; set; } = ItemType.GunCrossvec;
+        public override uint Id { get; set; } = 39;
         public override string Name { get; set; } = "<color=#FF0000>Viper</color>";
         public override string Description { get; set; } = "A compact PDW that does damage based on range to target";
         public override float Weight { get; set; } = 1.75f;
@@ -40,6 +42,10 @@ namespace SnivysUltimatePackage.Custom.Items.Firearms
 
         public override byte ClipSize { get; set; } = 10;
         public bool AllowAttachmentChanging { get; set; } = false;
+        public string RestrictedAttachmentChangingMessage { get; set; } =
+            "You're not allowed to swap attachments on the Viper";
+        public bool UseHints { get; set; } = false;
+        public float RestrictedAttachmentChangeMessageTimeDuration { get; set; } = 5f;
         
         [CanBeNull]
         public override SpawnProperties SpawnProperties { get; set; } = new()
@@ -91,6 +97,16 @@ namespace SnivysUltimatePackage.Custom.Items.Firearms
                 Log.Debug(
                     $"VVUP Custom Items: ViperPDW, {ev.Player.Nickname} tried changing attachments, but it's disallowed");
                 ev.IsAllowed = false;
+                if (UseHints)
+                {
+                    Log.Debug($"VVUP Custom Items: ViperPDW, showing Restricted Attachment Changing Message Hint to {ev.Player.Nickname} for {RestrictedAttachmentChangeMessageTimeDuration} seconds");
+                    ev.Player.ShowHint(RestrictedAttachmentChangingMessage, RestrictedAttachmentChangeMessageTimeDuration);
+                }
+                else
+                {
+                    Log.Debug($"VVUP Custom Items: ViperPDW, showing Restricted Attachment Changing Message Broadcast to {ev.Player.Nickname} for {RestrictedAttachmentChangeMessageTimeDuration} seconds");
+                    ev.Player.Broadcast(new Exiled.API.Features.Broadcast(RestrictedAttachmentChangingMessage, (ushort)RestrictedAttachmentChangeMessageTimeDuration));
+                }
             }
         }
 

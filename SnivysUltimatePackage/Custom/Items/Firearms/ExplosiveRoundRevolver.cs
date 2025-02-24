@@ -66,6 +66,10 @@ namespace SnivysUltimatePackage.Custom.Items.Firearms
         public float FuseTime { get; set; } = 2.5f;
         public float ScpGrenadeDamageMultiplier { get; set; } = .5f;
         public bool AllowAttachmentChanging { get; set; } = false;
+        public string RestrictedAttachmentChangingMessage { get; set; } =
+            "You're not allowed to swap attachments on the Viper";
+        public bool UseHints { get; set; } = false;
+        public float RestrictedAttachmentChangeMessageTimeDuration { get; set; } = 5f;
 
         protected override void SubscribeEvents()
         {
@@ -87,6 +91,16 @@ namespace SnivysUltimatePackage.Custom.Items.Firearms
             {
                 Log.Debug($"VVUP Custom Items: Explosive Round Revolver, {ev.Player.Nickname} tried changing attachments, but it's disallowed");
                 ev.IsAllowed = false;
+                if (UseHints)
+                {
+                    Log.Debug($"VVUP Custom Items: Explosive Round Revolver, showing Restricted Attachment Changing Message Hint to {ev.Player.Nickname} for {RestrictedAttachmentChangeMessageTimeDuration} seconds");
+                    ev.Player.ShowHint(RestrictedAttachmentChangingMessage, RestrictedAttachmentChangeMessageTimeDuration);
+                }
+                else
+                {
+                    Log.Debug($"VVUP Custom Items: Explosive Round Revolver, showing Restricted Attachment Changing Message Broadcast to {ev.Player.Nickname} for {RestrictedAttachmentChangeMessageTimeDuration} seconds");
+                    ev.Player.Broadcast(new Exiled.API.Features.Broadcast(RestrictedAttachmentChangingMessage, (ushort)RestrictedAttachmentChangeMessageTimeDuration));
+                }
             }
         }
        /* private void OnReloading(ReloadingWeaponEventArgs ev)
