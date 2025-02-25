@@ -81,6 +81,7 @@ namespace SnivysUltimatePackage
                 Config.CustomRolesConfig.MedicZombies.Register();
                 Config.CustomRolesConfig.LockpickingClassDs.Register();
                 Config.CustomRolesConfig.Demolitionists.Register();
+                Config.CustomRolesConfig.Vanguards.Register();
                 
                 //Free Custom Roles
                 if (Instance.Config.CustomRolesConfig.EnableFreeCustomRoles)

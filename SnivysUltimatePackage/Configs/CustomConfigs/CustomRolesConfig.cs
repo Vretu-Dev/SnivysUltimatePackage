@@ -94,6 +94,11 @@ namespace SnivysUltimatePackage.Configs.CustomConfigs
             new Demolitionist(),
         };
         
+        public List<Vanguard> Vanguards { get; set; } = new()
+        {
+            new Vanguard(),
+        };
+        
         [Description("These custom roles are for the server owner to make some custom roles themselves, there will be no support for any custom roles that you make with these")]
         public List<FreeCustomRole1> FreeCustomRoles1 { get; set; } = new()
         {
