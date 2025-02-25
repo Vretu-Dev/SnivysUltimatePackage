@@ -863,6 +863,23 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
 
                         break;
                     
+                    // Start Gravity Event
+                    case 23:
+                        if (_config.ChaosEventEnablesOtherEvents)
+                        {
+                            Log.Debug("VVUP Server Events, Chaotic: Chaos Event Enables other Events true, running Gravity Event");
+                            var gravityEventHandlers = new GravityEventHandlers();
+                        }
+
+                        else
+                        {
+                            if (_config.ChaoticEventRerollIfASpecificEventIsDisabled)
+                                chaoticEventCycle = 1;
+                            Log.Debug("VVUP Server Events, Chaotic: Chaos Event enabling other events is disabled");
+                        }
+                        break;
+                    
+                    // Default Case
                     default:
                     {
                         Log.Debug("VVUP Server Events, Chaotic: Something out of range has occured");

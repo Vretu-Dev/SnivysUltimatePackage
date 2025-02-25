@@ -39,5 +39,6 @@ namespace SnivysUltimatePackage.Configs.ServerEventsConfigs
         public ShortConfig ShortConfig { get; set; } = new();
         public VariableLightsConfig VariableLightsConfig { get; set; } = new();
         public SnowballsVsScpsConfig SnowballsVsScpsConfig { get; set; } = new();
+        public GravityConfig GravityConfig { get; set; } = new();
     }
 }

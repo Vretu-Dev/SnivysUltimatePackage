@@ -10,6 +10,7 @@ using MEC;
 using PlayerRoles;
 using UnityEngine;
 using Random = System.Random;
+using PlayerLab = LabApi.Features.Wrappers.Player;
 
 // ReSharper disable InconsistentNaming
 
@@ -64,6 +65,7 @@ namespace SnivysUltimatePackageOneConfig.EventHandlers.ServerEventsEventHandlers
             ChaoticEventHandlers.EndEvent();
             NameRedactedEventHandlers.EndEvent();
             //SnowballsVsScpsEventHandlers.EndEvent();
+            GravityEventHandlers.EndEvent();
             Plugin.ActiveEvent = 0;
         }
 
@@ -117,9 +119,13 @@ namespace SnivysUltimatePackageOneConfig.EventHandlers.ServerEventsEventHandlers
                         Log.Debug("VVUP Server Events: Activating Variable Lights Event");
                         var variableEventHandlers = new VariableLightsEventHandlers();
                         break;
+                    case "Gravity":
+                        Log.Debug("VVUP Server Events: Activating Gravity Event");
+                        var gravityEventHandlers = new GravityEventHandlers();
+                        break;
                     default:
                         Log.Warn($"VVUP Server Events: Unknown event: {selectedEvent}");
-                        Log.Warn("VVUP Server Events: Valid Events: Valid options: Blackout, 173Infection, 173Hydra, Chaotic, Short, FreezingTemps, NameRedacted, VariableLights");
+                        Log.Warn("VVUP Server Events: Valid Events: Valid options: Blackout, 173Infection, 173Hydra, Chaotic, Short, FreezingTemps, NameRedacted, VariableLights, Gravity");
                         Log.Warn("VVUP Server Events: If this error randomly appears and you are sure you put in a valid event, please let the developer know as soon as possible");
                         break;
                 }
@@ -215,11 +221,8 @@ namespace SnivysUltimatePackageOneConfig.EventHandlers.ServerEventsEventHandlers
         }
         public void OnRoleSwapSE(ChangingRoleEventArgs ev)
         {
-            foreach (var player in Player.List)
-            {
-                Log.Debug($"VVUP Server Events: Setting {player.Nickname} size to {ShortEventHandlers.GetPlayerSize()}");
-                player.Scale = new Vector3(ShortEventHandlers.GetPlayerSize(), ShortEventHandlers.GetPlayerSize(), ShortEventHandlers.GetPlayerSize());
-            }
+            Log.Debug($"VVUP Server Events: Setting {ev.Player.Nickname} size to {ShortEventHandlers.GetPlayerSize()}");
+            ev.Player.Scale = new Vector3(ShortEventHandlers.GetPlayerSize(), ShortEventHandlers.GetPlayerSize(), ShortEventHandlers.GetPlayerSize());
         }
         
         //Chaos Event
@@ -372,5 +375,14 @@ namespace SnivysUltimatePackageOneConfig.EventHandlers.ServerEventsEventHandlers
             Timing.CallDelayed(0.5f, () => ev.Player.Role.Set(RoleTypeId.Overwatch));
             SnowballsVsScpsEventHandlers.PlayersInOverwatchFromEvent.Add(ev.Player);
         }*/
+
+        public void OnRoleSwapGE(ChangingRoleEventArgs ev)
+        {
+            if (ev.Player != null)
+            {
+                Log.Debug($"VVUP Server Events, Gravity: Setting {ev.Player.Nickname}'s gravity to {GravityEventHandlers.GetPlayerGravity()}");
+                PlayerLab.Get(ev.Player.ReferenceHub)!.Gravity = GravityEventHandlers.GetPlayerGravity();
+            }
+        }
     }
 }

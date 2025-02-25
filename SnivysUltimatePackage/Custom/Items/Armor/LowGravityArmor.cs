@@ -53,10 +53,10 @@ namespace SnivysUltimatePackage.Custom.Items.Armor
             if (!_playersWithArmorOn.Contains(ev.Player))
             {
                 Log.Warn($"VVUP Custom Items: Low Gravity Armor. Hi this is a WIP item using the new LabAPI stuff, this is effectively a debug statement without the debug flag on.\n{ev.Player.Nickname} has put on Low Gravity Armor, gravity will be set to {GravityChanges}.\nFeedback is greatly appreciated, even if I say something snarky");
-                Log.Warn($"VVUP Custom Items: Low Gravity Armor, {ev.Player.Nickname} gravity is currently {PlayerLab.Get(ev.Player.NetworkIdentity).Gravity.ToString()}");
+                Log.Warn($"VVUP Custom Items: Low Gravity Armor, {ev.Player.Nickname} gravity is currently {PlayerLab.Get(ev.Player.NetworkIdentity)?.Gravity.ToString()}");
                 _playersWithArmorOn.Add(ev.Player);
-                PlayerLab.Get(ev.Player.NetworkIdentity).Gravity = GravityChanges;
-                Log.Warn($"VVUP Custom Items: Low Gravity Armor, {ev.Player.Nickname} gravity is currently {PlayerLab.Get(ev.Player.NetworkIdentity).Gravity.ToString()}");
+                PlayerLab.Get(ev.Player.NetworkIdentity)!.Gravity = GravityChanges;
+                Log.Warn($"VVUP Custom Items: Low Gravity Armor, {ev.Player.Nickname} gravity is currently {PlayerLab.Get(ev.Player.NetworkIdentity)?.Gravity.ToString()}");
             }
         }
 
@@ -64,9 +64,9 @@ namespace SnivysUltimatePackage.Custom.Items.Armor
         {
             if (_playersWithArmorOn.Contains(ev.Player))
             {
-                Log.Warn($"VVUP Custom Items: Low Gravity Armor, {ev.Player.Nickname} gravity is currently {PlayerLab.Get(ev.Player.NetworkIdentity).Gravity.ToString()}");
-                PlayerLab.Get(ev.Player.NetworkIdentity).Gravity = new Vector3(1, 1, 1);
-                Log.Warn($"VVUP Custom Items: Low Gravity Armor, {ev.Player.Nickname} gravity is currently {PlayerLab.Get(ev.Player.NetworkIdentity).Gravity.ToString()}");
+                Log.Warn($"VVUP Custom Items: Low Gravity Armor, {ev.Player.Nickname} gravity is currently {PlayerLab.Get(ev.Player.NetworkIdentity)?.Gravity.ToString()}");
+                PlayerLab.Get(ev.Player.NetworkIdentity)!.Gravity = new Vector3(1, 1, 1);
+                Log.Warn($"VVUP Custom Items: Low Gravity Armor, {ev.Player.Nickname} gravity is currently {PlayerLab.Get(ev.Player.NetworkIdentity)?.Gravity.ToString()}");
                 _playersWithArmorOn.Remove(ev.Player);
             }
         }
@@ -75,9 +75,9 @@ namespace SnivysUltimatePackage.Custom.Items.Armor
         {
             if (_playersWithArmorOn.Contains(ev.Player))
             {
-                Log.Warn($"VVUP Custom Items: Low Gravity Armor, {ev.Player.Nickname} gravity is currently {PlayerLab.Get(ev.Player.NetworkIdentity).Gravity.ToString()}");
-                PlayerLab.Get(ev.Player.NetworkIdentity).Gravity = new Vector3(1, 1, 1);
-                Log.Warn($"VVUP Custom Items: Low Gravity Armor, {ev.Player.Nickname} gravity is currently {PlayerLab.Get(ev.Player.NetworkIdentity).Gravity.ToString()}");
+                Log.Warn($"VVUP Custom Items: Low Gravity Armor, {ev.Player.Nickname} gravity is currently {PlayerLab.Get(ev.Player.NetworkIdentity)?.Gravity.ToString()}");
+                PlayerLab.Get(ev.Player.NetworkIdentity)!.Gravity = new Vector3(1, 1, 1);
+                Log.Warn($"VVUP Custom Items: Low Gravity Armor, {ev.Player.Nickname} gravity is currently {PlayerLab.Get(ev.Player.NetworkIdentity)?.Gravity.ToString()}");
                 _playersWithArmorOn.Remove(ev.Player);
             }
         }

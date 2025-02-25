@@ -26,7 +26,7 @@
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
         <PlatformTarget>AnyCPU</PlatformTarget>
-        <DebugType>pdbonly</DebugType>
+        <DebugType>embedded</DebugType>
         <Optimize>true</Optimize>
         <OutputPath>bin\Release\</OutputPath>
         <DefineConstants>TRACE</DefineConstants>
@@ -111,6 +111,7 @@
         <Compile Include="Commands\ServerEventsCommands\EventCommands\BlackoutCommand.cs" />
         <Compile Include="Commands\ServerEventsCommands\EventCommands\ChaoticCommand.cs" />
         <Compile Include="Commands\ServerEventsCommands\EventCommands\FreezingTemperaturesCommand.cs" />
+        <Compile Include="Commands\ServerEventsCommands\EventCommands\GravityCommand.cs" />
         <Compile Include="Commands\ServerEventsCommands\EventCommands\NameRedactedCommand.cs" />
         <Compile Include="Commands\ServerEventsCommands\EventCommands\PeanutHyrdraCommand.cs" />
         <Compile Include="Commands\ServerEventsCommands\EventCommands\PeanutInfectionCommand.cs" />
@@ -133,6 +134,7 @@
         <Compile Include="Configs\ServerEventsConfigs\BlackoutConfig.cs" />
         <Compile Include="Configs\ServerEventsConfigs\ChaoticConfig.cs" />
         <Compile Include="Configs\ServerEventsConfigs\FreezingTemperaturesConfig.cs" />
+        <Compile Include="Configs\ServerEventsConfigs\GravityConfig.cs" />
         <Compile Include="Configs\ServerEventsConfigs\NameRedactedConfig.cs" />
         <Compile Include="Configs\ServerEventsConfigs\PeanutHydraConfig.cs" />
         <Compile Include="Configs\ServerEventsConfigs\PeanutInfectionConfig.cs" />
@@ -216,6 +218,7 @@
         <Compile Include="EventHandlers\ServerEventsEventHandlers\BlackoutEventHandlers.cs" />
         <Compile Include="EventHandlers\ServerEventsEventHandlers\ChaoticEventHandlers.cs" />
         <Compile Include="EventHandlers\ServerEventsEventHandlers\FreezingTemperaturesEventHandlers.cs" />
+        <Compile Include="EventHandlers\ServerEventsEventHandlers\GravityEventHandlers.cs" />
         <Compile Include="EventHandlers\ServerEventsEventHandlers\NameRedactedEventHandlers.cs" />
         <Compile Include="EventHandlers\ServerEventsEventHandlers\PeanutHydraEventHandlers.cs" />
         <Compile Include="EventHandlers\ServerEventsEventHandlers\PeanutInfectionEventHandlers.cs" />
