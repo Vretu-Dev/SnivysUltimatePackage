@@ -113,5 +113,10 @@ namespace SnivysUltimatePackage.Configs.CustomConfigs
         {
             new ViperPdw()
         };
+
+        public List<Pathfinder> Pathfinders { get; private set; } = new()
+        {
+            new Pathfinder()
+        };
     }
 }
