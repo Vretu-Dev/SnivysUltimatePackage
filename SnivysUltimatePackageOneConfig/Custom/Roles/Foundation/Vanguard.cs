@@ -21,7 +21,7 @@ namespace SnivysUltimatePackageOneConfig.Custom.Roles.Foundation
         public override List<string> Inventory { get; set; } = new()
         {
             "<color=#0096FF>Pathfinder</color>",
-            ItemType.GunCrossvec.ToString(),
+            "<color=#FF0000>Viper</color>",
             ItemType.KeycardMTFOperative.ToString(),
             ItemType.ArmorHeavy.ToString(),
             ItemType.Radio.ToString(),
