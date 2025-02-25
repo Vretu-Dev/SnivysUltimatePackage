@@ -58,7 +58,7 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
             for (;;)
             {
                 float chaoticEventCycle = _config.TimeForChaosEvent;
-                int chaosRandomNumber = random.Next(minValue: 1, maxValue: 23);
+                int chaosRandomNumber = random.Next(minValue: 1, maxValue: 24);
                 Log.Debug(chaosRandomNumber);
                 if (_config.ChaosEventEndsOtherEvents)
                 {
