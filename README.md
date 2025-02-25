@@ -9,7 +9,7 @@ I do mean made, any other plugins that I have ported or currently maintain, such
 > In releases, there is 2 versions available, `SnivysUltimatePackage.dll` and `SnivysUltimatePackageOneConfig.dll`. I would advise using `SnivysUltimatePackage.dll`, due to how many config options there are, mainly with Custom Items and Roles, `SnivysUltimatePackage.dll` seperates each of their configs into a file per section. (I.E. all the custom item config stuff is together and its just that in a file). Some servers may not play nice with `SnivysUltimatePackage.dll` and may throw null pointer errors and things may not work as intended. If this happens, you can try `SnivysUltimatePackageOneConfig.dll` which throws everyone into one config, either your `(port)-config.yml` (Exiled Combined Configs) or `Plugins/VVUltimatePluginPackageOneConfig/(port).yml` (Exiled Seperated Configs)
 
 > [!CAUTION]
-> There is no checks in either plugin to see if the other is present. Meaning that you could, in theory, use both plugins provided at the same time on your server. This is highly **NOT RECOMMENDED**, there will most likely be errors as both try to load their configs. In the future there maybe an update that adds a check to see if both are present in your server and disables one.
+> There is a check now that detects if both plugin versions are on the server at the same time. If the server starts and both are present, both plugins will disable. This is due to both `SnivysUltimatePackage.dll` and `SnivysUltimatePackageOneConfig.dll` will try to race eachother for enabling stuff. Just remove one of them from your server and restart.
 
 # Plugin List:
 
@@ -65,6 +65,7 @@ Chaos Phantom | 44 | Active Camo | Immediately when a round begins | A Chaos Ins
 Medic SCP-049-2 | 45 | Healing Mist, Effect Enabler | Chance during revive from SCP-049 | A zombie that can heal other SCPs at the cost of being a bit more slow
 Lock-picker Class D | 46 | Door Picking | Immediately when a round begins | A Class D that used to be a lock picker, can open some keycard doors if they dont have the keycard.
 MTF Demolitionist | 47 | None | During a MTF Spawn Wave | A MTF Member that specializes in explosives.
+Vanguard | 48 | None | During a MTF Spawn Wave | A MTF Member with an alternative loadout, being able to mark a target to do recieve more damage for a short time.
 
 # Snivy's Custom Roles Abilities
 This contains Joker's original custom roles abilities as well
@@ -112,10 +113,13 @@ SCP-1499 | SCP-268 | 29 | 10% Chance in MicroHID, 079's Room, In the escape hall
 PB-42 | Flash Bang | 30 | 50% Chance in Surface Nuke Room, HCZ Armory, 096s Room. | 5 | When throwing, will open doors and disconnect SCP-079 if 079 is at that camera.
 Amnesioflux | SCP500 | 31 | 100% Chance in 096s room. | 1 | When consumed, removes you as a target from 096, just make sure you're not looking at him when you take it.
 C4 | Grenade | 32 | 10% Chance in Light Armory, 25% Chance in Heavy Armory, 50% Chance in 049 Armory, 100% Chance in Surface Nuke | 5 | A grenade that can be remotely detonated, requires a radio to detonate (by base).
-SCP-2818 [Disabled] | E11SR | 33 | 10% Chance in MicroHID | 1 | When fired, you are the bullet. This will kill the shooter but will do a lot of damage to the target.
+SCP-2818 | E11SR | 33 | 10% Chance in MicroHID | 1 | When fired, you are the bullet. This will kill the shooter but will do a lot of damage to the target.
 Infinite Pills | Painkillers | 34 | 100% Chance to appear in a Misc Locker | 1 | When consumed, the pills dont go away, it wont heal you however. This is entirely a joke item.
 Cluster Grenade | Grenade | 36 | 15% Chance to appear in Light Armory, Heavy Armory, 049/173 Armory, Surface Nuke | 1 | When exploding, it spawns more grenades.
 Additional Health 207 | Anti SCP-207 | 37 | 25% Chance to appear in MicroHID | 1 | When consumed, it adds more health to the player until they die.
+Low Gravity Armor [WIP] | Heavy Armor | 38 | Does not spawn on the map | 0 | When equipped, it applies low gravity to the player.
+Viper PDW | Crossvec | 39 | Spawns on MTF Vanguard, 25% Chance to appear in Heavy Armory, 049 Armory, Inside 096 Containment Chamber | 1 | A firearm that does different damage at different ranges.
+Pathfinder | COM-18 | 40 | Spawns on MTf Vanguard | 1 | A firearm that when hitting a foe, causes them to take increased damage for a short amount of time.
 
 # Snivy's Server Events
 
@@ -134,6 +138,7 @@ Chaos Event | Causes chaos in the facility, see below for what Chaos Event can d
 Name Redacted | Removes everyones names
 Freezing Temperatures | The thermostat in the facility broke and its slowly freezing over, best to get out as fast as you can.
 Snowballs Vs SCPs [Disabled] | Causes a snowball fight to start.
+Gravity [WIP] | Causes the gravity to change for all players.
 
 Chaos Event Functions, a lot of this can be customized to your hearts content.
 Function | Description
@@ -160,6 +165,7 @@ Rapid Fire Teslas | Causes Tesla Gates to rapidly fire
 Player Tauntrum | Causes all players to have SCP-173's tantrum spawn on them
 Router Kicking Simulator | Gives players fake lag and teleports them back a distance after a bit of time
 Super Speed | Makes all the players super speed
+Enable Gravity | Starts the Gravity Event
 
 # Micro Damage Reduction
 Allows for a configurable damage reduction to what ever class is specificed in the Config.
