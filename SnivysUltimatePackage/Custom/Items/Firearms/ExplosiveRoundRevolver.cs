@@ -67,7 +67,7 @@ namespace SnivysUltimatePackage.Custom.Items.Firearms
         public float ScpGrenadeDamageMultiplier { get; set; } = .5f;
         public bool AllowAttachmentChanging { get; set; } = false;
         public string RestrictedAttachmentChangingMessage { get; set; } =
-            "You're not allowed to swap attachments on the Viper";
+            "You're not allowed to swap attachments on the Explosive Round Revolver";
         public bool UseHints { get; set; } = false;
         public float RestrictedAttachmentChangeMessageTimeDuration { get; set; } = 5f;
 
