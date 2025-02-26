@@ -119,7 +119,7 @@ Cluster Grenade | Grenade | 36 | 15% Chance to appear in Light Armory, Heavy Arm
 Additional Health 207 | Anti SCP-207 | 37 | 25% Chance to appear in MicroHID | 1 | When consumed, it adds more health to the player until they die.
 Low Gravity Armor [WIP] | Heavy Armor | 38 | Does not spawn on the map | 0 | When equipped, it applies low gravity to the player.
 Viper PDW | Crossvec | 39 | Spawns on MTF Vanguard, 25% Chance to appear in Heavy Armory, 049 Armory, Inside 096 Containment Chamber | 1 | A firearm that does different damage at different ranges.
-Pathfinder | COM-18 | 40 | Spawns on MTf Vanguard | 1 | A firearm that when hitting a foe, causes them to take increased damage for a short amount of time.
+Pathfinder | COM-18 | 40 | Spawns on MTF Vanguard | 1 | A firearm that when hitting a foe, causes them to take increased damage for a short amount of time.
 
 # Snivy's Server Events
 
