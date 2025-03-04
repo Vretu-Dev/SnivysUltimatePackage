@@ -55,22 +55,22 @@ namespace SnivysUltimatePackageOneConfig.Custom.Items.Firearms
             {
                 new()
                 {
-                    Chance = 10,
+                    Chance = 25,
                     Location = SpawnLocationType.InsideHczArmory,
                 },
                 new()
                 {
-                    Chance = 20,
+                    Chance = 25,
                     Location = SpawnLocationType.Inside049Armory,
                 },
                 new()
                 {
-                    Chance = 10,
+                    Chance = 25,
                     Location = SpawnLocationType.Inside096,
                 },
                 new ()
                 {
-                    Chance = 10,
+                    Chance = 25,
                     Location = SpawnLocationType.Inside079Armory,
                 },
             }
