@@ -9,6 +9,7 @@ using Exiled.API.Features.Spawn;
 using Exiled.CustomItems.API.Features;
 using Exiled.Events.EventArgs.Player;
 using MEC;
+using PlayerRoles;
 using YamlDotNet.Serialization;
 
 namespace SnivysUltimatePackage.Custom.Items.Other
@@ -45,6 +46,19 @@ namespace SnivysUltimatePackage.Custom.Items.Other
                     Chance = 25,
                     Location = SpawnLocationType.InsideHidChamber,
                 },
+                new()
+                {
+                    Chance = 25,
+                    Location = SpawnLocationType.Inside079Armory,
+                },
+            },
+            RoleSpawnPoints = new List<RoleSpawnPoint>
+            {
+                new()
+                {
+                    Chance = 25,
+                    Role = RoleTypeId.Scp106
+                }
             },
         };
         
