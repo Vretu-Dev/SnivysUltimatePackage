@@ -104,11 +104,6 @@ namespace SnivysUltimatePackageOneConfig.Configs.CustomConfigs
             new AdditionalHealth207()
         };
         
-        public List<LowGravityArmor> LowGravityArmors { get; private set; } = new()
-        {
-            new LowGravityArmor()
-        };
-        
         public List<ViperPdw> ViperPdws { get; private set; } = new()
         {
             new ViperPdw()

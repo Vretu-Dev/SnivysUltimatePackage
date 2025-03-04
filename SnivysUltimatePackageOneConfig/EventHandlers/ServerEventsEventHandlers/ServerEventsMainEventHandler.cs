@@ -10,7 +10,6 @@ using MEC;
 using PlayerRoles;
 using UnityEngine;
 using Random = System.Random;
-using PlayerLab = LabApi.Features.Wrappers.Player;
 
 // ReSharper disable InconsistentNaming
 
@@ -65,7 +64,6 @@ namespace SnivysUltimatePackageOneConfig.EventHandlers.ServerEventsEventHandlers
             ChaoticEventHandlers.EndEvent();
             NameRedactedEventHandlers.EndEvent();
             //SnowballsVsScpsEventHandlers.EndEvent();
-            GravityEventHandlers.EndEvent();
             Plugin.ActiveEvent = 0;
         }
 
@@ -118,10 +116,6 @@ namespace SnivysUltimatePackageOneConfig.EventHandlers.ServerEventsEventHandlers
                     case "VariableLights":
                         Log.Debug("VVUP Server Events: Activating Variable Lights Event");
                         var variableEventHandlers = new VariableLightsEventHandlers();
-                        break;
-                    case "Gravity":
-                        Log.Debug("VVUP Server Events: Activating Gravity Event");
-                        var gravityEventHandlers = new GravityEventHandlers();
                         break;
                     default:
                         Log.Warn($"VVUP Server Events: Unknown event: {selectedEvent}");
@@ -375,14 +369,5 @@ namespace SnivysUltimatePackageOneConfig.EventHandlers.ServerEventsEventHandlers
             Timing.CallDelayed(0.5f, () => ev.Player.Role.Set(RoleTypeId.Overwatch));
             SnowballsVsScpsEventHandlers.PlayersInOverwatchFromEvent.Add(ev.Player);
         }*/
-
-        public void OnRoleSwapGE(ChangingRoleEventArgs ev)
-        {
-            if (ev.Player != null)
-            {
-                Log.Debug($"VVUP Server Events, Gravity: Setting {ev.Player.Nickname}'s gravity to {GravityEventHandlers.GetPlayerGravity()}");
-                PlayerLab.Get(ev.Player.ReferenceHub)!.Gravity = GravityEventHandlers.GetPlayerGravity();
-            }
-        }
     }
 }

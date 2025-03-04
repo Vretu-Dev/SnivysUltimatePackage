@@ -58,7 +58,7 @@ namespace SnivysUltimatePackageOneConfig.EventHandlers.ServerEventsEventHandlers
             for (;;)
             {
                 float chaoticEventCycle = _config.TimeForChaosEvent;
-                int chaosRandomNumber = random.Next(minValue: 1, maxValue: 24);
+                int chaosRandomNumber = random.Next(minValue: 1, maxValue: 23);
                 Log.Debug(chaosRandomNumber);
                 if (_config.ChaosEventEndsOtherEvents)
                 {
@@ -861,21 +861,6 @@ namespace SnivysUltimatePackageOneConfig.EventHandlers.ServerEventsEventHandlers
                             Log.Debug("VVUP Server Events, Chaotic: Super speed event is disabled");
                         }
 
-                        break;
-                    // Start Gravity Event
-                    case 23:
-                        if (_config.ChaosEventEnablesOtherEvents)
-                        {
-                            Log.Debug("VVUP Server Events, Chaotic: Chaos Event Enables other Events true, running Gravity Event");
-                            var gravityEventHandlers = new GravityEventHandlers();
-                        }
-
-                        else
-                        {
-                            if (_config.ChaoticEventRerollIfASpecificEventIsDisabled)
-                                chaoticEventCycle = 1;
-                            Log.Debug("VVUP Server Events, Chaotic: Chaos Event enabling other events is disabled");
-                        }
                         break;
                     
                     // Default Case

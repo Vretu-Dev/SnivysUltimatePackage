@@ -117,7 +117,6 @@ SCP-2818 | E11SR | 33 | 10% Chance in MicroHID | 1 | When fired, you are the bul
 Infinite Pills | Painkillers | 34 | 100% Chance to appear in a Misc Locker | 1 | When consumed, the pills dont go away, it wont heal you however. This is entirely a joke item.
 Cluster Grenade | Grenade | 36 | 15% Chance to appear in Light Armory, Heavy Armory, 049/173 Armory, Surface Nuke | 1 | When exploding, it spawns more grenades.
 Additional Health 207 | Anti SCP-207 | 37 | 25% Chance to appear in MicroHID | 1 | When consumed, it adds more health to the player until they die.
-Low Gravity Armor [WIP] | Heavy Armor | 38 | Does not spawn on the map | 0 | When equipped, it applies low gravity to the player.
 Viper PDW | Crossvec | 39 | Spawns on MTF Vanguard, 25% Chance to appear in Heavy Armory, 049 Armory, Inside 096 Containment Chamber | 1 | A firearm that does different damage at different ranges.
 Pathfinder | COM-18 | 40 | Spawns on MTf Vanguard | 1 | A firearm that when hitting a foe, causes them to take increased damage for a short amount of time.
 
@@ -138,7 +137,6 @@ Chaos Event | Causes chaos in the facility, see below for what Chaos Event can d
 Name Redacted | Removes everyones names
 Freezing Temperatures | The thermostat in the facility broke and its slowly freezing over, best to get out as fast as you can.
 Snowballs Vs SCPs [Disabled] | Causes a snowball fight to start.
-Gravity [WIP] | Causes the gravity to change for all players.
 
 Chaos Event Functions, a lot of this can be customized to your hearts content.
 Function | Description
@@ -165,7 +163,6 @@ Rapid Fire Teslas | Causes Tesla Gates to rapidly fire
 Player Tauntrum | Causes all players to have SCP-173's tantrum spawn on them
 Router Kicking Simulator | Gives players fake lag and teleports them back a distance after a bit of time
 Super Speed | Makes all the players super speed
-Enable Gravity | Starts the Gravity Event
 
 # Micro Damage Reduction
 Allows for a configurable damage reduction to what ever class is specificed in the Config.

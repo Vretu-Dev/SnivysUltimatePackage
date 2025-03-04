@@ -111,7 +111,6 @@ namespace SnivysUltimatePackage
                     InfinitePills.Get(typeof(InfinitePills)),
                     ClusterGrenade.Get(typeof(ClusterGrenade)),
                     AdditionalHealth207.Get(typeof(AdditionalHealth207)),
-                    LowGravityArmor.Get(typeof(LowGravityArmor)),
                     ViperPdw.Get(typeof(ViperPdw)),
                     Pathfinder.Get(typeof(Pathfinder)),
                 };
