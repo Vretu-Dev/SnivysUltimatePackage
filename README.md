@@ -118,7 +118,7 @@ Infinite Pills | Painkillers | 34 | 50% Chance to appear in a Misc Locker, 939's
 Cluster Grenade | Grenade | 36 | 15% Chance to appear in Light Armory, Heavy Armory, 049/173 Armory, Surface Nuke, 079's Armory | 1 | When exploding, it spawns more grenades.
 Additional Health 207 | Anti SCP-207 | 37 | 25% Chance to appear in MicroHID, 079's Armory, 106's Room | 1 | When consumed, it adds more health to the player until they die.
 Viper PDW | Crossvec | 39 | Spawns on MTF Vanguard, 25% Chance to appear in Heavy Armory, 049 Armory, Inside 096 Containment Chamber, Inside 079's Armory | 1 | A firearm that does different damage at different ranges.
-Pathfinder | COM-18 | 40 | Spawns on MTf Vanguard | 1 | A firearm that when hitting a foe, causes them to take increased damage for a short amount of time.
+Pathfinder | COM-18 | 40 | Spawns on MTF Vanguard | 1 | A firearm that when hitting a foe, causes them to take increased damage for a short amount of time.
 
 # Snivy's Server Events
 
