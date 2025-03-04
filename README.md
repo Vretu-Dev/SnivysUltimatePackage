@@ -114,7 +114,7 @@ PB-42 | Flash Bang | 30 | 50% Chance in Surface Nuke Room, HCZ Armory, 096s Room
 Amnesioflux | SCP500 | 31 | 100% Chance in 096s room. | 1 | When consumed, removes you as a target from 096, just make sure you're not looking at him when you take it.
 C4 | Grenade | 32 | 10% Chance in Light Armory, 25% Chance in Heavy Armory, 50% Chance in 049 Armory and 079's Armory, 100% Chance in Surface Nuke | 5 | A grenade that can be remotely detonated, requires a radio to detonate (by base).
 SCP-2818 | E11SR | 33 | 10% Chance in MicroHID, 079's Armory | 1 | When fired, you are the bullet. This will kill the shooter but will do a lot of damage to the target.
-Infinite Pills | Painkillers | 34 | 50% Chance to appear in a Misc Locker, 939's Room, Heavy Test Room | 1 | When consumed, the pills dont go away, it wont heal you however. This is entirely a joke item.
+Infinite Pills | Painkillers | 34 | 50% Chance to appear in a Misc Locker, 939's Room, Heavy Test Room | 3 | When consumed, the pills dont go away, it wont heal you however. This is entirely a joke item.
 Cluster Grenade | Grenade | 36 | 15% Chance to appear in Light Armory, Heavy Armory, 049/173 Armory, Surface Nuke, 079's Armory | 1 | When exploding, it spawns more grenades.
 Additional Health 207 | Anti SCP-207 | 37 | 25% Chance to appear in MicroHID, 079's Armory, 106's Room | 1 | When consumed, it adds more health to the player until they die.
 Viper PDW | Crossvec | 39 | Spawns on MTF Vanguard, 25% Chance to appear in Heavy Armory, 049 Armory, Inside 096 Containment Chamber, Inside 079's Armory | 1 | A firearm that does different damage at different ranges.
