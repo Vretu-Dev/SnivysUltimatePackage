@@ -59,6 +59,11 @@ namespace SnivysUltimatePackage.Custom.Items.Grenades
                     Chance = 25,
                     Location = SpawnLocationType.InsideSurfaceNuke,
                 },
+                new ()
+                {
+                    Chance = 25,
+                    Location = SpawnLocationType.Inside079Armory,
+                },
             }
         };
 

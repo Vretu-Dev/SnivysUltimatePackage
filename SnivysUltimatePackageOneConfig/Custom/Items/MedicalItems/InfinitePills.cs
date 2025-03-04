@@ -1,4 +1,5 @@
-﻿using Exiled.API.Enums;
+﻿using System.Collections.Generic;
+using Exiled.API.Enums;
 using Exiled.API.Features.Attributes;
 using Exiled.API.Features.Spawn;
 using Exiled.CustomItems.API.Features;
@@ -19,17 +20,34 @@ namespace SnivysUltimatePackageOneConfig.Custom.Items.MedicalItems
         public ItemType ItemType { get; set; } = ItemType.Painkillers;
         public override SpawnProperties SpawnProperties { get; set; } = new()
         {
-            Limit = 1,
+            Limit = 3,
+            DynamicSpawnPoints = new()
+            {
+                new()
+                {
+                    Chance = 50,
+                    Location = SpawnLocationType.Inside939Cryo
+                },
+            },
+            RoomSpawnPoints = new List<RoomSpawnPoint>
+            {
+                new()
+                {
+                    Chance = 50,
+                    Room = RoomType.HczTestRoom,
+                    Offset = new Vector3(0.885f, 0.749f, -4.874f)
+                },
+            },
             LockerSpawnPoints = new()
             {
                 new LockerSpawnPoint()
                 {
-                    Chance = 100,
+                    Chance = 50,
                     Type = LockerType.Misc,
                     UseChamber = true,
                     Offset = Vector3.zero,
-                }
-            }
+                },
+            },
         };
 
         protected override void SubscribeEvents()

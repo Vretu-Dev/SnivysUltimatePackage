@@ -38,6 +38,11 @@ namespace SnivysUltimatePackageOneConfig.Custom.Items.Firearms
                     Chance = 10,
                     Location = SpawnLocationType.InsideHidChamber,
                 },
+                new ()
+                {
+                    Chance = 10,
+                    Location = SpawnLocationType.Inside079Armory,
+                },
             },
         };
 

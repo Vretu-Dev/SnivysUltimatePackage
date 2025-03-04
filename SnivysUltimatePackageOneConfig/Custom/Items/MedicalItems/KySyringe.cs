@@ -33,9 +33,14 @@ namespace SnivysUltimatePackageOneConfig.Custom.Items.MedicalItems
             {
                 new DynamicSpawnPoint()
                 {
-                    Chance = 100,
+                    Chance = 50,
                     Location = SpawnLocationType.Inside096,
-                }
+                },
+                new DynamicSpawnPoint()
+                {
+                    Chance = 100,
+                    Location = SpawnLocationType.Inside939Cryo,
+                },
             }
         };
         protected override void SubscribeEvents()

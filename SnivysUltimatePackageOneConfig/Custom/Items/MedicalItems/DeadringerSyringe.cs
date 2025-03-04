@@ -30,20 +30,38 @@ namespace SnivysUltimatePackageOneConfig.Custom.Items.MedicalItems
         public String RagdollDeathReason { get; set; } = "Totally A Intentional Fatal Injection";
         public bool UsableAfterNuke { get; set; } = false;
         public bool TeleportToLightAfterDecom { get; set; } = false;
+
         [CanBeNull]
-        public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties()
+        public override SpawnProperties SpawnProperties { get; set; } = new()
         {
             Limit = 1,
-            LockerSpawnPoints = new List<LockerSpawnPoint>()
+            DynamicSpawnPoints = new()
+            {
+                new()
+                {
+                    Chance = 25,
+                    Location = SpawnLocationType.Inside939Cryo
+                },
+            },
+            RoomSpawnPoints = new List<RoomSpawnPoint>
+            {
+                new()
+                {
+                    Chance = 25,
+                    Room = RoomType.HczTestRoom,
+                    Offset = new Vector3(0.885f, 0.749f, -4.874f)
+                },
+            },
+            LockerSpawnPoints = new()
             {
                 new LockerSpawnPoint()
                 {
                     Chance = 25,
+                    Type = LockerType.Misc,
                     UseChamber = true,
                     Offset = Vector3.zero,
-                    Type = LockerType.Misc
-                }
-            }
+                },
+            },
         };
         public List<RoomType> ExcludedRooms { get; set; } = new List<RoomType>()
         {

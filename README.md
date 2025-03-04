@@ -101,9 +101,9 @@ A collection of custom items that I have made over the time (plus one from Jamwo
 Item Name | Item Type | ItemID | Spawn Locations | Spawn Limit | Description
 :---: | :---: | :---: | :---: | :---: | :------
 Obscurus Veil-5 | Flash Bang | 20 | 25% Chance in HCZ Armory, GR18, Surface Nuke Room, LCZ Armory. | 5 | When thrown, causes a permament smoke cloud to appear at place of detonation.
-Explosive Round Revolver | Revolver | 21 | 10% Chance in MicroHID, HCZ Armory, 096s Room, 20% Chance in 049's Armory. | 1 | When used, bullets becomes short fused grenades at point of impact they land.
-Nerve Agent Grenade | Flash Bang | 22 | 25% Chance in LCZ Armory, HCZ Armory, 049 Armory, and Surface Nuke Room. | 2 | When thrown, causes a customizable duration nerve agent that causes damage when walked through.
-Phantom Decoy Device | Adrenline | 23 | 25% Chance to spawn in a random locker. | 1 | When used, teleports the player randomly to a different room while dropping a fake corspe. Giving massive debuffs when used.
+Explosive Round Revolver | Revolver | 21 | 10% Chance in MicroHID, HCZ Armory, 096s Room, 20% Chance in 049's Armory and 079's Armory. | 1 | When used, bullets becomes short fused grenades at point of impact they land.
+Nerve Agent Grenade | Flash Bang | 22 | 25% Chance in LCZ Armory, HCZ Armory, 049 Armory, 079's Armory, and Surface Nuke Room. | 2 | When thrown, causes a customizable duration nerve agent that causes damage when walked through.
+Phantom Decoy Device | Adrenline | 23 | 25% Chance to spawn in a random locker, 939's room, and Heavy Test Room. | 1 | When used, teleports the player randomly to a different room while dropping a fake corspe. Giving massive debuffs when used.
 Phantom Lantern | Lantern | 24 | 10% Chance to spawn in MicroHID, 096s room, GR18, 106s Room, HczTestRoom. | 1 | When toggled, makes the player go incredibly slowly, become invisible, and walk through doors, while locking out the inventory.
 Explosive Resistant Armor | Heavy Armor | 25 | 25% Chance to spawn in MicroHID, HCZ Armory, 049 Armory. | 1 | When equipped, makes the user more resistant to explosives.
 LJ-429 | Adrenline | 26 | 100% Chance to spawn in 096s room. | 1 | When used, the player dies.
@@ -112,12 +112,12 @@ Silent Serenade | COM-18 | 28 | 20% Chance in 173 Armory, GR-18, 096 Room, PC-15
 SCP-1499 | SCP-268 | 29 | 10% Chance in MicroHID, 079's Room, In the escape hall building. | 1 | When putting on, will teleport you to a fixed point on the map for a specified amount of time.
 PB-42 | Flash Bang | 30 | 50% Chance in Surface Nuke Room, HCZ Armory, 096s Room. | 5 | When throwing, will open doors and disconnect SCP-079 if 079 is at that camera.
 Amnesioflux | SCP500 | 31 | 100% Chance in 096s room. | 1 | When consumed, removes you as a target from 096, just make sure you're not looking at him when you take it.
-C4 | Grenade | 32 | 10% Chance in Light Armory, 25% Chance in Heavy Armory, 50% Chance in 049 Armory, 100% Chance in Surface Nuke | 5 | A grenade that can be remotely detonated, requires a radio to detonate (by base).
-SCP-2818 | E11SR | 33 | 10% Chance in MicroHID | 1 | When fired, you are the bullet. This will kill the shooter but will do a lot of damage to the target.
-Infinite Pills | Painkillers | 34 | 100% Chance to appear in a Misc Locker | 1 | When consumed, the pills dont go away, it wont heal you however. This is entirely a joke item.
-Cluster Grenade | Grenade | 36 | 15% Chance to appear in Light Armory, Heavy Armory, 049/173 Armory, Surface Nuke | 1 | When exploding, it spawns more grenades.
-Additional Health 207 | Anti SCP-207 | 37 | 25% Chance to appear in MicroHID | 1 | When consumed, it adds more health to the player until they die.
-Viper PDW | Crossvec | 39 | Spawns on MTF Vanguard, 25% Chance to appear in Heavy Armory, 049 Armory, Inside 096 Containment Chamber | 1 | A firearm that does different damage at different ranges.
+C4 | Grenade | 32 | 10% Chance in Light Armory, 25% Chance in Heavy Armory, 50% Chance in 049 Armory and 079's Armory, 100% Chance in Surface Nuke | 5 | A grenade that can be remotely detonated, requires a radio to detonate (by base).
+SCP-2818 | E11SR | 33 | 10% Chance in MicroHID, 079's Armory | 1 | When fired, you are the bullet. This will kill the shooter but will do a lot of damage to the target.
+Infinite Pills | Painkillers | 34 | 50% Chance to appear in a Misc Locker, 939's Room, Heavy Test Room | 1 | When consumed, the pills dont go away, it wont heal you however. This is entirely a joke item.
+Cluster Grenade | Grenade | 36 | 15% Chance to appear in Light Armory, Heavy Armory, 049/173 Armory, Surface Nuke, 079's Armory | 1 | When exploding, it spawns more grenades.
+Additional Health 207 | Anti SCP-207 | 37 | 25% Chance to appear in MicroHID, 079's Armory, 106's Room | 1 | When consumed, it adds more health to the player until they die.
+Viper PDW | Crossvec | 39 | Spawns on MTF Vanguard, 25% Chance to appear in Heavy Armory, 049 Armory, Inside 096 Containment Chamber, Inside 079's Armory | 1 | A firearm that does different damage at different ranges.
 Pathfinder | COM-18 | 40 | Spawns on MTf Vanguard | 1 | A firearm that when hitting a foe, causes them to take increased damage for a short amount of time.
 
 # Snivy's Server Events

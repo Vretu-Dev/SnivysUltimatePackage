@@ -60,6 +60,11 @@ namespace SnivysUltimatePackageOneConfig.Custom.Items.Grenades
                     Chance = 15,
                     Location = SpawnLocationType.InsideSurfaceNuke,
                 },
+                new ()
+                {
+                    Chance = 15,
+                    Location = SpawnLocationType.Inside079Armory,
+                },
             },
         };
         public override bool ExplodeOnCollision { get; set; } = false;
