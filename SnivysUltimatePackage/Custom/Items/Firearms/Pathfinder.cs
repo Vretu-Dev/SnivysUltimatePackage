@@ -31,14 +31,8 @@ namespace SnivysUltimatePackage.Custom.Items.Firearms
         public float MarkedDuration { get; set; } = 10f;
         [Description("Handles the damage multipler the tracked target(s) should take (1.10 = 10% more, 1.50 = 50% more, etc")]
         public float DamageMultiplier { get; set; } = 1.10f;
-        [Description("Handles how much time needs to pass in seconds before allowing a reload. (To prevent being able to spam it at multiple targets)")]
-        public float TimeNeededToPassBeforeReload { get; set; } = 5f;
         [Description("If true on a friendly fire on server. Can the Pathfinder mark teammates. If set to true on a friendly fire off server, does nothing.")]
         public bool MarkTeammates { get; set; } = false;
-
-        public string ReloadingMessage { get; set; } = "Reloading, it takes 5 seconds";
-        public float ReloadingMessageTime { get; set; } = 5f;
-        public bool UseHints { get; set; } = false;
         
         private List<PlayerAPI> _activeMarkedPlayers = new();
         private List<PlayerAPI> _playersReloading = new();
@@ -46,13 +40,13 @@ namespace SnivysUltimatePackage.Custom.Items.Firearms
         protected override void SubscribeEvents()
         {
             Exiled.Events.Handlers.Player.Hurting += OnHurting;
-            Exiled.Events.Handlers.Player.ChangingItem += OnChangingItem;
+            Exiled.Events.Handlers.Player.ReloadingWeapon += OnReloading;
         }
 
         protected override void UnsubscribeEvents()
         {
             Exiled.Events.Handlers.Player.Hurting -= OnHurting;
-            Exiled.Events.Handlers.Player.ChangingItem -= OnChangingItem;
+            Exiled.Events.Handlers.Player.ReloadingWeapon -= OnReloading;
         }
 
         protected override void OnShot(ShotEventArgs ev)
@@ -93,40 +87,15 @@ namespace SnivysUltimatePackage.Custom.Items.Firearms
             ev.Amount *= DamageMultiplier;
         }
 
-        protected override void OnReloading(ReloadingWeaponEventArgs ev)
+        private void OnReloading(ReloadingWeaponEventArgs ev)
         {
             if (!Check(ev.Player.CurrentItem))
                 return;
-            ev.IsAllowed = false;
-            if (_playersReloading.Contains(ev.Player))
-                return;
-            _playersReloading.Add(ev.Player);
-            if (UseHints)
+            Timing.CallDelayed(2f, () =>
             {
-                Log.Debug($"VVUP Custom Items: Pathfinder, showing Restricted Attachment Changing Message Hint to {ev.Player.Nickname} for {ReloadingMessageTime} seconds");
-                ev.Player.ShowHint(ReloadingMessage, ReloadingMessageTime);
-            }
-            else
-            {
-                Log.Debug($"VVUP Custom Items: Pathfinder, showing Restricted Attachment Changing Message Broadcast to {ev.Player.Nickname} for {ReloadingMessageTime} seconds");
-                ev.Player.Broadcast(new Exiled.API.Features.Broadcast(ReloadingMessage, (ushort)ReloadingMessageTime));
-            }
-            Timing.CallDelayed(TimeNeededToPassBeforeReload, () =>
-            {
-                Log.Debug($"VVUP Custom Items: Pathfinder, {ev.Player.Nickname} is now reloading Pathfinder.");
-                ev.Firearm.Reload();
-                _playersReloading.Remove(ev.Player);
+                Log.Debug($"VVUP Custom Items: Pathfinder, {ev.Player.Nickname} has started reloading, setting correct ammo");
+                ev.Firearm.MagazineAmmo = ClipSize;
             });
-        }
-
-        private void OnChangingItem(ChangingItemEventArgs ev)
-        {
-            if (!Check(ev.Player.CurrentItem))
-                return;
-            if (!_playersReloading.Contains(ev.Player))
-                return;
-            Log.Debug($"VVUP Custom Items: Pathfinder, {ev.Player.Nickname} tried swapping weapons during reloading Pathfinder, restricting.");
-            ev.IsAllowed = false;
         }
     }
 }

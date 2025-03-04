@@ -6,6 +6,7 @@ using Exiled.API.Features.Attributes;
 using Exiled.API.Features.Spawn;
 using Exiled.CustomItems.API.Features;
 using Exiled.Events.EventArgs.Player;
+using MEC;
 
 namespace SnivysUltimatePackageOneConfig.Custom.Items.Firearms
 {
@@ -23,7 +24,7 @@ namespace SnivysUltimatePackageOneConfig.Custom.Items.Firearms
         public override byte ClipSize { get; set; } = 1;
 
         [Description("Whether or not the weapon should despawn itself after it's been used.")]
-        public bool DespawnAfterUse { get; set; } = false;
+        public bool DespawnAfterUse { get; set; } = true;
 
         public string DeathReasonUser { get; set; } = "Vaporized by becoming a bullet";
         public string DeathReasonTarget { get; set; } = "Vaporized by a human bullet";
@@ -75,8 +76,11 @@ namespace SnivysUltimatePackageOneConfig.Custom.Items.Firearms
                 Log.Debug($"VVUP Custom Items: SCP-2818, Despawn After Use is true, removing SCP-2818 from {ev.Player.Nickname}'s inventory");
                 ev.Player.RemoveItem(ev.Item);
             }
-            Log.Debug($"VVUP Custom Items: SCP-2818, Killing {ev.Player.Nickname}");
-            ev.Player.Kill(DeathReasonUser);
+            Timing.CallDelayed(0.1f, () =>
+            {
+                Log.Debug($"VVUP Custom Items: SCP-2818, Killing {ev.Player.Nickname}");
+                ev.Player.Kill(DeathReasonUser);
+            });
         }
     }
 }
