@@ -227,11 +227,11 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
             {
                 Random random = new();
                 Log.Debug("VVUP Server Events: Doing a half half chance to see if an effect should be applied");
-                int chance = random.Next(minValue: 1, maxValue: 2);
+                int chance = random.Next(minValue: 0, maxValue: 2);
                 if (chance == 1)
                     return;
                 Log.Debug("VVUP Server Events: Chance passed, getting a random effect");
-                chance = random.Next(minValue: 1, maxValue: 41);
+                chance = random.Next(minValue: 1, maxValue: 42);
                 switch (chance)
                 {
                     case 1:

@@ -15,6 +15,8 @@ namespace SnivysUltimatePackage.EventHandlers
 
         public void OnUsingItem(UsedItemEventArgs ev)
         {
+            if (Plugin.Instance.Scp1576SpectatorViewerEventHandlers == null)
+                return;
             Log.Debug("VVUP SCP 1576 Spectator Viewer: Checking if SCP 1576 Spectator Viewer is enabled");
             if (!Plugin.Instance.Config.Scp1576SpectatorViewerConfig.IsEnabled)
                 return;

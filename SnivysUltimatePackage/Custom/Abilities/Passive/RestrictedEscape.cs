@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 using Exiled.API.Features;
 using Exiled.API.Features.Attributes;
 using Exiled.CustomRoles.API.Features;
@@ -15,7 +16,12 @@ namespace SnivysUltimatePackage.Custom.Abilities.Passive
             "Prevents players from escaping regularly (can still escape while detained)";
         public List<Player> PlayersWithRestrictedEscapeEffect = new List<Player>();
 
-        public string EscapeText { get; set; } = "You're unable to escape unless you're detained";
+        [Description("The text that is shown if the player is uncuffed, and needs to be cuffed to escape")]
+        public string EscapeTextUncuffed { get; set; } = "You're unable to escape unless you're detained";
+        [Description("The text that is shown if the player is cuffed, and needs to be uncuffed to escape")]
+        public string EscapeTextCuffed { get; set; } = "You're unable to escape unless you're not detained";
+        [Description("The text that is shown if the player is unable to escape as a whole.")]
+        public string EscapeTextBoth { get; set; } = "You're unable to escape";
         public float EscapeTextTime { get; set; } = 5;
         public bool UseHints { get; set; } = true;
         public bool AllowedUncuffedEscape { get; set; } = false;
@@ -34,14 +40,32 @@ namespace SnivysUltimatePackage.Custom.Abilities.Passive
 
         private void OnEscaping(EscapingEventArgs ev)
         {
-            if (PlayersWithRestrictedEscapeEffect.Contains(ev.Player) && !ev.Player.IsCuffed)
+            if (PlayersWithRestrictedEscapeEffect.Contains(ev.Player) && !AllowedCuffedEscape && !AllowedUncuffedEscape)
             {
                 ev.IsAllowed = false;
                 Log.Debug($"VVUP Custom Abilities: Restricting Escape of {ev.Player.Nickname}");
                 if (UseHints)
-                    ev.Player.ShowHint(EscapeText, EscapeTextTime);
+                    ev.Player.ShowHint(EscapeTextBoth, EscapeTextTime);
                 else
-                    ev.Player.Broadcast(new Exiled.API.Features.Broadcast(EscapeText, (ushort)EscapeTextTime));
+                    ev.Player.Broadcast(new Exiled.API.Features.Broadcast(EscapeTextBoth, (ushort)EscapeTextTime));
+            }
+            else if (PlayersWithRestrictedEscapeEffect.Contains(ev.Player) && !AllowedCuffedEscape && ev.Player.IsCuffed)
+            {
+                ev.IsAllowed = false;
+                Log.Debug($"VVUP Custom Abilities: Restricting Escape of {ev.Player.Nickname} while cuffed");
+                if (UseHints)
+                    ev.Player.ShowHint(EscapeTextCuffed, EscapeTextTime);
+                else
+                    ev.Player.Broadcast(new Exiled.API.Features.Broadcast(EscapeTextCuffed, (ushort)EscapeTextTime));
+            }
+            else if (PlayersWithRestrictedEscapeEffect.Contains(ev.Player) && !AllowedUncuffedEscape && !ev.Player.IsCuffed)
+            {
+                ev.IsAllowed = false;
+                Log.Debug($"VVUP Custom Abilities: Restricting Escape of {ev.Player.Nickname} while uncuffed");
+                if (UseHints)
+                    ev.Player.ShowHint(EscapeTextUncuffed, EscapeTextTime);
+                else
+                    ev.Player.Broadcast(new Exiled.API.Features.Broadcast(EscapeTextUncuffed, (ushort)EscapeTextTime));
             }
         }
     }

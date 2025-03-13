@@ -17,6 +17,8 @@ namespace SnivysUltimatePackage.EventHandlers
 
         public void OnVerified(VerifiedEventArgs ev)
         {
+            if (Plugin.Instance.SsssEventHandler == null)
+                return;
             if (!Plugin.Instance.Config.SsssConfig.IsEnabled)
                 return;
             

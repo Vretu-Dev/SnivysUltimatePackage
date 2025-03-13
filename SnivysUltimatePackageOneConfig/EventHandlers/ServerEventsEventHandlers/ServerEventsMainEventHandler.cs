@@ -231,7 +231,7 @@ namespace SnivysUltimatePackageOneConfig.EventHandlers.ServerEventsEventHandlers
                 if (chance == 1)
                     return;
                 Log.Debug("VVUP Server Events: Chance passed, getting a random effect");
-                chance = random.Next(minValue: 1, maxValue: 41);
+                chance = random.Next(minValue: 1, maxValue: 42);
                 switch (chance)
                 {
                     case 1:

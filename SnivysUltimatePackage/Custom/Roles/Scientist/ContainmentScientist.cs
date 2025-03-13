@@ -61,9 +61,10 @@ namespace SnivysUltimatePackage.Custom.Roles.Scientist
             {
                 Name = "Restricted Escape [Passive]",
                 Description = "Restricts Escaping as Containment Engineer Scientist",
-                EscapeText = "As a Containment Engineer Scientist, you''re unable to escape, unless you''re detained.",
+                EscapeTextUncuffed = "As a Containment Engineer Scientist, you''re unable to escape, unless you''re detained.",
                 EscapeTextTime = 5,
                 UseHints = true,
+                AllowedCuffedEscape = true,
             },
         };
     }

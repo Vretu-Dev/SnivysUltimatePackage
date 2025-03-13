@@ -8,9 +8,11 @@ namespace SnivysUltimatePackageOneConfig.EventHandlers
     {
         public Plugin Plugin;
         public MicroEvaporateEventHandlers(Plugin plugin) => Plugin = plugin;
-
+        
         public void OnDying(DyingEventArgs ev)
         {
+            if (Plugin.Instance.MicroEvaporateEventHandlers == null)
+                return;
             Log.Debug("VVUP Micro Evaporate: Checking if Micro Evaporate is enabled");
             if (!Plugin.Instance.Config.MicroEvaporateConfig.IsEnabled)
                 return;

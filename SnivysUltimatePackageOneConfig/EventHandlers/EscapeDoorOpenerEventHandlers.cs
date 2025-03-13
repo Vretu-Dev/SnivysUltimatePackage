@@ -12,6 +12,8 @@ namespace SnivysUltimatePackageOneConfig.EventHandlers
 
         public void OnRoundStarted()
         {
+            if (Plugin.Instance.EscapeDoorOpenerEventHandlers == null)
+                return;
             Log.Debug("VVUP Escape Door Opener: Checking if Escape Door Opener is enabled");
             if (!Plugin.Instance.Config.EscapeDoorOpenerConfig.IsEnabled)
                 return;

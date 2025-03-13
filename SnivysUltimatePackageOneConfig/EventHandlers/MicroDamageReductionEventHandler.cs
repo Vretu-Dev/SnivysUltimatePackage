@@ -11,6 +11,8 @@ namespace SnivysUltimatePackageOneConfig.EventHandlers
 
         public void OnPlayerHurting(HurtingEventArgs ev)
         {
+            if (Plugin.Instance.MicroDamageReductionEventHandler == null)
+                return;
             Log.Debug("VVUP Micro Damage Reduction: Checking if Micro Damage Reduction is enabled");
             if (!Plugin.Instance.Config.MicroDamageReductionConfig.IsEnabled)
                 return;
