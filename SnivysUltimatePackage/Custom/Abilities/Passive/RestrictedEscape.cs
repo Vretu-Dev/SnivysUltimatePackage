@@ -18,6 +18,8 @@ namespace SnivysUltimatePackage.Custom.Abilities.Passive
         public string EscapeText { get; set; } = "You're unable to escape unless you're detained";
         public float EscapeTextTime { get; set; } = 5;
         public bool UseHints { get; set; } = true;
+        public bool AllowedUncuffedEscape { get; set; } = false;
+        public bool AllowedCuffedEscape { get; set; } = false;
         
         protected override void AbilityAdded(Player player)
         {
