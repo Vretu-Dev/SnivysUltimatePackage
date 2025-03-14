@@ -7,7 +7,6 @@ using SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers;
 
 namespace SnivysUltimatePackage.Commands.ServerEventsCommands.EventCommands
 {
-    [CommandHandler(typeof(RemoteAdminCommandHandler))]
     internal class BlackoutCommand : ICommand
     {
         public string Command { get; set; } = "Blackout";

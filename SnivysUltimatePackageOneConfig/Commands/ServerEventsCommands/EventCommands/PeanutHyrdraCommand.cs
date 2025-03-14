@@ -7,7 +7,6 @@ using SnivysUltimatePackageOneConfig.EventHandlers.ServerEventsEventHandlers;
 
 namespace SnivysUltimatePackageOneConfig.Commands.ServerEventsCommands.EventCommands
 {
-    [CommandHandler(typeof(RemoteAdminCommandHandler))]
     internal class PeanutHydraCommand : ICommand
     {
         public string Command { get; set; } = "173Hydra";

@@ -75,18 +75,11 @@ namespace SnivysUltimatePackageOneConfig.Commands.VotingCommands
 
             IsVoteActive = true;
 
-            string broadcastText = Plugin.Instance.Config.VoteConfig.MapBroadcastText.Replace("%prompt%", votePrompt);
+            string broadcastText = Plugin.Instance.Config.VoteConfig.StartVoteMapBroadcast.Replace("%prompt%", votePrompt);
 
             for (int i = 1; i <= 5; i++)
             {
-                if (VoteOptions.ContainsKey(i))
-                {
-                    broadcastText = broadcastText.Replace($"%option{i}%", VoteOptions[i]);
-                }
-                else
-                {
-                    broadcastText = broadcastText.Replace($"%option{i}%", string.Empty);
-                }
+                broadcastText = broadcastText.Replace($"%option{i}%", VoteOptions.ContainsKey(i) ? $".vote {i}: {VoteOptions[i]}," : string.Empty);
             }
 
             Map.Broadcast(Plugin.Instance.Config.VoteConfig.MapBroadcastTime, broadcastText,
@@ -98,11 +91,10 @@ namespace SnivysUltimatePackageOneConfig.Commands.VotingCommands
                     .Select(group => new { Option = group.Key, Count = group.Count() })
                     .OrderByDescending(x => x.Count);
 
-                string resultMessage = "<size=30>The vote has ended.</size>";
-                foreach (var result in results)
-                {
-                    resultMessage += $"<size=30>{VoteOptions[result.Option]}: {result.Count} votes.</size>";
-                }
+                string resultMessage = Plugin.Instance.Config.VoteConfig.EndVoteMapBroadcast;
+                string resultsText = results.Aggregate(string.Empty, (current, result) => current + $" <size=30>{VoteOptions[result.Option]}: {result.Count} votes.</size>");
+
+                resultMessage = resultMessage.Replace("%results%", resultsText);
 
                 Map.Broadcast(Plugin.Instance.Config.VoteConfig.MapBroadcastTime, resultMessage,
                     Broadcast.BroadcastFlags.Normal, true);

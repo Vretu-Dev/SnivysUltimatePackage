@@ -6,8 +6,6 @@ using SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers;
 
 namespace SnivysUltimatePackage.Commands.ServerEventsCommands
 {
-    [CommandHandler(typeof(GameConsoleCommandHandler))]
-    [CommandHandler(typeof(RemoteAdminCommandHandler))]
     internal class StopCommand : ICommand
     {
         public string Command { get; set; } = "Stop";
