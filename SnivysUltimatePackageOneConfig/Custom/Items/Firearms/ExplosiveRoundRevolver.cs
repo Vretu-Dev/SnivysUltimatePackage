@@ -9,6 +9,7 @@ using Exiled.Events.EventArgs.Item;
 using Exiled.Events.EventArgs.Player;
 using InventorySystem.Items.Firearms.Attachments;
 using JetBrains.Annotations;
+using MEC;
 using YamlDotNet.Serialization;
 using Player = Exiled.Events.Handlers.Player;
 
@@ -76,9 +77,12 @@ namespace SnivysUltimatePackageOneConfig.Custom.Items.Firearms
 
         protected override void SubscribeEvents()
         {
-            Player.Shot += OnShot;
-            //Player.ReloadingWeapon += OnReloading;
-            Exiled.Events.Handlers.Item.ChangingAttachments += OnChangingAttachments;
+            Timing.CallDelayed(0.25f, () =>
+            {
+                Player.Shot += OnShot;
+                //Player.ReloadingWeapon += OnReloading;
+                Exiled.Events.Handlers.Item.ChangingAttachments += OnChangingAttachments;
+            });
         }
 
         protected override void UnsubscribeEvents()

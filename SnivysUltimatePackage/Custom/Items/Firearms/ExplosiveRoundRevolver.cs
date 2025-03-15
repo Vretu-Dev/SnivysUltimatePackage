@@ -78,9 +78,12 @@ namespace SnivysUltimatePackage.Custom.Items.Firearms
 
         protected override void SubscribeEvents()
         {
-            Player.Shot += OnShot;
-            //Player.ReloadingWeapon += OnReloading;
-            Exiled.Events.Handlers.Item.ChangingAttachments += OnChangingAttachments;
+            Timing.CallDelayed(0.25f, () =>
+            {
+                Player.Shot += OnShot;
+                //Player.ReloadingWeapon += OnReloading;
+                Exiled.Events.Handlers.Item.ChangingAttachments += OnChangingAttachments;
+            });
         }
 
         protected override void UnsubscribeEvents()
