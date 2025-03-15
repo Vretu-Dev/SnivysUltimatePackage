@@ -7,6 +7,7 @@ using Exiled.API.Features.Spawn;
 using Exiled.CustomItems.API.Features;
 using Exiled.Events.EventArgs.Item;
 using Exiled.Events.EventArgs.Player;
+using Exiled.Events.EventArgs.Server;
 using InventorySystem.Items.Firearms.Attachments;
 using JetBrains.Annotations;
 using MEC;
@@ -74,15 +75,15 @@ namespace SnivysUltimatePackageOneConfig.Custom.Items.Firearms
             "You're not allowed to swap attachments on the Explosive Round Revolver";
         public bool UseHints { get; set; } = false;
         public float RestrictedAttachmentChangeMessageTimeDuration { get; set; } = 5f;
+        private List<ushort> droppedRevolvers = new List<ushort>();
 
         protected override void SubscribeEvents()
         {
-            Timing.CallDelayed(0.25f, () =>
-            {
-                Player.Shot += OnShot;
-                //Player.ReloadingWeapon += OnReloading;
-                Exiled.Events.Handlers.Item.ChangingAttachments += OnChangingAttachments;
-            });
+            Player.Shot += OnShot;
+            //Player.ReloadingWeapon += OnReloading;
+            Exiled.Events.Handlers.Item.ChangingAttachments += OnChangingAttachments;
+            Exiled.Events.Handlers.Server.RoundEnded += OnRoundEnd;
+            base.SubscribeEvents();
         }
 
         protected override void UnsubscribeEvents()
@@ -90,6 +91,34 @@ namespace SnivysUltimatePackageOneConfig.Custom.Items.Firearms
             Player.Shot -= OnShot;
             //Player.ReloadingWeapon -= OnReloading;
             Exiled.Events.Handlers.Item.ChangingAttachments -= OnChangingAttachments;
+            Exiled.Events.Handlers.Server.RoundEnded -= OnRoundEnd;
+            base.UnsubscribeEvents();
+        }
+
+        protected override void OnPickingUp(PickingUpItemEventArgs ev)
+        {
+            if (Check(ev.Pickup) && !droppedRevolvers.Contains(ev.Pickup.Serial))
+            {
+                Timing.CallDelayed(0.25f, () =>
+                {
+                    ev.Player.RemoveItem(ev.Pickup.Serial);
+                    TryGive(ev.Player, Id, true);
+                });
+            }
+        }
+        protected override void OnDroppingItem(DroppingItemEventArgs ev)
+        {
+            if (!droppedRevolvers.Contains(ev.Item.Serial))
+                droppedRevolvers.Add(ev.Item.Serial);
+        }
+        private void OnRoundEnd(RoundEndedEventArgs ev)
+        {
+            droppedRevolvers.Clear();
+        }
+        protected override void OnWaitingForPlayers()
+        {
+            droppedRevolvers.Clear();
+            base.OnWaitingForPlayers();
         }
         
         private void OnChangingAttachments(ChangingAttachmentsEventArgs ev)

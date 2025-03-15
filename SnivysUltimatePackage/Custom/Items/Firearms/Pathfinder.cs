@@ -41,12 +41,14 @@ namespace SnivysUltimatePackage.Custom.Items.Firearms
         {
             Exiled.Events.Handlers.Player.Hurting += OnHurting;
             Exiled.Events.Handlers.Player.ReloadingWeapon += OnReloading;
+            base.SubscribeEvents();
         }
 
         protected override void UnsubscribeEvents()
         {
             Exiled.Events.Handlers.Player.Hurting -= OnHurting;
             Exiled.Events.Handlers.Player.ReloadingWeapon -= OnReloading;
+            base.UnsubscribeEvents();
         }
 
         protected override void OnShot(ShotEventArgs ev)

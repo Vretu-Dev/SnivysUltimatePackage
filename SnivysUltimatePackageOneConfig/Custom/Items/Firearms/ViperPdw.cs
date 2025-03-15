@@ -7,8 +7,10 @@ using Exiled.API.Features.Spawn;
 using Exiled.CustomItems.API.Features;
 using Exiled.Events.EventArgs.Item;
 using Exiled.Events.EventArgs.Player;
+using Exiled.Events.EventArgs.Server;
 using InventorySystem.Items.Firearms.Attachments;
 using JetBrains.Annotations;
+using MEC;
 using UnityEngine;
 using YamlDotNet.Serialization;
 
@@ -84,15 +86,47 @@ namespace SnivysUltimatePackageOneConfig.Custom.Items.Firearms
             AttachmentName.RetractedStock,
             AttachmentName.StandardMagJHP,
         };
+        private List<ushort> droppedVipers = new List<ushort>();
 
         protected override void SubscribeEvents()
         {
             Exiled.Events.Handlers.Item.ChangingAttachments += OnChangingAttachments;
+            Exiled.Events.Handlers.Server.RoundEnded += OnRoundEnd;
+            base.SubscribeEvents();
         }
 
         protected override void UnsubscribeEvents()
         {
             Exiled.Events.Handlers.Item.ChangingAttachments -= OnChangingAttachments;
+            Exiled.Events.Handlers.Server.RoundEnded -= OnRoundEnd;
+            base.UnsubscribeEvents();
+        }
+
+        protected override void OnPickingUp(PickingUpItemEventArgs ev)
+        {
+            if (Check(ev.Pickup) && !droppedVipers.Contains(ev.Pickup.Serial))
+            {
+                Timing.CallDelayed(0.25f, () =>
+                {
+                    ev.Player.RemoveItem(ev.Pickup.Serial);
+                    TryGive(ev.Player, Id, true);
+                });
+            }
+        }
+        protected override void OnDroppingItem(DroppingItemEventArgs ev)
+        {
+            if (!droppedVipers.Contains(ev.Item.Serial))
+                droppedVipers.Add(ev.Item.Serial);
+        }
+        private void OnRoundEnd(RoundEndedEventArgs ev)
+        {
+            droppedVipers.Clear();
+        }
+
+        protected override void OnWaitingForPlayers()
+        {
+            droppedVipers.Clear();
+            base.OnWaitingForPlayers();
         }
 
         private void OnChangingAttachments(ChangingAttachmentsEventArgs ev)

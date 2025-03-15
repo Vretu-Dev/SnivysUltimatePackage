@@ -3,10 +3,12 @@ using Exiled.API.Enums;
 using Exiled.API.Features;
 using Exiled.API.Features.Attributes;
 using Exiled.API.Features.Items;
+using Exiled.API.Features.Pickups;
 using Exiled.API.Features.Spawn;
 using Exiled.CustomItems.API.Features;
 using Exiled.Events.EventArgs.Item;
 using Exiled.Events.EventArgs.Player;
+using Exiled.Events.EventArgs.Server;
 using InventorySystem.Items.Firearms.Attachments;
 using InventorySystem.Items.ThrowableProjectiles;
 using JetBrains.Annotations;
@@ -75,15 +77,15 @@ namespace SnivysUltimatePackage.Custom.Items.Firearms
             "You're not allowed to swap attachments on the Explosive Round Revolver";
         public bool UseHints { get; set; } = false;
         public float RestrictedAttachmentChangeMessageTimeDuration { get; set; } = 5f;
+        private List<ushort> droppedRevolvers = new List<ushort>();
 
         protected override void SubscribeEvents()
         {
-            Timing.CallDelayed(0.25f, () =>
-            {
-                Player.Shot += OnShot;
-                //Player.ReloadingWeapon += OnReloading;
-                Exiled.Events.Handlers.Item.ChangingAttachments += OnChangingAttachments;
-            });
+            Player.Shot += OnShot;
+            //Player.ReloadingWeapon += OnReloading;
+            Exiled.Events.Handlers.Item.ChangingAttachments += OnChangingAttachments;
+            Exiled.Events.Handlers.Server.RoundEnded += OnRoundEnd;
+            base.SubscribeEvents();
         }
 
         protected override void UnsubscribeEvents()
@@ -91,6 +93,35 @@ namespace SnivysUltimatePackage.Custom.Items.Firearms
             Player.Shot -= OnShot;
             //Player.ReloadingWeapon -= OnReloading;
             Exiled.Events.Handlers.Item.ChangingAttachments -= OnChangingAttachments;
+            Exiled.Events.Handlers.Server.RoundEnded -= OnRoundEnd;
+            base.UnsubscribeEvents();
+        }
+
+        protected override void OnPickingUp(PickingUpItemEventArgs ev)
+        {
+            if (Check(ev.Pickup) && !droppedRevolvers.Contains(ev.Pickup.Serial))
+            {
+                Timing.CallDelayed(0.25f, () =>
+                {
+                    ev.Player.RemoveItem(ev.Pickup.Serial);
+                    TryGive(ev.Player, Id, true);
+                });
+            }
+        }
+        protected override void OnDroppingItem(DroppingItemEventArgs ev)
+        {
+            if (!droppedRevolvers.Contains(ev.Item.Serial))
+                droppedRevolvers.Add(ev.Item.Serial);
+        }
+        private void OnRoundEnd(RoundEndedEventArgs ev)
+        {
+            droppedRevolvers.Clear();
+        }
+
+        protected override void OnWaitingForPlayers()
+        {
+            droppedRevolvers.Clear();
+            base.OnWaitingForPlayers();
         }
         
         private void OnChangingAttachments(ChangingAttachmentsEventArgs ev)
@@ -121,19 +152,18 @@ namespace SnivysUltimatePackage.Custom.Items.Firearms
                 ev.Firearm.MagazineAmmo = ClipSize;
             });
         }*/
-        
-        private void OnShot(ShotEventArgs ev)
-        {
-            if (!Check(ev.Player.CurrentItem))
-                return;
-            Log.Debug($"VVUP Custom Items: Explosive Round Revolver, spawning grenade at {ev.Position}");
-            ev.CanHurt = false;
+       private void OnShot(ShotEventArgs ev)
+       {
+           if (!Check(ev.Player.CurrentItem))
+               return;
+           Log.Debug($"VVUP Custom Items: Explosive Round Revolver, spawning grenade at {ev.Position}");
+           ev.CanHurt = false;
             
-            ExplosiveGrenade grenade = (ExplosiveGrenade)Item.Create(ItemType.GrenadeHE);
-            grenade.FuseTime = FuseTime;
-            grenade.ScpDamageMultiplier = ScpGrenadeDamageMultiplier;
-            grenade.ChangeItemOwner(Server.Host, ev.Player);
-            grenade.SpawnActive(ev.Position, owner: ev.Player);
-        }
+           ExplosiveGrenade grenade = (ExplosiveGrenade)Item.Create(ItemType.GrenadeHE);
+           grenade.FuseTime = FuseTime;
+           grenade.ScpDamageMultiplier = ScpGrenadeDamageMultiplier;
+           grenade.ChangeItemOwner(Server.Host, ev.Player);
+           grenade.SpawnActive(ev.Position, owner: ev.Player);
+       }
     }
 }
