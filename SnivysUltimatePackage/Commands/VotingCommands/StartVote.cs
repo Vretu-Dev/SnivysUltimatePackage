@@ -47,7 +47,7 @@ namespace SnivysUltimatePackage.Commands.VotingCommands
             }
 
             string input = string.Join(" ", arguments);
-            string[] parts = input.Split(['|'], StringSplitOptions.RemoveEmptyEntries).Select(part => part.Trim()).ToArray();
+            string[] parts = input.Split(new[] { '|' }, StringSplitOptions.RemoveEmptyEntries).Select(part => part.Trim()).ToArray();
             
             if (parts.Length < 3)
             {
