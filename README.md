@@ -89,7 +89,7 @@ Healing Mist | HealingMist | Active Ability | Activates a short term healing AOE
 Heal on Kill | HealOnKill | Passive Ability | Heals on kill, hopefully self explainitory on what that does.
 Infinite Stamina | InfiniteStamina | Passive Ability | Gives the player infinite stamina.
 Martyrdom | Martyrdom | Passive Ability | Explosive death.
-Pocket Dimension Escape Chance | Passive Ability | Can configure a custom escape chance from the pocket dimension.
+Pocket Dimension Escape Chance | PocketDimensionEscapeChance | Passive Ability | Can configure a custom escape chance from the pocket dimension.
 Reactive Hume Shield | ReactiveHume | Passive Ability | A Hume Shield that builds up, that reduces incoming damage.
 Remove Disguise | RemoveDisguise | Active Ability | The ability to remove their disguise, I.E. If MTF, become CI, and vise versa.
 Restricted Escape | RestrictedEscape | Passive Ability | This just restricts player escapes for custom roles that has this ability.
