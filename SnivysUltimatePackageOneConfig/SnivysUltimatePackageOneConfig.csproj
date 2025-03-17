@@ -156,6 +156,7 @@
         <Compile Include="Custom\Abilities\Passive\EffectEnabler.cs" />
         <Compile Include="Custom\Abilities\Passive\GivingCandyAbility.cs" />
         <Compile Include="Custom\Abilities\Passive\HealOnKill.cs" />
+        <Compile Include="Custom\Abilities\Passive\InfiniteStamina.cs" />
         <Compile Include="Custom\Abilities\Passive\Martyrdom.cs" />
         <Compile Include="Custom\Abilities\Passive\ReactiveHume.cs" />
         <Compile Include="Custom\Abilities\Passive\RestrictedEscape.cs" />
