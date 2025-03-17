@@ -66,6 +66,7 @@ Medic SCP-049-2 | 45 | Healing Mist, Effect Enabler | Chance during revive from 
 Lock-picker Class D | 46 | Door Picking | Immediately when a round begins | A Class D that used to be a lock picker, can open some keycard doors if they dont have the keycard.
 MTF Demolitionist | 47 | None | During a MTF Spawn Wave | A MTF Member that specializes in explosives.
 Vanguard | 48 | None | During a MTF Spawn Wave | A MTF Member with an alternative loadout, being able to mark a target to do recieve more damage for a short time.
+Theoretical Physicist Scientist | 49 | Pocket Dimension Escape Chance | Immediately when a round begins | A Scienist that believes that the Pocket Dimension has a lot more. Has 2 guaranteed escapes from Pocket Dimension to SCP-106's room.
 
 # Snivy's Custom Roles Abilities
 This contains Joker's original custom roles abilities as well
@@ -88,6 +89,7 @@ Healing Mist | HealingMist | Active Ability | Activates a short term healing AOE
 Heal on Kill | HealOnKill | Passive Ability | Heals on kill, hopefully self explainitory on what that does.
 Infinite Stamina | InfiniteStamina | Passive Ability | Gives the player infinite stamina.
 Martyrdom | Martyrdom | Passive Ability | Explosive death.
+Pocket Dimension Escape Chance | Passive Ability | Can configure a custom escape chance from the pocket dimension.
 Reactive Hume Shield | ReactiveHume | Passive Ability | A Hume Shield that builds up, that reduces incoming damage.
 Remove Disguise | RemoveDisguise | Active Ability | The ability to remove their disguise, I.E. If MTF, become CI, and vise versa.
 Restricted Escape | RestrictedEscape | Passive Ability | This just restricts player escapes for custom roles that has this ability.
