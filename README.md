@@ -163,6 +163,7 @@ Rapid Fire Teslas | Causes Tesla Gates to rapidly fire
 Player Tauntrum | Causes all players to have SCP-173's tantrum spawn on them
 Router Kicking Simulator | Gives players fake lag and teleports them back a distance after a bit of time
 Super Speed | Makes all the players super speed
+Drop Items | Drops all the items from a player's inventory
 
 # Micro Damage Reduction
 Allows for a configurable damage reduction to what ever class is specificed in the Config.
