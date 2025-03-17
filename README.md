@@ -86,6 +86,7 @@ Effect Enabler Ability | EffectEnabler| Passive Ability| Handles giving effects 
 Giving Candy Ability | GivingCandyAbility | Passive Ability | Gives candy that's listed at spawn.
 Healing Mist | HealingMist | Active Ability | Activates a short term healing AOE effect.
 Heal on Kill | HealOnKill | Passive Ability | Heals on kill, hopefully self explainitory on what that does.
+Infinite Stamina | InfiniteStamina | Passive Ability | Gives the player infinite stamina.
 Martyrdom | Martyrdom | Passive Ability | Explosive death.
 Reactive Hume Shield | ReactiveHume | Passive Ability | A Hume Shield that builds up, that reduces incoming damage.
 Remove Disguise | RemoveDisguise | Active Ability | The ability to remove their disguise, I.E. If MTF, become CI, and vise versa.
