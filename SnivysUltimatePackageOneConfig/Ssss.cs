@@ -47,6 +47,7 @@ namespace SnivysUltimatePackageOneConfig
                     MtfWisp.Get(typeof(MtfWisp)),
                     Nightfall.Get(typeof(Nightfall)),
                     TelepathicChaos.Get(typeof(TelepathicChaos)),
+                    TheoredicalPhysicistScientist.Get(typeof(TheoredicalPhysicistScientist)),
                     Vanguard.Get(typeof(Vanguard)),
                 };
 

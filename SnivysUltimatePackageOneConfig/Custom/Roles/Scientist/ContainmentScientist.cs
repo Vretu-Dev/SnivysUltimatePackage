@@ -11,7 +11,7 @@ namespace SnivysUltimatePackageOneConfig.Custom.Roles.Scientist
     [CustomRole(RoleTypeId.Scientist)]
     public class ContainmentScientist : CustomRole, ICustomRole
     {
-        public int Chance { get; set; } = 100;
+        public int Chance { get; set; } = 15;
 
         public StartTeam StartTeam { get; set; } = StartTeam.Scientist;
 

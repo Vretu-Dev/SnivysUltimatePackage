@@ -285,5 +285,14 @@ namespace SnivysUltimatePackageOneConfig.Configs.ServerEventsConfigs
         
         [Description("What should the broadcast say when a player drops their inventory?")]
         public string DropInventoryText { get; set; } = "You notice a giant hole in your pockets";
+        
+        [Description("Should the teleport to ally event be enabled?")]
+        public bool TeleportToAlliesEvent { get; set; } = true;
+        
+        [Description("What should the broadcast say when a player is teleported to an ally?")]
+        public string TeleportToAllyPlayerTeleportedText { get; set; } = "You have been teleported to an ally";
+
+        [Description("What should the broadcast say when a player gets someone teleported to them?")]
+        public string TeleportToAllyNewAllyText { get; set; } = "You had an ally teleported to you";
     }
 }

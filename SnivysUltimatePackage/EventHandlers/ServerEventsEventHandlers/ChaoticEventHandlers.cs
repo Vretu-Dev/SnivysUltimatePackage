@@ -13,6 +13,7 @@ using MEC;
 using PlayerRoles;
 using SnivysUltimatePackage.Configs.ServerEventsConfigs;
 using UnityEngine;
+using Broadcast = Exiled.API.Features.Broadcast;
 using Cassie = Exiled.API.Features.Cassie;
 using Item = Exiled.API.Features.Items.Item;
 using Map = Exiled.API.Features.Map;
@@ -58,7 +59,7 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
             for (;;)
             {
                 float chaoticEventCycle = _config.TimeForChaosEvent;
-                int chaosRandomNumber = random.Next(minValue: 1, maxValue: 24);
+                int chaosRandomNumber = random.Next(minValue: 1, maxValue: 25);
                 Log.Debug(chaosRandomNumber);
                 if (_config.ChaosEventEndsOtherEvents)
                 {
@@ -876,6 +877,37 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
                                     player.Broadcast(new Exiled.API.Features.Broadcast(_config.DropInventoryText,
                                         (ushort)_config.BroadcastDisplayTime));
                                 }
+                            }
+                        }
+                        else
+                        {
+                            if (_config.ChaoticEventRerollIfASpecificEventIsDisabled)
+                                chaoticEventCycle = 1;
+                            Log.Debug("VVUP Server Events, Chaotic: Dropping Inventory event is disabled");
+                        }
+
+                        break;
+                    // Teleport players to allies event
+                    case 24:
+                        if (_config.TeleportToAlliesEvent)
+                        {
+                            Log.Debug("VVUP Server Events, Chaotic: Running Teleport to Allies event");
+                            List<PlayerAPI> players = PlayerAPI.List.Where(p => p.Role.Team != Team.Dead && p.Role != RoleTypeId.Scp079).ToList();
+                            List<PlayerAPI> teleportedPlayers = new List<PlayerAPI>();
+                            foreach (PlayerAPI player in players)
+                            {
+                                if (teleportedPlayers.Contains(player))
+                                    continue;
+                                List<PlayerAPI> allies = players.Where(p => p.Role.Team == player.Role.Team && !teleportedPlayers.Contains(p) && p != player).ToList();
+                                if (allies.Count == 0)
+                                    continue;
+                                PlayerAPI ally = allies[random.Next(allies.Count)];
+                                Log.Debug($"VVUP Server Events, Chaotic: Teleporting {player.Nickname} to {ally.Nickname}");
+                                player.Position = ally.Position;
+                                teleportedPlayers.Add(player);
+                                teleportedPlayers.Add(ally);
+                                player.Broadcast(new Exiled.API.Features.Broadcast(_config.TeleportToAllyPlayerTeleportedText, (ushort)_config.BroadcastDisplayTime));
+                                player.Broadcast(new Exiled.API.Features.Broadcast(_config.TeleportToAllyNewAllyText, (ushort)_config.BroadcastDisplayTime));
                             }
                         }
                         else

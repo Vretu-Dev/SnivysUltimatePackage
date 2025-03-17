@@ -163,6 +163,7 @@
         <Compile Include="Custom\Abilities\Passive\HealOnKill.cs" />
         <Compile Include="Custom\Abilities\Passive\InfiniteStamina.cs" />
         <Compile Include="Custom\Abilities\Passive\Martyrdom.cs" />
+        <Compile Include="Custom\Abilities\Passive\PocketDimensionEscapeChance.cs" />
         <Compile Include="Custom\Abilities\Passive\ReactiveHume.cs" />
         <Compile Include="Custom\Abilities\Passive\RestrictedEscape.cs" />
         <Compile Include="Custom\Abilities\Passive\RestrictedItems.cs" />
@@ -209,6 +210,7 @@
         <Compile Include="Custom\Roles\Other\Flipped.cs" />
         <Compile Include="Custom\Roles\Scientist\Biochemist.cs" />
         <Compile Include="Custom\Roles\Scientist\ContainmentScientist.cs" />
+        <Compile Include="Custom\Roles\Scientist\TheoredicalPhysicistScientist.cs" />
         <Compile Include="Custom\Roles\Scps\DwarfZombie.cs" />
         <Compile Include="Custom\Roles\Scps\ExplosiveZombie.cs" />
         <Compile Include="Custom\Roles\Scps\MedicZombie.cs" />

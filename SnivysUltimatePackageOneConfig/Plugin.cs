@@ -26,7 +26,7 @@ namespace SnivysUltimatePackageOneConfig
         public override string Name { get; } = "Snivy's Ultimate Plugin Package One Config";
         public override string Author { get; } = "Vicious Vikki";
         public override string Prefix { get; } = "VVUltimatePluginPackageOneConfig";
-        public override Version Version { get; } = new Version(2, 2, 9);
+        public override Version Version { get; } = new Version(2, 3, 0);
         public override Version RequiredExiledVersion { get; } = new Version(9, 5, 1);
         
         public static int ActiveEvent = 0;
@@ -80,6 +80,7 @@ namespace SnivysUltimatePackageOneConfig
                 Config.CustomRolesConfig.LockpickingClassDs.Register();
                 Config.CustomRolesConfig.Demolitionists.Register();
                 Config.CustomRolesConfig.Vanguards.Register();
+                Config.CustomRolesConfig.TheoredicalPhysicistScientists.Register();
                 
                 //Free Custom Roles
                 if (Instance.Config.CustomRolesConfig.EnableFreeCustomRoles)
