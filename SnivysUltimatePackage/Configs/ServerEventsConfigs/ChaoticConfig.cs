@@ -279,5 +279,11 @@ namespace SnivysUltimatePackage.Configs.ServerEventsConfigs
 
         [Description("What should the broadcast be that shows to players for super speed")]
         public string SuperSpeedBroadcast { get; set; } = "Gotta go fast";
+        
+        [Description("Should the drop inventory event be active?")]
+        public bool DropInventoryEvent { get; set; } = true;
+        
+        [Description("What should the broadcast say when a player drops their inventory?")]
+        public string DropInventoryText { get; set; } = "You notice a giant hole in your pockets";
     }
 }

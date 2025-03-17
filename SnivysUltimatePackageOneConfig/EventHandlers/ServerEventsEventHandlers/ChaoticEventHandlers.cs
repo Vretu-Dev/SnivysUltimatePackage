@@ -862,7 +862,30 @@ namespace SnivysUltimatePackageOneConfig.EventHandlers.ServerEventsEventHandlers
                         }
 
                         break;
-                    
+                    // Drop Items Event
+                    case 23:
+                        if (_config.DropInventoryEvent)
+                        {
+                            Log.Debug("VVUP Server Events, Chaotic: Drop Inventory event is active, running code");
+                            foreach (PlayerAPI player in PlayerAPI.List)
+                            {
+                                if (player.IsAlive && player.Role.Team != Team.SCPs && !player.Items.IsEmpty())
+                                {
+                                    Log.Debug($"VVUP Server Events, Chaotic: Dropping items for {player.Nickname}");
+                                    player.DropItems();
+                                    player.Broadcast(new Exiled.API.Features.Broadcast(_config.DropInventoryText,
+                                        (ushort)_config.BroadcastDisplayTime));
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (_config.ChaoticEventRerollIfASpecificEventIsDisabled)
+                                chaoticEventCycle = 1;
+                            Log.Debug("VVUP Server Events, Chaotic: Dropping Inventory event is disabled");
+                        }
+
+                        break;
                     // Default Case
                     default:
                     {
