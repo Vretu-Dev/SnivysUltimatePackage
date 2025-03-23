@@ -113,5 +113,15 @@ namespace SnivysUltimatePackageOneConfig.Configs.CustomConfigs
         {
             new Pathfinder()
         };
+        
+        public List<LaserGun> LaserGuns { get; private set; } = new()
+        {
+            new LaserGun()
+        };
+
+        public List<MultiFlash> MultiFlashes { get; private set; } = new()
+        {
+            new MultiFlash()
+        };
     }
 }

@@ -1,23 +1,17 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel;
 using Exiled.API.Enums;
 using Exiled.API.Features.Attributes;
 using Exiled.API.Features.Items;
 using Exiled.API.Features.Spawn;
 using Exiled.CustomItems.API.Features;
 using Exiled.Events.EventArgs.Map;
-using InventorySystem.Items;
-using InventorySystem.Items.ThrowableProjectiles;
 using JetBrains.Annotations;
 using MEC;
-using UnityEngine;
 using YamlDotNet.Serialization;
 using Item = Exiled.API.Features.Items.Item;
 using Log = Exiled.API.Features.Log;
-using Random = System.Random;
-using Server = Exiled.API.Features.Server;
 
-namespace SnivysUltimatePackage.Custom.Items.Grenades
+namespace SnivysUltimatePackageOneConfig.Custom.Items.Grenades
 {
     [CustomItem(ItemType.GrenadeFlash)]
     public class MultiFlash : CustomGrenade
