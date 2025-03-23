@@ -204,7 +204,9 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
                         if (_config.FakeAutoNuke)
                         {
                             Log.Debug("VVUP Server Events, Chaotic: Fake auto nuke event is active, running code");
-                            if (!Warhead.IsDetonated || !Warhead.IsInProgress)
+                            if (_ceFakeWarheadEvent)
+                                Log.Debug("VVUP Server Events, Chaotic: Fake Warhead Event is already running");
+                            else if (!Warhead.IsDetonated || !Warhead.IsInProgress)
                             {
                                 _ceFakeWarheadEvent = true;
                                 Log.Debug(
