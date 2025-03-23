@@ -171,6 +171,7 @@
         <Compile Include="Custom\Abilities\Passive\SpeedOnKill.cs" />
         <Compile Include="Custom\Items\Armor\ExplosiveResistantArmor.cs" />
         <Compile Include="Custom\Items\Firearms\ExplosiveRoundRevolver.cs" />
+        <Compile Include="Custom\Items\Firearms\LaserGun.cs" />
         <Compile Include="Custom\Items\Firearms\MediGun.cs" />
         <Compile Include="Custom\Items\Firearms\Pathfinder.cs" />
         <Compile Include="Custom\Items\Firearms\Scp2818.cs" />
@@ -179,6 +180,7 @@
         <Compile Include="Custom\Items\Grenades\C4.cs" />
         <Compile Include="Custom\Items\Grenades\ClusterGrenade.cs" />
         <Compile Include="Custom\Items\Grenades\EmpGrenade.cs" />
+        <Compile Include="Custom\Items\Grenades\MultiFlash.cs" />
         <Compile Include="Custom\Items\Grenades\NerveAgent.cs" />
         <Compile Include="Custom\Items\Grenades\SmokeGrenade.cs" />
         <Compile Include="Custom\Items\MedicalItems\AntiScp096Pills.cs" />
