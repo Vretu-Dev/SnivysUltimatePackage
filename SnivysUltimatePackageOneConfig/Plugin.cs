@@ -89,6 +89,21 @@ namespace SnivysUltimatePackageOneConfig
                     Config.CustomRolesConfig.FreeCustomRoles3.Register();
                     Config.CustomRolesConfig.FreeCustomRoles4.Register();
                     Config.CustomRolesConfig.FreeCustomRoles5.Register();
+                    Config.CustomRolesConfig.FreeCustomRoles6.Register();
+                    Config.CustomRolesConfig.FreeCustomRoles7.Register();
+                    Config.CustomRolesConfig.FreeCustomRoles8.Register();
+                    Config.CustomRolesConfig.FreeCustomRoles9.Register();
+                    Config.CustomRolesConfig.FreeCustomRoles10.Register();
+                    Config.CustomRolesConfig.FreeCustomRoles11.Register();
+                    Config.CustomRolesConfig.FreeCustomRoles12.Register();
+                    Config.CustomRolesConfig.FreeCustomRoles13.Register();
+                    Config.CustomRolesConfig.FreeCustomRoles14.Register();
+                    Config.CustomRolesConfig.FreeCustomRoles15.Register();
+                    Config.CustomRolesConfig.FreeCustomRoles16.Register();
+                    Config.CustomRolesConfig.FreeCustomRoles17.Register();
+                    Config.CustomRolesConfig.FreeCustomRoles18.Register();
+                    Config.CustomRolesConfig.FreeCustomRoles19.Register();
+                    Config.CustomRolesConfig.FreeCustomRoles20.Register();
                 }
 
                 foreach (CustomRole role in CustomRole.Registered)

@@ -43,7 +43,7 @@ Server Specific Setting System
 ### Role List
 Below is a table of all the current custom roles, followed by a breif description of them. Many of them rely on special abilities also added by this plugin, refer to the list of abilities for more details about what each does. This is default settings and can be customized by the server owner.
 
-Note this does not include the 5 free custom roles that is included, there will not be included in the list, there will also be no support for them
+Note this does not include the 20 free custom roles that is included, there will not be included in the list, there will also be no support for them
 
 RoleName | RoleID | Abilities | Spawn Type | Description
 :---: | :---: | :---: | :---: | :------

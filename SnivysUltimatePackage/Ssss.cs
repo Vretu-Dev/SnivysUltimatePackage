@@ -60,6 +60,21 @@ namespace SnivysUltimatePackage
                         FreeCustomRole3.Get(typeof(FreeCustomRole3)),
                         FreeCustomRole4.Get(typeof(FreeCustomRole4)),
                         FreeCustomRole5.Get(typeof(FreeCustomRole5)),
+                        FreeCustomRole6.Get(typeof(FreeCustomRole6)),
+                        FreeCustomRole7.Get(typeof(FreeCustomRole7)),
+                        FreeCustomRole8.Get(typeof(FreeCustomRole8)),
+                        FreeCustomRole9.Get(typeof(FreeCustomRole9)),
+                        FreeCustomRole10.Get(typeof(FreeCustomRole10)),
+                        FreeCustomRole11.Get(typeof(FreeCustomRole11)),
+                        FreeCustomRole12.Get(typeof(FreeCustomRole12)),
+                        FreeCustomRole13.Get(typeof(FreeCustomRole13)),
+                        FreeCustomRole14.Get(typeof(FreeCustomRole14)),
+                        FreeCustomRole15.Get(typeof(FreeCustomRole15)),
+                        FreeCustomRole16.Get(typeof(FreeCustomRole16)),
+                        FreeCustomRole17.Get(typeof(FreeCustomRole17)),
+                        FreeCustomRole18.Get(typeof(FreeCustomRole18)),
+                        FreeCustomRole19.Get(typeof(FreeCustomRole19)),
+                        FreeCustomRole20.Get(typeof(FreeCustomRole20)),
                     };
                     foreach (var role in freeCustomRoles)
                     {
