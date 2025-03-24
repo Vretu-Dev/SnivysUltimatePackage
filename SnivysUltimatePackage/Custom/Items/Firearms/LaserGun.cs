@@ -96,8 +96,12 @@ namespace SnivysUltimatePackage.Custom.Items.Firearms
                 return;
             Log.Debug($"VVUP Custom Items: Laser Gun, spawning laser going from {ev.Player.Position} to {ev.Position}");
             var color = GetRandomLaserColor();
-            MakeLaser(ev.Player.Position, ev.Position, out Vector3 laserPos, out Quaternion rotation, out Vector3 scale);
             var laserColor = new Color(color.Red, color.Green, color.Blue);
+            var direction = ev.Position - ev.Player.Position;
+            var distance = direction.magnitude;
+            var scale = new Vector3(LaserScale.x, distance * 0.5f, LaserScale.z);
+            var laserPos = ev.Player.Position + direction * 0.5f;
+            var rotation = Quaternion.LookRotation(direction) * Quaternion.Euler(90, 0, 0);
             Log.Debug($"VVUP Custom Items: Laser Gun, Laser Info: Position: {laserPos}, Rotation: {rotation.eulerAngles}, Color: {laserColor}");
             var laser = Primitive.Create(PrimitiveType.Cylinder, PrimitiveFlags.Visible, laserPos, rotation.eulerAngles,
                 scale, true, laserColor);
@@ -109,15 +113,6 @@ namespace SnivysUltimatePackage.Custom.Items.Firearms
             int randomColorG = new Random().Next(LaserColorGreen.Count);
             int randomColorB = new Random().Next(LaserColorBlue.Count);
             return (randomColorR, randomColorG, randomColorB);
-        }
-
-        private void MakeLaser(Vector3 shooterPos, Vector3 bulletPos, out Vector3 laserPos, out Quaternion rotation, out Vector3 scale)
-        {
-            Vector3 direction = bulletPos - shooterPos;
-            float distance = direction.magnitude;
-            scale = new Vector3(LaserScale.x, distance * 0.5f, LaserScale.z);
-            laserPos = shooterPos + direction * 0.5f;
-            rotation = Quaternion.LookRotation(direction) * Quaternion.Euler(90, 0, 0);
         }
     }
 }
