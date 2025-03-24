@@ -52,7 +52,6 @@ namespace SnivysUltimatePackageOneConfig
                 base.OnDisabled();
                 return;
             }
-            
             //Custom Items
             if (Instance.Config.CustomItemsConfig.IsEnabled)
                 CustomItem.RegisterItems(overrideClass: Instance.Config.CustomItemsConfig);
@@ -80,7 +79,7 @@ namespace SnivysUltimatePackageOneConfig
                 Config.CustomRolesConfig.LockpickingClassDs.Register();
                 Config.CustomRolesConfig.Demolitionists.Register();
                 Config.CustomRolesConfig.Vanguards.Register();
-                Config.CustomRolesConfig.TheoredicalPhysicistScientists.Register();
+                Config.CustomRolesConfig.TheoreticalPhysicistScientists.Register();
                 
                 //Free Custom Roles
                 if (Instance.Config.CustomRolesConfig.EnableFreeCustomRoles)

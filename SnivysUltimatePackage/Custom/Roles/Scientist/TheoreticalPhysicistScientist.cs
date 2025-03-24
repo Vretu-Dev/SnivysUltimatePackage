@@ -9,7 +9,7 @@ using SnivysUltimatePackage.Custom.Abilities.Passive;
 namespace SnivysUltimatePackage.Custom.Roles.Scientist
 {
     [CustomRole(RoleTypeId.Scientist)]
-    public class TheoredicalPhysicistScientist : CustomRole, ICustomRole
+    public class TheoreticalPhysicistScientist : CustomRole, ICustomRole
     {
         public int Chance { get; set; } = 15;
         public override uint Id { get; set; } = 49;

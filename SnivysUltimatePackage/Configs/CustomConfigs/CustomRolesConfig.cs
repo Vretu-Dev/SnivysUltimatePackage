@@ -99,9 +99,9 @@ namespace SnivysUltimatePackage.Configs.CustomConfigs
             new Vanguard(),
         };
 
-        public List<TheoredicalPhysicistScientist> TheoredicalPhysicistScientists { get; set; } = new()
+        public List<TheoreticalPhysicistScientist> TheoreticalPhysicistScientists { get; set; } = new()
         {
-            new TheoredicalPhysicistScientist(),
+            new TheoreticalPhysicistScientist(),
         };
         
         [Description("These custom roles are for the server owner to make some custom roles themselves, there will be no support for any custom roles that you make with these")]
