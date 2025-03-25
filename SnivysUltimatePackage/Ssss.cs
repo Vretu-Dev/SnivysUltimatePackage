@@ -11,7 +11,6 @@ using SnivysUltimatePackage.Custom.Items.Other;
 using SnivysUltimatePackage.Custom.Roles.Chaos;
 using SnivysUltimatePackage.Custom.Roles.ClassD;
 using SnivysUltimatePackage.Custom.Roles.Foundation;
-using SnivysUltimatePackage.Custom.Roles.OpenCustomRoles;
 using SnivysUltimatePackage.Custom.Roles.Other;
 using SnivysUltimatePackage.Custom.Roles.Scientist;
 using SnivysUltimatePackage.Custom.Roles.Scps;
@@ -50,44 +49,6 @@ namespace SnivysUltimatePackage
                     TheoreticalPhysicistScientist.Get(typeof(TheoreticalPhysicistScientist)),
                     Vanguard.Get(typeof(Vanguard)),
                 };
-
-                if (Plugin.Instance.Config.CustomRolesConfig.EnableFreeCustomRoles)
-                {
-                    var freeCustomRoles = new List<CustomRole>
-                    {
-                        FreeCustomRole1.Get(typeof(FreeCustomRole1)),
-                        FreeCustomRole2.Get(typeof(FreeCustomRole2)),
-                        FreeCustomRole3.Get(typeof(FreeCustomRole3)),
-                        FreeCustomRole4.Get(typeof(FreeCustomRole4)),
-                        FreeCustomRole5.Get(typeof(FreeCustomRole5)),
-                        FreeCustomRole6.Get(typeof(FreeCustomRole6)),
-                        FreeCustomRole7.Get(typeof(FreeCustomRole7)),
-                        FreeCustomRole8.Get(typeof(FreeCustomRole8)),
-                        FreeCustomRole9.Get(typeof(FreeCustomRole9)),
-                        FreeCustomRole10.Get(typeof(FreeCustomRole10)),
-                        FreeCustomRole11.Get(typeof(FreeCustomRole11)),
-                        FreeCustomRole12.Get(typeof(FreeCustomRole12)),
-                        FreeCustomRole13.Get(typeof(FreeCustomRole13)),
-                        FreeCustomRole14.Get(typeof(FreeCustomRole14)),
-                        FreeCustomRole15.Get(typeof(FreeCustomRole15)),
-                        FreeCustomRole16.Get(typeof(FreeCustomRole16)),
-                        FreeCustomRole17.Get(typeof(FreeCustomRole17)),
-                        FreeCustomRole18.Get(typeof(FreeCustomRole18)),
-                        FreeCustomRole19.Get(typeof(FreeCustomRole19)),
-                        FreeCustomRole20.Get(typeof(FreeCustomRole20)),
-                    };
-                    foreach (var role in freeCustomRoles)
-                    {
-                        if (role == null || role.CustomAbilities == null) continue;
-
-                        stringBuilder.AppendLine($"Role: {role.Name}");
-                        stringBuilder.AppendLine($"- Description: {role.Description}");
-                        foreach (var ability in role.CustomAbilities)
-                        {
-                            stringBuilder.AppendLine($"-- Ability: {ability.Name}, {ability.Description}");
-                        }
-                    }
-                }
 
                 foreach (var role in customRoles)
                 {
