@@ -30,7 +30,7 @@ namespace SnivysUltimatePackageOneConfig.Custom.Items.Grenades
         [CanBeNull]
         public override SpawnProperties SpawnProperties { get; set; } = new()
         {
-            Limit = 2,
+            Limit = 1,
             DynamicSpawnPoints = new List<DynamicSpawnPoint>
             {
                 new()
@@ -55,10 +55,10 @@ namespace SnivysUltimatePackageOneConfig.Custom.Items.Grenades
                 {
                     var color = GetTeamColor(player);
                     var lineColor = new Color(color.red, color.green, color.blue);
-                    var direction = ev.Position - player.Position;
+                    var direction = player.Position - ev.Position;
                     var distance = direction.magnitude;
                     var scale = new Vector3(0.1f, distance * 0.5f, 0.1f);
-                    var laserPos = ev.Player.Position + direction * 0.5f;
+                    var laserPos = ev.Position + direction * 0.5f;
                     var rotation = Quaternion.LookRotation(direction) * Quaternion.Euler(90, 0, 0);
                     Log.Debug($"VVUP Custom Items: Proxy Bang, Laser Info: Position: {laserPos}, Rotation: {rotation.eulerAngles}, Color: {lineColor}");
                     var laser = Primitive.Create(PrimitiveType.Cylinder, PrimitiveFlags.Visible, laserPos, rotation.eulerAngles,
@@ -74,29 +74,28 @@ namespace SnivysUltimatePackageOneConfig.Custom.Items.Grenades
             float green;
             float blue;
             
-            if (player.Role.Side == Side.Mtf)
+            switch (player.Role.Side)
             {
-                red = 0;
-                green = 0.39f;
-                blue = 1;
-            }
-            else if (player.Role.Side == Side.ChaosInsurgency)
-            {
-                red = 0;
-                green = 0.51f;
-                blue = 0;
-            }
-            else if (player.Role.Side == Side.Scp)
-            {
-                red = 0.59f;
-                green = 0;
-                blue = 0;
-            }
-            else
-            {
-                red = 1;
-                green = 0.41f;
-                blue = 0.71f;
+                case Side.Mtf:
+                    red = 0;
+                    green = 0.39f;
+                    blue = 1;
+                    break;
+                case Side.ChaosInsurgency:
+                    red = 0;
+                    green = 0.51f;
+                    blue = 0;
+                    break;
+                case Side.Scp:
+                    red = 0.59f;
+                    green = 0;
+                    blue = 0;
+                    break;
+                default:
+                    red = 1;
+                    green = 0.41f;
+                    blue = 0.71f;
+                    break;
             }
             
             return (red, green, blue);

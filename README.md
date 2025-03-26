@@ -122,6 +122,9 @@ Cluster Grenade | Grenade | 36 | 15% Chance to appear in Light Armory, Heavy Arm
 Additional Health 207 | Anti SCP-207 | 37 | 25% Chance to appear in MicroHID, 079's Armory, 106's Room | 1 | When consumed, it adds more health to the player until they die.
 Viper PDW | Crossvec | 39 | Spawns on MTF Vanguard, 25% Chance to appear in Heavy Armory, 049 Armory, Inside 096 Containment Chamber, Inside 079's Armory | 1 | A firearm that does different damage at different ranges.
 Pathfinder | COM-18 | 40 | Spawns on MTF Vanguard | 1 | A firearm that when hitting a foe, causes them to take increased damage for a short amount of time.
+X-57 Helios Beam | E11SR | 41 | 20% Chance to appear in MicroHID Room, 079's Armory | 1 | It's an E11 but it fires lasers!
+Multibang | Flash Bang | 42 | 15% Chance in Light Armory, Heavy Armory, 049's Armory, 079's Armory, Surface Nuke Room | 2 | When the initial detonates, the spawns others to detonate after a bit of time.
+Pathfinder Grenade | Flash Bang | 43 | 15% Chance in MicroHID, Guaranteed to spawn on MTF Vanguard | 1 | When detonates, spawns lines to any players in the area.
 
 # Snivy's Server Events
 
