@@ -13,7 +13,7 @@ namespace SnivysFreeCustomRolesOC.FreeCustomRoles
         public override uint Id { get; set; } = 108;
         public override RoleTypeId Role { get; set; } = RoleTypeId.None;
         public override int MaxHealth { get; set; } = 100;
-        public override string Name { get; set; } = "Free Custom Role";
+        public override string Name { get; set; } = "Free Custom Role 8";
         public override string Description { get; set; } = "Free Custom Role";
         public override string CustomInfo { get; set; } = "Free Custom Role";
     }
