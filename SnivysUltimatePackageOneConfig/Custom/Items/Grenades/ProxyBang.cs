@@ -19,7 +19,7 @@ namespace SnivysUltimatePackageOneConfig.Custom.Items.Grenades
     public class ProxyBang : CustomGrenade
     {
         [YamlIgnore] public override ItemType Type { get; set; } = ItemType.GrenadeFlash;
-        public override uint Id { get; set; } = 42;
+        public override uint Id { get; set; } = 43;
         public override string Name { get; set; } = "<color=#6600CC>Pathfinder Grenade</color>";
 
         public override string Description { get; set; } =
