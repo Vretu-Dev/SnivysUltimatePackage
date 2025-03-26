@@ -22,6 +22,7 @@ namespace SnivysUltimatePackageOneConfig.Custom.Roles.Foundation
         {
             "<color=#0096FF>Pathfinder</color>",
             "<color=#FF0000>Viper</color>",
+            "<color=#6600CC>Pathfinder Grenade</color>",
             ItemType.KeycardMTFOperative.ToString(),
             ItemType.ArmorHeavy.ToString(),
             ItemType.Radio.ToString(),

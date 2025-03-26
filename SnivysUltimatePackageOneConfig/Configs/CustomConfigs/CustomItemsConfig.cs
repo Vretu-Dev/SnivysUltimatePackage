@@ -123,5 +123,10 @@ namespace SnivysUltimatePackageOneConfig.Configs.CustomConfigs
         {
             new MultiFlash()
         };
+        
+        public List<ProxyBang> ProxyBangs { get; private set; } = new()
+        {
+            new ProxyBang()
+        };
     }
 }

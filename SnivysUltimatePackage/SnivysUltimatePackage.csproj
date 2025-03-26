@@ -182,6 +182,7 @@
         <Compile Include="Custom\Items\Grenades\EmpGrenade.cs" />
         <Compile Include="Custom\Items\Grenades\MultiFlash.cs" />
         <Compile Include="Custom\Items\Grenades\NerveAgent.cs" />
+        <Compile Include="Custom\Items\Grenades\ProxyBang.cs" />
         <Compile Include="Custom\Items\Grenades\SmokeGrenade.cs" />
         <Compile Include="Custom\Items\MedicalItems\AntiScp096Pills.cs" />
         <Compile Include="Custom\Items\MedicalItems\DeadringerSyringe.cs" />
