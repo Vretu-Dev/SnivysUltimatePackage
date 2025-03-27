@@ -17,6 +17,7 @@ namespace SnivysUltimatePackageOneConfig.Commands.ServerEventsCommands
                 {
                         try
                         {
+                                RegisterCommand(new AfterHoursCommand());
                                 RegisterCommand(new BlackoutCommand());
                                 RegisterCommand(new ChaoticCommand());
                                 RegisterCommand(new FreezingTemperaturesCommand());

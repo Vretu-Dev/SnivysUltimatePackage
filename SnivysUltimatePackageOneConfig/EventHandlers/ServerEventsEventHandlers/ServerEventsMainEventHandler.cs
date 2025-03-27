@@ -362,6 +362,20 @@ namespace SnivysUltimatePackageOneConfig.EventHandlers.ServerEventsEventHandlers
 
             }
         }
+        
+        public void OnTeslaActivationAh(TriggeringTeslaEventArgs ev)
+        {
+            Random random = new Random();
+            if (random.Next(100) <=
+                Plugin.Instance.Config.ServerEventsMasterConfig.AfterHoursConfig.TeslaActivationChance)
+            {
+                ev.IsAllowed = true;
+            }
+            else
+            {
+                ev.IsAllowed = false;
+            }
+        }
 
         /*public void OnDyingSvs(DyingEventArgs ev)
         {

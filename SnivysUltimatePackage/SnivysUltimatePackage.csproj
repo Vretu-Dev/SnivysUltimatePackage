@@ -113,6 +113,7 @@
         <Compile Include="API\ICustomRole.cs" />
         <Compile Include="API\StartTeam.cs" />
         <Compile Include="Commands\C4Detonate.cs" />
+        <Compile Include="Commands\ServerEventsCommands\EventCommands\AfterHoursCommand.cs" />
         <Compile Include="Commands\ServerEventsCommands\EventCommands\BlackoutCommand.cs" />
         <Compile Include="Commands\ServerEventsCommands\EventCommands\ChaoticCommand.cs" />
         <Compile Include="Commands\ServerEventsCommands\EventCommands\FreezingTemperaturesCommand.cs" />
@@ -135,6 +136,7 @@
         <Compile Include="Configs\MicroDamageReductionConfig.cs" />
         <Compile Include="Configs\MicroEvaporateConfig.cs" />
         <Compile Include="Configs\Scp1576SpectatorViewerConfig.cs" />
+        <Compile Include="Configs\ServerEventsConfigs\AfterHoursConfig.cs" />
         <Compile Include="Configs\ServerEventsConfigs\BlackoutConfig.cs" />
         <Compile Include="Configs\ServerEventsConfigs\ChaoticConfig.cs" />
         <Compile Include="Configs\ServerEventsConfigs\FreezingTemperaturesConfig.cs" />
@@ -219,6 +221,7 @@
         <Compile Include="EventHandlers\MicroDamageReductionEventHandler.cs" />
         <Compile Include="EventHandlers\MicroEvaporateEventHandlers.cs" />
         <Compile Include="EventHandlers\Scp1576SpectatorViewerEventHandlers.cs" />
+        <Compile Include="EventHandlers\ServerEventsEventHandlers\AfterHoursEventHandlers.cs" />
         <Compile Include="EventHandlers\ServerEventsEventHandlers\BlackoutEventHandlers.cs" />
         <Compile Include="EventHandlers\ServerEventsEventHandlers\ChaoticEventHandlers.cs" />
         <Compile Include="EventHandlers\ServerEventsEventHandlers\FreezingTemperaturesEventHandlers.cs" />

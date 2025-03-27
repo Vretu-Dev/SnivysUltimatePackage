@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Linq;
 using Exiled.API.Enums;
 using Exiled.API.Features;
 using Exiled.CustomItems.API;
 using Exiled.CustomRoles.API;
 using Exiled.CustomRoles.API.Features;
+using Exiled.Loader;
 using SnivysUltimatePackageOneConfig.API;
 
 namespace SnivysFreeCustomRolesOC
@@ -20,6 +22,12 @@ namespace SnivysFreeCustomRolesOC
 
         public override void OnEnabled()
         {
+            if (Loader.Plugins.Any(plugin => plugin.Name == "Snivy's Ultimate Plugin Package One Config"))
+            {
+                Log.Error("VVUltimatePluginFreeCustomRolesOC: VVUltimatePluginPackageOneConfig is missing, disabling plugin.");
+                base.OnDisabled();
+                return;
+            }
             Instance = this;
             Config.FreeCustomRoles1.Register();
             Config.FreeCustomRoles2.Register();

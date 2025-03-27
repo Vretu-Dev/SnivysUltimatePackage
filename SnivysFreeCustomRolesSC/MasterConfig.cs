@@ -3,7 +3,7 @@ using System.ComponentModel;
 using Exiled.API.Interfaces;
 using SnivysFreeCustomRolesSC.FreeCustomRoles;
 
-namespace SnivysFreeCustomRoles
+namespace SnivysFreeCustomRolesSC
 {
     public class MasterConfig : IConfig
     {
