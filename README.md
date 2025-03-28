@@ -11,6 +11,9 @@ I do mean made, any other plugins that I have ported or currently maintain, such
 > [!CAUTION]
 > There is a check now that detects if both plugin versions are on the server at the same time. If the server starts and both are present, both plugins will disable. This is due to both `SnivysUltimatePackage.dll` and `SnivysUltimatePackageOneConfig.dll` will try to race eachother for enabling stuff. Just remove one of them from your server and restart.
 
+> [!CAUTION]
+> There is 2 additional plugins, `SnivysFreeCustomRolesOC.dll` and `SnivysFreeCustomRolesSC.dll`, this will be functionally unsupported and only made for the people who want extra custom role slots for customization. `SnivysFreeCustomRolesOC.dll` is for `SnivysUltimatePackageOneConfig.dll`, with `SnivysFreeCustomRolesSC.dll` is for `SnivysUltimatePackage.dll`, as each uses calls from its respective parent plugin.
+
 # Plugin List:
 
 Snivy's Custom Roles
@@ -134,13 +137,14 @@ Currently the events part of the plugin is provided below
 
 Event Name | Description
 :---: | :------
-Blackout | Turns off the lights in the facility, restores them either at round end or if all generators are activated
-SCP 173 Infection | When 173 Kills someone, they become 173 as well
-SCP 173 Hydra | When 173 Dies, they respawn as 173, along with another person, reducing their size and health count
-Variable Lights | Activates disco mode to the facility (effectively)
-Short People | Makes everyone short
-Chaos Event | Causes chaos in the facility, see below for what Chaos Event can do to a round
-Name Redacted | Removes everyones names
+After Hours | Its like the facility is after hours, everything is functionally in a low power mode.
+Blackout | Turns off the lights in the facility, restores them either at round end or if all generators are activated.
+SCP 173 Infection | When 173 Kills someone, they become 173 as well.
+SCP 173 Hydra | When 173 Dies, they respawn as 173, along with another person, reducing their size and health count.
+Variable Lights | Activates disco mode to the facility (effectively).
+Short People | Makes everyone short.
+Chaos Event | Causes chaos in the facility, see below for what Chaos Event can do to a round.
+Name Redacted | Removes everyones names.
 Freezing Temperatures | The thermostat in the facility broke and its slowly freezing over, best to get out as fast as you can.
 Snowballs Vs SCPs [Disabled] | Causes a snowball fight to start.
 
