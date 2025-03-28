@@ -63,6 +63,7 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
             FreezingTemperaturesEventHandlers.EndEvent();
             ChaoticEventHandlers.EndEvent();
             NameRedactedEventHandlers.EndEvent();
+            AfterHoursEventHandlers.EndEvent();
             //SnowballsVsScpsEventHandlers.EndEvent();
             Plugin.ActiveEvent = 0;
         }
@@ -117,9 +118,13 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
                         Log.Debug("VVUP Server Events: Activating Variable Lights Event");
                         var variableEventHandlers = new VariableLightsEventHandlers();
                         break;
+                    case "AfterHours":
+                        Log.Debug("VVUP Server Events: Activating Variable Lights Event");
+                        var afterHoursEventHandlers = new AfterHoursEventHandlers();
+                        break;
                     default:
                         Log.Warn($"VVUP Server Events: Unknown event: {selectedEvent}");
-                        Log.Warn("VVUP Server Events: Valid Events: Valid options: Blackout, 173Infection, 173Hydra, Chaotic, Short, FreezingTemps, NameRedacted, VariableLights, Gravity");
+                        Log.Warn("VVUP Server Events: Valid Events: Valid options: Blackout, 173Infection, 173Hydra, Chaotic, Short, FreezingTemps, NameRedacted, VariableLights, After Hours");
                         Log.Warn("VVUP Server Events: If this error randomly appears and you are sure you put in a valid event, please let the developer know as soon as possible");
                         break;
                 }
@@ -365,16 +370,7 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
 
         public void OnTeslaActivationAh(TriggeringTeslaEventArgs ev)
         {
-            Random random = new Random();
-            if (random.Next(100) <=
-                Plugin.Instance.Config.ServerEventsMasterConfig.AfterHoursConfig.TeslaActivationChance)
-            {
-                ev.IsAllowed = true;
-            }
-            else
-            {
-                ev.IsAllowed = false;
-            }
+            ev.IsAllowed = AfterHoursEventHandlers.AhTeslaAllowed;
         }
 
         /*public void OnDyingSvs(DyingEventArgs ev)

@@ -63,6 +63,7 @@ namespace SnivysUltimatePackageOneConfig.EventHandlers.ServerEventsEventHandlers
             FreezingTemperaturesEventHandlers.EndEvent();
             ChaoticEventHandlers.EndEvent();
             NameRedactedEventHandlers.EndEvent();
+            AfterHoursEventHandlers.EndEvent();
             //SnowballsVsScpsEventHandlers.EndEvent();
             Plugin.ActiveEvent = 0;
         }
@@ -116,6 +117,10 @@ namespace SnivysUltimatePackageOneConfig.EventHandlers.ServerEventsEventHandlers
                     case "VariableLights":
                         Log.Debug("VVUP Server Events: Activating Variable Lights Event");
                         var variableEventHandlers = new VariableLightsEventHandlers();
+                        break;
+                    case "AfterHours":
+                        Log.Debug("VVUP Server Events: Activating Variable Lights Event");
+                        var afterHoursEventHandlers = new AfterHoursEventHandlers();
                         break;
                     default:
                         Log.Warn($"VVUP Server Events: Unknown event: {selectedEvent}");
@@ -365,16 +370,7 @@ namespace SnivysUltimatePackageOneConfig.EventHandlers.ServerEventsEventHandlers
         
         public void OnTeslaActivationAh(TriggeringTeslaEventArgs ev)
         {
-            Random random = new Random();
-            if (random.Next(100) <=
-                Plugin.Instance.Config.ServerEventsMasterConfig.AfterHoursConfig.TeslaActivationChance)
-            {
-                ev.IsAllowed = true;
-            }
-            else
-            {
-                ev.IsAllowed = false;
-            }
+            ev.IsAllowed = AfterHoursEventHandlers.AhTeslaAllowed;
         }
 
         /*public void OnDyingSvs(DyingEventArgs ev)
