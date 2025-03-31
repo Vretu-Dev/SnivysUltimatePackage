@@ -35,16 +35,21 @@ namespace SnivysUltimatePackage.Custom.Abilities.Active
             if (player.Role == RoleTypeId.ClassD || player.Role == RoleTypeId.ChaosConscript ||
                 player.Role == RoleTypeId.ChaosMarauder || player.Role == RoleTypeId.ChaosRepressor ||
                 player.Role == RoleTypeId.ChaosRifleman)
-                player.Role.Set(RoleTypeId.NtfSergeant);
+            {
+                player.Role.Set(RoleTypeId.NtfSergeant,
+                    !RestorePreviousInventory ? RoleSpawnFlags.None : RoleSpawnFlags.AssignInventory);
+            }
             else if (player.Role == RoleTypeId.Scientist || player.Role == RoleTypeId.FacilityGuard ||
                      player.Role == RoleTypeId.NtfCaptain || player.Role == RoleTypeId.NtfPrivate ||
                      player.Role == RoleTypeId.NtfSergeant || player.Role == RoleTypeId.NtfSpecialist)
-                player.Role.Set(RoleTypeId.ChaosRifleman);
+                player.Role.Set(RoleTypeId.ChaosRifleman, !RestorePreviousInventory ? RoleSpawnFlags.None : RoleSpawnFlags.AssignInventory);
 
             if (RestorePreviousInventory)
             {
                 Timing.CallDelayed(1f, () =>
                 {
+                    player.ClearInventory();
+                    
                     foreach (Item item in storedInventory)
                     {
                         player.AddItem(item);
