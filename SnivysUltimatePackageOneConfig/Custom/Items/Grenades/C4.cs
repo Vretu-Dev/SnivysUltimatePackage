@@ -12,6 +12,7 @@ using Exiled.Events.EventArgs.Map;
 using Exiled.Events.EventArgs.Player;
 using Exiled.Events.EventArgs.Server;
 using InventorySystem.Items.ThrowableProjectiles;
+using JetBrains.Annotations;
 using UnityEngine;
 using YamlDotNet.Serialization;
 using PlayerEvent = Exiled.Events.Handlers.Player;
@@ -95,7 +96,7 @@ namespace SnivysUltimatePackageOneConfig.Custom.Items.Grenades
         public override bool ExplodeOnCollision { get; set; } = false;
         [YamlIgnore]
         public override ItemType Type { get; set; } = ItemType.GrenadeHE;
-        public void C4Handler(Pickup? charge, C4RemoveMethod removeMethod = C4RemoveMethod.Detonate)
+        public void C4Handler(Pickup? charge, C4RemoveMethod removeMethod = C4RemoveMethod.Detonate, [CanBeNull] Player player = null)
         {
             if (charge?.Position is null)
                 return;
@@ -110,7 +111,10 @@ namespace SnivysUltimatePackageOneConfig.Custom.Items.Grenades
                 {
                     ExplosiveGrenade grenade = (ExplosiveGrenade)Item.Create(Type);
                     grenade.FuseTime = 0.1f;
-                    grenade.SpawnActive(charge.Position);
+                    if (player == null)
+                        grenade.SpawnActive(charge.Position);
+                    else
+                        grenade.SpawnActive(charge.Position, owner: player);
                     break;
                 }
 
@@ -171,7 +175,7 @@ namespace SnivysUltimatePackageOneConfig.Custom.Items.Grenades
             {
                 if (charge.Value == ev.Player)
                 {
-                    C4Handler(charge.Key, C4RemoveMethod.Remove);
+                    C4Handler(charge.Key, C4RemoveMethod.Remove, ev.Player);
                 }
             }
         }
@@ -185,7 +189,7 @@ namespace SnivysUltimatePackageOneConfig.Custom.Items.Grenades
             {
                 if (charge.Value == ev.Player)
                 {
-                    C4Handler(charge.Key, MethodOnDeath);
+                    C4Handler(charge.Key, MethodOnDeath, ev.Player);
                 }
             }
         }
@@ -206,7 +210,7 @@ namespace SnivysUltimatePackageOneConfig.Custom.Items.Grenades
 
                 if (PlacedCharges.ContainsKey(Pickup.Get(grenade)))
                 {
-                    C4Handler(Pickup.Get(grenade), ShotMethod);
+                    C4Handler(Pickup.Get(grenade), ShotMethod, ev.Player);
                 }
             }
         }
