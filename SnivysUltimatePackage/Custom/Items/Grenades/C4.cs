@@ -97,10 +97,16 @@ namespace SnivysUltimatePackage.Custom.Items.Grenades
         public override bool ExplodeOnCollision { get; set; } = false;
         [YamlIgnore]
         public override ItemType Type { get; set; } = ItemType.GrenadeHE;
-        public void C4Handler(Pickup? charge, C4RemoveMethod removeMethod = C4RemoveMethod.Detonate, [CanBeNull] Player player = null)
+        public void C4Handler(Pickup? charge, C4RemoveMethod removeMethod = C4RemoveMethod.Detonate, Player? player = null)
         {
             if (charge?.Position is null)
                 return;
+
+            if (player == null && PlacedCharges.TryGetValue(charge, out var placedPlayer))
+            {
+                player = placedPlayer;
+            }
+
             switch (removeMethod)
             {
                 case C4RemoveMethod.Remove:
@@ -112,10 +118,7 @@ namespace SnivysUltimatePackage.Custom.Items.Grenades
                 {
                     ExplosiveGrenade grenade = (ExplosiveGrenade)Item.Create(Type);
                     grenade.FuseTime = 0.1f;
-                    if (player == null)
-                        grenade.SpawnActive(charge.Position);
-                    else
-                        grenade.SpawnActive(charge.Position, owner: player);
+                    grenade.SpawnActive(charge.Position, owner: player);
                     break;
                 }
 
