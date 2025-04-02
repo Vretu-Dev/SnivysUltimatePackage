@@ -59,7 +59,7 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
             for (;;)
             {
                 float chaoticEventCycle = _config.TimeForChaosEvent;
-                int chaosRandomNumber = random.Next(minValue: 1, maxValue: 25);
+                int chaosRandomNumber = random.Next(minValue: 18, maxValue: 18);
                 Log.Debug(chaosRandomNumber);
                 if (_config.ChaosEventEndsOtherEvents)
                 {
@@ -646,7 +646,7 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
                         if (_config.FakeoutRespawnAnnouncementsEvent)
                         {
                             Log.Debug("VVUP Server Events, Chaotic: Fakeout Respawn Announcements active, running code");
-                            float fakeoutRespawnRandom = random.Next(minValue: 0, maxValue: 4);
+                            float fakeoutRespawnRandom = random.Next(minValue: 1, maxValue: 5);
                             string cassieMessage = string.Empty;
                             string cassieText = string.Empty;
                             int scpCount = 0;
