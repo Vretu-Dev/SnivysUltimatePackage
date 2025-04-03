@@ -91,7 +91,8 @@ namespace SnivysUltimatePackageOneConfig.Custom.Items.Grenades
         
         [Description("Time after which the C4 charge will automatically detonate.")]
         public override float FuseTime { get; set; } = 9999f;
-        
+        [Description("Will C4 explosion be associated with the player who deployed it or the server")]
+        public bool AssociateC4WithServer { get; set; } = false;
         [YamlIgnore]
         public override bool ExplodeOnCollision { get; set; } = false;
         [YamlIgnore]
@@ -117,7 +118,10 @@ namespace SnivysUltimatePackageOneConfig.Custom.Items.Grenades
                 {
                     ExplosiveGrenade grenade = (ExplosiveGrenade)Item.Create(Type);
                     grenade.FuseTime = 0.1f;
-                    grenade.SpawnActive(charge.Position, owner: player);
+                    if (AssociateC4WithServer)
+                        grenade.SpawnActive(charge.Position);
+                    else
+                        grenade.SpawnActive(charge.Position, owner: player);
                     break;
                 }
 
@@ -168,8 +172,9 @@ namespace SnivysUltimatePackageOneConfig.Custom.Items.Grenades
         }
 
         protected override void OnExploding(ExplodingGrenadeEventArgs ev)
-        {
-            ev.Projectile.PreviousOwner = ev.Player;
+        { 
+            if (!AssociateC4WithServer)
+                ev.Projectile.PreviousOwner = ev.Player;
             PlacedCharges.Remove(Pickup.Get(ev.Projectile.Base));
         }
 
