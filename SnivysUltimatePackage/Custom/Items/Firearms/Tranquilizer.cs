@@ -63,6 +63,16 @@ namespace SnivysUltimatePackage.Custom.Items.Firearms
         [Description("What's the tranquilized reason")]
         public string TranquilizedReason { get; set; } = "Tranquilized";
 
+        [Description("What effects should be applied when a player gets tranquilized?")]
+        public List<EffectType> Effects { get; set; } = new List<EffectType>
+        {
+            EffectType.Invisible,
+            EffectType.AmnesiaItems,
+            EffectType.AmnesiaVision,
+            EffectType.Ensnared,
+            EffectType.Flashed,
+        };
+
         private Dictionary<PlayerAPI, float> _tranquilizedPlayers = new();
         private List<PlayerAPI> _activeTranquilizedPlayers = new();
         
@@ -236,10 +246,11 @@ namespace SnivysUltimatePackage.Custom.Items.Firearms
 
             try
             {
-                player.EnableEffect(EffectType.Invisible, duration);
-                player.EnableEffect(EffectType.AmnesiaItems, duration);
-                player.EnableEffect(EffectType.AmnesiaVision, duration);
-                player.EnableEffect(EffectType.Ensnared, duration);
+                foreach (EffectType effect in Effects)
+                {
+                    Log.Debug($"VVUP Custom Items: Tranquilizer, applying {effect} to {player.Nickname}");
+                    player.EnableEffect(effect, duration);
+                }
                 player.Scale = Vector3.one * 0.2f;
                 player.Health = newHealth;
                 player.IsGodModeEnabled = true;
