@@ -169,6 +169,7 @@ namespace SnivysUltimatePackageOneConfig.Custom.Items.Grenades
 
         protected override void OnExploding(ExplodingGrenadeEventArgs ev)
         {
+            ev.Projectile.PreviousOwner = ev.Player;
             PlacedCharges.Remove(Pickup.Get(ev.Projectile.Base));
         }
 
