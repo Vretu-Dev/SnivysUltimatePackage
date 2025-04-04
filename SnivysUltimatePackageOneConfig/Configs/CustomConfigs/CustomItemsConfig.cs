@@ -49,10 +49,10 @@ namespace SnivysUltimatePackageOneConfig.Configs.CustomConfigs
             new KySyringe()
         };
 
-        /*public List<MediGun> MediGuns { get; private set; } = new()
+        public List<MediGun> MediGuns { get; private set; } = new()
         {
             new MediGun()
-        };*/
+        };
 
         public List<Tranquilizer> Tranquilizers { get; private set; } = new()
         {
