@@ -294,5 +294,28 @@ namespace SnivysUltimatePackageOneConfig.Configs.ServerEventsConfigs
 
         [Description("What should the broadcast say when a player gets someone teleported to them?")]
         public string TeleportToAllyNewAllyText { get; set; } = "You had an ally teleported to you";
+        [Description("Should the Simon Says event be active?")]
+        public bool SimonSaysEvent { get; set; } = true;
+
+        [Description("How long should the time be for the player to do the action?")]
+        public float SimonSaysActionTime { get; set; } = 5;
+
+        [Description("Should SCPs be affected bit Simon Says?")]
+        public bool SimonSaysAffectsScps { get; set; } = false;
+        
+        [Description("What should the Simon Says Jump text be?")]
+        public string SimonSaysJumpText { get; set; } = "Simon says jump";
+
+        [Description("What should the Someone Says Jump text be?")]
+        public string SomeoneSaysJumpText { get; set; } = "Someone says jump";
+
+        [Description("What is the damage punishment if someone doesnt jump if simon says or does jump when someone says")]
+        public int SimonSaysDamagePunishment { get; set; } = 50;
+
+        [Description("What should the punishment text be if someone fails the Simon Says event")]
+        public string SimonSaysPunishmentText { get; set; } = "You have failed to jump after Simon said too";
+        
+        [Description("What should the punishment text be if someone fails the Someone Says event")]
+        public string SomeoneSaysPunishmentText { get; set; } = "You jumped even though simon didnt say to";
     }
 }

@@ -26,6 +26,7 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
         private static float _PHENewHealth;
         private static float _PHELastKnownHeath;
         private static float _PHELastKnownScale;
+        public List<Player> JumpingPlayers;
         
         //Ending round
         public void OnEndingRound(RoundEndedEventArgs ev)
@@ -366,6 +367,12 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
                 }
 
             }
+        }
+
+        public void OnJumpingCE(JumpingEventArgs ev)
+        {
+            Log.Debug($"VVUP Server Events, Chaotic: {ev.Player.Nickname} jumped. Adding to list");
+            JumpingPlayers.Add(ev.Player);
         }
 
         public void OnTeslaActivationAh(TriggeringTeslaEventArgs ev)

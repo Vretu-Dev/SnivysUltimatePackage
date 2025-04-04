@@ -37,6 +37,8 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
         private static bool _ceFakeWarheadEvent;
         private static bool _ceRapidFireTeslas;
         private static bool _ceRouterKickingSimulator;
+        private static bool _realSimonSaysEvent;
+        private static bool _fakeSimonSaysEvent;
         private static float _previousWarheadTime;
         private static double _previousDecomTime;
 
@@ -59,7 +61,7 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
             for (;;)
             {
                 float chaoticEventCycle = _config.TimeForChaosEvent;
-                int chaosRandomNumber = random.Next(minValue: 18, maxValue: 18);
+                int chaosRandomNumber = random.Next(minValue: 1, maxValue: 27);
                 Log.Debug(chaosRandomNumber);
                 if (_config.ChaosEventEndsOtherEvents)
                 {
@@ -916,9 +918,129 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
                         {
                             if (_config.ChaoticEventRerollIfASpecificEventIsDisabled)
                                 chaoticEventCycle = 1;
-                            Log.Debug("VVUP Server Events, Chaotic: Dropping Inventory event is disabled");
+                            Log.Debug("VVUP Server Events, Chaotic: Teleporting to allies event is disabled");
                         }
 
+                        break;
+                    // Simon Says Jump Event
+                    case 25:
+                        if (_config.SimonSaysEvent)
+                        {
+                            Log.Debug("VVUP Server Events, Chaotic: Running Simon Says event");
+                            if (_realSimonSaysEvent || _fakeSimonSaysEvent)
+                            {
+                                Log.Debug(
+                                    "VVUP Server Events, Chaotic: Simon Says event is already running, returning");
+                                if (_config.ChaoticEventRerollIfASpecificEventIsDisabled)
+                                    chaoticEventCycle = 1;
+                                yield break;
+                            }
+
+                            _realSimonSaysEvent = true;
+                            Log.Debug("VVUP Server Events, Chaotic: Subscribing Jumping Event");
+                            PlayerEvent.Jumping += Plugin.Instance.ServerEventsMainEventHandler.OnJumpingCE;
+                            foreach (PlayerAPI player in PlayerAPI.List)
+                            {
+                                if (_config.SimonSaysAffectsScps && player.Role.Side != Side.None)
+                                    player.Broadcast(new Exiled.API.Features.Broadcast(_config.SimonSaysJumpText,
+                                    (ushort)_config.SimonSaysActionTime));
+                                else if (player.Role.Side != Side.Scp && player.Role.Side != Side.None)
+                                    player.Broadcast(new Exiled.API.Features.Broadcast(_config.SimonSaysJumpText,
+                                        (ushort)_config.SimonSaysActionTime));
+                            }
+
+                            Timing.CallDelayed(_config.SimonSaysActionTime, () =>
+                            {
+                                Log.Debug("VVUP Server Events, Chaotic: Unsubscribing Jumping Event");
+                                PlayerEvent.Jumping -= Plugin.Instance.ServerEventsMainEventHandler.OnJumpingCE;
+                                foreach (PlayerAPI player in PlayerAPI.List)
+                                {
+                                    if (Plugin.Instance.ServerEventsMainEventHandler.JumpingPlayers.Contains(player))
+                                        continue;
+                                    if (_config.SimonSaysAffectsScps && player.Role.Side != Side.None)
+                                    {
+                                        player.Broadcast(new Exiled.API.Features.Broadcast(_config.SimonSaysPunishmentText,
+                                            (ushort)_config.BroadcastDisplayTime));
+                                        player.Hurt(_config.SimonSaysDamagePunishment);
+                                    }
+                                    else if (player.Role.Side != Side.Scp && player.Role.Side != Side.None)
+                                    {
+                                        player.Broadcast(new Exiled.API.Features.Broadcast(_config.SimonSaysPunishmentText,
+                                            (ushort)_config.BroadcastDisplayTime));
+                                        player.Hurt(_config.SimonSaysDamagePunishment);
+                                    }
+                                }
+                                _realSimonSaysEvent = false;
+                                Plugin.Instance.ServerEventsMainEventHandler.JumpingPlayers.Clear();
+                            });
+                        }
+                        else
+                        {
+                            if (_config.ChaoticEventRerollIfASpecificEventIsDisabled)
+                                chaoticEventCycle = 1;
+                            Log.Debug("VVUP Server Events, Chaotic: Simon Says event is disabled");
+                        }
+                        break;
+                    case 26:
+                        if (_config.SimonSaysEvent)
+                        {
+                            Log.Debug("VVUP Server Events, Chaotic: Running Someone Says event");
+                            if (_realSimonSaysEvent || _fakeSimonSaysEvent)
+                            {
+                                Log.Debug(
+                                    "VVUP Server Events, Chaotic: Simon Says event is already running, returning");
+                                if (_config.ChaoticEventRerollIfASpecificEventIsDisabled)
+                                    chaoticEventCycle = 1;
+                                yield break;
+                            }
+
+                            _fakeSimonSaysEvent = true;
+                            Log.Debug("VVUP Server Events, Chaotic: Subscribing Jumping Event");
+                            PlayerEvent.Jumping += Plugin.Instance.ServerEventsMainEventHandler.OnJumpingCE;
+                            foreach (PlayerAPI player in PlayerAPI.List)
+                            {
+                                if (_config.SimonSaysAffectsScps && player.Role.Side != Side.None)
+                                    player.Broadcast(new Exiled.API.Features.Broadcast(_config.SomeoneSaysJumpText,
+                                    (ushort)_config.SimonSaysActionTime));
+                                else if (player.Role.Side != Side.Scp && player.Role.Side != Side.None)
+                                    player.Broadcast(new Exiled.API.Features.Broadcast(_config.SomeoneSaysJumpText,
+                                        (ushort)_config.SimonSaysActionTime));
+                            }
+
+                            Timing.CallDelayed(_config.SimonSaysActionTime, () =>
+                            {
+                                Log.Debug("VVUP Server Events, Chaotic: Unsubscribing Jumping Event");
+                                PlayerEvent.Jumping -= Plugin.Instance.ServerEventsMainEventHandler.OnJumpingCE;
+                                foreach (PlayerAPI player in PlayerAPI.List)
+                                {
+                                    if (!Plugin.Instance.ServerEventsMainEventHandler.JumpingPlayers.Contains(player))
+                                        continue;
+                                    if (_config.SimonSaysAffectsScps && player.Role.Side != Side.None)
+                                    {
+                                        player.Broadcast(new Exiled.API.Features.Broadcast(
+                                            _config.SomeoneSaysPunishmentText,
+                                            (ushort)_config.BroadcastDisplayTime));
+                                        player.Hurt(_config.SimonSaysDamagePunishment);
+                                    }
+                                    else if (player.Role.Side != Side.Scp && player.Role.Side != Side.None)
+                                    {
+                                        player.Broadcast(new Exiled.API.Features.Broadcast(
+                                            _config.SomeoneSaysPunishmentText,
+                                            (ushort)_config.BroadcastDisplayTime));
+                                        player.Hurt(_config.SimonSaysDamagePunishment);
+                                    }
+                                }
+
+                                _fakeSimonSaysEvent = false;
+                                Plugin.Instance.ServerEventsMainEventHandler.JumpingPlayers.Clear();
+                            });
+                        }
+                        else
+                        {
+                            if (_config.ChaoticEventRerollIfASpecificEventIsDisabled)
+                                chaoticEventCycle = 1;
+                            Log.Debug("VVUP Server Events, Chaotic: Simon Says event is disabled");
+                        }
                         break;
                     // Default Case
                     default:
@@ -1316,6 +1438,13 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
                 Log.Debug("VVUP Server Events, Chaotic: Killing router kicking coroutine");
                 Timing.KillCoroutines(_routerKickingSimulator);
                 _ceRouterKickingSimulator = false;
+            }
+            
+            if (_realSimonSaysEvent || _fakeSimonSaysEvent)
+            {
+                PlayerEvent.Jumping -= Plugin.Instance.ServerEventsMainEventHandler.OnJumpingCE;
+                _realSimonSaysEvent = false;
+                _fakeSimonSaysEvent = false;
             }
         }
     }
