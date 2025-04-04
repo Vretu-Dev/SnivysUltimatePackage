@@ -89,7 +89,6 @@ namespace SnivysUltimatePackage.Custom.Items.Firearms
             if (ev.Player.Role.Team == ev.Target.Role.Team)
             {
                 float amount = ev.Damage * HealingModifer;
-                Log.Warn($"{ev.Target.Nickname}'s health is {ev.Target.Health}");
                 ev.Player.Heal(amount);
                 Log.Debug($"VVUP Custom Items: Medigun healing {ev.Target.Nickname} for {amount}");
                 if (ev.Target.Health >= ev.Target.MaxHealth && ev.Target.ArtificialHealth < MaxAhpAmount)
@@ -100,7 +99,6 @@ namespace SnivysUltimatePackage.Custom.Items.Firearms
                     ev.Target.AddAhp(amount, MaxAhpAmount, decay);
                     Log.Debug($"VVUP Custom Items: Medigun adding {amount} AHP to {ev.Target.Nickname}");
                 }
-                Log.Warn($"{ev.Target.Nickname}'s health should be {ev.Target.Health + amount}, but is {ev.Target.Health}");
                 ev.CanHurt = false;
             }
             else if (ev.Target.Role == RoleTypeId.Scp0492 && HealZombies)
@@ -108,7 +106,6 @@ namespace SnivysUltimatePackage.Custom.Items.Firearms
                 if (!ev.Target.ActiveArtificialHealthProcesses.Any())
                     ev.Target.AddAhp(0, AhpRequiredForZombieHeal, persistant: true);
                 ev.Target.ArtificialHealth += ev.Damage;
-                Log.Warn($"{ev.Target.Health}, {ev.Target.ArtificialHealth}");
                 if (ev.Target.ArtificialHealth >= AhpRequiredForZombieHeal)
                 {
                     switch (ev.Player.Role.Side)
