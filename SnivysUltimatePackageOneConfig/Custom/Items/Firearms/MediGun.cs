@@ -17,7 +17,6 @@ namespace SnivysUltimatePackageOneConfig.Custom.Items.Firearms
     [CustomItem(ItemType.GunFSP9)]
     public class MediGun : CustomWeapon
     {
-        [YamlIgnore]
         public override ItemType Type { get; set; } = ItemType.GunFSP9;
         
         public override uint Id { get; set; } = 27;
