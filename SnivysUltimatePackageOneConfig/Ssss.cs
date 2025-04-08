@@ -74,7 +74,7 @@ namespace SnivysUltimatePackageOneConfig
                 {
                     ExplosiveResistantArmor.Get(typeof(ExplosiveResistantArmor)),
                     ExplosiveRoundRevolver.Get(typeof(ExplosiveRoundRevolver)),
-                    //MediGun.Get(typeof(MediGun)),
+                    MediGun.Get(typeof(MediGun)),
                     Tranquilizer.Get(typeof(Tranquilizer)),
                     C4.Get(typeof(C4)),
                     EmpGrenade.Get(typeof(EmpGrenade)),
