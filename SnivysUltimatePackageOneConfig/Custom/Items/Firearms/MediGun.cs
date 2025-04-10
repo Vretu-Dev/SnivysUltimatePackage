@@ -10,7 +10,6 @@ using Exiled.CustomRoles.API.Features;
 using Exiled.Events.EventArgs.Player;
 using JetBrains.Annotations;
 using PlayerRoles;
-using YamlDotNet.Serialization;
 
 namespace SnivysUltimatePackageOneConfig.Custom.Items.Firearms
 {
@@ -48,6 +47,9 @@ namespace SnivysUltimatePackageOneConfig.Custom.Items.Firearms
         public float MaxAhpAmount { get; set; } = 30f;
         [Description("Deterimines if AHP drains")]
         public bool AhpDecay { get; set; } = false;
+
+        [Description("Should revived players be given a loadout?")]
+        public bool GrantLoadoutOnRevive { get; set; } = false;
         
 
         [CanBeNull]
@@ -94,6 +96,7 @@ namespace SnivysUltimatePackageOneConfig.Custom.Items.Firearms
                     Log.Debug($"VVUP Custom Items: Medigun adding {amount} AHP to {ev.Target.Nickname}");
                 }
                 ev.CanHurt = false;
+                ev.Player.ShowHitMarker();
             }
             else if (ev.Target.Role == RoleTypeId.Scp0492 && HealZombies)
             {
@@ -105,10 +108,12 @@ namespace SnivysUltimatePackageOneConfig.Custom.Items.Firearms
                     switch (ev.Player.Role.Side)
                     {
                         case Side.Mtf:
-                            ev.Target.Role.Set(RoleTypeId.NtfPrivate, SpawnReason.None);
+                            ev.Target.Role.Set(RoleTypeId.NtfPrivate, SpawnReason.ForceClass,
+                                GrantLoadoutOnRevive ? RoleSpawnFlags.AssignInventory : RoleSpawnFlags.None);
                             break;
                         case Side.ChaosInsurgency:
-                            ev.Target.Role.Set(RoleTypeId.ChaosConscript, SpawnReason.None);
+                            ev.Target.Role.Set(RoleTypeId.ChaosConscript, SpawnReason.ForceClass,
+                                GrantLoadoutOnRevive ? RoleSpawnFlags.AssignInventory : RoleSpawnFlags.None);
                             break;
                         case Side.Tutorial when ZombieHealingBySerpents:
                             CustomRole.Get(SerpentsHandCustomRoleId)?.AddRole(ev.Player);
@@ -117,6 +122,7 @@ namespace SnivysUltimatePackageOneConfig.Custom.Items.Firearms
                 }
 
                 ev.CanHurt = false;
+                ev.Player.ShowHitMarker();
             }
         }
     }
