@@ -102,7 +102,7 @@ namespace SnivysUltimatePackage.Custom.Items.Grenades
         public override ItemType Type { get; set; } = ItemType.GrenadeHE;
         public void C4Handler(Pickup? charge, C4RemoveMethod removeMethod = C4RemoveMethod.Detonate, Player? player = null)
         {
-            if (charge?.Position is null)
+            if (charge?.Base?.gameObject == null)
                 return;
 
             if (player == null && PlacedCharges.TryGetValue(charge, out var placedPlayer))
