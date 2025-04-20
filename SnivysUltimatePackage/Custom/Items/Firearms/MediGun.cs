@@ -122,7 +122,7 @@ namespace SnivysUltimatePackage.Custom.Items.Firearms
                                 GrantLoadoutOnRevive ? RoleSpawnFlags.AssignInventory : RoleSpawnFlags.None);
                             break;
                         case Side.Tutorial when ZombieHealingBySerpents:
-                            CustomRole.Get(SerpentsHandCustomRoleId)?.AddRole(ev.Player);
+                            CustomRole.Get(SerpentsHandCustomRoleId)?.AddRole(ev.Target);
                             break;
                     }
                 }
