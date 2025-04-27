@@ -13,12 +13,12 @@ using Exiled.Events.EventArgs.Map;
 using Exiled.Events.EventArgs.Player;
 using Exiled.Events.EventArgs.Scp079;
 using Exiled.Events.Handlers;
+using Interactables.Interobjects.DoorUtils;
 using InventorySystem.Items.Firearms.Attachments;
 using JetBrains.Annotations;
 using MEC;
 using YamlDotNet.Serialization;
 using Attachment = InventorySystem.Items.Firearms.Attachments.Components.Attachment;
-using KeycardPermissions = Interactables.Interobjects.DoorUtils.KeycardPermissions;
 using PlayerAPI = Exiled.API.Features.Player;
 using PlayerEvent = Exiled.Events.Handlers.Player;
 
@@ -134,7 +134,7 @@ namespace SnivysUltimatePackageOneConfig.Custom.Items.Grenades
                 if (door == null ||
                     BlackListedDoors.Contains(door.Type) ||
                     (door.DoorLockType != 0 && !OpenLockedDoors) ||
-                    (door.RequiredPermissions.RequiredPermissions != KeycardPermissions.None && !OpenKeycardDoors) ||
+                    (door.RequiredPermissions != DoorPermissionFlags.None && !OpenKeycardDoors) ||
                     door.Type.IsElevator())
                     return;
 

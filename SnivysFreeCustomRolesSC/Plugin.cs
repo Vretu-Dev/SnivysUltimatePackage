@@ -16,8 +16,8 @@ namespace SnivysFreeCustomRolesSC
         public override string Name { get; } = "Snivy's Free Custom Roles (For Snivy's Ultimate Package Split Config)";
         public override string Author { get; } = "Vicious Vikki";
         public override string Prefix { get; } = "VVFreeCustomRoles";
-        public override Version Version { get; } = new Version(1, 0, 0);
-        public override Version RequiredExiledVersion { get; } = new Version(9, 5, 1);
+        public override Version Version { get; } = new Version(1, 1, 0);
+        public override Version RequiredExiledVersion { get; } = new Version(9, 6, 0);
 
         public override void OnEnabled()
         {
