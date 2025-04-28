@@ -55,13 +55,13 @@ namespace SnivysUltimatePackageOneConfig.Custom.Items.Other
                 {
                     Name = "Escape Hall Building",
                     Chance = 10,
-                    Position = new Vector3(133, 989, 24),
+                    Position = new Vector3(133, 289, 24),
                 },
             },
         };
         
         [Description("Determines where to teleport the player, must be somewhere static (such as surface zone)")]
-        public Vector3 TeleportLocation { get; set; } = new(38.464f, 1014.112f, -32.689f);
+        public Vector3 TeleportLocation { get; set; } = new(38.464f, 314.112f, -32.689f);
         
         private readonly Dictionary<PlayerAPI, Vector3> _playersUsingScp1499 = new();
         
