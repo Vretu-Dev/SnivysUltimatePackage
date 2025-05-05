@@ -98,10 +98,15 @@ namespace SnivysUltimatePackage.Configs.CustomConfigs
         {
             new ClusterGrenade()
         };
-
+        
         public List<AdditionalHealth207> AdditionalHealth207s { get; private set; } = new()
         {
             new AdditionalHealth207()
+        };
+        
+        public List<LowGravityArmor> LowGravityArmors { get; private set; } = new()
+        {
+            new LowGravityArmor()
         };
 
         public List<ViperPdw> ViperPdws { get; private set; } = new()

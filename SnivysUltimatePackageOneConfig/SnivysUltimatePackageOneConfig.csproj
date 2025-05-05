@@ -167,6 +167,7 @@
         <Compile Include="Custom\Abilities\Passive\ScaleAbility.cs" />
         <Compile Include="Custom\Abilities\Passive\SpeedOnKill.cs" />
         <Compile Include="Custom\Items\Armor\ExplosiveResistantArmor.cs" />
+        <Compile Include="Custom\Items\Armor\LowGravityArmor.cs" />
         <Compile Include="Custom\Items\Firearms\ExplosiveRoundRevolver.cs" />
         <Compile Include="Custom\Items\Firearms\LaserGun.cs" />
         <Compile Include="Custom\Items\Firearms\MediGun.cs" />
