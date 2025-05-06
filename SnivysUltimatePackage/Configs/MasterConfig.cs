@@ -33,7 +33,7 @@ namespace SnivysUltimatePackage.Configs
         /*[YamlIgnore]
         public FlamingoAdjustmentsConfig FlamingoAdjustmentsConfig { get; set; } = null!;*/
         [YamlIgnore]
-        public EscapeDoorOpenerConfig EscapeDoorOpenerConfig { get; set; } = null!;
+        public RoundStartConfig RoundStartConfig { get; set; } = null!;
         [YamlIgnore]
         public Scp1576SpectatorViewerConfig Scp1576SpectatorViewerConfig { get; set; } = null!;
         [YamlIgnore]
@@ -50,7 +50,7 @@ namespace SnivysUltimatePackage.Configs
         public string MicroEvaporateConfigFile { get; set; } = "vvMicroEvaporate.yml";
         public string VoteConfigFile { get; set; } = "vvVote.yml";
         public string FlamingoAdjustmentsConfigFile { get; set; } = "vvFlamingoAdjustments.yml";
-        public string EscapeDoorOpenerConfigFile { get; set; } = "vvEscapeDoorOpener.yml";
+        public string RoundStartConfigFile { get; set; } = "vvRoundStart.yml";
         public string Scp1576SpectatorViewerConfigFile { get; set; } = "vvScp1576SpectatorViewer.yml";
         public string SsssConfigFile { get; set; } = "vvSsss.yml";
 
@@ -155,16 +155,16 @@ namespace SnivysUltimatePackage.Configs
                 File.WriteAllText(fFilePath, Loader.Serializer.Serialize(FlamingoAdjustmentsConfig));
             }*/
             
-            string edoFilePath = Path.Combine(ConfigFolder, EscapeDoorOpenerConfigFile);
+            string edoFilePath = Path.Combine(ConfigFolder, RoundStartConfigFile);
             if (!File.Exists(edoFilePath))
             {
-                EscapeDoorOpenerConfig = new EscapeDoorOpenerConfig();
-                File.WriteAllText(edoFilePath, Loader.Serializer.Serialize(EscapeDoorOpenerConfig));
+                RoundStartConfig = new RoundStartConfig();
+                File.WriteAllText(edoFilePath, Loader.Serializer.Serialize(RoundStartConfig));
             }
             else
             {
-                EscapeDoorOpenerConfig = Loader.Deserializer.Deserialize<EscapeDoorOpenerConfig>(File.ReadAllText(edoFilePath));
-                File.WriteAllText(edoFilePath, Loader.Serializer.Serialize(EscapeDoorOpenerConfig));
+                RoundStartConfig = Loader.Deserializer.Deserialize<RoundStartConfig>(File.ReadAllText(edoFilePath));
+                File.WriteAllText(edoFilePath, Loader.Serializer.Serialize(RoundStartConfig));
             }
             
             string s1576svFilePath = Path.Combine(ConfigFolder, Scp1576SpectatorViewerConfigFile);

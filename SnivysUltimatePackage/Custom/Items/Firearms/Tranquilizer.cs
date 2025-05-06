@@ -223,6 +223,7 @@ namespace SnivysUltimatePackage.Custom.Items.Firearms
                         player.DropItems();
                     }
                 }
+                player.CurrentItem = null;
             }
             catch (Exception ex)
             {

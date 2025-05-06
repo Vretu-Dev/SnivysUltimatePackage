@@ -21,7 +21,7 @@ namespace SnivysUltimatePackageOneConfig.Configs
         public MicroEvaporateConfig MicroEvaporateConfig { get; set; } = new();
         public VoteConfig VoteConfig { get; set; } = new();
         //public FlamingoAdjustmentsConfig FlamingoAdjustmentsConfig { get; set; } = new();
-        public EscapeDoorOpenerConfig EscapeDoorOpenerConfig { get; set; } = new();
+        public RoundStartConfig RoundStartConfig { get; set; } = new();
         public Scp1576SpectatorViewerConfig Scp1576SpectatorViewerConfig { get; set; } = new();
         public SsssConfig SsssConfig { get; set; } = new();
     }

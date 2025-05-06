@@ -38,7 +38,7 @@ namespace SnivysUltimatePackageOneConfig
         public MicroDamageReductionEventHandler MicroDamageReductionEventHandler;
         public MicroEvaporateEventHandlers MicroEvaporateEventHandlers;
         //public FlamingoAdjustmentEventHandlers FlamingoAdjustmentEventHandlers;
-        public EscapeDoorOpenerEventHandlers EscapeDoorOpenerEventHandlers;
+        public RoundStartEventHandlers RoundStartEventHandlers;
         public Scp1576SpectatorViewerEventHandlers Scp1576SpectatorViewerEventHandlers;
         public SsssEventHandler SsssEventHandler;
         
@@ -148,10 +148,10 @@ namespace SnivysUltimatePackageOneConfig
             //Player.Hurting += FlamingoAdjustmentEventHandlers.OnHurting;
                 
             //Escape Door Opener
-            if (Instance.Config.EscapeDoorOpenerConfig.IsEnabled)
+            if (Instance.Config.RoundStartConfig.IsEnabled)
             {
-                EscapeDoorOpenerEventHandlers = new EscapeDoorOpenerEventHandlers(this);
-                Server.RoundStarted += EscapeDoorOpenerEventHandlers.OnRoundStarted;
+                RoundStartEventHandlers = new RoundStartEventHandlers(this);
+                Server.RoundStarted += RoundStartEventHandlers.OnRoundStarted;
             }
 
             //SCP 1576 Spectator Viewer
@@ -202,8 +202,8 @@ namespace SnivysUltimatePackageOneConfig
             //FlamingoAdjustmentEventHandlers = null;
             
             //Escape Door Opener Event Handler
-            Server.RoundStarted -= EscapeDoorOpenerEventHandlers.OnRoundStarted;
-            EscapeDoorOpenerEventHandlers = null;
+            Server.RoundStarted -= RoundStartEventHandlers.OnRoundStarted;
+            RoundStartEventHandlers = null;
 
             //SCP 1576 Spectator Viewer Event Handler
             Player.UsedItem -= Scp1576SpectatorViewerEventHandlers.OnUsingItem;
