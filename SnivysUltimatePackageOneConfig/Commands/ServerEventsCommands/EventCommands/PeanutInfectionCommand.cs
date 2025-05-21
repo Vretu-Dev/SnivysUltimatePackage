@@ -26,6 +26,14 @@ namespace SnivysUltimatePackageOneConfig.Commands.ServerEventsCommands.EventComm
                 response = "You do not have the required permission to use this command";
                 return false;
             }
+            
+            if (OperationCrossfireEventHandlers.OcfStarted)
+            {
+                response =
+                    "Operation Crossfire is running, this event is not allowed to be ran at the same time as Operation Crossfire";
+                return false;
+            }
+            
             PeanutInfectionEventHandlers infectionEventHandlers = new PeanutInfectionEventHandlers();
             response = "Starting Peanut Infection Event";
             Log.Debug($"{sender} has started the Peanut Infection Event");

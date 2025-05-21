@@ -26,6 +26,14 @@ namespace SnivysUltimatePackage.Commands.ServerEventsCommands.EventCommands
                 response = "You do not have the required permission to use this command";
                 return false;
             }
+            
+            if (OperationCrossfireEventHandlers.OcfStarted)
+            {
+                response =
+                    "Operation Crossfire is running, this event is not allowed to be ran at the same time as Operation Crossfire";
+                return false;
+            }
+            
             PeanutHydraEventHandlers hydraEventHandlers = new PeanutHydraEventHandlers();
             response = "Starting Peanut Hydra Event";
             Log.Debug($"{sender} has started the Peanut Hydra Event");

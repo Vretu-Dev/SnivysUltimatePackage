@@ -66,6 +66,7 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
             NameRedactedEventHandlers.EndEvent();
             AfterHoursEventHandlers.EndEvent();
             //SnowballsVsScpsEventHandlers.EndEvent();
+            OperationCrossfireEventHandlers.Instance?.EndEvent();
             Plugin.ActiveEvent = 0;
         }
 

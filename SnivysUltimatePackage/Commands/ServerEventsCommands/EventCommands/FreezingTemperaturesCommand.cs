@@ -26,6 +26,14 @@ namespace SnivysUltimatePackage.Commands.ServerEventsCommands.EventCommands
                 response = "You do not have the required permission to use this command";
                 return false;
             }
+            
+            if (OperationCrossfireEventHandlers.OcfStarted)
+            {
+                response =
+                    "Operation Crossfire is running, this event is not allowed to be ran at the same time as Operation Crossfire";
+                return false;
+            }
+            
             FreezingTemperaturesEventHandlers freezingTemperaturesHandlers = new FreezingTemperaturesEventHandlers();
             response = "Starting Freezing Temperature Event";
             Log.Debug($"{sender} has started the Freezing Temperatures Event");

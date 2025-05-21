@@ -41,5 +41,6 @@ namespace SnivysUltimatePackageOneConfig.Configs.ServerEventsConfigs
         public AfterHoursConfig AfterHoursConfig { get; set; } = new();
         public SnowballsVsScpsConfig SnowballsVsScpsConfig { get; set; } = new();
         public GravityConfig GravityConfig { get; set; } = new();
+        public OperationCrossfireConfig OperationCrossfireConfig { get; set; } = new();
     }
 }

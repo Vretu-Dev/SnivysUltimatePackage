@@ -7,11 +7,11 @@ using SnivysUltimatePackageOneConfig.EventHandlers.ServerEventsEventHandlers;
 
 namespace SnivysUltimatePackageOneConfig.Commands.ServerEventsCommands.EventCommands
 {
-    public class AfterHoursCommand : ICommand
+    internal class OperationCrossfireCommand : ICommand
     {
-        public string Command { get; set; } = "AfterHours";
+        public string Command { get; set; } = "OperationCrossfire";
         public string[] Aliases { get; set; } = Array.Empty<string>();
-        public string Description { get; set; } = "Starts the AfterHours Event";
+        public string Description { get; set; } = "Operation Crossfire is a more RP, Military Sim style event, where teams will have goals to achieve.";
         private static ServerEventsMasterConfig _config = new();
         public bool Execute(ArraySegment<string> args, ICommandSender sender, out string response)
         {
@@ -27,16 +27,15 @@ namespace SnivysUltimatePackageOneConfig.Commands.ServerEventsCommands.EventComm
                 return false;
             }
             
-            if (OperationCrossfireEventHandlers.OcfStarted)
+            if (Plugin.ActiveEvent != 0)
             {
-                response =
-                    "Operation Crossfire is running, this event is not allowed to be ran at the same time as Operation Crossfire";
+                response = "An event is already running, this event will conflict heavily with everything else. Not running. Some events might be able to run if you start them after this one";
                 return false;
             }
             
-            AfterHoursEventHandlers afterHours = new AfterHoursEventHandlers();
-            response = "Starting After Hours Event";
-            Log.Debug($"{sender} has started the After Hours Event");
+            OperationCrossfireEventHandlers operationCrossfire = new OperationCrossfireEventHandlers();
+            response = "Starting Operation Crossfire Event";
+            Log.Debug($"{sender} has started Operation Crossfire Event");
             return true;
         }
     }

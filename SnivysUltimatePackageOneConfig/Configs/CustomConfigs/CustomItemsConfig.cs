@@ -4,7 +4,7 @@ using SnivysUltimatePackageOneConfig.Custom.Items.Armor;
 using SnivysUltimatePackageOneConfig.Custom.Items.Firearms;
 using SnivysUltimatePackageOneConfig.Custom.Items.Grenades;
 using SnivysUltimatePackageOneConfig.Custom.Items.MedicalItems;
-//using SnivysUltimatePackageOneConfig.Custom.Items.Keycards;
+using SnivysUltimatePackageOneConfig.Custom.Items.Keycards;
 using SnivysUltimatePackageOneConfig.Custom.Items.Other;
 
 namespace SnivysUltimatePackageOneConfig.Configs.CustomConfigs
@@ -89,10 +89,10 @@ namespace SnivysUltimatePackageOneConfig.Configs.CustomConfigs
             new InfinitePills()
         };
         
-        //public List<ContainmentScientistKeycard> ContainmentScientistKeycards { get; private set; } = new()
-        //{
-        //    new ContainmentScientistKeycard()
-        //};
+        public List<ContainmentScientistKeycard> ContainmentScientistKeycards { get; private set; } = new()
+        {
+            new ContainmentScientistKeycard()
+        };
 
         public List<ClusterGrenade> ClusterGrenades { get; private set; } = new()
         {
@@ -132,6 +132,16 @@ namespace SnivysUltimatePackageOneConfig.Configs.CustomConfigs
         public List<ProxyBang> ProxyBangs { get; private set; } = new()
         {
             new ProxyBang()
+        };
+        
+        public List<OcfPrototypeKeycardBasic> OcfPrototypeKeycardBasics { get; private set; } = new()
+        {
+            new OcfPrototypeKeycardBasic()
+        };
+
+        public List<OcfPrototypeKeycardRefined> OcfPrototypeKeycardRefineds { get; private set; } = new()
+        {
+            new OcfPrototypeKeycardRefined()
         };
     }
 }

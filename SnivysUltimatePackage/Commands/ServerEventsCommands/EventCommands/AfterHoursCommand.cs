@@ -27,6 +27,13 @@ namespace SnivysUltimatePackage.Commands.ServerEventsCommands.EventCommands
                 return false;
             }
             
+            if (OperationCrossfireEventHandlers.OcfStarted)
+            {
+                response =
+                    "Operation Crossfire is running, this event is not allowed to be ran at the same time as Operation Crossfire";
+                return false;
+            }
+            
             AfterHoursEventHandlers afterHours = new AfterHoursEventHandlers();
             response = "Starting After Hours Event";
             Log.Debug($"{sender} has started the After Hours Event");

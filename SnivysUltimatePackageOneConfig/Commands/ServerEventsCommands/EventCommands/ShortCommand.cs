@@ -26,6 +26,14 @@ namespace SnivysUltimatePackageOneConfig.Commands.ServerEventsCommands.EventComm
                 response = "You do not have the required permission to use this command";
                 return false;
             }
+            
+            if (OperationCrossfireEventHandlers.OcfStarted)
+            {
+                response =
+                    "Operation Crossfire is running, this event is not allowed to be ran at the same time as Operation Crossfire";
+                return false;
+            }
+            
             ShortEventHandlers shortEventHandlers = new ShortEventHandlers();
             response = "Starting Short People Event";
             Log.Debug($"{sender} has started the Short People Event");
