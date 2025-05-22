@@ -27,12 +27,12 @@ namespace SnivysUltimatePackageOneConfig.Commands.ServerEventsCommands.EventComm
                 return false;
             }
             
-            if (OperationCrossfireEventHandlers.OcfStarted)
-            {
-                response =
-                    "Operation Crossfire is running, this event is not allowed to be ran at the same time as Operation Crossfire";
-                return false;
-            }
+            /*if (OperationCrossfireEventHandlers.OcfStarted)
+           {
+               response =
+                   "Operation Crossfire is running, this event is not allowed to be ran at the same time as Operation Crossfire";
+               return false;
+           }*/
             
             PeanutHydraEventHandlers hydraEventHandlers = new PeanutHydraEventHandlers();
             response = "Starting Peanut Hydra Event";

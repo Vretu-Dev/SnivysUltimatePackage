@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+/*using System.Collections.Generic;
 using Exiled.API.Enums;
 using Exiled.API.Features.Pickups;
 using Exiled.API.Features.Spawn;
@@ -78,4 +78,4 @@ namespace SnivysUltimatePackageOneConfig.Custom.Items.Keycards
                 TrySpawn(RefinedKeycardId, ev.OutputPosition, out var pickup);
         }
     }
-}
+}*/

@@ -1,4 +1,4 @@
-using Exiled.API.Features;
+/*using Exiled.API.Features;
 using Exiled.API.Features.Attributes;
 using Exiled.API.Features.Items;
 using Exiled.API.Features.Spawn;
@@ -34,4 +34,4 @@ namespace SnivysUltimatePackageOneConfig.Custom.Items.Keycards
             base.OnAcquired(player, item, displayMessage);
         }
     }
-}
+}*/

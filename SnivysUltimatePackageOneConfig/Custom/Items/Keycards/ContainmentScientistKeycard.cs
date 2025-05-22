@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿/*using System.Collections.Generic;
 using Exiled.API.Enums;
 using Exiled.API.Features.Attributes;
 using Exiled.API.Features.Spawn;
@@ -31,4 +31,4 @@ namespace SnivysUltimatePackageOneConfig.Custom.Items.Keycards
         public override Color32? KeycardLabelColor { get; set; } = Color.green;
         public override Color32? KeycardPermissionsColor { get; set; } = Color.black;
     }
-}
+}*/

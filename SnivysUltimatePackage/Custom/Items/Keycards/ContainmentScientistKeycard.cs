@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿/*using System.Collections.Generic;
 using Exiled.API.Enums;
 using Exiled.API.Features.Attributes;
 using Exiled.API.Features.Spawn;
@@ -18,17 +18,15 @@ namespace SnivysUltimatePackage.Custom.Items.Keycards
         public override string Description { get; set; } = "A keycard that can be used to open doors with a Containment Engineer Scientist clearance level.";
         public override float Weight { get; set; } = 1;
         public override SpawnProperties SpawnProperties { get; set; }
-
         public override KeycardPermissions Permissions { get; set; } = KeycardPermissions.Checkpoints |
-                                                                       KeycardPermissions.ContainmentLevelOne |
-                                                                       KeycardPermissions.ContainmentLevelTwo |
-                                                                       KeycardPermissions.ContainmentLevelThree |
-                                                                       KeycardPermissions.AlphaWarhead |
-                                                                       KeycardPermissions.Intercom;
-
+   KeycardPermissions.ContainmentLevelOne |
+   KeycardPermissions.ContainmentLevelTwo |
+   KeycardPermissions.ContainmentLevelThree |
+   KeycardPermissions.AlphaWarhead |
+   KeycardPermissions.Intercom;
         public override string KeycardLabel { get; set; } = "Containment Engineer Keycard";
         public override Color32? TintColor { get; set; } = Color.gray;
         public override Color32? KeycardLabelColor { get; set; } = Color.green;
         public override Color32? KeycardPermissionsColor { get; set; } = Color.black;
     }
-}
+}*/
