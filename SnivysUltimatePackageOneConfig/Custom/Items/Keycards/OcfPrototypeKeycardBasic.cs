@@ -1,5 +1,6 @@
-/*using System.Collections.Generic;
+using System.Collections.Generic;
 using Exiled.API.Enums;
+using Exiled.API.Features.Attributes;
 using Exiled.API.Features.Pickups;
 using Exiled.API.Features.Spawn;
 using Exiled.CustomItems.API.EventArgs;
@@ -10,10 +11,11 @@ using OperationCrossFire = SnivysUltimatePackageOneConfig.EventHandlers.ServerEv
 
 namespace SnivysUltimatePackageOneConfig.Custom.Items.Keycards
 {
-    public class OcfPrototypeKeycardBasic : CustomKeycard
+    [CustomItem(ItemType.KeycardJanitor)]
+    public class OcfPrototypeKeycardBasic : CustomItem
     {
         [YamlIgnore] 
-        public override ItemType Type { get; set; } = ItemType.KeycardCustomSite02;
+        public override ItemType Type { get; set; } = ItemType.KeycardJanitor;
         public override uint Id { get; set; } = 44;
         public override string Name { get; set; } = "Prototype Keycard Basic";
 
@@ -64,10 +66,6 @@ namespace SnivysUltimatePackageOneConfig.Custom.Items.Keycards
                 },
             }
         };
-        public override string KeycardLabel { get; set; } = "Prototype Keycard Basic";
-        public override Color32? TintColor { get; set; } = Color.red;
-        public override Color32? KeycardLabelColor { get; set; } = Color.blue;
-        public override Color32? KeycardPermissionsColor { get; set; } = Color.blue;
         public uint RefinedKeycardId { get; set; } = 45;
 
         protected override void OnUpgrading(UpgradingEventArgs ev)
@@ -78,4 +76,4 @@ namespace SnivysUltimatePackageOneConfig.Custom.Items.Keycards
                 TrySpawn(RefinedKeycardId, ev.OutputPosition, out var pickup);
         }
     }
-}*/
+}

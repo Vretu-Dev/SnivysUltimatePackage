@@ -1,4 +1,4 @@
-/*using System;
+using System;
 using CommandSystem;
 using Exiled.API.Features;
 using Exiled.Permissions.Extensions;
@@ -39,4 +39,4 @@ namespace SnivysUltimatePackage.Commands.ServerEventsCommands.EventCommands
             return true;
         }
     }
-}*/
+}

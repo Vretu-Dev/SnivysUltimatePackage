@@ -28,6 +28,7 @@ namespace SnivysUltimatePackage.Commands.ServerEventsCommands
                                 RegisterCommand(new VariableLightCommand());
                                 RegisterCommand(new StopCommand());
                                 RegisterCommand(new SnowballsVsScpsCommand());
+                                RegisterCommand(new OperationCrossfireCommand());
                         }
                         catch (Exception e)
                         {
