@@ -30,6 +30,15 @@ namespace SnivysUltimatePackageOneConfig.Custom.Items.Keycards
             "This is the basic Prototype Keycard needed to unlock SCP-914";
 
         public override float Weight { get; set; } = 0.5f;
+        
+        public string KeycardName { get; set; } = "Prototype Keycard Basic";
+        public static KeycardLevels KeycardPermissions { get; set; } = new KeycardLevels(1, 0, 0);
+        public static Color32 KeycardPermissionsColor { get; set; } = new Color32(0, 0, 0, 255);
+        public static Color32 KeycardPrimaryColor { get; set; } = new Color32(255, 0, 255, 255);
+        public string KeycardLabel { get; set; } = "Prototype Keycard Basic";
+        public static Color32 KeycardLabelColor { get; set; } = new Color32(255, 255, 255, 255);
+        
+        public uint RefinedKeycardId { get; set; } = 45;
 
         public override SpawnProperties SpawnProperties { get; set; } = new()
         {
@@ -73,17 +82,7 @@ namespace SnivysUltimatePackageOneConfig.Custom.Items.Keycards
                 },
             }
         };
-
-        [CanBeNull]
-        public static string KeycardName { get; set; } = "Prototype Keycard Basic";
-        public static KeycardLevels KeycardPermissions { get; set; } = new KeycardLevels(1, 0, 0);
-        public static Color32 KeycardPermissionsColor { get; set; } = new Color32(0, 0, 0, 255);
-        public static Color32 KeycardPrimaryColor { get; set; } = new Color32(255, 0, 255, 255);
-        public static string KeycardLabel { get; set; } = "Prototype Keycard Basic";
-        public static Color32 KeycardLabelColor { get; set; } = new Color32(255, 255, 255, 255);
         
-        public uint RefinedKeycardId { get; set; } = 45;
-
         protected override void SubscribeEvents()
         {
             base.SubscribeEvents();

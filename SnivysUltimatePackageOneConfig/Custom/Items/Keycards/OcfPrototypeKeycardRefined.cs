@@ -15,7 +15,6 @@ using JetBrains.Annotations;
 using UnityEngine;
 using YamlDotNet.Serialization;
 using OperationCrossFire = SnivysUltimatePackageOneConfig.EventHandlers.ServerEventsEventHandlers.OperationCrossfireEventHandlers;
-using Random = System.Random;
 
 namespace SnivysUltimatePackageOneConfig.Custom.Items.Keycards
 {
@@ -33,15 +32,11 @@ namespace SnivysUltimatePackageOneConfig.Custom.Items.Keycards
         public override float Weight { get; set; } = 0.5f;
         public override SpawnProperties SpawnProperties { get; set; }
         
-        [CanBeNull]
-        public static List<string> KeycardNames { get; set; } = new List<string>
-        {
-            "Dr. Vicious Vikki",
-        };
+        public string KeycardName { get; set; } = "Prototype Keycard Refined";
         public static KeycardLevels KeycardPermissions { get; set; } = new KeycardLevels(1, 2, 3);
         public static Color32 KeycardPermissionsColor { get; set; } = new Color32(0, 0, 0, 255);
         public static Color32 KeycardPrimaryColor { get; set; } = new Color32(255, 0, 255, 255);
-        public static string KeycardLabel { get; set; } = "Prototype Keycard Refined";
+        public string KeycardLabel { get; set; } = "Prototype Keycard Refined";
         public static Color32 KeycardLabelColor { get; set; } = new Color32(255, 255, 255, 255);
 
         protected override void SubscribeEvents()
@@ -73,17 +68,6 @@ namespace SnivysUltimatePackageOneConfig.Custom.Items.Keycards
                 return;
 
             UpdateCard(ev.Pickup);
-        }
-
-        public static string KeycardName => GetRandomKeycardName();
-        private static string GetRandomKeycardName()
-        {
-            Random random = new Random();
-            if (KeycardNames == null || KeycardNames.Count == 0)
-            {
-                return "Someone decided to remove the keycard names.";
-            }
-            return KeycardNames[random.Next(KeycardNames.Count)];
         }
         
         private void UpdateCard(Pickup pickup) //code taken from KeycardItem (kinda)
