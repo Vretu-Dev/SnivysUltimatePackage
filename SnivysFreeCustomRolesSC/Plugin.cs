@@ -22,7 +22,7 @@ namespace SnivysFreeCustomRolesSC
         public override void OnEnabled()
         {
             Instance = this;
-            if (Loader.Plugins.Any(plugin => plugin.Prefix == "VVUltimatePluginPackage"))
+            if (!Loader.Plugins.Any(plugin => plugin.Prefix == "VVUltimatePluginPackage"))
             {
                 Log.Error("VVUltimatePluginFreeCustomRolesSC: VVUltimatePluginPackage is missing, disabling plugin.");
                 base.OnDisabled();
