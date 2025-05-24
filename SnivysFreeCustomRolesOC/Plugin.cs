@@ -17,12 +17,12 @@ namespace SnivysFreeCustomRolesOC
         public override string Name { get; } = "Snivy's Free Custom Roles (For Snivy's Ultimate Package One Config)";
         public override string Author { get; } = "Vicious Vikki";
         public override string Prefix { get; } = "VVFreeCustomRoles";
-        public override Version Version { get; } = new Version(1, 1, 0);
+        public override Version Version { get; } = new Version(1, 1, 1);
         public override Version RequiredExiledVersion { get; } = new Version(9, 6, 0);
 
         public override void OnEnabled()
         {
-            if (Loader.Plugins.Any(plugin => plugin.Name == "Snivy's Ultimate Plugin Package One Config"))
+            if (Loader.Plugins.Any(plugin => plugin.Prefix == "VVUltimatePluginPackageOneConfig"))
             {
                 Log.Error("VVUltimatePluginFreeCustomRolesOC: VVUltimatePluginPackageOneConfig is missing, disabling plugin.");
                 base.OnDisabled();
