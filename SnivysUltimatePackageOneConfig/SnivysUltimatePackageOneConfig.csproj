@@ -235,7 +235,6 @@
         <Compile Include="EventHandlers\ServerEventsEventHandlers\VariableLightsEventHandlers.cs" />
         <Compile Include="EventHandlers\SsssEventHandler.cs" />
         <Compile Include="Plugin.cs" />
-        <Compile Include="Properties\AssemblyInfo.cs"/>
         <Compile Include="Ssss.cs" />
     </ItemGroup>
     <ItemGroup>
