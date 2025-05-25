@@ -63,6 +63,7 @@ namespace SnivysUltimatePackage.Custom.Items.Armor
 
         protected override void OnDroppingItem(DroppingItemEventArgs ev)
         {
+            base.OnDroppingItem(ev);
             if (_playersWithArmorOn.ContainsKey(ev.Player))
             {
                 PlayerLab.Get(ev.Player.NetworkIdentity)!.Gravity = _playersWithArmorOn[ev.Player];
