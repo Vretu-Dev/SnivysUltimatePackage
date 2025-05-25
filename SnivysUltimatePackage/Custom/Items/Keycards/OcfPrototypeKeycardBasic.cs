@@ -1,7 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using Exiled.API.Enums;
+using Exiled.API.Features;
 using Exiled.API.Features.Attributes;
+using Exiled.API.Features.Items;
 using Exiled.API.Features.Pickups;
 using Exiled.API.Features.Spawn;
 using Exiled.CustomItems.API.EventArgs;
@@ -32,11 +35,47 @@ namespace SnivysUltimatePackage.Custom.Items.Keycards
         public override float Weight { get; set; } = 0.5f;
         
         public string KeycardName { get; set; } = "Prototype Keycard Basic";
-        public static KeycardLevels KeycardPermissions { get; set; } = new KeycardLevels(1, 0, 0);
-        public static Color32 KeycardPermissionsColor { get; set; } = new Color32(0, 0, 0, 255);
-        public static Color32 KeycardPrimaryColor { get; set; } = new Color32(255, 0, 255, 255);
         public string KeycardLabel { get; set; } = "Prototype Keycard Basic";
-        public static Color32 KeycardLabelColor { get; set; } = new Color32(255, 255, 255, 255);
+
+        [Description("The Containment Level of the Keycard (Max = 3)")]
+        public int KeycardLevelContainment { get; set; } = 1;
+        [Description("The Armory Level of the Keycard (Max = 3)")]
+        public int KeycardLevelArmory { get; set; } = 0;
+        [Description("The Admin Level of the Keycard (Max = 3)")]
+        public int KeycardLevelAdmin { get; set; } = 0;
+        [YamlIgnore]
+        public KeycardLevels KeycardPermissions => new KeycardLevels(KeycardLevelContainment, KeycardLevelArmory, KeycardLevelAdmin);
+        [Description("Primary Color Red of the Keycard (0-255)")]
+        public byte KeycardPrimaryColorRed { get; set; } = 255;
+        [Description("Primary Color Green of the Keycard (0-255)")]
+        public byte KeycardPrimaryColorGreen { get; set; } = 0;
+        [Description("Primary Color Blue of the Keycard (0-255)")]
+        public byte KeycardPrimaryColorBlue { get; set; } = 255;
+        [Description("Primary Color Brightness of the Keycard (0-255)")]
+        public byte KeycardPrimaryColorAlpha { get; set; } = 255;
+        
+        [YamlIgnore]
+        public Color32 KeycardPrimaryColor => new Color32(KeycardPrimaryColorRed, KeycardPrimaryColorGreen, KeycardPrimaryColorBlue, KeycardPrimaryColorAlpha);
+        [Description("Label Color Red of the Keycard (0-255)")]
+        public byte KeycardLabelColorRed { get; set; } = 255;
+        [Description("Green Color Red of the Keycard (0-255)")]
+        public byte KeycardLabelColorGreen { get; set; } = 255;
+        [Description("Blue Color Red of the Keycard (0-255)")]
+        public byte KeycardLabelColorBlue { get; set; } = 255;
+        [Description("Color Brightness of the Keycard's Label (0-255)")]
+        public byte KeycardLabelColorAlpha { get; set; } = 255;
+        [YamlIgnore]
+        public Color32 KeycardLabelColor => new Color32(KeycardLabelColorRed, KeycardLabelColorGreen, KeycardLabelColorBlue, KeycardLabelColorAlpha);
+        [Description("Permissions Color Red of the Keycard (0-255)")]
+        public byte KeycardPermissionColorRed { get; set; } = 0;
+        [Description("Permissions Color Green of the Keycard (0-255)")]
+        public byte KeycardPermissionColorGreen { get; set; } = 0;
+        [Description("Permissions Color Blue of the Keycard (0-255)")]
+        public byte KeycardPermissionColorBlue { get; set; } = 0;
+        [Description("Permissions Color Brightness of the Keycard (0-255)")]
+        public byte KeycardPermissionColorAlpha { get; set; } = 255;
+        [YamlIgnore]
+        public Color32 KeycardPermissionsColor => new Color32(KeycardPermissionColorRed, KeycardPermissionColorGreen, KeycardPermissionColorBlue, KeycardPermissionColorAlpha);
         
         public uint RefinedKeycardId { get; set; } = 45;
 
@@ -82,20 +121,30 @@ namespace SnivysUltimatePackage.Custom.Items.Keycards
                 },
             }
         };
-
         protected override void SubscribeEvents()
         {
             base.SubscribeEvents();
 
             Exiled.Events.Handlers.Map.PickupAdded += OnPickupAdded;
-            Exiled.Events.Handlers.Player.ItemAdded += OnItemAdded;
         }
         protected override void UnsubscribeEvents()
         {
             base.UnsubscribeEvents();
 
             Exiled.Events.Handlers.Map.PickupAdded -= OnPickupAdded;
-            Exiled.Events.Handlers.Player.ItemAdded -= OnItemAdded;
+        }
+
+        protected override void OnAcquired(Player player, Item item, bool displayMessage)
+        {
+            base.OnAcquired(player, item, displayMessage);
+            UpdateCard(item);
+        }
+
+        public override Pickup Spawn(Vector3 position, Item item, Player previousOwner = null)
+        {
+            Pickup customKeyCard = Pickup.CreateAndSpawn(item.Type, position);
+            UpdateCard(customKeyCard);
+            return customKeyCard;
         }
 
         private void OnPickupAdded(PickupAddedEventArgs ev) 
@@ -104,14 +153,6 @@ namespace SnivysUltimatePackage.Custom.Items.Keycards
                 return;
 
             UpdateCard(ev.Pickup); 
-        }
-
-        private void OnItemAdded(ItemAddedEventArgs ev)
-        {
-            if (!Check(ev.Pickup))
-                return;
-
-            UpdateCard(ev.Pickup);
         }
         
         private void UpdateCard(Pickup pickup) //code taken from KeycardItem (kinda)
@@ -124,6 +165,36 @@ namespace SnivysUltimatePackage.Custom.Items.Keycards
 
             int num = 0;
             DetailBase[] details = item.Details;
+
+            object[] args = new object[]
+            {
+                KeycardName,
+                KeycardPermissions,
+                KeycardPermissionsColor,
+                KeycardPrimaryColor,
+                KeycardLabel,
+                KeycardLabelColor
+            };
+
+            for (int i = 0; i < details.Length; i++)
+            {
+                if (details[i] is ICustomizableDetail customizableDetail)
+                {
+                    customizableDetail.SetArguments(new ArraySegment<object>(args, num, customizableDetail.CustomizablePropertiesAmount));
+                    num += customizableDetail.CustomizablePropertiesAmount;
+                }
+            }
+        }
+        private void UpdateCard(Item item) //code taken from KeycardItem (kinda)
+        {
+            if (!Type.TryGetTemplate<KeycardItem>(out var keycardItem))
+                throw new ArgumentException("Template for itemType not found");
+
+            if (!keycardItem.Customizable)
+                return;
+
+            int num = 0;
+            DetailBase[] details = keycardItem.Details;
 
             object[] args = new object[]
             {

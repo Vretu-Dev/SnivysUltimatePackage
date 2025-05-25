@@ -43,6 +43,7 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
             if (OcfStarted) return;
             
             OcfStarted = true;
+            _config = Plugin.Instance.Config.ServerEventsMasterConfig.OperationCrossfireConfig;
             foreach (PlayerAPI player in PlayerAPI.List)
             {
                 Log.Debug($"VVUP Custom Events: Operation Crossfire: Killing {player.Nickname}");
@@ -58,68 +59,82 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
             int classDCount = total - mtfCount - scientistCount;
 
             // Player Setup
-            for (int i = 0; i < mtfCount && i < playerEnumerable.Length; i++)
+            Timing.CallDelayed(0.5f, () =>
             {
-                Log.Debug($"VVUP Custom Events: Operation Crossfire: Adding {playerEnumerable[i].Nickname} to MTF side");
-                playerEnumerable[i].Role.Set(RoleTypeId.NtfSergeant);
-                _mtfPlayers.Add(playerEnumerable[i]);
-                string mtfObjective =
-                    $"{_config.MtfScientistObjective1}\n{_config.MtfScientistObjective2}\n{_config.MtfObjective3}";
-                _mtfPlayers[i].Broadcast((ushort)_config.StartingBroadcastTime, mtfObjective);
-                Log.Debug($"VVUP Custom Events: Operation Crossfire: There are now {_mtfPlayers.Count} MTF players");
-            }
-            for (int i = mtfCount; i < mtfCount + scientistCount && i < playerEnumerable.Length; i++)
-            {
-                Log.Debug($"VVUP Custom Events: Operation Crossfire: Adding {playerEnumerable[i].Nickname} to Scientist side");
-                playerEnumerable[i].Role.Set(RoleTypeId.Scientist);
-                _scientistPlayers.Add(playerEnumerable[i]);
-                string scientistObjective =
-                    $"{_config.MtfScientistObjective1}\n{_config.MtfScientistObjective2}\n{_config.ScientistObjective3}";
-                _mtfPlayers[i].Broadcast((ushort)_config.StartingBroadcastTime, scientistObjective);
-                Log.Debug($"VVUP Custom Events: Operation Crossfire: There are now {_scientistPlayers.Count} Scientist Players");
-            }
-            for (int i = mtfCount + scientistCount; i < playerEnumerable.Length; i++)
-            {
-                Log.Debug($"VVUP Custom Events: Operation Crossfire: Adding {playerEnumerable[i].Nickname} to D-Class side");
-                playerEnumerable[i].Role.Set(RoleTypeId.ClassD);
-                _classDPlayers.Add(playerEnumerable[i]);
-                string dClassObjective =
-                    $"{_config.ClassDObjective1}\n{_config.ClassDObjective2}";
-                _mtfPlayers[i].Broadcast((ushort)_config.StartingBroadcastTime, dClassObjective);
-                Log.Debug($"VVUP Custom Events: Operation Crossfire: There are now {_classDPlayers.Count} D-Class Players");
-            }
-            
-            // Event Handlers Setup
-            PlayerEvent.Verified += OnPlayerJoin;
-            PlayerEvent.Died += OnPlayerDied;
-            PlayerEvent.Left += OnPlayerLeave;
-            PlayerEvent.InteractingDoor += OnDoorInteract;
-            
-            // Spawn Basic Keycard
-            var customKeycardBasic = CustomItem.Get(_config.PrototypeKeycardBasicId);
-            if (customKeycardBasic != null && customKeycardBasic.SpawnProperties != null)
-            {
-                var spawnPoints = customKeycardBasic.SpawnProperties.DynamicSpawnPoints;
-                var random = new Random();
-                var selected = spawnPoints[random.Next(spawnPoints.Count)];
-                var position = selected.Position;
-                customKeycardBasic.Spawn(position);
-                Log.Debug($"VVUP Custom Events: Operation Crossfire: Spawned {customKeycardBasic.Name} at {position}");
-            }
-            Log.Debug("VVUP Custom Events: Operation Crossfire: Locking Round");
-            Round.IsLocked = true;
-            Log.Debug($"VVUP Custom Events: Operation Crossfire: Starting Warhead and setting its time to {_config.EventDuration} seconds");
-            Warhead.Start();
-            Warhead.DetonationTimer = _config.EventDuration;
-            Warhead.IsLocked = true;
+                for (int i = 0; i < mtfCount && i < playerEnumerable.Length; i++)
+                {
+                    Log.Debug(
+                        $"VVUP Custom Events: Operation Crossfire: Adding {playerEnumerable[i].Nickname} to MTF side");
+                    playerEnumerable[i].Role.Set(RoleTypeId.NtfSergeant);
+                    _mtfPlayers.Add(playerEnumerable[i]);
+                    string mtfObjective =
+                        $"{_config.MtfScientistObjective1}\n{_config.MtfScientistObjective2}\n{_config.MtfObjective3}";
+                    _mtfPlayers[i].Broadcast((ushort)_config.StartingBroadcastTime, mtfObjective);
+                    Log.Debug(
+                        $"VVUP Custom Events: Operation Crossfire: There are now {_mtfPlayers.Count} MTF players");
+                }
 
-            DecontaminationController.Singleton.DecontaminationOverride =
-                DecontaminationController.DecontaminationStatus.Disabled;
+                for (int i = mtfCount; i < mtfCount + scientistCount && i < playerEnumerable.Length; i++)
+                {
+                    Log.Debug(
+                        $"VVUP Custom Events: Operation Crossfire: Adding {playerEnumerable[i].Nickname} to Scientist side");
+                    playerEnumerable[i].Role.Set(RoleTypeId.Scientist);
+                    _scientistPlayers.Add(playerEnumerable[i]);
+                    string scientistObjective =
+                        $"{_config.MtfScientistObjective1}\n{_config.MtfScientistObjective2}\n{_config.ScientistObjective3}";
+                    _mtfPlayers[i].Broadcast((ushort)_config.StartingBroadcastTime, scientistObjective);
+                    Log.Debug(
+                        $"VVUP Custom Events: Operation Crossfire: There are now {_scientistPlayers.Count} Scientist Players");
+                }
 
-            Instance = this;
-            
-            // Start the Routine Proper
-            _ocfCoroutine = Timing.RunCoroutine(OperationCrossfireTiming());
+                for (int i = mtfCount + scientistCount; i < playerEnumerable.Length; i++)
+                {
+                    Log.Debug(
+                        $"VVUP Custom Events: Operation Crossfire: Adding {playerEnumerable[i].Nickname} to D-Class side");
+                    playerEnumerable[i].Role.Set(RoleTypeId.ClassD);
+                    _classDPlayers.Add(playerEnumerable[i]);
+                    string dClassObjective =
+                        $"{_config.ClassDObjective1}\n{_config.ClassDObjective2}";
+                    _mtfPlayers[i].Broadcast((ushort)_config.StartingBroadcastTime, dClassObjective);
+                    Log.Debug(
+                        $"VVUP Custom Events: Operation Crossfire: There are now {_classDPlayers.Count} D-Class Players");
+                }
+
+                // Event Handlers Setup
+                PlayerEvent.Verified += OnPlayerJoin;
+                PlayerEvent.Died += OnPlayerDied;
+                PlayerEvent.Left += OnPlayerLeave;
+                PlayerEvent.InteractingDoor += OnDoorInteract;
+
+                // Spawn Basic Keycard
+                var customKeycardBasic = CustomItem.Get(_config.PrototypeKeycardBasicId);
+                if (customKeycardBasic != null && customKeycardBasic.SpawnProperties != null)
+                {
+                    var spawnPoints = customKeycardBasic.SpawnProperties.DynamicSpawnPoints;
+                    var random = new Random();
+                    var selected = spawnPoints[random.Next(spawnPoints.Count)];
+                    var position = selected.Position;
+                    customKeycardBasic.Spawn(position);
+                    Log.Debug(
+                        $"VVUP Custom Events: Operation Crossfire: Spawned {customKeycardBasic.Name} at {position}");
+                }
+
+                Log.Debug("VVUP Custom Events: Operation Crossfire: Locking Round");
+                Round.IsLocked = true;
+                Log.Debug(
+                    $"VVUP Custom Events: Operation Crossfire: Starting Warhead and setting its time to {_config.EventDuration} seconds");
+                Warhead.Start();
+                Warhead.DetonationTimer = _config.EventDuration;
+                Warhead.IsLocked = true;
+
+                DecontaminationController.Singleton.DecontaminationOverride =
+                    DecontaminationController.DecontaminationStatus.Disabled;
+
+                Instance = this;
+
+                // Start the Routine Proper
+                _ocfCoroutine = Timing.RunCoroutine(OperationCrossfireTiming());
+            });
         }
 
         public static IEnumerator<float> OperationCrossfireTiming()

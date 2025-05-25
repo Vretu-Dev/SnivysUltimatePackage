@@ -7,10 +7,9 @@ namespace SnivysUltimatePackage.Configs.ServerEventsConfigs
         [Description("How often should the event check for updates? (in Seconds)")]
         public float CheckForEventsInterval { get; set; } = 1f;
         
-        [Description("The ratios of MTF, Scientist, and D-Class that spawns during the event. Must add up to 1")]
+        [Description("The ratios of MTF & Scientist that spawns during the event. D-Class will be whatever is left. Must add up to 1")]
         public float MtfRatio { get; set; } = 0.5f;
         public float ScientistRatio { get; set; } = 0.25f;
-        public float DClassRatio { get; set; } = 0.25f;
 
         [Description("What should the broadcast say for someone who connects during the event?")]
         public string PlayerConnectDuringEventMessage { get; set; } =
