@@ -43,12 +43,11 @@ namespace SnivysUltimatePackageOneConfig.EventHandlers.ServerEventsEventHandlers
             if (OcfStarted) return;
             
             OcfStarted = true;
-            
             _config = Plugin.Instance.Config.ServerEventsMasterConfig.OperationCrossfireConfig;
             foreach (PlayerAPI player in PlayerAPI.List)
             {
                 Log.Debug($"VVUP Custom Events: Operation Crossfire: Killing {player.Nickname}");
-                player.Kill(DamageType.Unknown);
+                player.Role.Set(RoleTypeId.Spectator);
             }
 
             var allPlayers = PlayerAPI.List.Where(p => p.Role != RoleTypeId.Overwatch);
@@ -58,6 +57,19 @@ namespace SnivysUltimatePackageOneConfig.EventHandlers.ServerEventsEventHandlers
             int mtfCount = (int)Math.Round(total * _config.MtfRatio);
             int scientistCount = (int)Math.Round(total * _config.ScientistRatio);
             int classDCount = total - mtfCount - scientistCount;
+            
+            Log.Debug("VVUP Custom Events: Operation Crossfire: Locking Round");
+            Round.IsLocked = true;
+            Log.Debug(
+                $"VVUP Custom Events: Operation Crossfire: Starting Warhead and setting its time to {_config.EventDuration} seconds");
+            Warhead.Start();
+            Warhead.DetonationTimer = _config.EventDuration;
+            Warhead.IsLocked = true;
+
+            DecontaminationController.Singleton.DecontaminationOverride =
+                DecontaminationController.DecontaminationStatus.Disabled;
+
+            Instance = this;
 
             // Player Setup
             Timing.CallDelayed(0.5f, () =>
@@ -119,20 +131,7 @@ namespace SnivysUltimatePackageOneConfig.EventHandlers.ServerEventsEventHandlers
                     Log.Debug(
                         $"VVUP Custom Events: Operation Crossfire: Spawned {customKeycardBasic.Name} at {position}");
                 }
-
-                Log.Debug("VVUP Custom Events: Operation Crossfire: Locking Round");
-                Round.IsLocked = true;
-                Log.Debug(
-                    $"VVUP Custom Events: Operation Crossfire: Starting Warhead and setting its time to {_config.EventDuration} seconds");
-                Warhead.Start();
-                Warhead.DetonationTimer = _config.EventDuration;
-                Warhead.IsLocked = true;
-
-                DecontaminationController.Singleton.DecontaminationOverride =
-                    DecontaminationController.DecontaminationStatus.Disabled;
-
-                Instance = this;
-
+                
                 // Start the Routine Proper
                 _ocfCoroutine = Timing.RunCoroutine(OperationCrossfireTiming());
             });
@@ -234,7 +233,7 @@ namespace SnivysUltimatePackageOneConfig.EventHandlers.ServerEventsEventHandlers
             foreach (PlayerAPI player in PlayerAPI.List)
             {
                 Log.Debug($"VVUP Custom Events: Operation Crossfire: Killing {player.Nickname}");
-                player.Kill(DamageType.Unknown);
+                player.Role.Set(RoleTypeId.Spectator);
             }
             foreach (PlayerAPI player in _playersSpectating.ToList())
             {
