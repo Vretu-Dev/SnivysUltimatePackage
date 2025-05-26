@@ -19,8 +19,6 @@ namespace SnivysUltimatePackageOneConfig.EventHandlers.ServerEventsEventHandlers
 {
     public class OperationCrossfireEventHandlers
     {
-        public static OperationCrossfireEventHandlers Instance { get; private set; }
-        
         private static OperationCrossfireConfig _config;
         public static bool OcfStarted;
         
@@ -30,13 +28,13 @@ namespace SnivysUltimatePackageOneConfig.EventHandlers.ServerEventsEventHandlers
         public static bool _prototypeDeviceRefined = false;
         
         // Player Tracking
-        private static List<PlayerAPI> _mtfPlayers = new List<PlayerAPI>();
-        private static List<PlayerAPI> _scientistPlayers = new List<PlayerAPI>();
-        private List<PlayerAPI> _classDPlayers = new List<PlayerAPI>();
+        public static List<PlayerAPI> _mtfPlayers = new List<PlayerAPI>();
+        public static List<PlayerAPI> _scientistPlayers = new List<PlayerAPI>();
+        public static List<PlayerAPI> _classDPlayers = new List<PlayerAPI>();
         
-        private List<PlayerAPI> _playersSpectating = new List<PlayerAPI>();
+        public static List<PlayerAPI> _playersSpectating = new List<PlayerAPI>();
         
-        private CoroutineHandle _ocfCoroutine;
+        public static CoroutineHandle _ocfCoroutine;
         
         public OperationCrossfireEventHandlers()
         {
@@ -44,7 +42,6 @@ namespace SnivysUltimatePackageOneConfig.EventHandlers.ServerEventsEventHandlers
             
             OcfStarted = true;
             _config = Plugin.Instance.Config.ServerEventsMasterConfig.OperationCrossfireConfig;
-            Instance = this;
             foreach (PlayerAPI player in PlayerAPI.List)
             {
                 Log.Debug($"VVUP Custom Events: Operation Crossfire: Killing {player.Nickname}");
@@ -71,10 +68,10 @@ namespace SnivysUltimatePackageOneConfig.EventHandlers.ServerEventsEventHandlers
                 DecontaminationController.DecontaminationStatus.Disabled;
             
             // Event Handlers Setup
-            PlayerEvent.Verified += OnPlayerJoin;
-            PlayerEvent.Died += OnPlayerDied;
-            PlayerEvent.Left += OnPlayerLeave;
-            PlayerEvent.InteractingDoor += OnDoorInteract;
+            PlayerEvent.Verified += Plugin.Instance.ServerEventsMainEventHandler.OnPlayerJoinOfc;
+            PlayerEvent.Died += Plugin.Instance.ServerEventsMainEventHandler.OnPlayerDiedOfc;
+            PlayerEvent.Left += Plugin.Instance.ServerEventsMainEventHandler.OnPlayerLeaveOfc;
+            PlayerEvent.InteractingDoor += Plugin.Instance.ServerEventsMainEventHandler.OnDoorInteractOfc;
 
             // Spawn Basic Keycard
             var customKeycardBasic = CustomItem.Get(_config.PrototypeKeycardBasicId);
@@ -171,60 +168,17 @@ namespace SnivysUltimatePackageOneConfig.EventHandlers.ServerEventsEventHandlers
                 yield return Timing.WaitForSeconds(_config.CheckForEventsInterval);
             }
         }
-        
-        public void OnPlayerJoin(VerifiedEventArgs ev)
-        {
-            if (!OcfStarted) return;
-            Log.Debug($"VVUP Custom Events: Operation Crossfire: Player {ev.Player.Nickname} has joined the server, setting them to Overwatch");
-            ev.Player.Role.Set(RoleTypeId.Overwatch);
-            ev.Player.Broadcast((ushort)_config.PlayerConnectDuringEventMessageDisplayDuration, _config.PlayerConnectDuringEventMessage);
-            _playersSpectating.Add(ev.Player);
-        }
 
-        public void OnPlayerDied(DiedEventArgs ev)
-        {
-            if (!OcfStarted) return;
-            Log.Debug($"VVUP Custom Events: Operation Crossfire: Player {ev.Player.Nickname} has died, setting them to Overwatch");
-            Timing.CallDelayed(0.5f, () => ev.Player.Role.Set(RoleTypeId.Overwatch));
-            _playersSpectating.Add(ev.Player);
-        }
-        
-        public void OnPlayerLeave(LeftEventArgs ev)
-        {
-            if (!OcfStarted) return;
-            Log.Debug($"VVUP Custom Events: Operation Crossfire: Player {ev.Player.Nickname} has left the server, removing them from the list");
-            if (_playersSpectating.Contains(ev.Player))
-                _playersSpectating.Remove(ev.Player);
-        }
-
-        public void OnDoorInteract(InteractingDoorEventArgs ev)
-        {
-            if (!OcfStarted) return;
-            if (ev.Door.Type == DoorType.Scp914Gate
-                && ev.Player.CurrentItem != null
-                && CustomItem.TryGet(ev.Player.CurrentItem, out var customItem)
-                && customItem != null
-                && customItem.Id == _config.PrototypeKeycardBasicId
-                && (_scientistPlayers.Contains(ev.Player) || _mtfPlayers.Contains(ev.Player))
-                && !_scp914LockdownOverridden)
-            {
-                ev.Door.IsOpen = true;
-                _scp914LockdownOverridden = true;
-                Log.Debug($"VVUP Custom Events: Operation Crossfire: Player {ev.Player.Nickname} has opened SCP-914, overriding the lockdown of SCP-914");
-            }
-        }
-
-        public void EndEvent()
+        public static void EndEvent()
         {
             if (!OcfStarted) return;
             Log.Debug("VVUP Custom Events: Operation Crossfire: Ending event");
             OcfStarted = false;
-            Instance = null;
             Timing.KillCoroutines(_ocfCoroutine);
-            PlayerEvent.Verified -= OnPlayerJoin;
-            PlayerEvent.Died -= OnPlayerDied;
-            PlayerEvent.Left -= OnPlayerLeave;
-            PlayerEvent.InteractingDoor -= OnDoorInteract;
+            PlayerEvent.Verified -= Plugin.Instance.ServerEventsMainEventHandler.OnPlayerJoinOfc;
+            PlayerEvent.Died -= Plugin.Instance.ServerEventsMainEventHandler.OnPlayerDiedOfc;
+            PlayerEvent.Left -= Plugin.Instance.ServerEventsMainEventHandler.OnPlayerLeaveOfc;
+            PlayerEvent.InteractingDoor -= Plugin.Instance.ServerEventsMainEventHandler.OnDoorInteractOfc;
             foreach (PlayerAPI player in PlayerAPI.List)
             {
                 Log.Debug($"VVUP Custom Events: Operation Crossfire: Killing {player.Nickname}");
