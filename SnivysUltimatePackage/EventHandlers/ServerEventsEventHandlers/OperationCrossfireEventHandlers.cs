@@ -22,7 +22,7 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
         public static OperationCrossfireEventHandlers Instance { get; private set; }
         
         private static OperationCrossfireConfig _config;
-        public static bool OcfStarted = false;
+        public static bool OcfStarted;
         
         // Objectives
         public static bool _scp914LockdownOverridden = false;
@@ -44,6 +44,7 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
             
             OcfStarted = true;
             _config = Plugin.Instance.Config.ServerEventsMasterConfig.OperationCrossfireConfig;
+            Instance = this;
             foreach (PlayerAPI player in PlayerAPI.List)
             {
                 Log.Debug($"VVUP Custom Events: Operation Crossfire: Killing {player.Nickname}");
@@ -68,8 +69,25 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
 
             DecontaminationController.Singleton.DecontaminationOverride =
                 DecontaminationController.DecontaminationStatus.Disabled;
+            
+            // Event Handlers Setup
+            PlayerEvent.Verified += OnPlayerJoin;
+            PlayerEvent.Died += OnPlayerDied;
+            PlayerEvent.Left += OnPlayerLeave;
+            PlayerEvent.InteractingDoor += OnDoorInteract;
 
-            Instance = this;
+            // Spawn Basic Keycard
+            var customKeycardBasic = CustomItem.Get(_config.PrototypeKeycardBasicId);
+            if (customKeycardBasic != null && customKeycardBasic.SpawnProperties != null)
+            {
+                var spawnPoints = customKeycardBasic.SpawnProperties.DynamicSpawnPoints;
+                var random = new Random();
+                var selected = spawnPoints[random.Next(spawnPoints.Count)];
+                var position = selected.Position;
+                customKeycardBasic.Spawn(position);
+                Log.Debug(
+                    $"VVUP Custom Events: Operation Crossfire: Spawned {customKeycardBasic.Name} at {position}");
+            }
 
             // Player Setup
             Timing.CallDelayed(0.5f, () =>
@@ -104,32 +122,13 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
                     string dClassObjective = $"{_config.ClassDObjective1}\n{_config.ClassDObjective2}";
                     shuffledPlayers[assignedPlayers].Broadcast((ushort)_config.StartingBroadcastTime, dClassObjective);
                 }
-
-                // Event Handlers Setup
-                PlayerEvent.Verified += OnPlayerJoin;
-                PlayerEvent.Died += OnPlayerDied;
-                PlayerEvent.Left += OnPlayerLeave;
-                PlayerEvent.InteractingDoor += OnDoorInteract;
-
-                // Spawn Basic Keycard
-                var customKeycardBasic = CustomItem.Get(_config.PrototypeKeycardBasicId);
-                if (customKeycardBasic != null && customKeycardBasic.SpawnProperties != null)
-                {
-                    var spawnPoints = customKeycardBasic.SpawnProperties.DynamicSpawnPoints;
-                    var random = new Random();
-                    var selected = spawnPoints[random.Next(spawnPoints.Count)];
-                    var position = selected.Position;
-                    customKeycardBasic.Spawn(position);
-                    Log.Debug(
-                        $"VVUP Custom Events: Operation Crossfire: Spawned {customKeycardBasic.Name} at {position}");
-                }
                 
                 // Start the Routine Proper
                 _ocfCoroutine = Timing.RunCoroutine(OperationCrossfireTiming());
             });
         }
 
-        public static IEnumerator<float> OperationCrossfireTiming()
+        public IEnumerator<float> OperationCrossfireTiming()
         {
             for (;;)
             {
@@ -151,18 +150,21 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
                     {
                         Map.Broadcast((ushort)_config.EndOfRoundTime, _config.MtfScientistWinMessage);
                         yield return Timing.WaitForSeconds(_config.EndOfRoundTime);
+                        EndEvent();
                         yield break;
                     }
                     if (totalScientists - escapedScientists <= 0 && percentMtfAlive < _config.MtfPercentageRequiredToWin)
                     {
                         Map.Broadcast((ushort)_config.EndOfRoundTime, _config.ClassDWinMessage);
                         yield return Timing.WaitForSeconds(_config.EndOfRoundTime);
+                        EndEvent();
                         yield break;
                     }
                     if (Warhead.IsDetonated)
                     {
                         Map.Broadcast((ushort)_config.EndOfRoundTime, _config.TieMessage);
                         yield return Timing.WaitForSeconds(_config.EndOfRoundTime);
+                        EndEvent();
                         yield break;
                     }
                 }
@@ -217,6 +219,7 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
             if (!OcfStarted) return;
             Log.Debug("VVUP Custom Events: Operation Crossfire: Ending event");
             OcfStarted = false;
+            Instance = null;
             Timing.KillCoroutines(_ocfCoroutine);
             PlayerEvent.Verified -= OnPlayerJoin;
             PlayerEvent.Died -= OnPlayerDied;
@@ -225,14 +228,23 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
             foreach (PlayerAPI player in PlayerAPI.List)
             {
                 Log.Debug($"VVUP Custom Events: Operation Crossfire: Killing {player.Nickname}");
-                player.Role.Set(RoleTypeId.Spectator);
+                if (player.Role == RoleTypeId.Overwatch && _playersSpectating!.Contains(player))
+                    continue;
+                player.Role.Set(RoleTypeId.Tutorial);
             }
             foreach (PlayerAPI player in _playersSpectating.ToList())
-            {
-                Log.Debug($"VVUP Custom Events: Operation Crossfire: Setting {player.Nickname} back to Spectator");
-                player.Role.Set(RoleTypeId.Spectator);
                 _playersSpectating.Remove(player);
-            }
+            foreach (PlayerAPI player in _classDPlayers.ToList())
+                _classDPlayers.Remove(player);
+            foreach (PlayerAPI player in _mtfPlayers.ToList())
+                _mtfPlayers.Remove(player);
+            foreach (PlayerAPI player in _scientistPlayers.ToList())
+                _scientistPlayers.Remove(player);
+
+            Plugin.ActiveEvent -= 1;
+            Warhead.DetonationTimer = 90;
+            Warhead.IsLocked = false;
+            Warhead.Stop();
         }
     }
 }
