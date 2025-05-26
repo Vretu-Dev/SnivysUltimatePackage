@@ -74,43 +74,35 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
             // Player Setup
             Timing.CallDelayed(0.5f, () =>
             {
-                for (int i = 0; i < mtfCount && i < playerEnumerable.Length; i++)
+                var shuffledPlayers = playerEnumerable.OrderBy(_ => Guid.NewGuid()).ToArray(); // Shuffle players to randomize assignments
+
+                int assignedPlayers = 0;
+
+                for (int i = 0; i < mtfCount && assignedPlayers < shuffledPlayers.Length; i++, assignedPlayers++)
                 {
-                    Log.Debug(
-                        $"VVUP Custom Events: Operation Crossfire: Adding {playerEnumerable[i].Nickname} to MTF side");
-                    playerEnumerable[i].Role.Set(RoleTypeId.NtfSergeant);
-                    _mtfPlayers.Add(playerEnumerable[i]);
-                    string mtfObjective =
-                        $"{_config.MtfScientistObjective1}\n{_config.MtfScientistObjective2}\n{_config.MtfObjective3}";
-                    _mtfPlayers[i].Broadcast((ushort)_config.StartingBroadcastTime, mtfObjective);
-                    Log.Debug(
-                        $"VVUP Custom Events: Operation Crossfire: There are now {_mtfPlayers.Count} MTF players");
+                    Log.Debug($"VVUP Custom Events: Operation Crossfire: Adding {shuffledPlayers[assignedPlayers].Nickname} to MTF side");
+                    shuffledPlayers[assignedPlayers].Role.Set(RoleTypeId.NtfSergeant);
+                    _mtfPlayers.Add(shuffledPlayers[assignedPlayers]);
+                    string mtfObjective = $"{_config.MtfScientistObjective1}\n{_config.MtfScientistObjective2}\n{_config.MtfObjective3}";
+                    shuffledPlayers[assignedPlayers].Broadcast((ushort)_config.StartingBroadcastTime, mtfObjective);
                 }
 
-                for (int i = mtfCount; i < mtfCount + scientistCount && i < playerEnumerable.Length; i++)
+                for (int i = 0; i < scientistCount && assignedPlayers < shuffledPlayers.Length; i++, assignedPlayers++)
                 {
-                    Log.Debug(
-                        $"VVUP Custom Events: Operation Crossfire: Adding {playerEnumerable[i].Nickname} to Scientist side");
-                    playerEnumerable[i].Role.Set(RoleTypeId.Scientist);
-                    _scientistPlayers.Add(playerEnumerable[i]);
-                    string scientistObjective =
-                        $"{_config.MtfScientistObjective1}\n{_config.MtfScientistObjective2}\n{_config.ScientistObjective3}";
-                    _mtfPlayers[i].Broadcast((ushort)_config.StartingBroadcastTime, scientistObjective);
-                    Log.Debug(
-                        $"VVUP Custom Events: Operation Crossfire: There are now {_scientistPlayers.Count} Scientist Players");
+                    Log.Debug($"VVUP Custom Events: Operation Crossfire: Adding {shuffledPlayers[assignedPlayers].Nickname} to Scientist side");
+                    shuffledPlayers[assignedPlayers].Role.Set(RoleTypeId.Scientist);
+                    _scientistPlayers.Add(shuffledPlayers[assignedPlayers]);
+                    string scientistObjective = $"{_config.MtfScientistObjective1}\n{_config.MtfScientistObjective2}\n{_config.ScientistObjective3}";
+                    shuffledPlayers[assignedPlayers].Broadcast((ushort)_config.StartingBroadcastTime, scientistObjective);
                 }
 
-                for (int i = mtfCount + scientistCount; i < playerEnumerable.Length; i++)
+                for (int i = 0; i < classDCount && assignedPlayers < shuffledPlayers.Length; i++, assignedPlayers++)
                 {
-                    Log.Debug(
-                        $"VVUP Custom Events: Operation Crossfire: Adding {playerEnumerable[i].Nickname} to D-Class side");
-                    playerEnumerable[i].Role.Set(RoleTypeId.ClassD);
-                    _classDPlayers.Add(playerEnumerable[i]);
-                    string dClassObjective =
-                        $"{_config.ClassDObjective1}\n{_config.ClassDObjective2}";
-                    _mtfPlayers[i].Broadcast((ushort)_config.StartingBroadcastTime, dClassObjective);
-                    Log.Debug(
-                        $"VVUP Custom Events: Operation Crossfire: There are now {_classDPlayers.Count} D-Class Players");
+                    Log.Debug($"VVUP Custom Events: Operation Crossfire: Adding {shuffledPlayers[assignedPlayers].Nickname} to D-Class side");
+                    shuffledPlayers[assignedPlayers].Role.Set(RoleTypeId.ClassD);
+                    _classDPlayers.Add(shuffledPlayers[assignedPlayers]);
+                    string dClassObjective = $"{_config.ClassDObjective1}\n{_config.ClassDObjective2}";
+                    shuffledPlayers[assignedPlayers].Broadcast((ushort)_config.StartingBroadcastTime, dClassObjective);
                 }
 
                 // Event Handlers Setup
