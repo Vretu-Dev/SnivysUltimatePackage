@@ -42,6 +42,6 @@ namespace SnivysUltimatePackage.Configs.ServerEventsConfigs
         public string ClassDObjective1 { get; set; } = "Find and hold the prototype keycard";
         public string ClassDObjective2 { get; set; } = "Kill MTF and Scientists";
 
-        public int StartingBroadcastTime { get; set; } = 10;
+        public int StartingBroadcastTime { get; set; } = 60;
     }
 }
