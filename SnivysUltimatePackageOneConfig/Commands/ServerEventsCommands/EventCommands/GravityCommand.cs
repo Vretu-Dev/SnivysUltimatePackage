@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using CommandSystem;
 using Exiled.API.Features;
 using Exiled.Permissions.Extensions;
@@ -7,11 +7,11 @@ using SnivysUltimatePackageOneConfig.EventHandlers.ServerEventsEventHandlers;
 
 namespace SnivysUltimatePackageOneConfig.Commands.ServerEventsCommands.EventCommands
 {
-    internal class ShortCommand : ICommand
+    internal class GravityCommand : ICommand
     {
-        public string Command { get; set; } = "ShortPeople";
-        public string[] Aliases { get; set; } = { "Dwarf", "Tiny" };
-        public string Description { get; set; } = "Starts the Short People Event";
+        public string Command { get; set; } = "LowGravity";
+        public string[] Aliases { get; set; } = { "Moon", "LG" };
+        public string Description { get; set; } = "Starts the Low Gravity Event";
         private static ServerEventsMasterConfig _config = new();
         public bool Execute(ArraySegment<string> args, ICommandSender sender, out string response)
         {
@@ -27,16 +27,9 @@ namespace SnivysUltimatePackageOneConfig.Commands.ServerEventsCommands.EventComm
                 return false;
             }
             
-            if (OperationCrossfireEventHandlers.OcfStarted)
-            {
-                response =
-                    "Operation Crossfire is running, this event is not allowed to be ran at the same time as Operation Crossfire";
-                return false;
-            }
-            
-            ShortEventHandlers shortEventHandlers = new ShortEventHandlers();
-            response = "Starting Short People Event";
-            Log.Debug($"{sender} has started the Short People Event");
+            GravityEventHandlers gravityEventHandlers = new GravityEventHandlers();
+            response = "Starting Low Gravity Event";
+            Log.Debug($"{sender} has started the Low Gravity Event");
             return true;
         }
     }

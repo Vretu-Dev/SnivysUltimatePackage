@@ -11,6 +11,7 @@ using MEC;
 using PlayerRoles;
 using UnityEngine;
 using Random = System.Random;
+using PlayerLab = LabApi.Features.Wrappers.Player;
 
 // ReSharper disable InconsistentNaming
 
@@ -68,6 +69,7 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
             AfterHoursEventHandlers.EndEvent();
             //SnowballsVsScpsEventHandlers.EndEvent();
             OperationCrossfireEventHandlers.EndEvent();
+            GravityEventHandlers.EndEvent();
             Plugin.ActiveEvent = 0;
         }
 
@@ -124,6 +126,10 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
                     case "AfterHours":
                         Log.Debug("VVUP Server Events: Activating Variable Lights Event");
                         var afterHoursEventHandlers = new AfterHoursEventHandlers();
+                        break;
+                    case "LowGravity":
+                        Log.Debug("VVUP Server Events: Activating Low Gravity Event");
+                        var gravityEventHandlers = new GravityEventHandlers();
                         break;
                     default:
                         Log.Warn($"VVUP Server Events: Unknown event: {selectedEvent}");
@@ -448,6 +454,12 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
                     ev.IsAllowed = false;
                 }
             }
+        }
+        
+        public void OnRoleSwapGE(ChangingRoleEventArgs ev)
+        {
+            Log.Debug($"VVUP Server Events: Setting {ev.Player.Nickname} size to {Plugin.Instance.Config.ServerEventsMasterConfig.GravityConfig.GravityChanges}");
+            PlayerLab.Get(ev.Player.NetworkIdentity)!.Gravity = Plugin.Instance.Config.ServerEventsMasterConfig.GravityConfig.GravityChanges;
         }
     }
 }

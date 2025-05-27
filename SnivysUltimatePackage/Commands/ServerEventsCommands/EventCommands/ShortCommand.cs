@@ -27,12 +27,12 @@ namespace SnivysUltimatePackage.Commands.ServerEventsCommands.EventCommands
                 return false;
             }
 
-            /*if (OperationCrossfireEventHandlers.OcfStarted)
+            if (OperationCrossfireEventHandlers.OcfStarted)
             {
                 response =
                     "Operation Crossfire is running, this event is not allowed to be ran at the same time as Operation Crossfire";
                 return false;
-            }*/
+            }
             
             ShortEventHandlers shortEventHandlers = new ShortEventHandlers();
             response = "Starting Short People Event";

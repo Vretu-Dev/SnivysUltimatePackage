@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using CommandSystem;
 using Exiled.API.Features;
 using Exiled.Permissions.Extensions;
@@ -7,11 +7,11 @@ using SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers;
 
 namespace SnivysUltimatePackage.Commands.ServerEventsCommands.EventCommands
 {
-    internal class PeanutInfectionCommand : ICommand
+    internal class GravityCommand : ICommand
     {
-        public string Command { get; set; } = "173Infection";
-        public string[] Aliases { get; set; } = { "PeanutInfection", "Infection" };
-        public string Description { get; set; } = "Starts the 173 Infection";
+        public string Command { get; set; } = "LowGravity";
+        public string[] Aliases { get; set; } = { "Moon", "LG" };
+        public string Description { get; set; } = "Starts the Low Gravity Event";
         private static ServerEventsMasterConfig _config = new();
         public bool Execute(ArraySegment<string> args, ICommandSender sender, out string response)
         {
@@ -27,16 +27,9 @@ namespace SnivysUltimatePackage.Commands.ServerEventsCommands.EventCommands
                 return false;
             }
             
-            if (OperationCrossfireEventHandlers.OcfStarted)
-            {
-               response =
-                   "Operation Crossfire is running, this event is not allowed to be ran at the same time as Operation Crossfire";
-               return false;
-            }
-            
-            PeanutInfectionEventHandlers infectionEventHandlers = new PeanutInfectionEventHandlers();
-            response = "Starting Peanut Infection Event";
-            Log.Debug($"{sender} has started the Peanut Infection Event");
+            GravityEventHandlers gravityEventHandlers = new GravityEventHandlers();
+            response = "Starting Low Gravity Event";
+            Log.Debug($"{sender} has started the Low Gravity Event");
             return true;
         }
     }

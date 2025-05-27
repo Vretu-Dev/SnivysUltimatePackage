@@ -27,12 +27,12 @@ namespace SnivysUltimatePackage.Commands.ServerEventsCommands.EventCommands
                 return false;
             }
             
-            /*if (OperationCrossfireEventHandlers.OcfStarted)
-           {
+            if (OperationCrossfireEventHandlers.OcfStarted)
+            {
                response =
                    "Operation Crossfire is running, this event is not allowed to be ran at the same time as Operation Crossfire";
                return false;
-           }*/
+            }
             
             FreezingTemperaturesEventHandlers freezingTemperaturesHandlers = new FreezingTemperaturesEventHandlers();
             response = "Starting Freezing Temperature Event";

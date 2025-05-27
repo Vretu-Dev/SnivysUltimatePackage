@@ -11,9 +11,9 @@ namespace SnivysUltimatePackage.Configs.ServerEventsConfigs
         [Description("What should be the gravity for everyone")]
         public Vector3 GravityChanges { get; set; } = new Vector3()
         {
-            x = 1,
-            y = 0.5f,
-            z = 1,
+            x = 0,
+            y = -12.60f,
+            z = 0
         };
     }
 }
