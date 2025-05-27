@@ -42,12 +42,12 @@ namespace SnivysUltimatePackage.EventHandlers
             if (Plugin.Instance.Config.RoundStartConfig.AdjustRespawnTokens)
             {
                 Log.Debug("VVUP Round Start Events: Adjusting Respawn Tokens");
-                if (Plugin.Instance.Config.RoundStartConfig.AddMtfRespawnTokens != 0)
-                    Respawn.GrantTokens(Faction.FoundationStaff,
-                        Plugin.Instance.Config.RoundStartConfig.AddMtfRespawnTokens);
-                if (Plugin.Instance.Config.RoundStartConfig.AddCiRespawnTokens != 0)
-                    Respawn.GrantTokens(Faction.FoundationEnemy,
-                        Plugin.Instance.Config.RoundStartConfig.AddCiRespawnTokens);
+                if (Plugin.Instance.Config.RoundStartConfig.AdjustMtfStartingTokens != 0)
+                    Respawn.ModifyTokens(Faction.FoundationStaff,
+                        Plugin.Instance.Config.RoundStartConfig.AdjustMtfStartingTokens);
+                if (Plugin.Instance.Config.RoundStartConfig.AdjustCiStartingTokens != 0)
+                    Respawn.ModifyTokens(Faction.FoundationEnemy,
+                        Plugin.Instance.Config.RoundStartConfig.AdjustCiStartingTokens);
             }
 
             if (Plugin.Instance.Config.RoundStartConfig.DecontaminationChanges)
