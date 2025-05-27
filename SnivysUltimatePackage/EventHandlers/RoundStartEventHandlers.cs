@@ -38,17 +38,6 @@ namespace SnivysUltimatePackage.EventHandlers
                         door.ChangeLock(DoorLockType.AdminCommand);
                 });
             }
-            
-            if (Plugin.Instance.Config.RoundStartConfig.AdjustRespawnTokens)
-            {
-                Log.Debug("VVUP Round Start Events: Adjusting Respawn Tokens");
-                if (Plugin.Instance.Config.RoundStartConfig.AdjustMtfStartingTokens != 0)
-                    Respawn.ModifyTokens(Faction.FoundationStaff,
-                        Plugin.Instance.Config.RoundStartConfig.AdjustMtfStartingTokens);
-                if (Plugin.Instance.Config.RoundStartConfig.AdjustCiStartingTokens != 0)
-                    Respawn.ModifyTokens(Faction.FoundationEnemy,
-                        Plugin.Instance.Config.RoundStartConfig.AdjustCiStartingTokens);
-            }
 
             if (Plugin.Instance.Config.RoundStartConfig.DecontaminationChanges)
             {

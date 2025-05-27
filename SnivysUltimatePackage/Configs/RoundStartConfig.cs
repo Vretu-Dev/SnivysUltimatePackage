@@ -11,15 +11,6 @@ namespace SnivysUltimatePackage.Configs
 
         [Description("Should the Escape Door Final remained locked on round start")]
         public bool EscapeDoorLock { get; set; } = true;
-        
-        [Description("Allows for the amount of respawns to be adjusted by round start")]
-        public bool AdjustRespawnTokens { get; set; } = true;
-
-        [Description("The amount of respawn tokens to have for the MTF side on round start")]
-        public int AdjustMtfStartingTokens{ get; set; } = 2;
-        
-        [Description("The amount of respawn tokens to have for the CI side on round start")]
-        public int AdjustCiStartingTokens { get; set; } = 2;
 
         [Description("Allows for decontamination changes to be made")]
         public bool DecontaminationChanges { get; set; } = false;
