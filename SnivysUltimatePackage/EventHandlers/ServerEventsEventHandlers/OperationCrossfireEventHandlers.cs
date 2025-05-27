@@ -14,6 +14,7 @@ using SnivysUltimatePackage.Configs.ServerEventsConfigs;
 using Map = Exiled.API.Features.Map;
 using Round = Exiled.API.Features.Round;
 using Warhead = Exiled.API.Features.Warhead;
+using Exiled.API.Extensions;
 
 namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
 {
@@ -38,10 +39,17 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
         
         public OperationCrossfireEventHandlers()
         {
-            if (OcfStarted) return;
-            
+            if (OcfStarted)
+            {
+                Log.Debug($"VVUP Custom Events: Operation Crossfire: Event is already running");
+                return;
+            }
+
             OcfStarted = true;
+            Plugin.ActiveEvent += 1;
+
             _config = Plugin.Instance.Config.ServerEventsMasterConfig.OperationCrossfireConfig;
+
             foreach (PlayerAPI player in PlayerAPI.List)
             {
                 Log.Debug($"VVUP Custom Events: Operation Crossfire: Killing {player.Nickname}");
@@ -58,12 +66,17 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
             
             Log.Debug("VVUP Custom Events: Operation Crossfire: Locking Round");
             Round.IsLocked = true;
-            Log.Debug(
-                $"VVUP Custom Events: Operation Crossfire: Starting Warhead and setting its time to {_config.EventDuration} seconds");
-            Warhead.Start();
-            Warhead.DetonationTimer = _config.EventDuration;
+            Log.Debug("VVUP Custom Events: Operation Crossfire: Locking Warhead");
             Warhead.IsLocked = true;
-
+            Timing.CallDelayed(_config.EventDuration - 90, () =>
+            {
+                Log.Debug("VVUP Custom Events: Operation Crossfire: Starting Warhead");
+                Warhead.IsLocked = false;
+                Warhead.Start();
+                Warhead.IsLocked = true;
+            });
+            Map.IsDecontaminationEnabled = false;
+            
             DecontaminationController.Singleton.DecontaminationOverride =
                 DecontaminationController.DecontaminationStatus.Disabled;
             
@@ -80,7 +93,7 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
                 var spawnPoints = customKeycardBasic.SpawnProperties.DynamicSpawnPoints;
                 var random = new Random();
                 var selected = spawnPoints[random.Next(spawnPoints.Count)];
-                var position = selected.Position;
+                var position = selected.Location.GetPosition();
                 customKeycardBasic.Spawn(position);
                 Log.Debug(
                     $"VVUP Custom Events: Operation Crossfire: Spawned {customKeycardBasic.Name} at {position}");

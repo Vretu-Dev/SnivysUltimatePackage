@@ -10,13 +10,11 @@ using Exiled.API.Features.Spawn;
 using Exiled.CustomItems.API.EventArgs;
 using Exiled.CustomItems.API.Features;
 using Exiled.Events.EventArgs.Map;
-using Exiled.Events.EventArgs.Player;
 using Interactables.Interobjects.DoorUtils;
-using InventorySystem;
 using InventorySystem.Items.Keycards;
-using JetBrains.Annotations;
 using UnityEngine;
 using YamlDotNet.Serialization;
+using LabKeycardItem = LabApi.Features.Wrappers.KeycardItem;
 using OperationCrossFire = SnivysUltimatePackageOneConfig.EventHandlers.ServerEventsEventHandlers.OperationCrossfireEventHandlers;
 
 namespace SnivysUltimatePackageOneConfig.Custom.Items.Keycards
@@ -36,6 +34,10 @@ namespace SnivysUltimatePackageOneConfig.Custom.Items.Keycards
         
         public string KeycardName { get; set; } = "Prototype Keycard Basic";
         public string KeycardLabel { get; set; } = "Prototype Keycard Basic";
+        [Description("The Holder of the Keycard (Leave blank for random)")]
+        public string KeycardHolder { get; set; } = "";
+        [Description("The Wear level of the Keycard (0-255)")]
+        public byte KeycardWearLevel { get; set; } = 0;
 
         [Description("The Containment Level of the Keycard (Max = 3)")]
         public int KeycardLevelContainment { get; set; } = 1;
@@ -144,6 +146,12 @@ namespace SnivysUltimatePackageOneConfig.Custom.Items.Keycards
         {
             Pickup customKeyCard = Pickup.CreateAndSpawn(item.Type, position);
             UpdateCard(customKeyCard);
+
+            if (!TrackedSerials.Contains(item.Serial))
+            {
+                TrackedSerials.Add(item.Serial);
+            }
+
             return customKeyCard;
         }
 
@@ -155,25 +163,33 @@ namespace SnivysUltimatePackageOneConfig.Custom.Items.Keycards
             UpdateCard(ev.Pickup); 
         }
         
-        private void UpdateCard(Pickup pickup) //code taken from KeycardItem (kinda)
+        private void UpdateCard(Pickup pickup) //just realized that these methods used to update it for EVERY card, not one specific card
         {
-            if (!Type.TryGetTemplate<KeycardItem>(out var item))
-                throw new ArgumentException("Template for itemType not found");
-
-            if (!item.Customizable)
+            LabKeycardItem card = (LabKeycardItem) LabKeycardItem.Get(pickup.Serial); //the new one doesnt even work so we might just need to wait for a labapi update or ask whoever made it for an edit card info method
+            if (card == null)
+            {
+                Log.Warn($"Custom keycard with serial {pickup.Serial} does not exist.");
                 return;
+            }
+            if (!card.Base.Customizable)
+            {
+                Log.Warn($"Custom keycard with serial {pickup.Serial} is not customizable.");
+                return;
+            }
 
             int num = 0;
-            DetailBase[] details = item.Details;
+            DetailBase[] details = card.Base.Details;
 
-            object[] args = new object[]
+            object[] args = new object[] //KeycardCustomSite02 has different arguments for customization than KeycardCustomManagement
             {
                 KeycardName,
-                KeycardPermissions,
-                KeycardPermissionsColor,
-                KeycardPrimaryColor,
+                KeycardHolder,
                 KeycardLabel,
-                KeycardLabelColor
+                KeycardPermissions,
+                KeycardPrimaryColor,
+                KeycardPermissionsColor,
+                KeycardLabelColor,
+                KeycardWearLevel
             };
 
             for (int i = 0; i < details.Length; i++)
@@ -185,25 +201,35 @@ namespace SnivysUltimatePackageOneConfig.Custom.Items.Keycards
                 }
             }
         }
-        private void UpdateCard(Item item) //code taken from KeycardItem (kinda)
+        private void UpdateCard(Item item)
         {
-            if (!Type.TryGetTemplate<KeycardItem>(out var keycardItem))
-                throw new ArgumentException("Template for itemType not found");
+            LabKeycardItem card = (LabKeycardItem) LabKeycardItem.Get(item.Serial);
 
-            if (!keycardItem.Customizable)
+            if (card == null)
+            {
+                Log.Warn($"Custom keycard with serial {item.Serial} does not exist.");
                 return;
+            }
+
+            if (!card.Base.Customizable)
+            {
+                Log.Warn($"Custom keycard with serial {item.Serial} is not customizable.");
+                return;
+            }
 
             int num = 0;
-            DetailBase[] details = keycardItem.Details;
+            DetailBase[] details = card.Base.Details;
 
             object[] args = new object[]
             {
                 KeycardName,
+                KeycardHolder,
+                KeycardName,
                 KeycardPermissions,
-                KeycardPermissionsColor,
                 KeycardPrimaryColor,
-                KeycardLabel,
-                KeycardLabelColor
+                KeycardPermissionsColor,
+                KeycardLabelColor,
+                KeycardWearLevel
             };
 
             for (int i = 0; i < details.Length; i++)
