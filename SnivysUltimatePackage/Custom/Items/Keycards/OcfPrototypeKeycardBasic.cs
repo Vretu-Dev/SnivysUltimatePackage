@@ -10,8 +10,10 @@ using Exiled.API.Features.Spawn;
 using Exiled.CustomItems.API.EventArgs;
 using Exiled.CustomItems.API.Features;
 using Exiled.Events.EventArgs.Map;
+using Exiled.Events.EventArgs.Player;
 using Interactables.Interobjects.DoorUtils;
 using InventorySystem.Items.Keycards;
+using PlayerRoles;
 using UnityEngine;
 using YamlDotNet.Serialization;
 using LabKeycardItem = LabApi.Features.Wrappers.KeycardItem;
@@ -134,6 +136,13 @@ namespace SnivysUltimatePackage.Custom.Items.Keycards
             base.UnsubscribeEvents();
 
             Exiled.Events.Handlers.Map.PickupAdded -= OnPickupAdded;
+        }
+
+        protected override void OnDroppingItem(DroppingItemEventArgs ev)
+        {
+            if (ev.Player.Role == RoleTypeId.ClassD && OperationCrossFire.OcfStarted)
+                ev.IsAllowed = false;
+            base.OnDroppingItem(ev);
         }
 
         protected override void OnAcquired(Player player, Item item, bool displayMessage)

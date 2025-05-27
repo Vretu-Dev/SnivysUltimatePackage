@@ -389,7 +389,7 @@ namespace SnivysUltimatePackageOneConfig.EventHandlers.ServerEventsEventHandlers
             SnowballsVsScpsEventHandlers.PlayersInOverwatchFromEvent.Add(ev.Player);
         }*/
         
-         public void OnPlayerJoinOfc(VerifiedEventArgs ev)
+        public void OnPlayerJoinOcf(VerifiedEventArgs ev)
         {
             Log.Debug($"VVUP Custom Events: Operation Crossfire: Player {ev.Player.Nickname} has joined the server, setting them to Overwatch");
             ev.Player.Role.Set(RoleTypeId.Overwatch);
@@ -397,7 +397,7 @@ namespace SnivysUltimatePackageOneConfig.EventHandlers.ServerEventsEventHandlers
             OperationCrossfireEventHandlers._playersSpectating.Add(ev.Player);
         }
 
-        public void OnPlayerDiedOfc(DiedEventArgs ev)
+        public void OnPlayerDiedOcf(DiedEventArgs ev)
         {
             if (!OperationCrossfireEventHandlers.OcfStarted) return;
             Log.Debug($"VVUP Custom Events: Operation Crossfire: Player {ev.Player.Nickname} has died, setting them to Overwatch");
@@ -405,7 +405,7 @@ namespace SnivysUltimatePackageOneConfig.EventHandlers.ServerEventsEventHandlers
             OperationCrossfireEventHandlers._playersSpectating.Add(ev.Player);
         }
         
-        public void OnPlayerLeaveOfc(LeftEventArgs ev)
+        public void OnPlayerLeaveOcf(LeftEventArgs ev)
         {
             if (!OperationCrossfireEventHandlers.OcfStarted) return;
             Log.Debug($"VVUP Custom Events: Operation Crossfire: Player {ev.Player.Nickname} has left the server, removing them from the list");
@@ -413,7 +413,7 @@ namespace SnivysUltimatePackageOneConfig.EventHandlers.ServerEventsEventHandlers
                 OperationCrossfireEventHandlers._playersSpectating.Remove(ev.Player);
         }
 
-        public void OnDoorInteractOfc(InteractingDoorEventArgs ev)
+        public void OnDoorInteractOcf(InteractingDoorEventArgs ev)
         {
             if (!OperationCrossfireEventHandlers.OcfStarted) return;
             if (ev.Door.Type == DoorType.Scp914Gate
@@ -427,6 +427,26 @@ namespace SnivysUltimatePackageOneConfig.EventHandlers.ServerEventsEventHandlers
                 ev.Door.IsOpen = true;
                 OperationCrossfireEventHandlers._scp914LockdownOverridden = true;
                 Log.Debug($"VVUP Custom Events: Operation Crossfire: Player {ev.Player.Nickname} has opened SCP-914, overriding the lockdown of SCP-914");
+            }
+        }
+
+        public void OnHurtingOcf(HurtingEventArgs ev)
+        {
+            if (!OperationCrossfireEventHandlers.OcfStarted) return;
+            if (!OperationCrossfireEventHandlers._scp914LockdownOverridden && ev.Attacker.Role == RoleTypeId.ClassD && ev.Player.Role == RoleTypeId.Scientist)
+            {
+                foreach (var item in ev.Player.Items)
+                {
+                    if (item.Type is ItemType.GunCOM15 or ItemType.GunCOM18 or ItemType.GunE11SR or
+                        ItemType.GunCrossvec or ItemType.GunFSP9 or ItemType.GunLogicer or
+                        ItemType.GunRevolver or ItemType.GunAK or ItemType.GunShotgun or ItemType.GrenadeFlash or 
+                        ItemType.GrenadeHE or ItemType.SCP018 or ItemType.GunA7 or ItemType.GunSCP127 or ItemType.ParticleDisruptor or 
+                        ItemType.Jailbird or ItemType.MicroHID)
+                    {
+                        break;
+                    }
+                    ev.IsAllowed = false;
+                }
             }
         }
     }

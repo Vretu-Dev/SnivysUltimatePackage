@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.ComponentModel;
 
 namespace SnivysUltimatePackage.Configs.ServerEventsConfigs
@@ -43,5 +44,16 @@ namespace SnivysUltimatePackage.Configs.ServerEventsConfigs
         public string ClassDObjective2 { get; set; } = "Kill MTF and Scientists";
 
         public int StartingBroadcastTime { get; set; } = 60;
+        
+        [Description("What firearms should Class-D spawn with? (Randomly Picks one)")]
+        public List<ItemType> ClassDFirearms { get; set; } = new List<ItemType>
+        {
+            ItemType.GunAK,
+            ItemType.GunShotgun,
+            ItemType.GunRevolver,
+            ItemType.GunLogicer,
+        };
+        [Description("What Keycard should Class-D spawn with?")]
+        public ItemType ClassDKeycard { get; set; } = ItemType.KeycardMTFPrivate;
     }
 }

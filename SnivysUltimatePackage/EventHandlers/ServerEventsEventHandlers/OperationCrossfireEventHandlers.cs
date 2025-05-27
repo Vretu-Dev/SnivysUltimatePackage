@@ -47,6 +47,8 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
 
             OcfStarted = true;
             Plugin.ActiveEvent += 1;
+            
+            Random random = new Random();
 
             _config = Plugin.Instance.Config.ServerEventsMasterConfig.OperationCrossfireConfig;
 
@@ -81,17 +83,17 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
                 DecontaminationController.DecontaminationStatus.Disabled;
             
             // Event Handlers Setup
-            PlayerEvent.Verified += Plugin.Instance.ServerEventsMainEventHandler.OnPlayerJoinOfc;
-            PlayerEvent.Died += Plugin.Instance.ServerEventsMainEventHandler.OnPlayerDiedOfc;
-            PlayerEvent.Left += Plugin.Instance.ServerEventsMainEventHandler.OnPlayerLeaveOfc;
-            PlayerEvent.InteractingDoor += Plugin.Instance.ServerEventsMainEventHandler.OnDoorInteractOfc;
+            PlayerEvent.Verified += Plugin.Instance.ServerEventsMainEventHandler.OnPlayerJoinOcf;
+            PlayerEvent.Died += Plugin.Instance.ServerEventsMainEventHandler.OnPlayerDiedOcf;
+            PlayerEvent.Left += Plugin.Instance.ServerEventsMainEventHandler.OnPlayerLeaveOcf;
+            PlayerEvent.InteractingDoor += Plugin.Instance.ServerEventsMainEventHandler.OnDoorInteractOcf;
+            PlayerEvent.Hurting += Plugin.Instance.ServerEventsMainEventHandler.OnHurtingOcf;
 
             // Spawn Basic Keycard
             var customKeycardBasic = CustomItem.Get(_config.PrototypeKeycardBasicId);
             if (customKeycardBasic != null && customKeycardBasic.SpawnProperties != null)
             {
                 var spawnPoints = customKeycardBasic.SpawnProperties.DynamicSpawnPoints;
-                var random = new Random();
                 var selected = spawnPoints[random.Next(spawnPoints.Count)];
                 var position = selected.Location.GetPosition();
                 customKeycardBasic.Spawn(position);
@@ -131,6 +133,14 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
                     _classDPlayers.Add(shuffledPlayers[assignedPlayers]);
                     string dClassObjective = $"{_config.ClassDObjective1}\n{_config.ClassDObjective2}";
                     shuffledPlayers[assignedPlayers].Broadcast((ushort)_config.StartingBroadcastTime, dClassObjective);
+                    shuffledPlayers[assignedPlayers].AddAmmo(AmmoType.Ammo12Gauge, 24);
+                    shuffledPlayers[assignedPlayers].AddAmmo(AmmoType.Ammo44Cal, 24);
+                    shuffledPlayers[assignedPlayers].AddAmmo(AmmoType.Nato9, 40);
+                    shuffledPlayers[assignedPlayers].AddAmmo(AmmoType.Nato556, 40);
+                    shuffledPlayers[assignedPlayers].AddAmmo(AmmoType.Nato762, 40);
+                    shuffledPlayers[assignedPlayers].AddItem(_config.ClassDKeycard);
+                    shuffledPlayers[assignedPlayers]
+                        .AddItem(_config.ClassDFirearms[random.Next(_config.ClassDFirearms.Count)]);
                 }
                 
                 // Start the Routine Proper
@@ -188,10 +198,10 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
             Log.Debug("VVUP Custom Events: Operation Crossfire: Ending event");
             OcfStarted = false;
             Timing.KillCoroutines(_ocfCoroutine);
-            PlayerEvent.Verified -= Plugin.Instance.ServerEventsMainEventHandler.OnPlayerJoinOfc;
-            PlayerEvent.Died -= Plugin.Instance.ServerEventsMainEventHandler.OnPlayerDiedOfc;
-            PlayerEvent.Left -= Plugin.Instance.ServerEventsMainEventHandler.OnPlayerLeaveOfc;
-            PlayerEvent.InteractingDoor -= Plugin.Instance.ServerEventsMainEventHandler.OnDoorInteractOfc;
+            PlayerEvent.Verified -= Plugin.Instance.ServerEventsMainEventHandler.OnPlayerJoinOcf;
+            PlayerEvent.Died -= Plugin.Instance.ServerEventsMainEventHandler.OnPlayerDiedOcf;
+            PlayerEvent.Left -= Plugin.Instance.ServerEventsMainEventHandler.OnPlayerLeaveOcf;
+            PlayerEvent.InteractingDoor -= Plugin.Instance.ServerEventsMainEventHandler.OnDoorInteractOcf;
             foreach (PlayerAPI player in PlayerAPI.List)
             {
                 Log.Debug($"VVUP Custom Events: Operation Crossfire: Killing {player.Nickname}");
@@ -209,9 +219,12 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
                 _scientistPlayers.Remove(player);
 
             Plugin.ActiveEvent -= 1;
-            Warhead.DetonationTimer = 90;
-            Warhead.IsLocked = false;
-            Warhead.Stop();
+            if (!Warhead.IsDetonated)
+            {
+                Warhead.DetonationTimer = 90;
+                Warhead.IsLocked = false;
+                Warhead.Stop();
+            }
         }
     }
 }

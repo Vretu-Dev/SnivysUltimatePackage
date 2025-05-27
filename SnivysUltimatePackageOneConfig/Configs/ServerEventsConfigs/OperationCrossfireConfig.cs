@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.ComponentModel;
 
 namespace SnivysUltimatePackageOneConfig.Configs.ServerEventsConfigs
@@ -34,7 +35,7 @@ namespace SnivysUltimatePackageOneConfig.Configs.ServerEventsConfigs
         public int EndOfRoundTime { get; set; } = 10;
         [Description("How long should the event last? (This uses the nuke timer)")]
         public int EventDuration { get; set; } = 1800;
-        
+
         public string MtfScientistObjective1 { get; set; } = "Find and refine prototype keycard";
         public string MtfScientistObjective2 { get; set; } = "Unlock SCP-914";
         public string MtfObjective3 { get; set; } = "Escort Scientists out of the facility";
@@ -43,5 +44,16 @@ namespace SnivysUltimatePackageOneConfig.Configs.ServerEventsConfigs
         public string ClassDObjective2 { get; set; } = "Kill MTF and Scientists";
 
         public int StartingBroadcastTime { get; set; } = 60;
+        
+        [Description("What firearms should Class-D spawn with? (Randomly Picks one)")]
+        public List<ItemType> ClassDFirearms { get; set; } = new List<ItemType>
+        {
+            ItemType.GunAK,
+            ItemType.GunShotgun,
+            ItemType.GunRevolver,
+            ItemType.GunLogicer,
+        };
+        [Description("What Keycard should Class-D spawn with?")]
+        public ItemType ClassDKeycard { get; set; } = ItemType.KeycardMTFPrivate;
     }
 }
