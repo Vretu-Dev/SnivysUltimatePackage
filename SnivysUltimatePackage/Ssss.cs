@@ -6,6 +6,7 @@ using NorthwoodLib.Pools;
 using SnivysUltimatePackage.Custom.Items.Armor;
 using SnivysUltimatePackage.Custom.Items.Firearms;
 using SnivysUltimatePackage.Custom.Items.Grenades;
+using SnivysUltimatePackage.Custom.Items.Keycards;
 using SnivysUltimatePackage.Custom.Items.MedicalItems;
 using SnivysUltimatePackage.Custom.Items.Other;
 using SnivysUltimatePackage.Custom.Roles.Chaos;
@@ -49,7 +50,7 @@ namespace SnivysUltimatePackage
                     TheoreticalPhysicistScientist.Get(typeof(TheoreticalPhysicistScientist)),
                     Vanguard.Get(typeof(Vanguard)),
                 };
-
+                
                 foreach (var role in customRoles)
                 {
                     if (role == null || role.CustomAbilities == null) continue;
@@ -88,8 +89,14 @@ namespace SnivysUltimatePackage
                     InfinitePills.Get(typeof(InfinitePills)),
                     ClusterGrenade.Get(typeof(ClusterGrenade)),
                     AdditionalHealth207.Get(typeof(AdditionalHealth207)),
+                    LowGravityArmor.Get(typeof(LowGravityArmor)),
                     ViperPdw.Get(typeof(ViperPdw)),
                     Pathfinder.Get(typeof(Pathfinder)),
+                    LaserGun.Get(typeof(LaserGun)),
+                    MultiFlash.Get(typeof(MultiFlash)),
+                    ProxyBang.Get(typeof(ProxyBang)),
+                    OcfPrototypeKeycardBasic.Get(typeof(OcfPrototypeKeycardBasic)),
+                    OcfPrototypeKeycardRefined.Get(typeof(OcfPrototypeKeycardRefined)),
                 };
 
                 foreach (var itemCollection in customItems)

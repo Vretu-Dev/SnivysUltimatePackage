@@ -6,6 +6,7 @@ using NorthwoodLib.Pools;
 using SnivysUltimatePackageOneConfig.Custom.Items.Armor;
 using SnivysUltimatePackageOneConfig.Custom.Items.Firearms;
 using SnivysUltimatePackageOneConfig.Custom.Items.Grenades;
+using SnivysUltimatePackageOneConfig.Custom.Items.Keycards;
 using SnivysUltimatePackageOneConfig.Custom.Items.MedicalItems;
 using SnivysUltimatePackageOneConfig.Custom.Items.Other;
 using SnivysUltimatePackageOneConfig.Custom.Roles.Chaos;
@@ -88,8 +89,14 @@ namespace SnivysUltimatePackageOneConfig
                     InfinitePills.Get(typeof(InfinitePills)),
                     ClusterGrenade.Get(typeof(ClusterGrenade)),
                     AdditionalHealth207.Get(typeof(AdditionalHealth207)),
+                    LowGravityArmor.Get(typeof(LowGravityArmor)),
                     ViperPdw.Get(typeof(ViperPdw)),
                     Pathfinder.Get(typeof(Pathfinder)),
+                    LaserGun.Get(typeof(LaserGun)),
+                    MultiFlash.Get(typeof(MultiFlash)),
+                    ProxyBang.Get(typeof(ProxyBang)),
+                    OcfPrototypeKeycardBasic.Get(typeof(OcfPrototypeKeycardBasic)),
+                    OcfPrototypeKeycardRefined.Get(typeof(OcfPrototypeKeycardRefined)),
                 };
 
                 foreach (var itemCollection in customItems)
