@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Exiled.API.Enums;
 using Exiled.API.Features;
 using Exiled.API.Features.Attributes;
 using Exiled.API.Features.Items;
@@ -36,7 +37,43 @@ namespace SnivysUltimatePackageOneConfig.Custom.Items.Armor
         
         [YamlIgnore]
         private Dictionary<PlayerAPI, Vector3> _playersWithArmorOn = new Dictionary<PlayerAPI, Vector3>();
-        public override SpawnProperties SpawnProperties { get; set; }
+        public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties()
+        {
+            Limit = 1,
+            DynamicSpawnPoints = new List<DynamicSpawnPoint>
+            {
+                new()
+                {
+                    Chance = 25,
+                    Location = SpawnLocationType.InsideGr18Glass,
+                },
+                new()
+                {
+                    Chance = 25,
+                    Location = SpawnLocationType.InsideHczArmory,
+                },
+                new()
+                {
+                    Chance = 25,
+                    Location = SpawnLocationType.Inside049Armory,
+                },
+                new()
+                {
+                    Chance = 25,
+                    Location = SpawnLocationType.Inside173Bottom,
+                },
+                new()
+                {
+                    Chance = 25,
+                    Location = SpawnLocationType.Inside939Cryo,
+                },
+                new()
+                {
+                    Chance = 25,
+                    Location = SpawnLocationType.InsideLczCafe,
+                },
+            },
+        };
         
         protected override void SubscribeEvents()
         {

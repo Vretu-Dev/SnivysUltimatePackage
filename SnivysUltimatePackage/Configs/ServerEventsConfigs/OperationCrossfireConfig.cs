@@ -1,10 +1,14 @@
 using System.Collections.Generic;
 using System.ComponentModel;
+using PlayerRoles;
 
 namespace SnivysUltimatePackage.Configs.ServerEventsConfigs
 {
     public class OperationCrossfireConfig
     {
+        public string StartEventCassieMessage { get; set; } = "Military Sim Started";
+        public string StartEventCassieText { get; set; } = "\nMilitary Simulation (Operation Crossfire)\nReference the objectives at the top of the screen.";
+        
         [Description("How often should the event check for updates? (in Seconds)")]
         public float CheckForEventsInterval { get; set; } = 1f;
         
@@ -41,7 +45,7 @@ namespace SnivysUltimatePackage.Configs.ServerEventsConfigs
         public string MtfObjective3 { get; set; } = "Escort Scientists out of the facility";
         public string ScientistObjective3 { get; set; } = "Escape the facility";
         public string ClassDObjective1 { get; set; } = "Find and hold the prototype keycard";
-        public string ClassDObjective2 { get; set; } = "Kill MTF and Scientists";
+        public string ClassDObjective2 { get; set; } = "Kill MTF, Hold Scientists as Hostages";
 
         public int StartingBroadcastTime { get; set; } = 60;
         
@@ -55,5 +59,12 @@ namespace SnivysUltimatePackage.Configs.ServerEventsConfigs
         };
         [Description("What Keycard should Class-D spawn with?")]
         public ItemType ClassDKeycard { get; set; } = ItemType.KeycardMTFPrivate;
+
+        [Description("What should it say if Class-D is unable to harm unarmed Scientists")]
+        public string ClassDScientistHostagesUnableToHarm { get; set; } =
+            "The Scientists are your hostages as of now, best to keep them alive";
+        [Description("What should it say if Class-D is able to harm unarmed Scientists")]
+        public string ClassDScientistsNowAreTargets { get; set; } =
+            "The Scientists are now vulnerable, now kill them";
     }
 }

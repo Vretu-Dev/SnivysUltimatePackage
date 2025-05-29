@@ -27,6 +27,7 @@ namespace SnivysUltimatePackageOneConfig.EventHandlers.ServerEventsEventHandlers
         public static bool _scp914LockdownOverridden = false;
         public static bool _scientistsEscorted = false;
         public static bool _prototypeDeviceRefined = false;
+        private static bool _unarmedScientistsCanBeKilled = false;
         
         // Player Tracking
         public static List<PlayerAPI> _mtfPlayers = new List<PlayerAPI>();
@@ -51,6 +52,8 @@ namespace SnivysUltimatePackageOneConfig.EventHandlers.ServerEventsEventHandlers
             Random random = new Random();
 
             _config = Plugin.Instance.Config.ServerEventsMasterConfig.OperationCrossfireConfig;
+            
+            Cassie.MessageTranslated(_config.StartEventCassieMessage, _config.StartEventCassieText);
 
             foreach (PlayerAPI player in PlayerAPI.List)
             {
@@ -165,6 +168,16 @@ namespace SnivysUltimatePackageOneConfig.EventHandlers.ServerEventsEventHandlers
                     }
                     int mtfAlive = _mtfPlayers.Count(p => p.Role.Team == Team.FoundationForces);
                     float percentMtfAlive = (float)mtfAlive / _mtfPlayers.Count;
+                    if (_prototypeDeviceRefined && !_unarmedScientistsCanBeKilled)
+                    {
+                        Log.Debug("VVUP Custom Events: Operation Crossfire: Allowing Unarmed Scientists to be killed now");
+                        _unarmedScientistsCanBeKilled = true;
+                        foreach (PlayerAPI player in _classDPlayers)
+                        {
+                            Log.Debug($"VVUP Custom Events: Sending {player.Nickname} the message that Scientists are now targets");
+                            player.Broadcast((ushort)_config.EndOfRoundTime, _config.ClassDScientistsNowAreTargets);
+                        }
+                    }
                     if (_prototypeDeviceRefined && _scientistsEscorted && _scp914LockdownOverridden &&
                         percentMtfAlive >= _config.MtfPercentageRequiredToWin)
                     {

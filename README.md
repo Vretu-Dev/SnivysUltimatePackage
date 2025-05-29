@@ -69,7 +69,7 @@ Medic SCP-049-2 | 45 | Healing Mist, Effect Enabler | Chance during revive from 
 Lock-picker Class D | 46 | Door Picking | Immediately when a round begins | A Class D that used to be a lock picker, can open some keycard doors if they dont have the keycard.
 MTF Demolitionist | 47 | None | During a MTF Spawn Wave | A MTF Member that specializes in explosives.
 Vanguard | 48 | None | During a MTF Spawn Wave | A MTF Member with an alternative loadout, being able to mark a target to do recieve more damage for a short time.
-Theoretical Physicist Scientist | 49 | Pocket Dimension Escape Chance | Immediately when a round begins | A Scienist that believes that the Pocket Dimension has a lot more. Has 2 guaranteed escapes from Pocket Dimension to SCP-106's room.
+Theoretical Physicist Scientist | 49 | Pocket Dimension Escape Chance | Immediately when a round begins | A Scientist that believes that the Pocket Dimension has a lot more. Has 2 guaranteed escapes from Pocket Dimension to SCP-106's room.
 
 # Snivy's Custom Roles Abilities
 This contains Joker's original custom roles abilities as well
@@ -123,11 +123,14 @@ SCP-2818 | E11SR | 33 | 10% Chance in MicroHID, 079's Armory | 1 | When fired, y
 Infinite Pills | Painkillers | 34 | 50% Chance to appear in a Misc Locker, 939's Room, Heavy Test Room | 3 | When consumed, the pills dont go away, it wont heal you however. This is entirely a joke item.
 Cluster Grenade | Grenade | 36 | 15% Chance to appear in Light Armory, Heavy Armory, 049/173 Armory, Surface Nuke, 079's Armory | 1 | When exploding, it spawns more grenades.
 Additional Health 207 | Anti SCP-207 | 37 | 25% Chance to appear in MicroHID, 079's Armory, 106's Room | 1 | When consumed, it adds more health to the player until they die.
+Nebula Carapace | Light Armor | 38 | 25% Chance in GR-18 Glass Box, Heavy Armory, 049's Armory, Old 173's Room at the bottom of the stairs, 939's room, PC-15 room | 1 | The armor is so light and makes the user feel lighter, as it gives the user to have lower gravity.
 Viper PDW | Crossvec | 39 | Spawns on MTF Vanguard, 25% Chance to appear in Heavy Armory, 049 Armory, Inside 096 Containment Chamber, Inside 079's Armory | 1 | A firearm that does different damage at different ranges.
 Pathfinder | COM-18 | 40 | Spawns on MTF Vanguard | 1 | A firearm that when hitting a foe, causes them to take increased damage for a short amount of time.
 X-57 Helios Beam | E11SR | 41 | 20% Chance to appear in MicroHID Room, 079's Armory | 1 | It's an E11 but it fires lasers!
 Multibang | Flash Bang | 42 | 15% Chance in Light Armory, Heavy Armory, 049's Armory, 079's Armory, Surface Nuke Room | 2 | When the initial detonates, the spawns others to detonate after a bit of time.
 Pathfinder Grenade | Flash Bang | 43 | 15% Chance in MicroHID, Guaranteed to spawn on MTF Vanguard | 1 | When detonates, spawns lines to any players in the area.
+Prototype Keycard Basic | Custom Keycard | 44 | 0% Chance in normal play, Guaranteed to spawn in MicroHID, Heavy Armory, 049's Armory, GR18, 106's Room, 330's Control Room, or 173's Gate Room during Operation Crossfire | 1 | A Keycard needed to be collected and refined into the Prototype Keycard Refined during Operation Crossfire.
+Prototype Keycard Refined | Custom Keycard | 45 | Guaranteed to spawn when upgrading Prototype Keycard Basic in 914 | 0 | The upgraded keycard from 914 for Operation Crossfire.
 
 # Snivy's Server Events
 
@@ -147,6 +150,8 @@ Chaos Event | Causes chaos in the facility, see below for what Chaos Event can d
 Name Redacted | Removes everyones names.
 Freezing Temperatures | The thermostat in the facility broke and its slowly freezing over, best to get out as fast as you can.
 Snowballs Vs SCPs [Disabled] | Causes a snowball fight to start.
+Operation Crossfire | A military simulator event where MTF, Scientists, and D-Class has goals they need to achieve, D-Class will be able to hold the Scientists hostage initially, as MTF needs to save them. MTF and Scientists have to upgrade a keycard and get out of the facility, as D-Class wants to hold the cards and stop MTF. This event cannot be started automatically by chance.
+Low Gravity Facility | The facility has lower gravity. Making jumps for floaty
 
 Chaos Event Functions, a lot of this can be customized to your hearts content.
 Function | Description
@@ -164,6 +169,7 @@ Enable SCP 173 Hydra | Starts SCP 173 Hydra Event
 Enable SCP 173 Infection | Starts SCP 173 Infection Event
 Enable Short People | Starts the Short People Event
 Enable Variable Lights | Starts Variable Lights
+Enable Low Gravity | Starts Low Gravity Event
 FBI Open Up | Picks a random, non foundation side player, then teleports every foundation member to them
 Grenade Feet | Spawns a grenade at everyones feet
 Unsafe Medical Items | Medical Items may cause more harm than good

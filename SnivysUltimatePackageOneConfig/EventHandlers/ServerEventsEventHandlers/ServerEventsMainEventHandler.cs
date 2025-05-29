@@ -451,6 +451,7 @@ namespace SnivysUltimatePackageOneConfig.EventHandlers.ServerEventsEventHandlers
                     {
                         break;
                     }
+                    ev.Attacker.Broadcast((ushort)Plugin.Instance.Config.ServerEventsMasterConfig.OperationCrossfireConfig.EndOfRoundTime, Plugin.Instance.Config.ServerEventsMasterConfig.OperationCrossfireConfig.ClassDScientistHostagesUnableToHarm);
                     ev.IsAllowed = false;
                 }
             }
