@@ -154,6 +154,7 @@
         <Compile Include="Custom\Abilities\Active\DoorPicking.cs" />
         <Compile Include="Custom\Abilities\Active\HealingMist.cs" />
         <Compile Include="Custom\Abilities\Active\RemoveDisguise.cs" />
+        <Compile Include="Custom\Abilities\Active\RevivingMist.cs" />
         <Compile Include="Custom\Abilities\Passive\AbilityRemover.cs" />
         <Compile Include="Custom\Abilities\Passive\CustomRoleEscape.cs" />
         <Compile Include="Custom\Abilities\Passive\DebugAbility.cs" />
@@ -205,6 +206,7 @@
         <Compile Include="Custom\Roles\Foundation\ContainmentGuard.cs" />
         <Compile Include="Custom\Roles\Foundation\Demolitionist.cs" />
         <Compile Include="Custom\Roles\Foundation\LightGuard.cs" />
+        <Compile Include="Custom\Roles\Foundation\MtfParamedic.cs" />
         <Compile Include="Custom\Roles\Foundation\MtfWisp.cs" />
         <Compile Include="Custom\Roles\Foundation\Vanguard.cs" />
         <Compile Include="Custom\Roles\Other\BorderPatrol.cs" />

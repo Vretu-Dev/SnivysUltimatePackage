@@ -44,6 +44,7 @@ namespace SnivysUltimatePackage
                     JuggernautChaos.Get(typeof(JuggernautChaos)),
                     LockpickingClassD.Get(typeof(LockpickingClassD)),
                     MedicZombie.Get(typeof(MedicZombie)),
+                    MtfParamedic.Get(typeof(MtfParamedic)),
                     MtfWisp.Get(typeof(MtfWisp)),
                     Nightfall.Get(typeof(Nightfall)),
                     TelepathicChaos.Get(typeof(TelepathicChaos)),
@@ -132,6 +133,8 @@ namespace SnivysUltimatePackage
                 settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.HealingMistId, Plugin.Instance.Config.SsssConfig.HealingMistSsssText,
                     KeyCode.B, true, "B"));
                 settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.RemoveDisguiseId, Plugin.Instance.Config.SsssConfig.RemoveDisguiseSsssText,
+                    KeyCode.B, true, "B"));
+                settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.ReviveMistId, Plugin.Instance.Config.SsssConfig.ReviveMistSsssText,
                     KeyCode.B, true, "B"));
             }
 

@@ -99,5 +99,10 @@ namespace SnivysUltimatePackage.Configs.CustomConfigs
         {
             new TheoreticalPhysicistScientist(),
         };
+        
+        public List<MtfParamedic> MtfParamedics { get; set; } = new()
+        {
+            new MtfParamedic(),
+        };
     }
 }

@@ -49,8 +49,9 @@ namespace SnivysUltimatePackage.EventHandlers
                      || ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.DetectId
                      || ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.DoorPickingId
                      || ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.HealingMistId
-                     || ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.RemoveDisguiseId)
-                    && ActiveAbility.AllActiveAbilities.TryGetValue(player, out var abilities))
+                     || ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.RemoveDisguiseId
+                     || ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.ReviveMistId)
+                && ActiveAbility.AllActiveAbilities.TryGetValue(player, out var abilities))
                 {
                     string response = String.Empty;
                     if (ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.ActiveCamoId)
@@ -130,6 +131,20 @@ namespace SnivysUltimatePackage.EventHandlers
                             removeDisguiseAbility.SelectAbility(player);
                             removeDisguiseAbility.UseAbility(player);
                             player.ShowHint(Plugin.Instance.Config.SsssConfig.SsssRemoveDisguiseActivationMessage);
+                        }
+                        else
+                        {
+                            player.ShowHint(response);
+                        }
+                    }
+                    else if (ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.ReviveMistId)
+                    {
+                        var revivingMistAbility = abilities.FirstOrDefault(abilities => abilities.GetType() == typeof(RevivingMist));
+                        if (revivingMistAbility != null && revivingMistAbility.CanUseAbility(player, out response))
+                        {
+                            revivingMistAbility.SelectAbility(player);
+                            revivingMistAbility.UseAbility(player);
+                            player.ShowHint(Plugin.Instance.Config.SsssConfig.SsssReviveMistActivationMessage);
                         }
                         else
                         {
