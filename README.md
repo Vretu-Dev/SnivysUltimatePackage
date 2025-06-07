@@ -213,9 +213,9 @@ Adds a simple (and questionably coded) Server Specifics Setting System.
 # Commands
 Command | Required Permission | Run Location | Description
 :---: | :---: | :---: | :------
-vve | vvevents | Shows the list of events that can be used
-vve | vvevents.rund | Remote Admin, Server Console | Starts disruptive events.
-vve | vvevents.runn | Remote Admin, Server Console | Starts non-disruptive events.
+vve | vvevents | Remote Admin, Server Console | Shows the list of events that can be used
+vve (some event name) | vvevents.rund | Remote Admin, Server Console | Starts disruptive events.
+vve (some event name) | vvevents.runn | Remote Admin, Server Console | Starts non-disruptive events.
 vve stop | vvevents.stop | Remote Admin, Server Console | Stops any active events.
 startvote | vvvotes.start | Remote Admin, Server Console | Starts a vote.
 .vote | None | Player Console | Responds to an active vote
