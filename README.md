@@ -138,20 +138,20 @@ A plugin meant to add some togglable events, mostly to add to a round and not to
 
 Currently the events part of the plugin is provided below
 
-Event Name | Description
-:---: | :------
-After Hours | Its like the facility is after hours, everything is functionally in a low power mode.
-Blackout | Turns off the lights in the facility, restores them either at round end or if all generators are activated.
-SCP 173 Infection | When 173 Kills someone, they become 173 as well.
-SCP 173 Hydra | When 173 Dies, they respawn as 173, along with another person, reducing their size and health count.
-Variable Lights | Activates disco mode to the facility (effectively).
-Short People | Makes everyone short.
+Event Name | Event Type | Description
+:---: | :---: | :------
+After Hours | Non-disruptive | Its like the facility is after hours, everything is functionally in a low power mode.
+Blackout | Non-disruptive | Turns off the lights in the facility, restores them either at round end or if all generators are activated.
+SCP 173 Infection | Non-disruptive | When 173 Kills someone, they become 173 as well.
+SCP 173 Hydra | Disruptive | When 173 Dies, they respawn as 173, along with another person, reducing their size and health count.
+Variable Lights | Non-disruptive | Activates disco mode to the facility (effectively).
+Short People | Disruptive | Makes everyone short.
 Chaos Event | Causes chaos in the facility, see below for what Chaos Event can do to a round.
-Name Redacted | Removes everyones names.
-Freezing Temperatures | The thermostat in the facility broke and its slowly freezing over, best to get out as fast as you can.
-Snowballs Vs SCPs [Disabled] | Causes a snowball fight to start.
-Operation Crossfire | A military simulator event where MTF, Scientists, and D-Class has goals they need to achieve, D-Class will be able to hold the Scientists hostage initially, as MTF needs to save them. MTF and Scientists have to upgrade a keycard and get out of the facility, as D-Class wants to hold the cards and stop MTF. This event cannot be started automatically by chance.
-Low Gravity Facility | The facility has lower gravity. Making jumps for floaty
+Name Redacted | Non-disruptive | Removes everyones names.
+Freezing Temperatures | Disruptive | The thermostat in the facility broke and its slowly freezing over, best to get out as fast as you can.
+Snowballs Vs SCPs [Disabled] | Disruptive | Causes a snowball fight to start.
+Operation Crossfire | Disruptive | A military simulator event where MTF, Scientists, and D-Class has goals they need to achieve, D-Class will be able to hold the Scientists hostage initially, as MTF needs to save them. MTF and Scientists have to upgrade a keycard and get out of the facility, as D-Class wants to hold the cards and stop MTF. This event cannot be started automatically by chance.
+Low Gravity Facility | Non-disruptive | The facility has lower gravity. Making jumps for floaty
 
 Chaos Event Functions, a lot of this can be customized to your hearts content.
 Function | Description
@@ -209,8 +209,10 @@ Adds a simple (and questionably coded) Server Specifics Setting System.
 # Commands
 Command | Required Permission | Run Location | Description
 :---: | :---: | :---: | :------
-vve | vve.start | Remote Admin, Server Console | Starts round events. If used by itself it will show the list of events that can be used
-vve stop | vve.stop | Remote Admin, Server Console | Stops any active events.
+vve | vvevents | Shows the list of events that can be used
+vve | vvevents.rund | Remote Admin, Server Console | Starts disruptive events.
+vve | vvevents.runn | Remote Admin, Server Console | Starts non-disruptive events.
+vve stop | vvevents.stop | Remote Admin, Server Console | Stops any active events.
 startvote | vvvotes.start | Remote Admin, Server Console | Starts a vote.
 .vote | None | Player Console | Responds to an active vote
 .detonate | None | Player Console | Detonates C4, assuming requirements are met.

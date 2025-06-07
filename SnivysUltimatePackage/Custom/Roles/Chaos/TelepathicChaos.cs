@@ -68,6 +68,24 @@ namespace SnivysUltimatePackage.Custom.Roles.Chaos
                 Duration = 0,
                 Cooldown = 120,
                 DetectRange = 30,
+                ShowMissingRoles = true,
+                RoleNames = new Dictionary<RoleTypeId, string>()
+                {
+                    {RoleTypeId.Scientist, "Scientist"},
+                    {RoleTypeId.NtfCaptain, "MTF Captain"},
+                    {RoleTypeId.NtfPrivate, "MTF Private"},
+                    {RoleTypeId.NtfSergeant, "MTF Sergeant"},
+                    {RoleTypeId.NtfSpecialist, "MTF Specialist"},
+                    {RoleTypeId.FacilityGuard, "Facility Guard"},
+                    {RoleTypeId.Scp049, "SCP-049"},
+                    {RoleTypeId.Scp0492, "SCP-049-2"},
+                    {RoleTypeId.Scp079, "SCP-079"},
+                    {RoleTypeId.Scp096, "SCP-096"},
+                    {RoleTypeId.Scp106, "SCP-106"},
+                    {RoleTypeId.Scp173, "SCP-173"},
+                    {RoleTypeId.Scp939, "SCP-939"},
+                    {RoleTypeId.Scp3114, "SCP-3114"}
+                },
             },
         };
     }

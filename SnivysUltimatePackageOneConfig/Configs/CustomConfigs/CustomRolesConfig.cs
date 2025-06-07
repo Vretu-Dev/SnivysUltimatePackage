@@ -104,5 +104,15 @@ namespace SnivysUltimatePackageOneConfig.Configs.CustomConfigs
         {
             new MtfParamedic(),
         };
+        
+        public List<ClassDAnalyst> ClassDAnalysts { get; set; } = new()
+        {
+            new ClassDAnalyst(),
+        };
+        
+        public List<ClassDTank> ClassDTanks { get; set; } = new()
+        {
+            new ClassDTank(),
+        };
     }
 }

@@ -208,6 +208,8 @@
         <Compile Include="Custom\Roles\Chaos\JuggernautChaos.cs" />
         <Compile Include="Custom\Roles\Chaos\Nightfall.cs" />
         <Compile Include="Custom\Roles\Chaos\TelepathicChaos.cs" />
+        <Compile Include="Custom\Roles\ClassD\ClassDAnalyst.cs" />
+        <Compile Include="Custom\Roles\ClassD\ClassDTank.cs" />
         <Compile Include="Custom\Roles\ClassD\LockpickingClassD.cs" />
         <Compile Include="Custom\Roles\Foundation\ContainmentGuard.cs" />
         <Compile Include="Custom\Roles\Foundation\Demolitionist.cs" />

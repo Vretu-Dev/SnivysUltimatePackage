@@ -21,7 +21,7 @@ namespace SnivysUltimatePackageOneConfig.Commands.ServerEventsCommands.EventComm
                 return false;
             }
             
-            if (!sender.CheckPermission("vvevents.run"))
+            if (!sender.CheckPermission("vvevents.rund"))
             {
                 response = "You do not have the required permission to use this command";
                 return false;

@@ -28,6 +28,7 @@ namespace SnivysUltimatePackage.Custom.Abilities.Active
         public string MissingRole { get; set; } = "Unknown Role";
         
         public string NoTargets { get; set; } = "There is no detected hostiles near you";
+        public bool ShowMissingRoles { get; set; } = true;
 
         public Dictionary<RoleTypeId, string> RoleNames { get; set; } = new Dictionary<RoleTypeId, string>()
         {
@@ -96,7 +97,7 @@ namespace SnivysUltimatePackage.Custom.Abilities.Active
                     {
                         message += $"{roleName}\n";
                     }
-                    else
+                    else if (ShowMissingRoles)
                     {
                         message += $"{MissingRole}\n";
                     }

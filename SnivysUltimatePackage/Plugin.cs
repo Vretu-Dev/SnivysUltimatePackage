@@ -26,7 +26,7 @@ namespace SnivysUltimatePackage
         public override string Name { get; } = "Snivy's Ultimate Plugin Package";
         public override string Author { get; } = "Vicious Vikki";
         public override string Prefix { get; } = "VVUltimatePluginPackage";
-        public override Version Version { get; } = new Version(2, 7, 1);
+        public override Version Version { get; } = new Version(2, 8, 0);
         public override Version RequiredExiledVersion { get; } = new Version(9, 6, 0);
         
         public static int ActiveEvent = 0;
@@ -84,6 +84,8 @@ namespace SnivysUltimatePackage
                 Config.CustomRolesConfig.Vanguards.Register();
                 Config.CustomRolesConfig.TheoreticalPhysicistScientists.Register();
                 Config.CustomRolesConfig.MtfParamedics.Register();
+                Config.CustomRolesConfig.ClassDAnalysts.Register();
+                Config.CustomRolesConfig.ClassDTanks.Register();
 
                 foreach (CustomRole role in CustomRole.Registered)
                 {
@@ -151,7 +153,7 @@ namespace SnivysUltimatePackage
             //FlamingoAdjustmentEventHandlers = new FlamingoAdjustmentEventHandlers(this);
             //Player.Hurting += FlamingoAdjustmentEventHandlers.OnHurting;
                 
-            //Escape Door Opener
+            //Round Start Event Handler
             if (Instance.Config.RoundStartConfig.IsEnabled)
             {
                 RoundStartEventHandlers = new RoundStartEventHandlers(this);
@@ -204,7 +206,7 @@ namespace SnivysUltimatePackage
             //Player.Hurting -= FlamingoAdjustmentEventHandlers.OnHurting;
             //FlamingoAdjustmentEventHandlers = null;
             
-            //Escape Door Opener Event Handler
+            //Round Start Event Handler
             Server.RoundStarted -= RoundStartEventHandlers.OnRoundStarted;
             RoundStartEventHandlers = null;
 
