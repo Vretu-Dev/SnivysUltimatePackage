@@ -5,6 +5,7 @@ using Exiled.CustomRoles.API.Features;
 using PlayerRoles;
 using SnivysUltimatePackageOneConfig.API;
 using SnivysUltimatePackageOneConfig.Custom.Abilities.Passive;
+using UnityEngine;
 
 namespace SnivysUltimatePackageOneConfig.Custom.Roles.ClassD
 {
@@ -28,6 +29,12 @@ namespace SnivysUltimatePackageOneConfig.Custom.Roles.ClassD
                 {
                     {EffectType.Slowness, 30},
                 },
+            },
+            new ScaleAbility
+            {
+                Name = "Scale Ability [Passive]",
+                Description = "Increases your size",
+                ScaleForPlayers = new Vector3(1.1f, 1.1f, 1.1f)
             },
         };
         public override SpawnProperties SpawnProperties { get; set; } = new()
