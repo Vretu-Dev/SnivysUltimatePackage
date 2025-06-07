@@ -70,6 +70,9 @@ Lock-picker Class D | 46 | Door Picking | Immediately when a round begins | A Cl
 MTF Demolitionist | 47 | None | During a MTF Spawn Wave | A MTF Member that specializes in explosives.
 Vanguard | 48 | None | During a MTF Spawn Wave | A MTF Member with an alternative loadout, being able to mark a target to do recieve more damage for a short time.
 Theoretical Physicist Scientist | 49 | Pocket Dimension Escape Chance | Immediately when a round begins | A Scientist that believes that the Pocket Dimension has a lot more. Has 2 guaranteed escapes from Pocket Dimension to SCP-106's room.
+MTF Paramedic | 50 | Healing Mist, Reviving Mist | Chance during a MTF Spawn Wave | A MTF member that specializes in healing teammates.
+Class-D Analyst | 51 | Detect | Immediately when a round begins | A Class D that has some analysis abilities.
+Class-D Tank | 52 | Effect Enabler, Scale Ability | Immediately when a round begins | A Class-D that can take a bit more punishment than other Class-D.
 
 # Snivy's Custom Roles Abilities
 This contains Joker's original custom roles abilities as well
@@ -91,6 +94,7 @@ Giving Candy Ability | GivingCandyAbility | Passive Ability | Gives candy that's
 Healing Mist | HealingMist | Active Ability | Activates a short term healing AOE effect.
 Heal on Kill | HealOnKill | Passive Ability | Heals on kill, hopefully self explainitory on what that does.
 Infinite Stamina | InfiniteStamina | Passive Ability | Gives the player infinite stamina.
+Life Steal | LifeSteal | Passive Ability | When dealing damage, the attacker gains back a % of health.
 Martyrdom | Martyrdom | Passive Ability | Explosive death.
 Pocket Dimension Escape Chance | PocketDimensionEscapeChance | Passive Ability | Can configure a custom escape chance from the pocket dimension.
 Reactive Hume Shield | ReactiveHume | Passive Ability | A Hume Shield that builds up, that reduces incoming damage.
