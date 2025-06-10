@@ -55,7 +55,7 @@ namespace SnivysUltimatePackage.Custom.Roles.Scientist
                 Description = "If you escape as a Biochemist, you''re guaranteed a custom role.",
                 UncuffedEscapeCustomRole = "<color=#0096FF>MTF Demolitionist</color>",
                 CuffedEscapeCustomRole = "<color=#008f1e>Explosive Chaos</color>",
-                AllowUncuffedCustomRoleChange = false,
+                AllowUncuffedCustomRoleChange = true,
                 AllowCuffedCustomRoleChange = true,
                 SaveInventory = true
             },

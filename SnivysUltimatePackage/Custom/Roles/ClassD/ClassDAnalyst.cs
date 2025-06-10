@@ -4,6 +4,7 @@ using Exiled.CustomRoles.API.Features;
 using PlayerRoles;
 using SnivysUltimatePackage.API;
 using SnivysUltimatePackage.Custom.Abilities.Active;
+using SnivysUltimatePackage.Custom.Abilities.Passive;
 
 namespace SnivysUltimatePackage.Custom.Roles.ClassD;
 
@@ -22,6 +23,16 @@ public class ClassDAnalyst : CustomRole, ICustomRole
     
     public override List<CustomAbility>? CustomAbilities { get; set; } = new()
     {
+        new CustomRoleEscape
+        {
+            Name = "Custom Role Escape [Passive]",
+            Description = "If you escape as a Class-D Analyst, you''re guaranteed a custom role.",
+            UncuffedEscapeCustomRole = "<color=#008f1e>Telepathic Chaos</color>",
+            CuffedEscapeCustomRole = "<color=#0096FF>MTF Wisp</color>",
+            AllowUncuffedCustomRoleChange = true,
+            AllowCuffedCustomRoleChange = true,
+            SaveInventory = true
+        },
         new Detect
         {
             Name = "Detect [Active]",

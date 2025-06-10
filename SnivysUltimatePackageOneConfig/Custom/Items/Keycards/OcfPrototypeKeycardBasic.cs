@@ -191,14 +191,14 @@ namespace SnivysUltimatePackageOneConfig.Custom.Items.Keycards
 
             object[] args = new object[] //KeycardCustomSite02 has different arguments for customization than KeycardCustomManagement
             {
-                KeycardName,
-                KeycardHolder,
-                KeycardLabel,
-                KeycardPermissions,
-                KeycardPrimaryColor,
-                KeycardPermissionsColor,
-                KeycardLabelColor,
-                KeycardWearLevel
+                KeycardName,                // itemName
+                KeycardPermissions,         // permissions
+                KeycardPermissionsColor,    // (Color32)permissionsColor
+                KeycardPrimaryColor,        // (Color32)keycardColor
+                KeycardLabel,               // cardLabel
+                KeycardLabelColor,          // (Color32)labelColor
+                KeycardHolder,              // holderName
+                KeycardWearLevel 
             };
 
             for (int i = 0; i < details.Length; i++)

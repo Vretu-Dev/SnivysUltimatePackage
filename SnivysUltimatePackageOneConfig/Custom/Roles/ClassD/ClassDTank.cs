@@ -36,6 +36,16 @@ namespace SnivysUltimatePackageOneConfig.Custom.Roles.ClassD
                 Description = "Increases your size",
                 ScaleForPlayers = new Vector3(1.1f, 1.1f, 1.1f)
             },
+            new CustomRoleEscape
+            {
+                Name = "Custom Role Escape [Passive]",
+                Description = "If you escape as a Class-D Tank, this will make sure you get your inventory.",
+                EscapeToRegularRole = true,
+                AllowCuffedCustomRoleChange = false,
+                AllowUncuffedCustomRoleChange = false,
+                RegularRole = RoleTypeId.ChaosConscript,
+                SaveInventory = true
+            },
         };
         public override SpawnProperties SpawnProperties { get; set; } = new()
         {

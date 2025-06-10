@@ -21,6 +21,8 @@ namespace SnivysUltimatePackageOneConfig.Custom.Abilities.Passive
         public override string Description { get; set; } =
             "Handles if you are a custom role, if you escape are you given another custom role";
         public List<Player> PlayersWithCustomRoleEscape = new List<Player>();
+        public bool EscapeToRegularRole { get; set; } = false;
+        public RoleTypeId RegularRole { get; set; } = RoleTypeId.Tutorial;
         public String UncuffedEscapeCustomRole { get; set; } = String.Empty;
         public String CuffedEscapeCustomRole { get; set; } = String.Empty;
         public bool AllowUncuffedCustomRoleChange { get; set; } = true;
@@ -59,13 +61,13 @@ namespace SnivysUltimatePackageOneConfig.Custom.Abilities.Passive
             if (ev.Player.IsCuffed && AllowCuffedCustomRoleChange && CuffedEscapeCustomRole != String.Empty && !UseOnSpawnCuffedEscape)
             {
                 ev.IsAllowed = false;
-                CustomRole.Get(CuffedEscapeCustomRole).AddRole(ev.Player);
+                CustomRole.Get(CuffedEscapeCustomRole)?.AddRole(ev.Player);
                 storedInventory.Clear();
             }
             else if (AllowUncuffedCustomRoleChange && UncuffedEscapeCustomRole != String.Empty && !UseOnSpawnUncuffedEscape)
             {
                 ev.IsAllowed = false;
-                CustomRole.Get(UncuffedEscapeCustomRole).AddRole(ev.Player);
+                CustomRole.Get(UncuffedEscapeCustomRole)?.AddRole(ev.Player);
                 if (SaveInventory)
                 {
                     Timing.CallDelayed(1f, () =>
@@ -80,6 +82,28 @@ namespace SnivysUltimatePackageOneConfig.Custom.Abilities.Passive
                 else
                     storedInventory.Clear();
             }
+            else if (EscapeToRegularRole && UseOnSpawnUncuffedEscape)
+            {
+                ev.IsAllowed = false;
+                ev.Player.Role.Set(RegularRole);
+                if (SaveInventory)
+                {
+                    Timing.CallDelayed(1f, () =>
+                    {
+                        foreach (Item item in storedInventory)
+                        {
+                            item.CreatePickup(ev.Player.Position);
+                        }
+                        storedInventory.Clear();
+                    });
+                }
+                else
+                    storedInventory.Clear();
+            }
+            else
+            {
+                Log.Debug($"VVUP Custom Abilities: {ev.Player.Nickname} did not escape with a custom role, continuing normal escape.");
+            }
             PlayersWithCustomRoleEscape.Remove(ev.Player);
         }
 
@@ -92,7 +116,7 @@ namespace SnivysUltimatePackageOneConfig.Custom.Abilities.Passive
             {
                 ev.SpawnFlags = RoleSpawnFlags.UseSpawnpoint;
                 ev.Player.ClearInventory();
-                CustomRole.Get(UncuffedEscapeCustomRole).AddRole(ev.Player);
+                CustomRole.Get(UncuffedEscapeCustomRole)?.AddRole(ev.Player);
                 if (SaveInventory)
                 {
                     Timing.CallDelayed(1f, () =>
@@ -110,8 +134,26 @@ namespace SnivysUltimatePackageOneConfig.Custom.Abilities.Passive
             else if (UseOnSpawnCuffedEscape && ev.Reason == SpawnReason.Escaped && CuffedEscapeCustomRole != String.Empty)
             {
                 ev.SpawnFlags = RoleSpawnFlags.UseSpawnpoint;
-                CustomRole.Get(CuffedEscapeCustomRole).AddRole(ev.Player);
+                CustomRole.Get(CuffedEscapeCustomRole)?.AddRole(ev.Player);
                 storedInventory.Clear();
+            }
+            else if (EscapeToRegularRole && UseOnSpawnUncuffedEscape)
+            {
+                ev.IsAllowed = false;
+                ev.Player.Role.Set(RegularRole);
+                if (SaveInventory)
+                {
+                    Timing.CallDelayed(1f, () =>
+                    {
+                        foreach (Item item in storedInventory)
+                        {
+                            item.CreatePickup(ev.Player.Position);
+                        }
+                        storedInventory.Clear();
+                    });
+                }
+                else
+                    storedInventory.Clear();
             }
             PlayersWithCustomRoleEscape.Remove(ev.Player);
         }

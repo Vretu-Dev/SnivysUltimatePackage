@@ -52,7 +52,7 @@ RoleName | RoleID | Abilities | Spawn Type | Description
 :---: | :---: | :---: | :---: | :------
 Containment Engineer | 30 | Restricted Escape | Immediately when a round begins | A Scientist is randomly selected and is set into Enterance Zone with a Containment Engineer Keycard.
 Protocol Enforcer | 31 | None | Immediately when a round begins | A lighter facility guard that spawns in light containment zone. They spawn with a Tranquilizer, Medkit, Painkillers, Radio, Light Armor, and a Zone Manager Keycard.
-Biochemist| 32 | Healing Mist, Martyrdom, CustomRoleEscape | Immediately when a round begins | A Scientist genetically altered.
+Biochemist| 32 | Healing Mist, Martyrdom, Custom Role Escape | Immediately when a round begins | A Scientist genetically altered.
 Containment Guard | 33 | None | Immediately when a round begins | A Facility Guard specializing in recontaining SCPs.
 Border Patrol | 34 | None | Given by Admin Command only | A facility guard specialized in ensuring safe passage from Enterance and Heavy Checkpoints.
 Nightfall | 35 | Data Missing | Data Missing | Data Missing.
@@ -69,10 +69,10 @@ Medic SCP-049-2 | 45 | Healing Mist, Effect Enabler | Chance during revive from 
 Lock-picker Class D | 46 | Door Picking | Immediately when a round begins | A Class D that used to be a lock picker, can open some keycard doors if they dont have the keycard.
 MTF Demolitionist | 47 | None | During a MTF Spawn Wave | A MTF Member that specializes in explosives.
 Vanguard | 48 | None | During a MTF Spawn Wave | A MTF Member with an alternative loadout, being able to mark a target to do recieve more damage for a short time.
-Theoretical Physicist Scientist | 49 | Pocket Dimension Escape Chance | Immediately when a round begins | A Scientist that believes that the Pocket Dimension has a lot more. Has 2 guaranteed escapes from Pocket Dimension to SCP-106's room.
+Theoretical Physicist Scientist | 49 | Pocket Dimension Escape Chance, Custom Role Escape | Immediately when a round begins | A Scientist that believes that the Pocket Dimension has a lot more. Has 2 guaranteed escapes from Pocket Dimension to SCP-106's room.
 MTF Paramedic | 50 | Healing Mist, Reviving Mist | Chance during a MTF Spawn Wave | A MTF member that specializes in healing teammates.
-Class-D Analyst | 51 | Detect | Immediately when a round begins | A Class D that has some analysis abilities.
-Class-D Tank | 52 | Effect Enabler, Scale Ability | Immediately when a round begins | A Class-D that can take a bit more punishment than other Class-D.
+Class-D Analyst | 51 | Detect, Custom Role Escape | Immediately when a round begins | A Class D that has some analysis abilities.
+Class-D Tank | 52 | Effect Enabler, Scale Ability, Custom Role Escape | Immediately when a round begins | A Class-D that can take a bit more punishment than other Class-D.
 
 # Snivy's Custom Roles Abilities
 This contains Joker's original custom roles abilities as well
@@ -84,7 +84,7 @@ Custom Ability | AbilityName | Ability Type | Description
 :---: | :---: | :---: | :------
 Active Camo | ActiveCamo | Active Ability | For a set amount of time, allows the player to go invisible unless they fire their weapon, opening/closing doors will reapply the effect.
 Ability Remover | AbilityRemover | Passive Ability | Clears abilities, helpful if you have multiple plugins with custom roles and some custom role abilities are given to the wrong custom role.
-Custom Role Escape | CustomRoleEscape | Passive Ability | When a player that has this ability tries to escape, you can give them a set custom role.
+Custom Role Escape | CustomRoleEscape | Passive Ability | When a player that has this ability tries to escape, you can give them a set role or custom role.
 Charge | ChargeAbility | Active Ability | Charges towards a location.
 Detect | Detect | Active Ability | Detects any hostiles of the player's role nearby.
 Disguised | Disguised | Passive Ability | This handles all things related to being disguised, such as preventing accidental friendly fire.

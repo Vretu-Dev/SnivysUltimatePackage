@@ -52,7 +52,17 @@ namespace SnivysUltimatePackageOneConfig.Custom.Roles.Scientist
                 AmountOfAllowedEscapes = 2,
                 CustomDeathReason = "You have hit your guaranteed escape limit from the pocket dimension.",
                 RemoveTraumatizedOnEscape = true,
-            }
+            },
+            new CustomRoleEscape
+            {
+                Name = "Custom Role Escape [Passive]",
+                Description = "If you escape as this custom role, this will make sure you get your inventory.",
+                EscapeToRegularRole = true,
+                RegularRole = RoleTypeId.NtfSpecialist,
+                AllowCuffedCustomRoleChange = false,
+                AllowUncuffedCustomRoleChange = false,
+                SaveInventory = true
+            },
         };
     }
 }
