@@ -20,6 +20,7 @@ public class ClassDAnalyst : CustomRole, ICustomRole
         "A Class-D with a knack for analyzing and gathering information.";
 
     public override string CustomInfo { get; set; } = "Class-D Analyst";
+    public override RoleTypeId Role { get; set; } = RoleTypeId.ClassD;
     
     public override List<CustomAbility>? CustomAbilities { get; set; } = new()
     {
