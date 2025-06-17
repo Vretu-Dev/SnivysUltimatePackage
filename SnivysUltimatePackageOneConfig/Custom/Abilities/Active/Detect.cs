@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Exiled.API.Features;
 using Exiled.API.Features.Attributes;
+using Exiled.CustomRoles;
 using Exiled.CustomRoles.API.Features;
 using MEC;
 using PlayerRoles;
@@ -52,6 +54,12 @@ namespace SnivysUltimatePackageOneConfig.Custom.Abilities.Active
             {RoleTypeId.Scp939, "SCP-939"},
             {RoleTypeId.Scp3114, "SCP-3114"}
         };
+        
+        public Dictionary<uint, string> CustomRoleNames { get; set; } = new Dictionary<uint, string>()
+        {
+            { 32, "Biochemist" },
+            { 46, "Lockpicker Class D" }
+        };
 
         protected override void AbilityUsed(Player player)
         {
@@ -93,7 +101,12 @@ namespace SnivysUltimatePackageOneConfig.Custom.Abilities.Active
                 Log.Debug($"VVUP Custom Abilities: Showing detected players to {ply.Nickname}");
                 foreach (Player detectedPlayer in detectedPlayers)
                 {
-                    if (RoleNames.TryGetValue(detectedPlayer.Role, out string roleName))
+                    if (CustomRole.TryGet(detectedPlayer, out IReadOnlyCollection<CustomRole> customRole) && 
+                        customRole.Any() && CustomRoleNames.TryGetValue(customRole.First().Id, out string customRoleName))
+                    {
+                        message += $"{customRoleName}\n";
+                    }
+                    else if (RoleNames.TryGetValue(detectedPlayer.Role, out string roleName))
                     {
                         message += $"{roleName}\n";
                     }

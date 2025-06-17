@@ -26,8 +26,8 @@ namespace SnivysUltimatePackageOneConfig
         public override string Name { get; } = "Snivy's Ultimate Plugin Package One Config";
         public override string Author { get; } = "Vicious Vikki";
         public override string Prefix { get; } = "VVUltimatePluginPackageOneConfig";
-        public override Version Version { get; } = new Version(2, 8, 1);
-        public override Version RequiredExiledVersion { get; } = new Version(9, 6, 0);
+        public override Version Version { get; } = new Version(2, 8, 2);
+        public override Version RequiredExiledVersion { get; } = new Version(9, 6, 1);
         
         public static int ActiveEvent = 0;
         
