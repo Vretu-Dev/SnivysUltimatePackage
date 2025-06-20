@@ -156,6 +156,7 @@
         <Compile Include="Custom\Abilities\Active\RemoveDisguise.cs" />
         <Compile Include="Custom\Abilities\Active\RevivingMist.cs" />
         <Compile Include="Custom\Abilities\Passive\AbilityRemover.cs" />
+        <Compile Include="Custom\Abilities\Passive\ApplyEffectOnHit.cs" />
         <Compile Include="Custom\Abilities\Passive\CustomRoleEscape.cs" />
         <Compile Include="Custom\Abilities\Passive\DebugAbility.cs" />
         <Compile Include="Custom\Abilities\Passive\Disguised.cs" />
@@ -171,6 +172,7 @@
         <Compile Include="Custom\Abilities\Passive\RestrictedItems.cs" />
         <Compile Include="Custom\Abilities\Passive\ScaleAbility.cs" />
         <Compile Include="Custom\Abilities\Passive\SpeedOnKill.cs" />
+        <Compile Include="Custom\Abilities\Passive\TeamConvertOnKill.cs" />
         <Compile Include="Custom\Items\Armor\ExplosiveResistantArmor.cs" />
         <Compile Include="Custom\Items\Armor\LowGravityArmor.cs" />
         <Compile Include="Custom\Items\Firearms\ExplosiveRoundRevolver.cs" />
@@ -219,7 +221,10 @@
         <Compile Include="Custom\Roles\Scientist\TheoreticalPhysicistScientist.cs" />
         <Compile Include="Custom\Roles\Scps\DwarfZombie.cs" />
         <Compile Include="Custom\Roles\Scps\ExplosiveZombie.cs" />
+        <Compile Include="Custom\Roles\Scps\InfectedZombie.cs" />
         <Compile Include="Custom\Roles\Scps\MedicZombie.cs" />
+        <Compile Include="Custom\Roles\Scps\PoisonousZombie.cs" />
+        <Compile Include="Custom\Roles\Scps\SpeedsterZombie.cs" />
         <Compile Include="EventHandlers\Custom\CustomRoleEventHandler.cs" />
         <Compile Include="EventHandlers\Custom\CustomRoleMethods.cs" />
         <Compile Include="EventHandlers\RoundStartEventHandlers.cs" />

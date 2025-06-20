@@ -26,7 +26,7 @@ namespace SnivysUltimatePackage
         public override string Name { get; } = "Snivy's Ultimate Plugin Package";
         public override string Author { get; } = "Vicious Vikki";
         public override string Prefix { get; } = "VVUltimatePluginPackage";
-        public override Version Version { get; } = new Version(2, 8, 2);
+        public override Version Version { get; } = new Version(2, 9, 0);
         public override Version RequiredExiledVersion { get; } = new Version(9, 6, 1);
         
         public static int ActiveEvent = 0;
@@ -86,6 +86,9 @@ namespace SnivysUltimatePackage
                 Config.CustomRolesConfig.MtfParamedics.Register();
                 Config.CustomRolesConfig.ClassDAnalysts.Register();
                 Config.CustomRolesConfig.ClassDTanks.Register();
+                Config.CustomRolesConfig.InfectedZombies.Register();
+                Config.CustomRolesConfig.PoisonousZombies.Register();
+                Config.CustomRolesConfig.SpeedsterZombies.Register();
 
                 foreach (CustomRole role in CustomRole.Registered)
                 {

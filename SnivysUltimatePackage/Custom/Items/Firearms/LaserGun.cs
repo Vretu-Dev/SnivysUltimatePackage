@@ -4,14 +4,12 @@ using AdminToys;
 using Exiled.API.Enums;
 using Exiled.API.Features;
 using Exiled.API.Features.Attributes;
-using Exiled.API.Features.Items;
 using Exiled.API.Features.Spawn;
 using Exiled.API.Features.Toys;
 using Exiled.CustomItems.API.Features;
 using Exiled.Events.EventArgs.Player;
 using MEC;
 using UnityEngine;
-using Player = Exiled.Events.Handlers.Player;
 using Random = System.Random;
 
 namespace SnivysUltimatePackage.Custom.Items.Firearms
@@ -41,7 +39,6 @@ namespace SnivysUltimatePackage.Custom.Items.Firearms
                 },
             },
         };
-        public override float Damage { get; set; }
         [Description("The red color of the laser, values must be between 0 and 1")]
         public List<float> LaserColorRed { get; set; } = new List<float>()
         {
@@ -78,22 +75,8 @@ namespace SnivysUltimatePackage.Custom.Items.Firearms
         public float LaserVisibleTime { get; set; } = 0.5f;
         [Description("How big is the laser")]
         public Vector3 LaserScale { get; set; } = new Vector3(0.2f, 0.2f, 0.2f);
-        
-        protected override void SubscribeEvents()
+        protected override void OnShot(ShotEventArgs ev)
         {
-            Player.Shot += OnShot;
-            base.SubscribeEvents();
-        }
-
-        protected override void UnsubscribeEvents()
-        {
-            Player.Shot -= OnShot;
-            base.UnsubscribeEvents();
-        }
-        private void OnShot(ShotEventArgs ev)
-        {
-            if (!Check(ev.Player.CurrentItem))
-                return;
             Log.Debug($"VVUP Custom Items: Laser Gun, spawning laser going from {ev.Player.Position} to {ev.Position}");
             var color = GetRandomLaserColor();
             var laserColor = new Color(color.Red, color.Green, color.Blue);

@@ -40,7 +40,6 @@ namespace SnivysUltimatePackageOneConfig.Custom.Items.Firearms
                 },
             },
         };
-        public override float Damage { get; set; }
         [Description("The red color of the laser, values must be between 0 and 1")]
         public List<float> LaserColorRed { get; set; } = new List<float>()
         {

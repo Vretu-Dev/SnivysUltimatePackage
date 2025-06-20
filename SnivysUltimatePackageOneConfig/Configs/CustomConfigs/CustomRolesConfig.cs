@@ -114,5 +114,20 @@ namespace SnivysUltimatePackageOneConfig.Configs.CustomConfigs
         {
             new ClassDTank(),
         };
+        
+        public List<InfectedZombie> InfectedZombies { get; set; } = new()
+        {
+            new InfectedZombie(),
+        };
+        
+        public List<PoisonousZombie> PoisonousZombies { get; set; } = new()
+        {
+            new PoisonousZombie(),
+        };
+
+        public List<SpeedsterZombie> SpeedsterZombies { get; set; } = new()
+        {
+            new SpeedsterZombie(),
+        };
     }
 }
