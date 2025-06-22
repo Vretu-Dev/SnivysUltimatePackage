@@ -128,26 +128,26 @@ namespace SnivysUltimatePackage
             {
                 settings.Add(new SSGroupHeader(Plugin.Instance.Config.SsssConfig.CustomAbilityActivatorHeader));
                 settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.ActiveCamoId, Plugin.Instance.Config.SsssConfig.ActiveCamoSsssText,
-                    KeyCode.B, true, "B"));
-                settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.ChargeId, Plugin.Instance.Config.SsssConfig.ChargeSsssText, KeyCode.B, true,
+                    KeyCode.B, true, false, "B"));
+                settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.ChargeId, Plugin.Instance.Config.SsssConfig.ChargeSsssText, KeyCode.B, true, false,
                     "B"));
-                settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.DetectId, Plugin.Instance.Config.SsssConfig.DetectSsssText, KeyCode.B, true,
+                settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.DetectId, Plugin.Instance.Config.SsssConfig.DetectSsssText, KeyCode.B, true, false,
                     "B"));
                 settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.DoorPickingId, Plugin.Instance.Config.SsssConfig.DoorPickingSsssText,
-                    KeyCode.B, true, "B"));
+                    KeyCode.B, true, false, "B"));
                 settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.HealingMistId, Plugin.Instance.Config.SsssConfig.HealingMistSsssText,
-                    KeyCode.B, true, "B"));
+                    KeyCode.B, true, false, "B"));
                 settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.RemoveDisguiseId, Plugin.Instance.Config.SsssConfig.RemoveDisguiseSsssText,
-                    KeyCode.B, true, "B"));
+                    KeyCode.B, true, false, "B"));
                 settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.ReviveMistId, Plugin.Instance.Config.SsssConfig.ReviveMistSsssText,
-                    KeyCode.B, true, "B"));
+                    KeyCode.B, true, false, "B"));
             }
 
             if (Plugin.Instance.Config.CustomItemsConfig.IsEnabled)
             {
                 settings.Add(new SSGroupHeader(Plugin.Instance.Config.SsssConfig.CustomItemActivators));
                 settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.DetonateC4Id, Plugin.Instance.Config.SsssConfig.DetonateC4SsssText,
-                    KeyCode.J, true, "J"));
+                    KeyCode.J, true, false, "J"));
             }
 
             return settings.ToArray();
