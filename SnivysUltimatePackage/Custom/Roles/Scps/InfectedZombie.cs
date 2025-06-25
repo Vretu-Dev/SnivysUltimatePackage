@@ -25,7 +25,7 @@ namespace SnivysUltimatePackage.Custom.Roles.Scps
             new TeamConvertOnKill()
             {
                 Name = "Team Convert On Kill [Passive]",
-                Description = "When you kill a player, they will be converted to an Infected Zombie.",
+                Description = "When you kill a player, they will be converted to a Zombie.",
                 ConvertToRole = RoleTypeId.Scp0492,
             },
         };
