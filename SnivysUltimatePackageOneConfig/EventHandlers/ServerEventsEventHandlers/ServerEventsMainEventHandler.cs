@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Exiled.API.Enums;
 using Exiled.API.Features;
@@ -193,7 +194,7 @@ namespace SnivysUltimatePackageOneConfig.EventHandlers.ServerEventsEventHandlers
             ev.Player.Scale.Set(_PHEScale, _PHEScale, _PHEScale);
             //Get a random spectator and set them as a duplicate 173
             Log.Debug("VVUP Server Events: Getting a random spectator and set them as a duplicate 173");
-            Player newPlayer = GetRandomSpectator();
+            Player newPlayer = GetRandomSpectator("VVUP Server Events:");
             switch (newPlayer)
             {
                 case null when PeanutHydraEventHandlers.Config.UseAttackersIfNeeded:
@@ -210,19 +211,19 @@ namespace SnivysUltimatePackageOneConfig.EventHandlers.ServerEventsEventHandlers
             newPlayer.Scale = new Vector3(_PHEScale, _PHEScale, _PHEScale);
         }
 
-        private static Player GetRandomSpectator()
+        public static Player GetRandomSpectator(String debugTag)
         {
             // Get a list of players with the Spectator role
-            Log.Debug("VVUP Server Events: Getting a list of players who are spectators");
+            Log.Debug($"{debugTag} Getting a list of players who are spectators");
             List<Player> spectators = Player.List.Where(p => p.Role == RoleTypeId.Spectator).ToList();
 
             // If there are no spectators, return null
-            Log.Debug("VVUP Server Events: Checking if there is any spectators");
+            Log.Debug($"{debugTag} Checking if there is any spectators");
             if (spectators.Count == 0)
                 return null;
 
             // Select a random spectator
-            Log.Debug("VVUP Server Events: Selecting a random spectator");
+            Log.Debug($"{debugTag} Selecting a random spectator");
             Random random = new();
             int index = random.Next(spectators.Count);
             return spectators[index];
@@ -459,6 +460,8 @@ namespace SnivysUltimatePackageOneConfig.EventHandlers.ServerEventsEventHandlers
         
         public void OnRoleSwapGE(ChangingRoleEventArgs ev)
         {
+            if (ev.Player == null)
+                return;
             Log.Debug($"VVUP Server Events: Setting {ev.Player.Nickname} size to {Plugin.Instance.Config.ServerEventsMasterConfig.GravityConfig.GravityChanges}");
             PlayerLab.Get(ev.Player.NetworkIdentity)!.Gravity = Plugin.Instance.Config.ServerEventsMasterConfig.GravityConfig.GravityChanges;
         }

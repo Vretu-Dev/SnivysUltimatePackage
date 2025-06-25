@@ -34,6 +34,7 @@ namespace SnivysUltimatePackage
         public Dictionary<StartTeam, List<ICustomRole>> Roles { get; } = new();
         
         public CustomRoleEventHandler CustomRoleEventHandler;
+        public HuskInfectionEventHandlers HuskInfectionEventHandlers;
         public ServerEventsMainEventHandler ServerEventsMainEventHandler;
         public MicroDamageReductionEventHandler MicroDamageReductionEventHandler;
         public MicroEvaporateEventHandlers MicroEvaporateEventHandlers;
@@ -89,6 +90,7 @@ namespace SnivysUltimatePackage
                 Config.CustomRolesConfig.InfectedZombies.Register();
                 Config.CustomRolesConfig.PoisonousZombies.Register();
                 Config.CustomRolesConfig.SpeedsterZombies.Register();
+                Config.CustomRolesConfig.HuskZombies.Register();
 
                 foreach (CustomRole role in CustomRole.Registered)
                 {
@@ -128,7 +130,19 @@ namespace SnivysUltimatePackage
             // Custom Abilities
             if (Instance.Config.CustomRolesAbilitiesConfig.IsEnabled)
                 CustomAbility.RegisterAbilities();
-                
+            
+            // Husk Infection Event Handlers, needs all 3 Custom Types to be on to work
+            if (Instance.Config.CustomRolesConfig.IsEnabled && 
+                Instance.Config.CustomItemsConfig.IsEnabled && 
+                Instance.Config.CustomRolesAbilitiesConfig.IsEnabled)
+            {
+                HuskInfectionEventHandlers = new HuskInfectionEventHandlers(this);
+                Server.WaitingForPlayers += HuskInfectionEventHandlers.OnWaitingForPlayers;
+                Server.RoundEnded += HuskInfectionEventHandlers.OnRoundEnded;
+                Player.VoiceChatting += HuskInfectionEventHandlers.OnVoiceChatting;
+                Player.ChangingRole += HuskInfectionEventHandlers.OnRoleChange;
+            }
+
             // Server Events
             if (Instance.Config.ServerEventsMasterConfig.IsEnabled)
             {
@@ -191,6 +205,13 @@ namespace SnivysUltimatePackage
             Server.RespawningTeam -= CustomRoleEventHandler.OnRespawningTeam;
             Scp049Events.FinishingRecall -= CustomRoleEventHandler.FinishingRecall;
             CustomRoleEventHandler = null;
+            
+            //Husk Event Handlers
+            Server.WaitingForPlayers -= HuskInfectionEventHandlers.OnWaitingForPlayers;
+            Server.RoundEnded -= HuskInfectionEventHandlers.OnRoundEnded;
+            Player.VoiceChatting -= HuskInfectionEventHandlers.OnVoiceChatting;
+            Player.ChangingRole -= HuskInfectionEventHandlers.OnRoleChange;
+            HuskInfectionEventHandlers = null;
             
             //Server Events Event Handlers
             Server.RoundEnded -= ServerEventsMainEventHandler.OnEndingRound;

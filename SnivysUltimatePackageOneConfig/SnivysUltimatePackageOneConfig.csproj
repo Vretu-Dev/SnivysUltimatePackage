@@ -156,6 +156,7 @@
         <Compile Include="Custom\Abilities\Active\RevivingMist.cs" />
         <Compile Include="Custom\Abilities\Passive\AbilityRemover.cs" />
         <Compile Include="Custom\Abilities\Passive\ApplyEffectOnHit.cs" />
+        <Compile Include="Custom\Abilities\Passive\ApplyHuskInfection.cs" />
         <Compile Include="Custom\Abilities\Passive\CustomRoleEscape.cs" />
         <Compile Include="Custom\Abilities\Passive\DebugAbility.cs" />
         <Compile Include="Custom\Abilities\Passive\Disguised.cs" />
@@ -175,6 +176,7 @@
         <Compile Include="Custom\Items\Armor\ExplosiveResistantArmor.cs" />
         <Compile Include="Custom\Items\Armor\LowGravityArmor.cs" />
         <Compile Include="Custom\Items\Firearms\ExplosiveRoundRevolver.cs" />
+        <Compile Include="Custom\Items\Firearms\GrenadeLauncherImpact.cs" />
         <Compile Include="Custom\Items\Firearms\LaserGun.cs" />
         <Compile Include="Custom\Items\Firearms\MediGun.cs" />
         <Compile Include="Custom\Items\Firearms\Pathfinder.cs" />
@@ -184,6 +186,7 @@
         <Compile Include="Custom\Items\Grenades\C4.cs" />
         <Compile Include="Custom\Items\Grenades\ClusterGrenade.cs" />
         <Compile Include="Custom\Items\Grenades\EmpGrenade.cs" />
+        <Compile Include="Custom\Items\Grenades\HuskGrenade.cs" />
         <Compile Include="Custom\Items\Grenades\MultiFlash.cs" />
         <Compile Include="Custom\Items\Grenades\NerveAgent.cs" />
         <Compile Include="Custom\Items\Grenades\ProxyBang.cs" />
@@ -192,11 +195,13 @@
         <Compile Include="Custom\Items\Keycards\OcfPrototypeKeycardBasic.cs" />
         <Compile Include="Custom\Items\Keycards\OcfPrototypeKeycardRefined.cs" />
         <Compile Include="Custom\Items\MedicalItems\AntiScp096Pills.cs" />
+        <Compile Include="Custom\Items\MedicalItems\Calyxanide.cs" />
         <Compile Include="Custom\Items\MedicalItems\DeadringerSyringe.cs" />
         <Compile Include="Custom\Items\MedicalItems\InfinitePills.cs" />
         <Compile Include="Custom\Items\MedicalItems\KySyringe.cs" />
         <Compile Include="Custom\Items\Other\AdditionalHealth207.cs" />
         <Compile Include="Custom\Items\Other\PhantomLantern.cs" />
+        <Compile Include="Custom\Items\Other\PortableIntercom.cs" />
         <Compile Include="Custom\Items\Other\Scp1499.cs" />
         <Compile Include="Custom\Roles\Chaos\A7Chaos.cs" />
         <Compile Include="Custom\Roles\Chaos\CiPhantom.cs" />
@@ -220,12 +225,14 @@
         <Compile Include="Custom\Roles\Scientist\TheoreticalPhysicistScientist.cs" />
         <Compile Include="Custom\Roles\Scps\DwarfZombie.cs" />
         <Compile Include="Custom\Roles\Scps\ExplosiveZombie.cs" />
+        <Compile Include="Custom\Roles\Scps\HuskZombie.cs" />
         <Compile Include="Custom\Roles\Scps\InfectedZombie.cs" />
         <Compile Include="Custom\Roles\Scps\MedicZombie.cs" />
         <Compile Include="Custom\Roles\Scps\PoisonousZombie.cs" />
         <Compile Include="Custom\Roles\Scps\SpeedsterZombie.cs" />
         <Compile Include="EventHandlers\Custom\CustomRoleEventHandler.cs" />
         <Compile Include="EventHandlers\Custom\CustomRoleMethods.cs" />
+        <Compile Include="EventHandlers\Custom\HuskInfectionEventHandlers.cs" />
         <Compile Include="EventHandlers\RoundStartEventHandlers.cs" />
         <Compile Include="EventHandlers\FlamingoAdjustmentEventHandlers.cs" />
         <Compile Include="EventHandlers\MicroDamageReductionEventHandler.cs" />

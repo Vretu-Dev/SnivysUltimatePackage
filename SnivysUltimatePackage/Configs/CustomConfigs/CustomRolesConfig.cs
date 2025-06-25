@@ -129,5 +129,10 @@ namespace SnivysUltimatePackage.Configs.CustomConfigs
         {
             new SpeedsterZombie(),
         };
+        
+        public List<HuskZombie> HuskZombies { get; set; } = new()
+        {
+            new HuskZombie(),
+        };
     }
 }

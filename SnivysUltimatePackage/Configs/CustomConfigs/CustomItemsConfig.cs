@@ -143,5 +143,25 @@ namespace SnivysUltimatePackage.Configs.CustomConfigs
         {
             new OcfPrototypeKeycardRefined()
         };
+
+        /*public List<GrenadeLauncherImpact> GrenadeLaunchersImpacts { get; private set; } = new()
+        {
+            new GrenadeLauncherImpact()
+        };*/
+
+        public List<PortableIntercom> PortableIntercoms { get; private set; } = new()
+        {
+            new PortableIntercom()
+        };
+
+        public List<HuskGrenade> HuskGrenades { get; private set; } = new()
+        {
+            new HuskGrenade()
+        };
+        
+        public List<Calyxanide> Calyxanides { get; private set; } = new()
+        {
+            new Calyxanide()
+        };
     }
 }
