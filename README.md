@@ -12,7 +12,7 @@ I do mean made, any other plugins that I have ported or currently maintain, such
 > There is a check now that detects if both plugin versions are on the server at the same time. If the server starts and both are present, both plugins will disable. This is due to both `SnivysUltimatePackage.dll` and `SnivysUltimatePackageOneConfig.dll` will try to race eachother for enabling stuff. Just remove one of them from your server and restart.
 
 > [!CAUTION]
-> There is 2 additional plugins, `SnivysFreeCustomRolesOC.dll` and `SnivysFreeCustomRolesSC.dll`, this will be functionally unsupported and only made for the people who want extra custom role slots for customization. `SnivysFreeCustomRolesOC.dll` is for `SnivysUltimatePackageOneConfig.dll`, with `SnivysFreeCustomRolesSC.dll` is for `SnivysUltimatePackage.dll`, as each uses calls from its respective parent plugin.
+> There is an additional plugins, `SnivysFreeCustomRoles` this will be functionally unsupported and only made for the people who want extra custom role slots for customization. This should work with either parent plugin out of the box.
 
 # Plugin List:
 
@@ -73,6 +73,11 @@ Theoretical Physicist Scientist | 49 | Pocket Dimension Escape Chance, Custom Ro
 MTF Paramedic | 50 | Healing Mist, Reviving Mist | Chance during a MTF Spawn Wave | A MTF member that specializes in healing teammates.
 Class-D Analyst | 51 | Detect, Custom Role Escape | Immediately when a round begins | A Class D that has some analysis abilities.
 Class-D Tank | 52 | Effect Enabler, Scale Ability, Custom Role Escape | Immediately when a round begins | A Class-D that can take a bit more punishment than other Class-D.
+Infected Zombie | 53 | Team Convert On Kill | Chance during revive from SCP-049 | A zombie than can convert targets to a SCP-049-2 when killing a player.
+Poisonous Zombie | 54 | Apply Effect On Hit | Chance during revive from SCP-049 | A zombie than when attacking a player, will apply the poisoned effect for 10 seconds.
+Speedster Zombie | 55 | Effect Enabler | Chance during revive from SCP-049 | A zombie that is faster than others.
+Husk | 56 | Apply Husk Infection On Hit | Guaranteed when a player doesn't save themselves from a Husk Infection | When a Husk takes over the body, a random spectator (if the player was alive when the Husk takes over) takes control of the player OR the player (if the player is dead) revives into a Husk.
+
 
 # Snivy's Custom Roles Abilities
 This contains Joker's original custom roles abilities as well
@@ -84,6 +89,8 @@ Custom Ability | AbilityName | Ability Type | Description
 :---: | :---: | :---: | :------
 Active Camo | ActiveCamo | Active Ability | For a set amount of time, allows the player to go invisible unless they fire their weapon, opening/closing doors will reapply the effect.
 Ability Remover | AbilityRemover | Passive Ability | Clears abilities, helpful if you have multiple plugins with custom roles and some custom role abilities are given to the wrong custom role.
+Apply Effect On Hit | ApplyEffectOnHit | Passive Ability | When a player with this ability attacks another player, it will give them an effect.
+Apply Husk Infection On Hit | ApplyHuskInfection | Passive Ability | When a player with this ability attacks another player, it gives them a chance to give them a husk infection.
 Custom Role Escape | CustomRoleEscape | Passive Ability | When a player that has this ability tries to escape, you can give them a set role or custom role.
 Charge | ChargeAbility | Active Ability | Charges towards a location.
 Detect | Detect | Active Ability | Detects any hostiles of the player's role nearby.
@@ -101,8 +108,10 @@ Reactive Hume Shield | ReactiveHume | Passive Ability | A Hume Shield that build
 Remove Disguise | RemoveDisguise | Active Ability | The ability to remove their disguise, I.E. If MTF, become CI, and vise versa.
 Restricted Escape | RestrictedEscape | Passive Ability | This just restricts player escapes for custom roles that has this ability.
 Restricted Items | RestrictedItem | Passive Ability | This allows a specific set of restricted items. This is usually complemented with other abilities.
+Reviving Mist | RevivingMist | Active Ability | Allows the user to revive other players that recently died.
 Scale Ability | ScaleAbility | Passive Ability | This sets a players scale.
 Speed On Kill | SpeedOnKill | Passive Ability | Gives a speed boost on kill.
+Team Convert On Kill | TeamConvertOnKill | Passive Ability | When a player kills another, they will be converted to the player's side.
 
 # Snivy's Custom Items
 
@@ -135,6 +144,12 @@ Multibang | Flash Bang | 42 | 15% Chance in Light Armory, Heavy Armory, 049's Ar
 Pathfinder Grenade | Flash Bang | 43 | 15% Chance in MicroHID, Guaranteed to spawn on MTF Vanguard | 1 | When detonates, spawns lines to any players in the area.
 Prototype Keycard Basic | Custom Keycard | 44 | 0% Chance in normal play, Guaranteed to spawn in MicroHID, Heavy Armory, 049's Armory, GR18, 106's Room, 330's Control Room, or 173's Gate Room during Operation Crossfire | 1 | A Keycard needed to be collected and refined into the Prototype Keycard Refined during Operation Crossfire.
 Prototype Keycard Refined | Custom Keycard | 45 | Guaranteed to spawn when upgrading Prototype Keycard Basic in 914 | 0 | The upgraded keycard from 914 for Operation Crossfire.
+Portable Intercom | Radio | 47 | 10% Chance to spawn in MicroHID, 096's Room, GR-18, 106's Room, and Heavy Test Room | 1 | When turned on/off, it will grant global intercom to the user.
+Husk Grenade | Flash Bang | 48 | 10% Chance to spawn in MicroHID, Heavy Armory, 049's Armory, 096's Room, 079's Armory | 5 | When detonated, it will give every human a husk infection if in range of detonation.
+Calyxanide | Adrenline | 49 | 50% Chance to spawn in 939's Room, Heavy Armory, 049's Armory, 079's Armory | 2 | When used, it will cure a player of a Husk Infection.
+
+> [!IMPORTANT]
+> In regards to Apply Husk on Hit Custom Ability and Husk Grenade, `Custom Items`, `Custom Roles`, and `Custom Abilities` MUST be enabled to work. Otherwise the Husk Infection will not work.
 
 # Snivy's Server Events
 
