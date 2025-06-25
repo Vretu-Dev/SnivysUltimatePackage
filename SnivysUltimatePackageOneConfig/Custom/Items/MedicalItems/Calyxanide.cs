@@ -69,6 +69,8 @@ namespace SnivysUltimatePackageOneConfig.Custom.Items.MedicalItems
         {
             if (!Check(ev.Player.CurrentItem))
                 return;
+            ev.IsAllowed = false;
+            ev.Player.RemoveHeldItem();
             Log.Debug($"VVUP Custom Items: Calyxanide, {ev.Player.Nickname} used Calyxanide. Removing Husk Infection if they have it and displaying text.");
             if (HuskInfectionEventHandlers.PlayersWithHuskInfection.ContainsKey(ev.Player))
             {
