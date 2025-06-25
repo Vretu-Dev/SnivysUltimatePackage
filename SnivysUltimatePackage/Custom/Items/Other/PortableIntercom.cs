@@ -1,14 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using Exiled.API.Enums;
 using Exiled.API.Features;
 using Exiled.API.Features.Attributes;
 using Exiled.API.Features.Spawn;
 using Exiled.CustomItems.API.EventArgs;
 using Exiled.CustomItems.API.Features;
 using Exiled.Events.EventArgs.Player;
+using JetBrains.Annotations;
 using MEC;
+using PlayerRoles;
 using PlayerRoles.Voice;
+using UnityEngine;
 using VoiceChat;
 using YamlDotNet.Serialization;
 using Intercom = Exiled.API.Features.Intercom;
@@ -27,7 +31,46 @@ namespace SnivysUltimatePackage.Custom.Items.Other
             "A portable intercom that can be used to communicate to the entire facility.";
 
         public override float Weight { get; set; } = 1;
-        public override SpawnProperties SpawnProperties { get; set; }
+        [CanBeNull]
+        public override SpawnProperties SpawnProperties { get; set; } = new()
+        {
+            Limit = 1,
+            DynamicSpawnPoints = new List<DynamicSpawnPoint>
+            {
+                new()
+                {
+                    Chance = 10,
+                    Location = SpawnLocationType.InsideHidChamber,
+                },
+                new()
+                {
+                    Chance = 10,
+                    Location = SpawnLocationType.Inside096,
+                },
+                new()
+                {
+                    Chance = 10,
+                    Location = SpawnLocationType.InsideGr18,
+                },
+            },
+            RoleSpawnPoints = new List<RoleSpawnPoint>
+            {
+                new()
+                {
+                    Chance = 10,
+                    Role = RoleTypeId.Scp106
+                }
+            },
+            RoomSpawnPoints = new List<RoomSpawnPoint>
+            {
+                new()
+                {
+                    Chance = 10,
+                    Room = RoomType.HczTestRoom,
+                    Offset = new Vector3(0.885f, 0.749f, -4.874f)
+                }
+            }
+        };
         public float PortableIntercomDuration { get; set; } = 20f;
         [Description("Use %intercomtimeremaining% to show how much time is remaining on the portable intercom.")]
         public string CountdownTextForPortableIntercom { get; set; } =
