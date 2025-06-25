@@ -1,9 +1,12 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
+using Exiled.API.Enums;
 using Exiled.API.Features;
 using Exiled.API.Features.Attributes;
 using Exiled.API.Features.Spawn;
 using Exiled.CustomItems.API.Features;
 using Exiled.Events.EventArgs.Map;
+using JetBrains.Annotations;
 using PlayerRoles;
 using SnivysUltimatePackageOneConfig.EventHandlers.Custom;
 using UnityEngine;
@@ -21,7 +24,40 @@ namespace SnivysUltimatePackageOneConfig.Custom.Items.Grenades
         public override string Name { get; set; } = "<color=#FF0000>Husk Grenade</color>";
         public override string Description { get; set; } = "A throwable grenade that contains a Husk Infection Virus. When it explodes, it infects all nearby players with the Husk Infection.";
         public override float Weight { get; set; } = 0.75f;
-        public override SpawnProperties SpawnProperties { get; set; }
+
+        [CanBeNull]
+        public override SpawnProperties SpawnProperties { get; set; } = new()
+        {
+            Limit = 5,
+            DynamicSpawnPoints = new List<DynamicSpawnPoint>
+            {
+                new()
+                {
+                    Chance = 10,
+                    Location = SpawnLocationType.InsideHidChamber,
+                },
+                new()
+                {
+                    Chance = 10,
+                    Location = SpawnLocationType.InsideHczArmory,
+                },
+                new()
+                {
+                    Chance = 20,
+                    Location = SpawnLocationType.Inside049Armory,
+                },
+                new()
+                {
+                    Chance = 10,
+                    Location = SpawnLocationType.Inside096,
+                },
+                new()
+                {
+                    Chance = 10,
+                    Location = SpawnLocationType.Inside079Armory,
+                },
+            },
+        };
         public override bool ExplodeOnCollision { get; set; } = false;
         public override float FuseTime { get; set; } = 4;
         public float Range { get; set; } = 5f;
