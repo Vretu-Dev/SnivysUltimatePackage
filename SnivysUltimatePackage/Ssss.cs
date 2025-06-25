@@ -43,6 +43,7 @@ namespace SnivysUltimatePackage
                     DwarfZombie.Get(typeof(DwarfZombie)),
                     ExplosiveZombie.Get(typeof(ExplosiveZombie)),
                     Flipped.Get(typeof(Flipped)),
+                    HuskZombie.Get(typeof(HuskZombie)),
                     InfectedZombie.Get(typeof(InfectedZombie)),
                     JuggernautChaos.Get(typeof(JuggernautChaos)),
                     LockpickingClassD.Get(typeof(LockpickingClassD)),
@@ -103,6 +104,9 @@ namespace SnivysUltimatePackage
                     ProxyBang.Get(typeof(ProxyBang)),
                     OcfPrototypeKeycardBasic.Get(typeof(OcfPrototypeKeycardBasic)),
                     OcfPrototypeKeycardRefined.Get(typeof(OcfPrototypeKeycardRefined)),
+                    PortableIntercom.Get(typeof(PortableIntercom)),
+                    HuskGrenade.Get(typeof(HuskGrenade)),
+                    Calyxanide.Get(typeof(Calyxanide)),
                 };
 
                 foreach (var itemCollection in customItems)
