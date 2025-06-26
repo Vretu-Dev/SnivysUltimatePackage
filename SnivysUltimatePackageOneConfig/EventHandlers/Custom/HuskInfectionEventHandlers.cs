@@ -26,6 +26,11 @@ namespace SnivysUltimatePackageOneConfig.EventHandlers.Custom
                 Log.Debug("VVUP Husk Infection: Husk Infection Event Handlers is null, returning.");
                 return;
             }
+            if (PlayersWithHuskInfection.ContainsKey(player))
+            {
+                Log.Debug($"VVUP Husk Infection: {player.Nickname} is already infected with Husk Infection, returning.");
+                return;
+            }
             PlayersWithHuskInfection.Add(player, player.Role);
             Log.Debug($"VVUP Husk Infection: {player.Nickname} has been infected with Husk Infection, starting coroutine.");
             _huskHandle = Timing.RunCoroutine(HuskInfectionCoroutine(player, stageOneDelay, stageTwoDelay, 
@@ -92,11 +97,18 @@ namespace SnivysUltimatePackageOneConfig.EventHandlers.Custom
 
         public void OnVoiceChatting(VoiceChattingEventArgs ev)
         {
-            if (PlayersMutedDueToHuskInfection.Contains(ev.Player))
+            if (!PlayersMutedDueToHuskInfection.Contains(ev.Player)) return;
+            if (!PlayersWithHuskInfection.ContainsKey(ev.Player))
             {
-                Log.Debug($"VVUP Husk Infection: {ev.Player.Nickname} is muted due to Husk Infection, preventing voice chat.");
-                ev.IsAllowed = false;
+                Log.Debug(
+                    $"VVUP Husk Infection: Found inconsistent state for {ev.Player.Nickname}, removing mute effect");
+                PlayersMutedDueToHuskInfection.Remove(ev.Player);
+                return;
             }
+
+            Log.Debug(
+                $"VVUP Husk Infection: {ev.Player.Nickname} is muted due to Husk Infection, preventing voice chat.");
+            ev.IsAllowed = false;
         }
 
         public void OnRoleChange(ChangingRoleEventArgs ev)

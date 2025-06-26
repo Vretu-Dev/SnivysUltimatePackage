@@ -13,7 +13,7 @@ namespace SnivysUltimatePackage.Custom.Abilities.Passive
         public override string Name { get; set; } = "Husk Infection";
         public override string Description { get; set; } = "When you hit a player, they have a chance to be infected with Husk Infection, which will slowly take over their body and turn them into a Husk.";
         [Description("A chance to infect a player, 0 to 100%")]
-        public float InfectionChance { get; set; } = 10f;
+        public float InfectionChance { get; set; } = 50f;
         [Description("How long it takes for the infection to reach stage 1, in seconds")]
         public float InfectionStageOneDelay { get; set; } = 30f;
         [Description("How long it takes for the infection to reach stage 2, in seconds **AFTER** stage 1 is reached")]
