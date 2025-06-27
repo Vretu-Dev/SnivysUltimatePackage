@@ -223,8 +223,8 @@ Drop Items | Drops all the items from a player's inventory
 # Micro Damage Reduction
 Allows for a configurable damage reduction to what ever class is specificed in the Config.
 
-# Surface Final Escape Door Opener
-It opens Surface's Final Escape Door.
+# Round Start Changes
+It doesd stuff in regards to starting the round, such as opening Escape Door Final and changing decontaimination time.
 
 # Micro Evaporates Players
 When the MicroHID kills a player, they evaporate instead of flopping onto the floor.
