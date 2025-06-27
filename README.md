@@ -48,36 +48,55 @@ Below is a table of all the current custom roles, followed by a breif descriptio
 
 Note this does not include the 20 free custom roles that is included, there will not be included in the list, there will also be no support for them
 
-RoleName | RoleID | Abilities | Spawn Type | Description
-:---: | :---: | :---: | :---: | :------
-Containment Engineer | 30 | Restricted Escape | Immediately when a round begins | A Scientist is randomly selected and is set into Enterance Zone with a Containment Engineer Keycard.
-Protocol Enforcer | 31 | None | Immediately when a round begins | A lighter facility guard that spawns in light containment zone. They spawn with a Tranquilizer, Medkit, Painkillers, Radio, Light Armor, and a Zone Manager Keycard.
-Biochemist| 32 | Healing Mist, Martyrdom, Custom Role Escape | Immediately when a round begins | A Scientist genetically altered.
-Containment Guard | 33 | None | Immediately when a round begins | A Facility Guard specializing in recontaining SCPs.
-Border Patrol | 34 | None | Given by Admin Command only | A facility guard specialized in ensuring safe passage from Enterance and Heavy Checkpoints.
-Nightfall | 35 | Data Missing | Data Missing | Data Missing.
-A7 Chaos | 36 | None | During a Chaos Insurgency Respawn Wave | A Chaos Member that spawns with an A7.
-Flipped | 37 | Scale Ability | Given by Admin Command only | For those people who complains about dwarfs when they spawn in as it.
-Telepathic Chaos | 38 | Detect | During a Chaos Insurgency Respawn Wave | A Chaos Member that can detect hostiles to the Chaos Insurgency near by.
-Juggernaut Chaos | 39 | Give Candy Ability | During a Chaos Insurgency Respawn Wave | A Chaos Member that specializes in explosives.
-Chaos Insurgency Spy | 40 | Disguised, Remove Disguise | During a MTF Respawn Wave | A Chaos Member that is disguised as an MTF Member.
-MTF Wisp | 41 | Effect Enabler | During a MTF Respawn Wave | A MTF Member that can go through doors, but has reduced sprint and some item limitations.
-Ballistic SCP-049-2 | 42 | Martyrdom | Chance during revive from SCP-049 | A zombie that goes boom on death.
-Dwarf SCP-049-2 | 43 | Scale Ability | Chance during revive from SCP-049 | A smaller zombie.
-Chaos Phantom | 44 | Active Camo | Immediately when a round begins | A Chaos Insurgent that takes place of a guard, can go invisible.
-Medic SCP-049-2 | 45 | Healing Mist, Effect Enabler | Chance during revive from SCP-049 | A zombie that can heal other SCPs at the cost of being a bit more slow
-Lock-picker Class D | 46 | Door Picking | Immediately when a round begins | A Class D that used to be a lock picker, can open some keycard doors if they dont have the keycard.
-MTF Demolitionist | 47 | None | During a MTF Spawn Wave | A MTF Member that specializes in explosives.
-Vanguard | 48 | None | During a MTF Spawn Wave | A MTF Member with an alternative loadout, being able to mark a target to do recieve more damage for a short time.
-Theoretical Physicist Scientist | 49 | Pocket Dimension Escape Chance, Custom Role Escape | Immediately when a round begins | A Scientist that believes that the Pocket Dimension has a lot more. Has 2 guaranteed escapes from Pocket Dimension to SCP-106's room.
-MTF Paramedic | 50 | Healing Mist, Reviving Mist | Chance during a MTF Spawn Wave | A MTF member that specializes in healing teammates.
-Class-D Analyst | 51 | Detect, Custom Role Escape | Immediately when a round begins | A Class D that has some analysis abilities.
-Class-D Tank | 52 | Effect Enabler, Scale Ability, Custom Role Escape | Immediately when a round begins | A Class-D that can take a bit more punishment than other Class-D.
-Infected Zombie | 53 | Team Convert On Kill | Chance during revive from SCP-049 | A zombie than can convert targets to a SCP-049-2 when killing a player.
-Poisonous Zombie | 54 | Apply Effect On Hit | Chance during revive from SCP-049 | A zombie than when attacking a player, will apply the poisoned effect for 10 seconds.
-Speedster Zombie | 55 | Effect Enabler | Chance during revive from SCP-049 | A zombie that is faster than others.
-Husk | 56 | Apply Husk Infection On Hit | Guaranteed when a player doesn't save themselves from a Husk Infection | When a Husk takes over the body, a random spectator (if the player was alive when the Husk takes over) takes control of the player OR the player (if the player is dead) revives into a Husk.
+RoleName | RoleID | Abilities | Spawn Type | Start Team | Description
+:---: | :---: | :---: | :---: | :---: | :------
+Containment Engineer | 30 | Restricted Escape | Immediately when a round begins | Scientist | A Scientist is randomly selected and is set into Enterance Zone with a Containment Engineer Keycard.
+Protocol Enforcer | 31 | None | Immediately when a round begins | Guard | A lighter facility guard that spawns in light containment zone. They spawn with a Tranquilizer, Medkit, Painkillers, Radio, Light Armor, and a Zone Manager Keycard.
+Biochemist| 32 | Healing Mist, Martyrdom, Custom Role Escape | Scientist | Immediately when a round begins | A Scientist genetically altered.
+Containment Guard | 33 | None | Immediately when a round begins | Guard | A Facility Guard specializing in recontaining SCPs.
+Border Patrol | 34 | None | Given by Admin Command only | Other | A facility guard specialized in ensuring safe passage from Enterance and Heavy Checkpoints.
+Nightfall | 35 | Data Missing | Data Missing | Data Missing | Data Missing.
+A7 Chaos | 36 | None | During a Chaos Insurgency Respawn Wave | Chaos | A Chaos Member that spawns with an A7.
+Flipped | 37 | Scale Ability | Given by Admin Command only | Other | For those people who complains about dwarfs when they spawn in as it.
+Telepathic Chaos | 38 | Detect | During a Chaos Insurgency Respawn Wave | Chaos | A Chaos Member that can detect hostiles to the Chaos Insurgency near by.
+Juggernaut Chaos | 39 | Give Candy Ability | During a Chaos Insurgency Respawn Wave | Chaos | A Chaos Member that specializes in explosives.
+Chaos Insurgency Spy | 40 | Disguised, Remove Disguise | During a MTF Respawn Wave | Ntf | A Chaos Member that is disguised as an MTF Member.
+MTF Wisp | 41 | Effect Enabler | During a MTF Respawn Wave | Ntf | A MTF Member that can go through doors, but has reduced sprint and some item limitations.
+Ballistic SCP-049-2 | 42 | Martyrdom | Chance during revive from SCP-049 | Scp, Revived | A zombie that goes boom on death.
+Dwarf SCP-049-2 | 43 | Scale Ability | Chance during revive from SCP-049 | Scp, Revived | A smaller zombie.
+Chaos Phantom | 44 | Active Camo | Immediately when a round begins | Guard | A Chaos Insurgent that takes place of a guard, can go invisible.
+Medic SCP-049-2 | 45 | Healing Mist, Effect Enabler | Chance during revive from SCP-049 | Scp, Revived | A zombie that can heal other SCPs at the cost of being a bit more slow
+Lock-picker Class D | 46 | Door Picking | Immediately when a round begins | ClassD | A Class D that used to be a lock picker, can open some keycard doors if they dont have the keycard.
+MTF Demolitionist | 47 | None | During a MTF Spawn Wave | Ntf | A MTF Member that specializes in explosives.
+Vanguard | 48 | None | During a MTF Spawn Wave | Ntf | A MTF Member with an alternative loadout, being able to mark a target to do recieve more damage for a short time.
+Theoretical Physicist Scientist | 49 | Pocket Dimension Escape Chance, Custom Role Escape | Scientist | Immediately when a round begins | A Scientist that believes that the Pocket Dimension has a lot more. Has 2 guaranteed escapes from Pocket Dimension to SCP-106's room.
+MTF Paramedic | 50 | Healing Mist, Reviving Mist | Chance during a MTF Spawn Wave | Ntf | A MTF member that specializes in healing teammates.
+Class-D Analyst | 51 | Detect, Custom Role Escape | Immediately when a round begins | ClassD | A Class D that has some analysis abilities.
+Class-D Tank | 52 | Effect Enabler, Scale Ability, Custom Role Escape | ClassD | Immediately when a round begins | A Class-D that can take a bit more punishment than other Class-D.
+Infected Zombie | 53 | Team Convert On Kill | Chance during revive from SCP-049 | Scp, Revived | A zombie than can convert targets to a SCP-049-2 when killing a player.
+Poisonous Zombie | 54 | Apply Effect On Hit | Chance during revive from SCP-049 | Scp, Revived | A zombie than when attacking a player, will apply the poisoned effect for 10 seconds.
+Speedster Zombie | 55 | Effect Enabler | Chance during revive from SCP-049 | Scp, Revived | A zombie that is faster than others.
+Husk | 56 | Apply Husk Infection On Hit | Guaranteed when a player doesn't save themselves from a Husk Infection | Other | When a Husk takes over the body, a random spectator (if the player was alive when the Husk takes over) takes control of the player OR the player (if the player is dead) revives into a Husk.
+Teleport Zombie | 57 | Effect Enabler, Teleport | Chance during revive from SCP-049 | Scp, Revived | A zombie that can set a teleport spot, and then teleport to that spot.
 
+> [!TIP]
+> This plugin has its own system to determine if a custom role can spawn, override the base role. A table of avaliable options is below
+>
+> Start Team | Enum Value | Description
+> :---: | :---: | :------
+> ClassD | 1 | For roles that gets a random Class-D player.
+> Scientist | 2 | For roles that gets a random Scientist player.
+> Guard | 4 | For roles that gets a random Guard player.
+> Ntf | 8 | For roles that gets a random NTF/MTF player.
+> Chaos | 16 | For roles that gets a random Chaos Insurgent player.
+> Scp | 32 | For roles that gets a random SCP player.
+> Revived | 64 | For roles that gets a random revived player.
+> Escape | 128 | For roles that gets a random player that just escaped.
+> Other | 256 | For any other purpose.
+>
+> You can combine them, such as a custom zombie having Scp and Revived.
+>
+> This can be used in other Custom Role plugins as well to quickly setup most custom roles and their spawning methods. 
 
 # Snivy's Custom Roles Abilities
 This contains Joker's original custom roles abilities as well
@@ -112,6 +131,7 @@ Reviving Mist | RevivingMist | Active Ability | Allows the user to revive other 
 Scale Ability | ScaleAbility | Passive Ability | This sets a players scale.
 Speed On Kill | SpeedOnKill | Passive Ability | Gives a speed boost on kill.
 Team Convert On Kill | TeamConvertOnKill | Passive Ability | When a player kills another, they will be converted to the player's side.
+Teleport | Teleport | Active Ability | Toggle the first time to set a teleport spot, then later toggle it again to teleport to the set spot.
 
 # Snivy's Custom Items
 
