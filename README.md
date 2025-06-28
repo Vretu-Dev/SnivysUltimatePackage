@@ -12,7 +12,7 @@ I do mean made, any other plugins that I have ported or currently maintain, such
 > There is a check now that detects if both plugin versions are on the server at the same time. If the server starts and both are present, both plugins will disable. This is due to both `SnivysUltimatePackage.dll` and `SnivysUltimatePackageOneConfig.dll` will try to race eachother for enabling stuff. Just remove one of them from your server and restart.
 
 > [!CAUTION]
-> There is an additional plugins, `SnivysFreeCustomRoles` this will be functionally unsupported and only made for the people who want extra custom role slots for customization. This should work with either parent plugin out of the box.
+> There is 2 additional plugins, `SnivysFreeCustomRolesOC.dll` and `SnivysFreeCustomRolesSC.dll`, this will be functionally unsupported and only made for the people who want extra custom role slots for customization. `SnivysFreeCustomRolesOC.dll` is for `SnivysUltimatePackageOneConfig.dll`, with `SnivysFreeCustomRolesSC.dll` is for `SnivysUltimatePackage.dll`, as each uses calls from its respective parent plugin.
 
 # Plugin List:
 

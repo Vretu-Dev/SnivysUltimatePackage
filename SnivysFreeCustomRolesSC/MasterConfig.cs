@@ -7,8 +7,8 @@ namespace SnivysFreeCustomRolesSC
 {
     public class MasterConfig : IConfig
     {
-        public bool IsEnabled { get; set; }
-        public bool Debug { get; set; }
+        public bool IsEnabled { get; set; } = true;
+        public bool Debug { get; set; } = false;
         
         [Description("These custom roles are for the server owner to make some custom roles themselves, there will be no support for any custom roles that you make with these")]
         public List<FreeCustomRole1> FreeCustomRoles1 { get; set; } = new()
