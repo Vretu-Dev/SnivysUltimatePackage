@@ -88,6 +88,7 @@ namespace SnivysUltimatePackageOneConfig
                 Config.CustomRolesConfig.PoisonousZombies.Register();
                 Config.CustomRolesConfig.SpeedsterZombies.Register();
                 Config.CustomRolesConfig.HuskZombies.Register();
+                Config.CustomRolesConfig.TeleportZombies.Register();
 
                 foreach (CustomRole role in CustomRole.Registered)
                 {

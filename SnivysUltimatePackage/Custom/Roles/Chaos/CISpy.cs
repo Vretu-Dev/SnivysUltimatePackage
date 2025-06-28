@@ -49,9 +49,9 @@ namespace SnivysUltimatePackage.Custom.Roles.Chaos
             {
                 Name = "Disguised [Passive]",
                 Description = "Handles everything related to being disguised",
-                DisguisedCi = "That MTF is actually on the CI side",
-                DisguisedMtf = "",
-                DisguisedHintDisplay = true,
+                DisguisedFriendlyFireText = "That MTF is actually on the CI side",
+                DisguisedTrueTeam = Disguised.TrueTeamEnum.Ci,
+                DisguisedHintDisplay = false,
                 DisguisedTextDisplayTime = 5,
             },
             new RemoveDisguise
@@ -62,6 +62,7 @@ namespace SnivysUltimatePackage.Custom.Roles.Chaos
                 Duration = 0,
                 Cooldown = 5,
                 RestorePreviousInventory = false,
+                SavePosition = true,
             },
         };
     }

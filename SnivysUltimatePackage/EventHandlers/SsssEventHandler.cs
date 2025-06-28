@@ -50,7 +50,8 @@ namespace SnivysUltimatePackage.EventHandlers
                      || ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.DoorPickingId
                      || ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.HealingMistId
                      || ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.RemoveDisguiseId
-                     || ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.ReviveMistId)
+                     || ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.ReviveMistId
+                     || ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.TeleportId)
                 && ActiveAbility.AllActiveAbilities.TryGetValue(player, out var abilities))
                 {
                     string response = String.Empty;
@@ -144,6 +145,20 @@ namespace SnivysUltimatePackage.EventHandlers
                         {
                             revivingMistAbility.SelectAbility(player);
                             revivingMistAbility.UseAbility(player);
+                            player.ShowHint(Plugin.Instance.Config.SsssConfig.SsssReviveMistActivationMessage);
+                        }
+                        else
+                        {
+                            player.ShowHint(response);
+                        }
+                    }
+                    else if (ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.TeleportId)
+                    {
+                        var teleportAbility = abilities.FirstOrDefault(abilities => abilities.GetType() == typeof(Teleport));
+                        if (teleportAbility != null && teleportAbility.CanUseAbility(player, out response))
+                        {
+                            teleportAbility.SelectAbility(player);
+                            teleportAbility.UseAbility(player);
                             player.ShowHint(Plugin.Instance.Config.SsssConfig.SsssReviveMistActivationMessage);
                         }
                         else

@@ -54,6 +54,7 @@ namespace SnivysUltimatePackageOneConfig
                     PoisonousZombie.Get(typeof(PoisonousZombie)),
                     SpeedsterZombie.Get(typeof(SpeedsterZombie)),
                     TelepathicChaos.Get(typeof(TelepathicChaos)),
+                    TeleportZombie.Get(typeof(TeleportZombie)),
                     TheoreticalPhysicistScientist.Get(typeof(TheoreticalPhysicistScientist)),
                     Vanguard.Get(typeof(Vanguard)),
                 };
@@ -144,6 +145,8 @@ namespace SnivysUltimatePackageOneConfig
                 settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.RemoveDisguiseId, Plugin.Instance.Config.SsssConfig.RemoveDisguiseSsssText,
                     KeyCode.B, true, false, "B"));
                 settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.ReviveMistId, Plugin.Instance.Config.SsssConfig.ReviveMistSsssText,
+                    KeyCode.B, true, false, "B"));
+                settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.TeleportId, Plugin.Instance.Config.SsssConfig.TeleportSsssText,
                     KeyCode.B, true, false, "B"));
             }
 

@@ -1,7 +1,5 @@
-﻿/*using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Linq;
-using System.Reflection;
 using Exiled.API.Enums;
 using Exiled.API.Features;
 using Exiled.API.Features.Attributes;
@@ -11,12 +9,7 @@ using Exiled.API.Features.Pickups.Projectiles;
 using Exiled.API.Features.Spawn;
 using Exiled.CustomItems.API.Features;
 using Exiled.Events.EventArgs.Player;
-using InventorySystem.Items.Firearms;
-using InventorySystem.Items.Firearms.Modules;
 using JetBrains.Annotations;
-using LabApi.Events.Arguments.PlayerEvents;
-using LabApi.Events.CustomHandlers;
-using MEC;
 using UnityEngine;
 using YamlDotNet.Serialization;
 using Firearm = Exiled.API.Features.Items.Firearm;
@@ -39,12 +32,15 @@ namespace SnivysUltimatePackageOneConfig.Custom.Items.Firearms
 
         public float GrenadeFuseTime { get; set; } = 1.5f;
         public bool UseGrenadesToReload { get; set; } = true;
+        [Description("If true, players can hold down fire and it will become a grenade firehose")]
+        public bool AllowFiringDuringReload { get; set; } = false;
         
         private ProjectileType GrenadeType { get; set; } = ProjectileType.FragGrenade;
         [CanBeNull] 
         private CustomGrenade loadedCustomGrenade;
         private bool grenadeLauncherEmpty = false;
         private bool fakeAmmoGiven = false;
+        private bool isReloading = false;
 
         protected override void SubscribeEvents()
         {
@@ -70,6 +66,9 @@ namespace SnivysUltimatePackageOneConfig.Custom.Items.Firearms
                     ev.Player.AddAmmo(AmmoType.Nato762, 1);
                     grenadeLauncherEmpty = true;
                 }
+
+                if (!AllowFiringDuringReload && isReloading)
+                    ev.IsAllowed = false;
             }
 
             Vector3 position = ev.Player.CameraTransform.TransformPoint(new Vector3(0.0715f, 0.0225f, 0.45f));
@@ -99,6 +98,7 @@ namespace SnivysUltimatePackageOneConfig.Custom.Items.Firearms
         {
             if (!Check(ev.Player.CurrentItem))
                 return;
+            isReloading = true;
             if (UseGrenadesToReload)
             {
                 if (!(ev.Player.CurrentItem is Firearm firearm) || firearm.MagazineAmmo >= ClipSize)
@@ -160,6 +160,7 @@ namespace SnivysUltimatePackageOneConfig.Custom.Items.Firearms
                 firearm.MagazineAmmo = ClipSize;
                 grenadeLauncherEmpty = false;
                 fakeAmmoGiven = false;
+                isReloading = false;
             }
         }
 
@@ -202,4 +203,4 @@ namespace SnivysUltimatePackageOneConfig.Custom.Items.Firearms
             }
         }
     }
-}*/
+}

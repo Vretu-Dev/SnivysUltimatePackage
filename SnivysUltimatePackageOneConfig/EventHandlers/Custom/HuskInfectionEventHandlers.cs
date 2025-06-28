@@ -97,18 +97,23 @@ namespace SnivysUltimatePackageOneConfig.EventHandlers.Custom
 
         public void OnVoiceChatting(VoiceChattingEventArgs ev)
         {
-            if (!PlayersMutedDueToHuskInfection.Contains(ev.Player)) return;
-            if (!PlayersWithHuskInfection.ContainsKey(ev.Player))
+            if (!PlayersMutedDueToHuskInfection.Contains(ev.Player))
+            {
+                ev.IsAllowed = true;
+            }
+            else if (!PlayersWithHuskInfection.ContainsKey(ev.Player))
             {
                 Log.Debug(
                     $"VVUP Husk Infection: Found inconsistent state for {ev.Player.Nickname}, removing mute effect");
                 PlayersMutedDueToHuskInfection.Remove(ev.Player);
-                return;
+                ev.IsAllowed = true;
             }
-
-            Log.Debug(
-                $"VVUP Husk Infection: {ev.Player.Nickname} is muted due to Husk Infection, preventing voice chat.");
-            ev.IsAllowed = false;
+            else
+            {
+                Log.Debug(
+                    $"VVUP Husk Infection: {ev.Player.Nickname} is muted due to Husk Infection, preventing voice chat.");
+                ev.IsAllowed = false;
+            }
         }
 
         public void OnRoleChange(ChangingRoleEventArgs ev)

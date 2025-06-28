@@ -7,6 +7,7 @@ using Exiled.API.Features.Items;
 using Exiled.CustomRoles.API.Features;
 using MEC;
 using PlayerRoles;
+using UnityEngine;
 
 namespace SnivysUltimatePackageOneConfig.Custom.Abilities.Active
 {
@@ -24,6 +25,21 @@ namespace SnivysUltimatePackageOneConfig.Custom.Abilities.Active
         [Description("Sometimes the players inventory will be dropped, set this to true to automatically give it back")]
         public bool RestorePreviousInventory { get; set; } = false;
 
+        [Description("This allows a player to undisguise into a custom role if true.")]
+        public bool UseCustomRoles { get; set; } = false;
+
+        [Description(
+            "If UseCustomRoles is false, this will determine which normal role the player will undisguise into.")]
+        public RoleTypeId UndisguiseRole { get; set; } = RoleTypeId.Tutorial;
+
+        [Description(
+            "If UseCustomRoles is true, this will determine which custom role the player will undisguise into by Custom Role ID.")]
+        public uint UndisguiseCustomRole { get; set; } = 0;
+
+        [Description("If true, the player's position will be saved and restored after the ability is used, useful for Custom Roles since those will always set to the custom role spawn point.")]
+        public bool SavePosition { get; set; } = true;
+        
+
         protected override void AbilityUsed(Player player)
         {
             Log.Debug($"VVUP Custom Abilities: Removing {player.Nickname} disguise");
@@ -32,7 +48,7 @@ namespace SnivysUltimatePackageOneConfig.Custom.Abilities.Active
             var ammoCount = player.Ammo.ToDictionary(ammo => ammo.Key, ammo => ammo.Value);
 
 
-            if (player.Role == RoleTypeId.ClassD || player.Role == RoleTypeId.ChaosConscript ||
+            /*if (player.Role == RoleTypeId.ClassD || player.Role == RoleTypeId.ChaosConscript ||
                 player.Role == RoleTypeId.ChaosMarauder || player.Role == RoleTypeId.ChaosRepressor ||
                 player.Role == RoleTypeId.ChaosRifleman)
             {
@@ -43,7 +59,32 @@ namespace SnivysUltimatePackageOneConfig.Custom.Abilities.Active
                      player.Role == RoleTypeId.NtfCaptain || player.Role == RoleTypeId.NtfPrivate ||
                      player.Role == RoleTypeId.NtfSergeant || player.Role == RoleTypeId.NtfSpecialist)
                 player.Role.Set(RoleTypeId.ChaosRifleman, !RestorePreviousInventory ? RoleSpawnFlags.None : RoleSpawnFlags.AssignInventory);
+            */
+            Vector3 savedPosition = player.Position;
+            if (UseCustomRoles)
+            {
+                CustomRole.Get(UndisguiseCustomRole)?.AddRole(player);
+                if (SavePosition)
+                    Timing.CallDelayed(0.25f, () => player.Position = savedPosition);
 
+                Log.Debug($"VVUP Custom Abilities: {player.Nickname} undisguised into custom role into {CustomRole.Get(UndisguiseCustomRole)?.Name})");
+            }
+            else
+            {
+                RoleSpawnFlags spawnFlags;
+
+                if (SavePosition && RestorePreviousInventory)
+                    spawnFlags = RoleSpawnFlags.All;
+                else if (SavePosition)
+                    spawnFlags = RoleSpawnFlags.AssignInventory;
+                else if (RestorePreviousInventory)
+                    spawnFlags = RoleSpawnFlags.UseSpawnpoint;
+                else
+                    spawnFlags = RoleSpawnFlags.None;
+                player.Role.Set(UndisguiseRole, spawnFlags);
+                Log.Debug($"VVUP Custom Abilities: {player.Nickname} undisguised into role {UndisguiseRole}");
+            }
+            
             if (RestorePreviousInventory)
             {
                 Timing.CallDelayed(1f, () =>

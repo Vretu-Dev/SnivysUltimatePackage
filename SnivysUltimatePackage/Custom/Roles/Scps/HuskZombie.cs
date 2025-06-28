@@ -19,7 +19,7 @@ namespace SnivysUltimatePackage.Custom.Roles.Scps
         public override string CustomInfo { get; set; } = "Husk";
         public override RoleTypeId Role { get; set; } = RoleTypeId.Scp0492;
         
-        public StartTeam StartTeam { get; set; } = StartTeam.Scp | StartTeam.Revived;
+        public StartTeam StartTeam { get; set; } = StartTeam.Other;
 
         public override List<CustomAbility> CustomAbilities { get; set; } = new List<CustomAbility>
         {

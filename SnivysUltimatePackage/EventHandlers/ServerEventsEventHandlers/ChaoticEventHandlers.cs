@@ -13,7 +13,6 @@ using MEC;
 using PlayerRoles;
 using SnivysUltimatePackage.Configs.ServerEventsConfigs;
 using UnityEngine;
-using Broadcast = Exiled.API.Features.Broadcast;
 using Cassie = Exiled.API.Features.Cassie;
 using Item = Exiled.API.Features.Items.Item;
 using Map = Exiled.API.Features.Map;
@@ -88,8 +87,7 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
                                 if (player.Role.Team != Team.SCPs || player.Role.Team != Team.Dead)
                                 {
                                     Log.Debug($"VVUP Server Events, Chaotic: Showing Broadcast to {player.Nickname} saying their items got stolen");
-                                    player.Broadcast(new Exiled.API.Features.Broadcast(_config.ItemStolenText,
-                                        (ushort)_config.BroadcastDisplayTime));
+                                    player.Broadcast((ushort)_config.BroadcastDisplayTime, _config.ItemStolenText);
                                     Log.Debug($"VVUP Server Events, Chaotic: Clearing Items from {player.Nickname}");
                                     player.ClearItems();
                                 }
@@ -121,7 +119,6 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
                                     Log.Debug($"VVUP Server Events, Chaotic: Deciding if {player.Nickname} gets a Custom Item or a Regular Item");
                                     if (_config.GiveRandomItemCustomitems)
                                     {
-
                                         switch (randomItemGiveRng)
                                         {
                                             case 1:
@@ -146,8 +143,7 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
                                         player.AddItem(randomStandardItem);
                                     }
 
-                                    player.Broadcast(new Exiled.API.Features.Broadcast(_config.GiveRandomItemText,
-                                        (ushort)_config.BroadcastDisplayTime));
+                                    player.Broadcast((ushort)_config.BroadcastDisplayTime, _config.GiveRandomItemText);
                                 }
                             }
                         }
@@ -188,8 +184,7 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
                                     player.Teleport(Room.List.GetRandomValue());
                                 }
 
-                                player.Broadcast(new Exiled.API.Features.Broadcast(_config.RandomTeleportText,
-                                    (ushort)_config.BroadcastDisplayTime));
+                                player.Broadcast((ushort)_config.BroadcastDisplayTime, _config.RandomTeleportText);
                             }
                         }
 
@@ -223,8 +218,8 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
                                 foreach (PlayerAPI player in PlayerAPI.List)
                                 {
                                     Log.Debug($"VVUP Server Events, Chaotic: Displaying the fake autonuke start message to {player.Nickname}");
-                                    player.Broadcast(new Exiled.API.Features.Broadcast(_config.FakeAutoNukeStartText,
-                                        (ushort)_config.BroadcastDisplayTime));
+                                    player.Broadcast((ushort)_config.BroadcastDisplayTime,
+                                        _config.FakeAutoNukeStartText);
                                 }
 
                                 Log.Debug("VVUP Server Events, Chaotic: Starting a Coroutine to track warhead timing");
@@ -258,9 +253,8 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
                                         {
                                             Log.Debug($"VVUP Server Events, Chaotic: Taking away {player.Nickname}'s {item}");
                                             player.RemoveItem(item);
-                                            player.Broadcast(new Exiled.API.Features.Broadcast(
-                                                _config.RemoveWeaponsText,
-                                                (ushort)_config.BroadcastDisplayTime));
+                                            player.Broadcast((ushort)_config.BroadcastDisplayTime, 
+                                                _config.RemoveWeaponsText);
                                         }
                                     }
                                 }
@@ -294,9 +288,8 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
                                             if (IsWeapon(item))
                                             {
                                                 Log.Debug($"VVUP Server Events, Chaotic: {player.Nickname} has a weapon, not granting another");
-                                                player.Broadcast(new Exiled.API.Features.Broadcast(
-                                                    _config.GiveRandomWeaponsTextFail,
-                                                    (ushort)_config.BroadcastDisplayTime));
+                                                player.Broadcast((ushort)_config.BroadcastDisplayTime,
+                                                    _config.GiveRandomWeaponsTextFail);
                                             }
 
                                             else
@@ -322,9 +315,8 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
                                                             random.Next(_config.GiveRandomWeaponsDefined.Count)]);
                                                 }
 
-                                                player.Broadcast(new Exiled.API.Features.Broadcast(
-                                                    _config.GiveRandomWeaponsText,
-                                                    (ushort)_config.BroadcastDisplayTime));
+                                                player.Broadcast((ushort)_config.BroadcastDisplayTime,
+                                                    _config.GiveRandomWeaponsText);
                                             }
                                         }
                                     }
@@ -334,9 +326,8 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
                                         if (player.IsInventoryFull)
                                         {
                                             Log.Debug($"VVUP Server Events, Chaotic: {player.Nickname}'s inventory is full, not giving any weapon");
-                                            player.Broadcast(new Exiled.API.Features.Broadcast(
-                                                _config.GiveRandomWeaponsTextFail,
-                                                (ushort)_config.BroadcastDisplayTime));
+                                            player.Broadcast((ushort)_config.BroadcastDisplayTime,
+                                                _config.GiveRandomWeaponsTextFail);
                                         }
 
                                         else
@@ -362,9 +353,8 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
                                                         random.Next(_config.GiveRandomWeaponsDefined.Count)]);
                                             }
 
-                                            player.Broadcast(new Exiled.API.Features.Broadcast(
-                                                _config.GiveRandomWeaponsText,
-                                                (ushort)_config.BroadcastDisplayTime));
+                                            player.Broadcast((ushort)_config.BroadcastDisplayTime,
+                                                _config.GiveRandomWeaponsText);
                                         }
                                     }
                                 }
@@ -394,8 +384,7 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
                                     {
                                         Log.Debug($"VVUP Server Events, Chaotic: Setting {player.Nickname}'s health to {_config.DeathMatchHealth}");
                                         player.Health = _config.DeathMatchHealth;
-                                        player.Broadcast(new Exiled.API.Features.Broadcast(_config.DeathMatchText,
-                                            (ushort)_config.BroadcastDisplayTime));
+                                        player.Broadcast((ushort)_config.BroadcastDisplayTime, _config.DeathMatchText);
                                     }
                                 }
 
@@ -404,8 +393,7 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
                                     Log.Debug("VVUP Server Events, Chaotic: SCPs are affected");
                                     Log.Debug($"VVUP Server Events, Chaotic: Setting {player.Nickname}'s health to {_config.DeathMatchHealth}");
                                     player.Health = _config.DeathMatchHealth;
-                                    player.Broadcast(new Exiled.API.Features.Broadcast(_config.DeathMatchText,
-                                        (ushort)_config.BroadcastDisplayTime));
+                                    player.Broadcast((ushort)_config.BroadcastDisplayTime, _config.DeathMatchText);
                                 }
                             }
                         }
@@ -523,16 +511,14 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
                             PlayerAPI FBIOpenUpTarget = GetRandomPlayerFBI();
                             Log.Debug(
                                 $"VVUP Server Events, Chaotic: Showing {FBIOpenUpTarget} the warning message they are about to have the foundation teleport to them");
-                            FBIOpenUpTarget.Broadcast(new Exiled.API.Features.Broadcast(_config.FBIOpenUpTargetText,
-                                (ushort)_config.BroadcastDisplayTime));
+                            FBIOpenUpTarget.Broadcast((ushort)_config.BroadcastDisplayTime, _config.FBIOpenUpTargetText);
                             yield return Timing.WaitForSeconds(_config.FBITeleportTime);
                             foreach (PlayerAPI player in PlayerAPI.List)
                             {
                                 if (player.Role.Team == Team.FoundationForces)
                                 {
                                     Log.Debug($"VVUP Server Events, Chaotic: {player.Nickname} is on the MTF, Showing warning text");
-                                    player.Broadcast(new Exiled.API.Features.Broadcast(_config.FBIOpenUpMTFText,
-                                        (ushort)_config.BroadcastDisplayTime));
+                                    player.Broadcast((ushort)_config.BroadcastDisplayTime, _config.FBIOpenUpMTFText);
                                     Log.Debug($"VVUP Server Events, Chaotic: Teleporting {player.Nickname} to {FBIOpenUpTarget}");
                                     player.Teleport(FBIOpenUpTarget.Position);
                                 }
@@ -555,8 +541,7 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
                             foreach (PlayerAPI player in PlayerAPI.List)
                             {
                                 Log.Debug($"VVUP Server Events, Chaotic: Grenade feet warning being shown to {player.Nickname}");
-                                player.Broadcast(new Exiled.API.Features.Broadcast(_config.GrenadeFeetText,
-                                    (ushort)_config.BroadcastDisplayTime));
+                                player.Broadcast((ushort)_config.BroadcastDisplayTime, _config.GrenadeFeetText);
                             }
 
                             yield return Timing.WaitForSeconds(random.Next(minValue: 1, maxValue: 50));
@@ -595,8 +580,7 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
                                 if (player.Role.Team != Team.SCPs)
                                 {
                                     Log.Debug($"VVUP Server Events, Chaotic: Displaying Unsafe Medical Items Warning to {player.Nickname}");
-                                    player.Broadcast(new Exiled.API.Features.Broadcast(_config.UnsafeMedicalItemsText,
-                                        (ushort)_config.BroadcastDisplayTime));
+                                    player.Broadcast((ushort)_config.BroadcastDisplayTime, _config.UnsafeMedicalItemsText);
                                 }
                             }
 
@@ -613,9 +597,7 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
                                 if (player.Role.Team != Team.SCPs)
                                 {
                                     Log.Debug($"VVUP Server Events, Chaotic: Displaying Unsafe Medical Items Warning to {player.Nickname}");
-                                    player.Broadcast(new Exiled.API.Features.Broadcast(
-                                        _config.UnsafeMedicalItemsSafeToUseText,
-                                        (ushort)_config.BroadcastDisplayTime));
+                                    player.Broadcast((ushort)_config.BroadcastDisplayTime, _config.UnsafeMedicalItemsSafeToUseText);
                                 }
                             }
                         }
@@ -773,8 +755,7 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
                             {
                                 Log.Debug($"VVUP Server Events, Chaotic: Spawning a tantrum where {player.Nickname} is at");
                                 TantrumHazard.PlaceTantrum(player.Position);
-                                player.Broadcast(new Exiled.API.Features.Broadcast(_config.PlayerShittingPantsBroadcast,
-                                    (ushort)_config.BroadcastDisplayTime));
+                                player.Broadcast((ushort)_config.BroadcastDisplayTime, _config.PlayerShittingPantsBroadcast);
                             }
                         }
                         else
@@ -794,9 +775,7 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
                             foreach (PlayerAPI player in PlayerAPI.List)
                             {
                                 Log.Debug($"VVUP Server Events, Chaotic: Showing Router Kicking Simulator start message to {player.Nickname}");
-                                player.Broadcast(new Exiled.API.Features.Broadcast(
-                                    _config.RouterKickingSimulatorStartBroadcast,
-                                    (ushort)_config.BroadcastDisplayTime));
+                                player.Broadcast((ushort)_config.BroadcastDisplayTime, _config.RouterKickingSimulatorStartBroadcast);
                             }
 
                             if (_config.RouterKickingSimulatorDisablesElevators)
@@ -851,8 +830,7 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
                             foreach (PlayerAPI player in PlayerAPI.List)
                             {
                                 Log.Debug($"VVUP Server Events, Chaotic: Showing Super Speed message to {player.Nickname}");
-                                player.Broadcast(new Exiled.API.Features.Broadcast(_config.SuperSpeedBroadcast,
-                                    (ushort)_config.BroadcastDisplayTime));
+                                player.Broadcast((ushort)_config.BroadcastDisplayTime, _config.SuperSpeedBroadcast);
                                 Log.Debug(
                                     $"VVUP Server Events, Chaotic: Giving super speed to {player.Nickname}, with an intensity of {_config.SuperSpeedIntensity} & a duration of {_config.SuperSpeedDuration}");
                                 player.EnableEffect(EffectType.MovementBoost, _config.SuperSpeedIntensity,
@@ -878,8 +856,7 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
                                 {
                                     Log.Debug($"VVUP Server Events, Chaotic: Dropping items for {player.Nickname}");
                                     player.DropItems();
-                                    player.Broadcast(new Exiled.API.Features.Broadcast(_config.DropInventoryText,
-                                        (ushort)_config.BroadcastDisplayTime));
+                                    player.Broadcast((ushort)_config.BroadcastDisplayTime, _config.DropInventoryText);
                                 }
                             }
                         }
@@ -910,8 +887,8 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
                                 player.Position = ally.Position;
                                 teleportedPlayers.Add(player);
                                 teleportedPlayers.Add(ally);
-                                player.Broadcast(new Exiled.API.Features.Broadcast(_config.TeleportToAllyPlayerTeleportedText, (ushort)_config.BroadcastDisplayTime));
-                                player.Broadcast(new Exiled.API.Features.Broadcast(_config.TeleportToAllyNewAllyText, (ushort)_config.BroadcastDisplayTime));
+                                player.Broadcast((ushort)_config.BroadcastDisplayTime, _config.TeleportToAllyPlayerTeleportedText);
+                                player.Broadcast((ushort)_config.BroadcastDisplayTime, _config.TeleportToAllyNewAllyText);
                             }
                         }
                         else
@@ -942,11 +919,9 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
                             foreach (PlayerAPI player in PlayerAPI.List)
                             {
                                 if (_config.SimonSaysAffectsScps && player.Role.Side != Side.None)
-                                    player.Broadcast(new Exiled.API.Features.Broadcast(_config.SimonSaysJumpText,
-                                    (ushort)_config.SimonSaysActionTime));
+                                    player.Broadcast((ushort)_config.BroadcastDisplayTime, _config.SimonSaysJumpText);
                                 else if (player.Role.Side != Side.Scp && player.Role.Side != Side.None)
-                                    player.Broadcast(new Exiled.API.Features.Broadcast(_config.SimonSaysJumpText,
-                                        (ushort)_config.SimonSaysActionTime));
+                                    player.Broadcast((ushort)_config.BroadcastDisplayTime, _config.SimonSaysJumpText);
                             }
 
                             Timing.CallDelayed(_config.SimonSaysActionTime, () =>
@@ -959,14 +934,12 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
                                         continue;
                                     if (_config.SimonSaysAffectsScps && player.Role.Side != Side.None)
                                     {
-                                        player.Broadcast(new Exiled.API.Features.Broadcast(_config.SimonSaysPunishmentText,
-                                            (ushort)_config.BroadcastDisplayTime));
+                                        player.Broadcast((ushort)_config.BroadcastDisplayTime, _config.SimonSaysPunishmentText);
                                         player.Hurt(_config.SimonSaysDamagePunishment);
                                     }
                                     else if (player.Role.Side != Side.Scp && player.Role.Side != Side.None)
                                     {
-                                        player.Broadcast(new Exiled.API.Features.Broadcast(_config.SimonSaysPunishmentText,
-                                            (ushort)_config.BroadcastDisplayTime));
+                                        player.Broadcast((ushort)_config.BroadcastDisplayTime, _config.SimonSaysPunishmentText);
                                         player.Hurt(_config.SimonSaysDamagePunishment);
                                     }
                                 }
@@ -1000,11 +973,9 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
                             foreach (PlayerAPI player in PlayerAPI.List)
                             {
                                 if (_config.SimonSaysAffectsScps && player.Role.Side != Side.None)
-                                    player.Broadcast(new Exiled.API.Features.Broadcast(_config.SomeoneSaysJumpText,
-                                    (ushort)_config.SimonSaysActionTime));
+                                    player.Broadcast((ushort)_config.BroadcastDisplayTime, _config.SomeoneSaysJumpText);
                                 else if (player.Role.Side != Side.Scp && player.Role.Side != Side.None)
-                                    player.Broadcast(new Exiled.API.Features.Broadcast(_config.SomeoneSaysJumpText,
-                                        (ushort)_config.SimonSaysActionTime));
+                                    player.Broadcast((ushort)_config.BroadcastDisplayTime, _config.SomeoneSaysJumpText);
                             }
 
                             Timing.CallDelayed(_config.SimonSaysActionTime, () =>
@@ -1017,16 +988,12 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
                                         continue;
                                     if (_config.SimonSaysAffectsScps && player.Role.Side != Side.None)
                                     {
-                                        player.Broadcast(new Exiled.API.Features.Broadcast(
-                                            _config.SomeoneSaysPunishmentText,
-                                            (ushort)_config.BroadcastDisplayTime));
+                                        player.Broadcast((ushort)_config.BroadcastDisplayTime, _config.SomeoneSaysPunishmentText);
                                         player.Hurt(_config.SimonSaysDamagePunishment);
                                     }
                                     else if (player.Role.Side != Side.Scp && player.Role.Side != Side.None)
                                     {
-                                        player.Broadcast(new Exiled.API.Features.Broadcast(
-                                            _config.SomeoneSaysPunishmentText,
-                                            (ushort)_config.BroadcastDisplayTime));
+                                        player.Broadcast((ushort)_config.BroadcastDisplayTime, _config.SomeoneSaysPunishmentText);
                                         player.Hurt(_config.SimonSaysDamagePunishment);
                                     }
                                 }
@@ -1077,8 +1044,7 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
                     foreach (PlayerAPI player in PlayerAPI.List)
                     {
                         Log.Debug($"VVUP Server Events, Chaotic: Displaying the fake out message to {player.Nickname}");
-                        player.Broadcast(new Exiled.API.Features.Broadcast(_config.FakeAutoNukeFakeoutText,
-                            (ushort)_config.BroadcastDisplayTime));
+                        player.Broadcast((ushort)_config.BroadcastDisplayTime, _config.FakeAutoNukeFakeoutText);
                     }
 
                     _ceFakeWarheadEvent = false;
@@ -1202,9 +1168,7 @@ namespace SnivysUltimatePackage.EventHandlers.ServerEventsEventHandlers
                     foreach (PlayerAPI player in PlayerAPI.List)
                     {
                         Log.Debug($"VVUP Server Events, Chaotic: Showing Router Kicking Simulator end message to {player.Nickname}");
-                        player.Broadcast(new Exiled.API.Features.Broadcast(
-                            _config.RouterKickingSimulatorEndBroadcast,
-                            (ushort)_config.BroadcastDisplayTime));
+                        player.Broadcast((ushort)_config.BroadcastDisplayTime, _config.RouterKickingSimulatorEndBroadcast);
                     }
 
                     if (_config.RouterKickingSimulatorDisablesElevators)

@@ -134,5 +134,10 @@ namespace SnivysUltimatePackageOneConfig.Configs.CustomConfigs
         {
             new HuskZombie(),
         };
+        
+        public List<TeleportZombie> TeleportZombies { get; set; } = new()
+        {
+            new TeleportZombie()
+        };
     }
 }

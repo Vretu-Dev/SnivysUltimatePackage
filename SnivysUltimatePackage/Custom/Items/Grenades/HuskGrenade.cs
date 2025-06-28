@@ -86,7 +86,7 @@ namespace SnivysUltimatePackage.Custom.Items.Grenades
                     if (HuskInfectionEventHandlers.PlayersWithHuskInfection.ContainsKey(player))
                         continue;
                     Log.Debug($"VVUP Custom Items: HuskGrenade, Husk Grenade infecting {player.Nickname}.");
-                    HuskInfectionEventHandlers huskInfection = new HuskInfectionEventHandlers(ev.Player, InfectionStageOneDelay, InfectionStageTwoDelay, 
+                    HuskInfectionEventHandlers huskInfection = new HuskInfectionEventHandlers(player, InfectionStageOneDelay, InfectionStageTwoDelay, 
                         InfectionText, UseHints, TextDisplayTime, HuskZombieCustomRoleId, HuskTakeOverDeathReason);
                 }
             }

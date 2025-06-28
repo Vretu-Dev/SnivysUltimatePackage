@@ -93,10 +93,12 @@ namespace SnivysUltimatePackageOneConfig.Custom.Items.Other
         {
             base.SubscribeEvents();
             Exiled.Events.Handlers.Player.TogglingRadio += OnTogglingRadio;
+            //Exiled.Events.Handlers.Player.VoiceChatting += OnVoiceChat;
         }
         protected override void UnsubscribeEvents()
         {
             Exiled.Events.Handlers.Player.TogglingRadio -= OnTogglingRadio;
+            //Exiled.Events.Handlers.Player.VoiceChatting -= OnVoiceChat;
             base.UnsubscribeEvents();
         }
 
@@ -174,7 +176,7 @@ namespace SnivysUltimatePackageOneConfig.Custom.Items.Other
             Intercom.PlaySound(true);
             Intercom.State = IntercomState.Cooldown;
             Intercom.DisplayText = IntercomRoomPortableIntercomInUseText;
-            ev.Player.VoiceChannel = VoiceChatChannel.Intercom;
+            Timing.CallDelayed(1.5f, () => Server.ExecuteCommand($"/icom {ev.Player.Id} 1"));
             _portableIntercomCoroutine = Timing.RunCoroutine(PortableIntercomTiming(ev.Player));
         }
         private IEnumerator<float> PortableIntercomTiming(Player player)
@@ -189,7 +191,7 @@ namespace SnivysUltimatePackageOneConfig.Custom.Items.Other
                     Intercom.PlaySound(false);
                     Intercom.DisplayText = string.Empty;
                     Intercom.State = IntercomState.Cooldown;
-                    player.VoiceChannel = !player.IsAlive ? VoiceChatChannel.Spectator : VoiceChatChannel.Proximity;
+                    Server.ExecuteCommand($"/icom {player.Id} 0");
                     yield break;
                 }
                 yield return Timing.WaitForSeconds(1f);
@@ -204,7 +206,7 @@ namespace SnivysUltimatePackageOneConfig.Custom.Items.Other
             Log.Debug($"VVUP Custom Items, Portable Intercom: {player.Nickname} portable intercom has ended, removing from list and ending the intercom.");
             isPortableIntercomActive = false;
             Intercom.PlaySound(false);
-            player.VoiceChannel = VoiceChatChannel.Proximity;
+            Server.ExecuteCommand($"/icom {player.Id} 0");
             _playerWithPortableIntercom.Remove(player);
             yield break;
         }

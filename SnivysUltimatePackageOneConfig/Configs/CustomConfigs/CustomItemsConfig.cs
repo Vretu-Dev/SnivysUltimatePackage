@@ -144,10 +144,11 @@ namespace SnivysUltimatePackageOneConfig.Configs.CustomConfigs
             new OcfPrototypeKeycardRefined()
         };
         
-        /*public List<GrenadeLauncherImpact> GrenadeLaunchersImpacts { get; private set; } = new()
+        [Description("An unsupported item, there's going to be a lot of issues that I wont fix.")]
+        public List<GrenadeLauncherImpact> GrenadeLaunchersImpacts { get; private set; } = new()
         {
             new GrenadeLauncherImpact()
-        };*/
+        };
         
         public List<PortableIntercom> PortableIntercoms { get; private set; } = new()
         {

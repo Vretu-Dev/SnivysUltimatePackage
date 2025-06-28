@@ -1,7 +1,5 @@
 using Exiled.API.Features;
 using Exiled.CustomRoles.API.Features;
-using MEC;
-using UnityEngine;
 
 namespace SnivysUltimatePackage.Custom.Abilities.Passive
 {

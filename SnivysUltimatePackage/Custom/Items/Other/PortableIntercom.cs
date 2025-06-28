@@ -174,7 +174,7 @@ namespace SnivysUltimatePackage.Custom.Items.Other
             Intercom.PlaySound(true);
             Intercom.State = IntercomState.Cooldown;
             Intercom.DisplayText = IntercomRoomPortableIntercomInUseText;
-            ev.Player.VoiceChannel = VoiceChatChannel.Intercom;
+            Timing.CallDelayed(1.5f, () => Server.ExecuteCommand($"/icom {ev.Player.Id} 1"));
             _portableIntercomCoroutine = Timing.RunCoroutine(PortableIntercomTiming(ev.Player));
         }
         private IEnumerator<float> PortableIntercomTiming(Player player)
@@ -189,7 +189,7 @@ namespace SnivysUltimatePackage.Custom.Items.Other
                     Intercom.PlaySound(false);
                     Intercom.DisplayText = string.Empty;
                     Intercom.State = IntercomState.Cooldown;
-                    player.VoiceChannel = !player.IsAlive ? VoiceChatChannel.Spectator : VoiceChatChannel.Proximity;
+                    Server.ExecuteCommand($"/icom {player.Id} 0");
                     yield break;
                 }
                 yield return Timing.WaitForSeconds(1f);
@@ -204,8 +204,8 @@ namespace SnivysUltimatePackage.Custom.Items.Other
             Log.Debug($"VVUP Custom Items, Portable Intercom: {player.Nickname} portable intercom has ended, removing from list and ending the intercom.");
             isPortableIntercomActive = false;
             Intercom.PlaySound(false);
-            player.VoiceChannel = VoiceChatChannel.Proximity;
             _playerWithPortableIntercom.Remove(player);
+            Server.ExecuteCommand($"/icom {player.Id} 0");
             yield break;
         }
         private string ProcessStringVaribles(string text, float time)

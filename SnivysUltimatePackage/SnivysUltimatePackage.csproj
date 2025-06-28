@@ -159,6 +159,7 @@
         <Compile Include="Custom\Abilities\Active\HealingMist.cs" />
         <Compile Include="Custom\Abilities\Active\RemoveDisguise.cs" />
         <Compile Include="Custom\Abilities\Active\RevivingMist.cs" />
+        <Compile Include="Custom\Abilities\Active\Teleport.cs" />
         <Compile Include="Custom\Abilities\Passive\AbilityRemover.cs" />
         <Compile Include="Custom\Abilities\Passive\ApplyEffectOnHit.cs" />
         <Compile Include="Custom\Abilities\Passive\ApplyHuskInfection.cs" />
@@ -235,6 +236,7 @@
         <Compile Include="Custom\Roles\Scps\MedicZombie.cs" />
         <Compile Include="Custom\Roles\Scps\PoisonousZombie.cs" />
         <Compile Include="Custom\Roles\Scps\SpeedsterZombie.cs" />
+        <Compile Include="Custom\Roles\Scps\TeleportZombie.cs" />
         <Compile Include="EventHandlers\Custom\CustomRoleEventHandler.cs" />
         <Compile Include="EventHandlers\Custom\CustomRoleMethods.cs" />
         <Compile Include="EventHandlers\Custom\HuskInfectionEventHandlers.cs" />
