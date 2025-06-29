@@ -49,5 +49,7 @@ namespace SnivysUltimatePackage.Custom.Roles.Foundation
                 },
             },
         };
+        
+        public override string AbilityUsage { get; set; } = "You have no special abilities";
     }
 }

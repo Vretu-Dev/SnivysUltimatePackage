@@ -41,9 +41,9 @@ namespace SnivysUltimatePackageOneConfig.Custom.Roles.ClassD
                 Name = "Custom Role Escape [Passive]",
                 Description = "If you escape as a Class-D Tank, this will make sure you get your inventory.",
                 EscapeToRegularRole = true,
+                RegularRole = RoleTypeId.ChaosConscript,
                 AllowCuffedCustomRoleChange = false,
                 AllowUncuffedCustomRoleChange = false,
-                RegularRole = RoleTypeId.ChaosConscript,
                 SaveInventory = true
             },
         };
@@ -51,5 +51,7 @@ namespace SnivysUltimatePackageOneConfig.Custom.Roles.ClassD
         {
             Limit = 1,
         };
+        
+        public override string AbilityUsage { get; set; } = "You have passive abilities. This does not require button activation";
     }
 }

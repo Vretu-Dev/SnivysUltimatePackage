@@ -78,5 +78,7 @@ namespace SnivysUltimatePackage.Custom.Roles.Foundation
                 ProtectionAmount = 45,
             },
         };
+        
+        public override string AbilityUsage { get; set; } = "Use your Noclip Button [Left Alt] to swap abilities and to activate. Tap Twice to Swap. Tap Once to activate.";
     }
 }

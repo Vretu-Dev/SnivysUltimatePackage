@@ -64,5 +64,7 @@ namespace SnivysUltimatePackageOneConfig.Custom.Roles.Foundation
                 AmmoType.Nato9, 10
             },
         };
+        
+        public override string AbilityUsage { get; set; } = "You have no special abilities";
     }
 }

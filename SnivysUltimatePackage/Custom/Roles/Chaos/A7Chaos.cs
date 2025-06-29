@@ -57,5 +57,7 @@ namespace SnivysUltimatePackage.Custom.Roles.Chaos
                 AmmoType.Nato762, 120
             },
         };
+
+        public override string AbilityUsage { get; set; } = "You have no special abilities";
     }
 }

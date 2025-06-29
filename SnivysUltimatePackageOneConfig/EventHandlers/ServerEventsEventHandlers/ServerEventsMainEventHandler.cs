@@ -462,8 +462,10 @@ namespace SnivysUltimatePackageOneConfig.EventHandlers.ServerEventsEventHandlers
         {
             if (ev.Player == null)
                 return;
+            if (ev.Player.NetworkIdentity == null)
+                return;
             Log.Debug($"VVUP Server Events: Setting {ev.Player.Nickname} size to {Plugin.Instance.Config.ServerEventsMasterConfig.GravityConfig.GravityChanges}");
-            PlayerLab.Get(ev.Player.NetworkIdentity)!.Gravity = Plugin.Instance.Config.ServerEventsMasterConfig.GravityConfig.GravityChanges;
+            PlayerLab.Get(ev.Player.NetworkIdentity).Gravity = Plugin.Instance.Config.ServerEventsMasterConfig.GravityConfig.GravityChanges;
         }
     }
 }

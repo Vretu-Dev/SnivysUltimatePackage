@@ -65,5 +65,7 @@ namespace SnivysUltimatePackageOneConfig.Custom.Roles.Chaos
                 SavePosition = true,
             },
         };
+        
+        public override string AbilityUsage { get; set; } = "Use your Noclip Button [Left Alt] to swap abilities and to activate. Tap Twice to Swap. Tap Once to activate.";
     }
 }

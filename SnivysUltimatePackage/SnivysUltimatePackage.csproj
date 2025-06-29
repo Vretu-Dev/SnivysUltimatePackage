@@ -163,11 +163,13 @@
         <Compile Include="Custom\Abilities\Passive\AbilityRemover.cs" />
         <Compile Include="Custom\Abilities\Passive\ApplyEffectOnHit.cs" />
         <Compile Include="Custom\Abilities\Passive\ApplyHuskInfection.cs" />
+        <Compile Include="Custom\Abilities\Passive\CustomHume.cs" />
         <Compile Include="Custom\Abilities\Passive\CustomRoleEscape.cs" />
         <Compile Include="Custom\Abilities\Passive\DebugAbility.cs" />
         <Compile Include="Custom\Abilities\Passive\Disguised.cs" />
         <Compile Include="Custom\Abilities\Passive\EffectEnabler.cs" />
         <Compile Include="Custom\Abilities\Passive\GivingCandyAbility.cs" />
+        <Compile Include="Custom\Abilities\Passive\GravityAdjuster.cs" />
         <Compile Include="Custom\Abilities\Passive\HealOnKill.cs" />
         <Compile Include="Custom\Abilities\Passive\InfiniteStamina.cs" />
         <Compile Include="Custom\Abilities\Passive\LifeSteal.cs" />

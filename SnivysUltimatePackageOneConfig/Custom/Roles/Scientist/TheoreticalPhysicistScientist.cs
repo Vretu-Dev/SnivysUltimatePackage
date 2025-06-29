@@ -64,5 +64,7 @@ namespace SnivysUltimatePackageOneConfig.Custom.Roles.Scientist
                 SaveInventory = true
             },
         };
+        
+        public override string AbilityUsage { get; set; } = "You have passive abilities. This does not require button activation";
     }
 }

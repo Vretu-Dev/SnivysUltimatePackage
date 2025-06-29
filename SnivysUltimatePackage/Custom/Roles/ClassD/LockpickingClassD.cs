@@ -40,5 +40,7 @@ namespace SnivysUltimatePackage.Custom.Roles.ClassD
         {
             Limit = 1,
         };
+        
+        public override string AbilityUsage { get; set; } = "Use your Noclip Button [Left Alt] to swap abilities and to activate. Tap Twice to Swap. Tap Once to activate.";
     }
 }

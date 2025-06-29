@@ -5,7 +5,6 @@ using Exiled.CustomRoles.API.Features;
 using PlayerRoles;
 using SnivysUltimatePackageOneConfig.API;
 using SnivysUltimatePackageOneConfig.Custom.Abilities.Passive;
-using UnityEngine;
 
 namespace SnivysUltimatePackageOneConfig.Custom.Roles.Scps
 {
@@ -32,5 +31,7 @@ namespace SnivysUltimatePackageOneConfig.Custom.Roles.Scps
         {
             Limit = 0,
         };
+        
+        public override string AbilityUsage { get; set; } = "You have passive abilities. This does not require button activation";
     }
 }

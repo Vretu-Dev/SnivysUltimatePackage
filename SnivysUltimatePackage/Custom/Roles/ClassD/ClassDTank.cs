@@ -51,5 +51,7 @@ namespace SnivysUltimatePackage.Custom.Roles.ClassD
         {
             Limit = 1,
         };
+        
+        public override string AbilityUsage { get; set; } = "You have passive abilities. This does not require button activation";
     }
 }
