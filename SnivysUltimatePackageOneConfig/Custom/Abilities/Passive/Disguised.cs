@@ -20,7 +20,7 @@ namespace SnivysUltimatePackageOneConfig.Custom.Abilities.Passive
             "The text displayed to any attacker who is trying to hurt someone who is disguised, but is on their team")]
         public string DisguisedFriendlyFireText { get; set; } = "This player is on your side";
         
-        [Description("The true team of the disguised player. NTF or MTF = MTF/Scientists, CI = Chaos Insurgency/Class-D, SCP = SCPs")]
+        [Description("The true team of the disguised player. Ntf or Mtf = MTF/Scientists, Ci = Chaos Insurgency/Class-D, Scp = SCPs")]
         public TrueTeamEnum DisguisedTrueTeam { get; set; } = TrueTeamEnum.Ntf;
 
         [Description("Should the disguised notifcation be a hint? (True = Hint, False = Broadcast)")]
