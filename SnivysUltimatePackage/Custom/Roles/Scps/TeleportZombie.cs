@@ -25,8 +25,8 @@ namespace SnivysUltimatePackage.Custom.Roles.Scps
         {
             new EffectEnabler()
             {
-                Name = "Speed Boost [Passive]",
-                Description = "Increases your movement speed",
+                Name = "Slowness [Passive]",
+                Description = "Reduces your movement speed",
                 EffectsToApply = new Dictionary<EffectType, byte>()
                 {
                     { EffectType.Slowness, 20 },
