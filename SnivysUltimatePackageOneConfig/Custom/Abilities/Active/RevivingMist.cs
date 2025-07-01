@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using Exiled.API.Enums;
 using Exiled.API.Features;
 using Exiled.API.Features.Attributes;
@@ -27,6 +28,13 @@ namespace SnivysUltimatePackageOneConfig.Custom.Abilities.Active
         public string ReviveMessage { get; set; } = "You have been revived by a Paramedic!";
         public ushort ReviveMessageTime { get; set; } = 5;
         public bool ReviveTeammatesOnly { get; set; } = true;
+        public bool GrantLoadoutOnRevive { get; set; } = false;
+        [Description("If true, the player will be revived to a set role, if false, it will revive to their original role.")]
+        public bool ReviveToSetRole { get; set; } = false;
+        [Description("If ReviveToSetRole is true, this will determine if they revive to a custom role. Otherwise it will be a regular role.")]
+        public bool ReviveToCustomRole { get; set; } = false;
+        public RoleTypeId ReviveBaseRole { get; set; } = RoleTypeId.Tutorial;
+        public uint ReviveCustomRoleId { get; set; } = 25;
 
         protected override void SubscribeEvents()
         {
@@ -80,10 +88,30 @@ namespace SnivysUltimatePackageOneConfig.Custom.Abilities.Active
                     continue;
                 
                 Player player = deadPlayer.Key;
-                player.Role.Set(deadPlayer.Value.Role, RoleSpawnFlags.None);
+                if (ReviveToSetRole)
+                {
+                    if (ReviveToCustomRole)
+                    {
+                        CustomRole.Get(ReviveCustomRoleId)?.AddRole(player);
+                        player.Position = deadPlayer.Value.Position;
+                        if (!GrantLoadoutOnRevive)
+                            player.ClearInventory();
+                        Log.Debug($"VVUP Custom Abilities: Reviving Mist: {player.Nickname} has been revived to custom role id {ReviveCustomRoleId} at position {deadPlayer.Value.Position}");
+                    }
+                    else
+                    {
+                        player.Role.Set(ReviveBaseRole, GrantLoadoutOnRevive ? RoleSpawnFlags.AssignInventory : RoleSpawnFlags.None);
+                        Log.Debug($"VVUP Custom Abilities: Reviving Mist: {player.Nickname} has been revived to role {ReviveBaseRole} at position {deadPlayer.Value.Position}");
+                    }
+                }
+                else
+                {
+                    player.Role.Set(deadPlayer.Value.Role, GrantLoadoutOnRevive ? RoleSpawnFlags.AssignInventory : RoleSpawnFlags.None);
+                    Log.Debug($"VVUP Custom Abilities: Reviving Mist: {player.Nickname} has been revived to their original role {deadPlayer.Value.Role} at position {deadPlayer.Value.Position}");
+                }
                 player.Health = player.MaxHealth * (ReviveHealthPercent / 100f);
                 player.Broadcast(ReviveMessageTime, ReviveMessage);
-                
+                Log.Debug($"VVUP Custom Abilities: Reviving Mist: Showing revive message to {player.Nickname}: {ReviveMessage}");
                 toRemove.Add(player);
             }
             
