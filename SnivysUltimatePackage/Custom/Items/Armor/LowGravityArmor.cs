@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Exiled.API.Enums;
 using Exiled.API.Features;
 using Exiled.API.Features.Attributes;
@@ -101,13 +102,13 @@ namespace SnivysUltimatePackage.Custom.Items.Armor
 
         protected override void OnDroppingItem(DroppingItemEventArgs ev)
         {
-            base.OnDroppingItem(ev);
-            if (_playersWithArmorOn.ContainsKey(ev.Player))
+            if (_playersWithArmorOn.ContainsKey(ev.Player) && !ev.Player.Items.Any(item => Check(item)))
             {
                 PlayerLab.Get(ev.Player.NetworkIdentity)!.Gravity = _playersWithArmorOn[ev.Player];
                 _playersWithArmorOn.Remove(ev.Player);
                 Log.Debug($"VVUP Custom Items: Low Gravity Armor, {ev.Player.Nickname} has taken off Low Gravity Armor, setting gravity back to {PlayerLab.Get(ev.Player.NetworkIdentity)?.Gravity.ToString()}.");
             }
+            base.OnDroppingItem(ev);
         }
 
         private void OnDying(DyingEventArgs ev)
@@ -118,6 +119,17 @@ namespace SnivysUltimatePackage.Custom.Items.Armor
                 _playersWithArmorOn.Remove(ev.Player);
                 Log.Debug($"VVUP Custom Items: Low Gravity Armor, {ev.Player.Nickname} has taken off Low Gravity Armor, setting gravity back to {PlayerLab.Get(ev.Player.NetworkIdentity)?.Gravity.ToString()}.");
             }
+        }
+
+        protected override void OnChanging(ChangingItemEventArgs ev)
+        {
+            if (_playersWithArmorOn.ContainsKey(ev.Player) && !ev.Player.Items.Any(item => Check(item)))
+            {
+                PlayerLab.Get(ev.Player.NetworkIdentity)!.Gravity = _playersWithArmorOn[ev.Player];
+                _playersWithArmorOn.Remove(ev.Player);
+                Log.Debug($"VVUP Custom Items: Low Gravity Armor, {ev.Player.Nickname} has lost Low Gravity Armor through inventory change, setting gravity back to {PlayerLab.Get(ev.Player.NetworkIdentity)?.Gravity.ToString()}.");
+            }
+            base.OnChanging(ev); 
         }
     }
 }

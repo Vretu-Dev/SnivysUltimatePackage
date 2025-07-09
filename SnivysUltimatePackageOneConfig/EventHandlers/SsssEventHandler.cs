@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Exiled.API.Features;
 using Exiled.CustomRoles.API.Features;
@@ -25,7 +26,24 @@ namespace SnivysUltimatePackageOneConfig.EventHandlers
             Log.Debug($"VVUP: Adding SSSS functions to {ev.Player.Nickname}");
             try
             {
-                ServerSpecificSettingsSync.DefinedSettings = SsssHelper.GetSettings();
+                // Other SSSS from other Plugins
+                var currentSettings = ServerSpecificSettingsSync.DefinedSettings?.ToList() ?? new List<ServerSpecificSettingBase>();
+        
+                // Adds this questionable implementation
+                var mySettings = SsssHelper.GetSettings();
+                foreach (var setting in mySettings)
+                {
+                    // Dupe Check
+                    if (!currentSettings.Any(s => s.SettingId == setting.SettingId))
+                    {
+                        currentSettings.Add(setting);
+                    }
+                }
+        
+                // Update the defined settings with the merged list
+                ServerSpecificSettingsSync.DefinedSettings = currentSettings.ToArray();
+        
+                // Send to the player
                 ServerSpecificSettingsSync.SendToPlayer(ev.Player.ReferenceHub);
             }
             catch (InvalidCastException ex)
@@ -159,7 +177,7 @@ namespace SnivysUltimatePackageOneConfig.EventHandlers
                         {
                             teleportAbility.SelectAbility(player);
                             teleportAbility.UseAbility(player);
-                            player.ShowHint(Plugin.Instance.Config.SsssConfig.SsssReviveMistActivationMessage);
+                            player.ShowHint(Plugin.Instance.Config.SsssConfig.SsssTeleportActivationMessage);
                         }
                         else
                         {

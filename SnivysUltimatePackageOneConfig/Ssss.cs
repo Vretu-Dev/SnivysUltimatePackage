@@ -26,6 +26,7 @@ namespace SnivysUltimatePackageOneConfig
         {
             List<ServerSpecificSettingBase> settings = new List<ServerSpecificSettingBase>();
             StringBuilder stringBuilder = StringBuilderPool.Shared.Rent();
+            settings.Add(new SSGroupHeader(Plugin.Instance.Config.SsssConfig.Header));
             if (Plugin.Instance.Config.CustomRolesConfig.IsEnabled)
             {
                 var customRoles = new List<CustomRole>
@@ -70,9 +71,7 @@ namespace SnivysUltimatePackageOneConfig
                         stringBuilder.AppendLine($"-- Ability: {ability.Name}, {ability.Description}");
                     }
                 }
-                
-                settings.Add(new SSGroupHeader(Plugin.Instance.Config.SsssConfig.CustomRoleHeader));
-                settings.Add(new SSTextArea(null, StringBuilderPool.Shared.ToStringReturn(stringBuilder),
+                settings.Add(new SSTextArea(Plugin.Instance.Config.SsssConfig.CustomRoleTextId, StringBuilderPool.Shared.ToStringReturn(stringBuilder),
                     SSTextArea.FoldoutMode.CollapsedByDefault));
                 stringBuilder.Clear();
             }
@@ -121,9 +120,7 @@ namespace SnivysUltimatePackageOneConfig
                     }
                     
                 }
-
-                settings.Add(new SSGroupHeader(Plugin.Instance.Config.SsssConfig.CustomItemHeader));
-                settings.Add(new SSTextArea(null, StringBuilderPool.Shared.ToStringReturn(stringBuilder),
+                settings.Add(new SSTextArea(Plugin.Instance.Config.SsssConfig.CustomItemTextId, StringBuilderPool.Shared.ToStringReturn(stringBuilder),
                     SSTextArea.FoldoutMode.CollapsedByDefault));
                 stringBuilder.Clear();
             }
@@ -133,28 +130,29 @@ namespace SnivysUltimatePackageOneConfig
             {
                 settings.Add(new SSGroupHeader(Plugin.Instance.Config.SsssConfig.CustomAbilityActivatorHeader));
                 settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.ActiveCamoId, Plugin.Instance.Config.SsssConfig.ActiveCamoSsssText,
-                    KeyCode.B, true, false, "B"));
+                    KeyCode.B, true, false, 
+                    Plugin.Instance.Config.SsssConfig.ActiveCamoHint));
                 settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.ChargeId, Plugin.Instance.Config.SsssConfig.ChargeSsssText, KeyCode.B, true, false,
-                    "B"));
+                    Plugin.Instance.Config.SsssConfig.ChargeHint));
                 settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.DetectId, Plugin.Instance.Config.SsssConfig.DetectSsssText, KeyCode.B, true, false,
-                    "B"));
+                    Plugin.Instance.Config.SsssConfig.DetectHint));
                 settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.DoorPickingId, Plugin.Instance.Config.SsssConfig.DoorPickingSsssText,
-                    KeyCode.B, true, false, "B"));
+                    KeyCode.B, true, false, Plugin.Instance.Config.SsssConfig.DoorPickingHint));
                 settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.HealingMistId, Plugin.Instance.Config.SsssConfig.HealingMistSsssText,
-                    KeyCode.B, true, false, "B"));
+                    KeyCode.B, true, false, Plugin.Instance.Config.SsssConfig.HealingMistHint));
                 settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.RemoveDisguiseId, Plugin.Instance.Config.SsssConfig.RemoveDisguiseSsssText,
-                    KeyCode.B, true, false, "B"));
+                    KeyCode.B, true, false, Plugin.Instance.Config.SsssConfig.RemoveDisguiseHint));
                 settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.ReviveMistId, Plugin.Instance.Config.SsssConfig.ReviveMistSsssText,
-                    KeyCode.B, true, false, "B"));
+                    KeyCode.B, true, false, Plugin.Instance.Config.SsssConfig.ReviveMistHint));
                 settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.TeleportId, Plugin.Instance.Config.SsssConfig.TeleportSsssText,
-                    KeyCode.B, true, false, "B"));
+                    KeyCode.B, true, false, Plugin.Instance.Config.SsssConfig.TeleportHint));
             }
 
             if (Plugin.Instance.Config.CustomItemsConfig.IsEnabled)
             {
                 settings.Add(new SSGroupHeader(Plugin.Instance.Config.SsssConfig.CustomItemActivators));
                 settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.DetonateC4Id, Plugin.Instance.Config.SsssConfig.DetonateC4SsssText,
-                    KeyCode.J, true, false, "J"));
+                    KeyCode.J, true, false, Plugin.Instance.Config.SsssConfig.DetonateC4Hint));
             }
 
             return settings.ToArray();
