@@ -80,11 +80,13 @@ namespace SnivysUltimatePackage.Custom.Items.Armor
         protected override void SubscribeEvents()
         {
             PlayerEvent.Dying += OnDying;
+            PlayerEvent.ItemRemoved += OnItemRemoved;
             base.SubscribeEvents();
         }
         protected override void UnsubscribeEvents()
         {
             PlayerEvent.Dying -= OnDying;
+            PlayerEvent.ItemRemoved -= OnItemRemoved;
             base.UnsubscribeEvents();
         }
 
@@ -102,13 +104,23 @@ namespace SnivysUltimatePackage.Custom.Items.Armor
 
         protected override void OnDroppingItem(DroppingItemEventArgs ev)
         {
-            if (_playersWithArmorOn.ContainsKey(ev.Player) && !ev.Player.Items.Any(item => Check(item)))
+            if (_playersWithArmorOn.ContainsKey(ev.Player) && Check(ev.Item))
             {
                 PlayerLab.Get(ev.Player.NetworkIdentity)!.Gravity = _playersWithArmorOn[ev.Player];
                 _playersWithArmorOn.Remove(ev.Player);
                 Log.Debug($"VVUP Custom Items: Low Gravity Armor, {ev.Player.Nickname} has taken off Low Gravity Armor, setting gravity back to {PlayerLab.Get(ev.Player.NetworkIdentity)?.Gravity.ToString()}.");
             }
             base.OnDroppingItem(ev);
+        }
+        
+        private void OnItemRemoved(ItemRemovedEventArgs ev)
+        {
+            if (_playersWithArmorOn.ContainsKey(ev.Player) && Check(ev.Item))
+            {
+                PlayerLab.Get(ev.Player.NetworkIdentity)!.Gravity = _playersWithArmorOn[ev.Player];
+                _playersWithArmorOn.Remove(ev.Player);
+                Log.Debug($"VVUP Custom Items: Low Gravity Armor, {ev.Player.Nickname} has taken off Low Gravity Armor, setting gravity back to {PlayerLab.Get(ev.Player.NetworkIdentity)?.Gravity.ToString()}.");
+            }
         }
 
         private void OnDying(DyingEventArgs ev)

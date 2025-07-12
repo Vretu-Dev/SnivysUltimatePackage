@@ -237,6 +237,7 @@
         <Compile Include="EventHandlers\Custom\CustomRoleEventHandler.cs" />
         <Compile Include="EventHandlers\Custom\CustomRoleMethods.cs" />
         <Compile Include="EventHandlers\Custom\HuskInfectionEventHandlers.cs" />
+        <Compile Include="EventHandlers\ReloadConfigsEventHandler.cs" />
         <Compile Include="EventHandlers\RoundStartEventHandlers.cs" />
         <Compile Include="EventHandlers\FlamingoAdjustmentEventHandlers.cs" />
         <Compile Include="EventHandlers\MicroDamageReductionEventHandler.cs" />

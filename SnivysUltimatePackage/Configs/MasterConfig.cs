@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.IO;
 using Exiled.API.Features;
 using Exiled.API.Interfaces;
@@ -58,137 +59,138 @@ namespace SnivysUltimatePackage.Configs
         {
             if(!Directory.Exists(ConfigFolder))
                 Directory.CreateDirectory(ConfigFolder);
-            
-            string ciFilePath = Path.Combine(ConfigFolder, CustomItemConfigFile);
-            if (!File.Exists(ciFilePath))
+            string filePath = String.Empty;
+            filePath = Path.Combine(ConfigFolder, CustomItemConfigFile);
+            // Custom Items
+            if (!File.Exists(filePath))
             {
                 CustomItemsConfig = new CustomItemsConfig();
-                File.WriteAllText(ciFilePath, Loader.Serializer.Serialize(CustomItemsConfig));
+                File.WriteAllText(filePath, Loader.Serializer.Serialize(CustomItemsConfig));
             }
             else
             {
-                CustomItemsConfig = Loader.Deserializer.Deserialize<CustomItemsConfig>(File.ReadAllText(ciFilePath));
-                File.WriteAllText(ciFilePath, Loader.Serializer.Serialize(CustomItemsConfig));
+                CustomItemsConfig = Loader.Deserializer.Deserialize<CustomItemsConfig>(File.ReadAllText(filePath));
+                File.WriteAllText(filePath, Loader.Serializer.Serialize(CustomItemsConfig));
             }
-            
-            string crFilePath = Path.Combine(ConfigFolder, CustomRolesConfigFile);
-            if (!File.Exists(crFilePath))
+            // Custom Roles
+            filePath = Path.Combine(ConfigFolder, CustomRolesConfigFile);
+            if (!File.Exists(filePath))
             {
                 CustomRolesConfig = new CustomRolesConfig();
-                File.WriteAllText(crFilePath, Loader.Serializer.Serialize(CustomRolesConfig));
+                File.WriteAllText(filePath, Loader.Serializer.Serialize(CustomRolesConfig));
             }
             else
             {
-                CustomRolesConfig = Loader.Deserializer.Deserialize<CustomRolesConfig>(File.ReadAllText(crFilePath));
-                File.WriteAllText(crFilePath, Loader.Serializer.Serialize(CustomRolesConfig));
+                CustomRolesConfig = Loader.Deserializer.Deserialize<CustomRolesConfig>(File.ReadAllText(filePath));
+                File.WriteAllText(filePath, Loader.Serializer.Serialize(CustomRolesConfig));
             }
-            
-            string caFilePath = Path.Combine(ConfigFolder, CustomRolesAbilitiesConfigFile);
-            if (!File.Exists(caFilePath))
+            // Custom Role Abilities
+            filePath = Path.Combine(ConfigFolder, CustomRolesAbilitiesConfigFile);
+            if (!File.Exists(filePath))
             {
                 CustomRolesAbilitiesConfig = new CustomRolesAbilitiesConfig();
-                File.WriteAllText(caFilePath, Loader.Serializer.Serialize(CustomRolesAbilitiesConfig));
+                File.WriteAllText(filePath, Loader.Serializer.Serialize(CustomRolesAbilitiesConfig));
             }
             else
             {
-                CustomRolesAbilitiesConfig = Loader.Deserializer.Deserialize<CustomRolesAbilitiesConfig>(File.ReadAllText(caFilePath));
-                File.WriteAllText(caFilePath, Loader.Serializer.Serialize(CustomRolesAbilitiesConfig));
+                CustomRolesAbilitiesConfig = Loader.Deserializer.Deserialize<CustomRolesAbilitiesConfig>(File.ReadAllText(filePath));
+                File.WriteAllText(filePath, Loader.Serializer.Serialize(CustomRolesAbilitiesConfig));
             }
-            
-            string mdrFilePath = Path.Combine(ConfigFolder, MicroDamageReductionConfigFile);
-            if (!File.Exists(mdrFilePath))
+            // Micro Damage Reduction
+            filePath = Path.Combine(ConfigFolder, MicroDamageReductionConfigFile);
+            if (!File.Exists(filePath))
             {
                 MicroDamageReductionConfig = new MicroDamageReductionConfig();
-                File.WriteAllText(mdrFilePath, Loader.Serializer.Serialize(MicroDamageReductionConfig));
+                File.WriteAllText(filePath, Loader.Serializer.Serialize(MicroDamageReductionConfig));
             }
             else
             {
-                MicroDamageReductionConfig = Loader.Deserializer.Deserialize<MicroDamageReductionConfig>(File.ReadAllText(mdrFilePath));
-                File.WriteAllText(mdrFilePath, Loader.Serializer.Serialize(MicroDamageReductionConfig));
+                MicroDamageReductionConfig = Loader.Deserializer.Deserialize<MicroDamageReductionConfig>(File.ReadAllText(filePath));
+                File.WriteAllText(filePath, Loader.Serializer.Serialize(MicroDamageReductionConfig));
             }
-            
-            string serverEventsFilePath = Path.Combine(ConfigFolder, ServerEventsMasterConfigFile);
-            if (!File.Exists(serverEventsFilePath))
+            // Server Events
+            filePath = Path.Combine(ConfigFolder, ServerEventsMasterConfigFile);
+            if (!File.Exists(filePath))
             {
                 ServerEventsMasterConfig = new ServerEventsMasterConfig();
-                File.WriteAllText(serverEventsFilePath, Loader.Serializer.Serialize(ServerEventsMasterConfig));
+                File.WriteAllText(filePath, Loader.Serializer.Serialize(ServerEventsMasterConfig));
             }
             else
             {
-                ServerEventsMasterConfig = Loader.Deserializer.Deserialize<ServerEventsMasterConfig>(File.ReadAllText(serverEventsFilePath));
-                File.WriteAllText(serverEventsFilePath, Loader.Serializer.Serialize(ServerEventsMasterConfig));
+                ServerEventsMasterConfig = Loader.Deserializer.Deserialize<ServerEventsMasterConfig>(File.ReadAllText(filePath));
+                File.WriteAllText(filePath, Loader.Serializer.Serialize(ServerEventsMasterConfig));
             }
-            
-            string meFilePath = Path.Combine(ConfigFolder, MicroEvaporateConfigFile);
-            if (!File.Exists(meFilePath))
+            // Micro Evaporate
+            filePath = Path.Combine(ConfigFolder, MicroEvaporateConfigFile);
+            if (!File.Exists(filePath))
             {
                 MicroEvaporateConfig = new MicroEvaporateConfig();
-                File.WriteAllText(meFilePath, Loader.Serializer.Serialize(MicroEvaporateConfig));
+                File.WriteAllText(filePath, Loader.Serializer.Serialize(MicroEvaporateConfig));
             }
             else
             {
-                MicroEvaporateConfig = Loader.Deserializer.Deserialize<MicroEvaporateConfig>(File.ReadAllText(meFilePath));
-                File.WriteAllText(meFilePath, Loader.Serializer.Serialize(MicroEvaporateConfig));
+                MicroEvaporateConfig = Loader.Deserializer.Deserialize<MicroEvaporateConfig>(File.ReadAllText(filePath));
+                File.WriteAllText(filePath, Loader.Serializer.Serialize(MicroEvaporateConfig));
             }
-            
-            string vFilePath = Path.Combine(ConfigFolder, VoteConfigFile);
-            if (!File.Exists(vFilePath))
+            // Vote Config
+            filePath = Path.Combine(ConfigFolder, VoteConfigFile);
+            if (!File.Exists(filePath))
             {
                 VoteConfig = new VoteConfig();
-                File.WriteAllText(vFilePath, Loader.Serializer.Serialize(VoteConfig));
+                File.WriteAllText(filePath, Loader.Serializer.Serialize(VoteConfig));
             }
             else
             {
-                VoteConfig = Loader.Deserializer.Deserialize<VoteConfig>(File.ReadAllText(vFilePath));
-                File.WriteAllText(vFilePath, Loader.Serializer.Serialize(VoteConfig));
+                VoteConfig = Loader.Deserializer.Deserialize<VoteConfig>(File.ReadAllText(filePath));
+                File.WriteAllText(filePath, Loader.Serializer.Serialize(VoteConfig));
             }
-            
-            /*string fFilePath = Path.Combine(ConfigFolder, FlamingoAdjustmentsConfigFile);
-            if (!File.Exists(fFilePath))
+            // Flamingo Adjustments
+            /*FilePath = Path.Combine(ConfigFolder, FlamingoAdjustmentsConfigFile);
+            if (!File.Exists(FilePath))
             {
                 FlamingoAdjustmentsConfig = new FlamingoAdjustmentsConfig();
-                File.WriteAllText(fFilePath, Loader.Serializer.Serialize(FlamingoAdjustmentsConfig));
+                File.WriteAllText(FilePath, Loader.Serializer.Serialize(FlamingoAdjustmentsConfig));
             }
             else
             {
-                FlamingoAdjustmentsConfig = Loader.Deserializer.Deserialize<FlamingoAdjustmentsConfig>(File.ReadAllText(fFilePath));
-                File.WriteAllText(fFilePath, Loader.Serializer.Serialize(FlamingoAdjustmentsConfig));
+                FlamingoAdjustmentsConfig = Loader.Deserializer.Deserialize<FlamingoAdjustmentsConfig>(File.ReadAllText(FilePath));
+                File.WriteAllText(FilePath, Loader.Serializer.Serialize(FlamingoAdjustmentsConfig));
             }*/
-            
-            string edoFilePath = Path.Combine(ConfigFolder, RoundStartConfigFile);
-            if (!File.Exists(edoFilePath))
+            // Round Start
+            filePath = Path.Combine(ConfigFolder, RoundStartConfigFile);
+            if (!File.Exists(filePath))
             {
                 RoundStartConfig = new RoundStartConfig();
-                File.WriteAllText(edoFilePath, Loader.Serializer.Serialize(RoundStartConfig));
+                File.WriteAllText(filePath, Loader.Serializer.Serialize(RoundStartConfig));
             }
             else
             {
-                RoundStartConfig = Loader.Deserializer.Deserialize<RoundStartConfig>(File.ReadAllText(edoFilePath));
-                File.WriteAllText(edoFilePath, Loader.Serializer.Serialize(RoundStartConfig));
+                RoundStartConfig = Loader.Deserializer.Deserialize<RoundStartConfig>(File.ReadAllText(filePath));
+                File.WriteAllText(filePath, Loader.Serializer.Serialize(RoundStartConfig));
             }
-            
-            string s1576svFilePath = Path.Combine(ConfigFolder, Scp1576SpectatorViewerConfigFile);
-            if (!File.Exists(s1576svFilePath))
+            // SCP 1576 Spectator Viewer
+            filePath = Path.Combine(ConfigFolder, Scp1576SpectatorViewerConfigFile);
+            if (!File.Exists(filePath))
             {
                 Scp1576SpectatorViewerConfig = new Scp1576SpectatorViewerConfig();
-                File.WriteAllText(s1576svFilePath, Loader.Serializer.Serialize(Scp1576SpectatorViewerConfig));
+                File.WriteAllText(filePath, Loader.Serializer.Serialize(Scp1576SpectatorViewerConfig));
             }
             else
             {
-                Scp1576SpectatorViewerConfig = Loader.Deserializer.Deserialize<Scp1576SpectatorViewerConfig>(File.ReadAllText(s1576svFilePath));
-                File.WriteAllText(s1576svFilePath, Loader.Serializer.Serialize(Scp1576SpectatorViewerConfig));
+                Scp1576SpectatorViewerConfig = Loader.Deserializer.Deserialize<Scp1576SpectatorViewerConfig>(File.ReadAllText(filePath));
+                File.WriteAllText(filePath, Loader.Serializer.Serialize(Scp1576SpectatorViewerConfig));
             }
-
-            string ssssFilePath = Path.Combine(ConfigFolder, SsssConfigFile);
-            if (!File.Exists(ssssFilePath))
+            // SSSS
+            filePath = Path.Combine(ConfigFolder, SsssConfigFile);
+            if (!File.Exists(filePath))
             {
                 SsssConfig = new SsssConfig();
-                File.WriteAllText(ssssFilePath, Loader.Serializer.Serialize(SsssConfig));
+                File.WriteAllText(filePath, Loader.Serializer.Serialize(SsssConfig));
             }
             else
             {
-                SsssConfig = Loader.Deserializer.Deserialize<SsssConfig>(File.ReadAllText(ssssFilePath));
-                File.WriteAllText(ssssFilePath, Loader.Serializer.Serialize(SsssConfig));
+                SsssConfig = Loader.Deserializer.Deserialize<SsssConfig>(File.ReadAllText(filePath));
+                File.WriteAllText(filePath, Loader.Serializer.Serialize(SsssConfig));
             }
         }
     }

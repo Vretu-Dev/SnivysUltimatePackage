@@ -122,6 +122,7 @@
         <Compile Include="FreeCustomRoles\FreeCustomRole7.cs" />
         <Compile Include="FreeCustomRoles\FreeCustomRole8.cs" />
         <Compile Include="FreeCustomRoles\FreeCustomRole9.cs" />
+        <Compile Include="ReloadConfigsEventHandler.cs" />
     </ItemGroup>
     <ItemGroup>
       <ProjectReference Include="..\SnivysUltimatePackage\SnivysUltimatePackage.csproj">

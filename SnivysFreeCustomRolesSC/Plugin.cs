@@ -6,6 +6,7 @@ using Exiled.CustomRoles.API;
 using Exiled.CustomRoles.API.Features;
 using Exiled.Loader;
 using SnivysUltimatePackage.API;
+using Server = Exiled.Events.Handlers.Server;
 
 namespace SnivysFreeCustomRolesSC
 {
@@ -16,8 +17,10 @@ namespace SnivysFreeCustomRolesSC
         public override string Name { get; } = "Snivy's Free Custom Roles (For Snivy's Ultimate Package Split Config)";
         public override string Author { get; } = "Vicious Vikki";
         public override string Prefix { get; } = "VVFreeCustomRoles";
-        public override Version Version { get; } = new Version(1, 1, 1);
-        public override Version RequiredExiledVersion { get; } = new Version(9, 6, 0);
+        public override Version Version { get; } = new Version(1, 1, 2);
+        public override Version RequiredExiledVersion { get; } = new Version(9, 6, 1);
+        
+        public ReloadConfigsEventHandler ReloadConfigsEventHandler;
 
         public override void OnEnabled()
         {
@@ -28,6 +31,9 @@ namespace SnivysFreeCustomRolesSC
                 base.OnDisabled();
                 return;
             }
+
+            Config.LoadConfigs();
+            
             Config.FreeCustomRoles1.Register();
             Config.FreeCustomRoles2.Register();
             Config.FreeCustomRoles3.Register();
@@ -78,12 +84,19 @@ namespace SnivysFreeCustomRolesSC
                     Log.Debug($"Roles {team} now has {SnivysUltimatePackage.Plugin.Instance.Roles[team].Count} elements.");
                 }
             }
+            
+            ReloadConfigsEventHandler = new ReloadConfigsEventHandler(this);
+            Server.ReloadedConfigs += ReloadConfigsEventHandler.OnReloadingConfigs;
+            
             base.OnEnabled();
         }
 
         public override void OnDisabled()
         {
             CustomRole.UnregisterRoles();
+            Server.ReloadedConfigs -= ReloadConfigsEventHandler.OnReloadingConfigs;
+            ReloadConfigsEventHandler = null;
+            Instance = null;
             base.OnDisabled();
         }
     }

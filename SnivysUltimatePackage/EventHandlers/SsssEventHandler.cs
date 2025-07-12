@@ -11,10 +11,9 @@ using PlayerAPI = Exiled.API.Features.Player;
 
 namespace SnivysUltimatePackage.EventHandlers
 {
-    public class SsssEventHandler
+    public class SsssEventHandler(Plugin plugin)
     {
-        public Plugin Plugin;
-        public SsssEventHandler(Plugin plugin) => Plugin = plugin;
+        public Plugin Plugin = plugin;
 
         public void OnVerified(VerifiedEventArgs ev)
         {
@@ -34,7 +33,7 @@ namespace SnivysUltimatePackage.EventHandlers
                 foreach (var setting in mySettings)
                 {
                     // Dupe Check
-                    if (!currentSettings.Any(s => s.SettingId == setting.SettingId))
+                    if (currentSettings.All(s => s.SettingId != setting.SettingId))
                     {
                         currentSettings.Add(setting);
                     }

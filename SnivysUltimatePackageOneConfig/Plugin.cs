@@ -26,7 +26,7 @@ namespace SnivysUltimatePackageOneConfig
         public override string Name { get; } = "Snivy's Ultimate Plugin Package One Config";
         public override string Author { get; } = "Vicious Vikki";
         public override string Prefix { get; } = "VVUltimatePluginPackageOneConfig";
-        public override Version Version { get; } = new Version(2, 9, 2);
+        public override Version Version { get; } = new Version(2, 9, 3);
         public override Version RequiredExiledVersion { get; } = new Version(9, 6, 1);
         
         public static int ActiveEvent = 0;
@@ -42,6 +42,7 @@ namespace SnivysUltimatePackageOneConfig
         public RoundStartEventHandlers RoundStartEventHandlers;
         public Scp1576SpectatorViewerEventHandlers Scp1576SpectatorViewerEventHandlers;
         public SsssEventHandler SsssEventHandler;
+        public ReloadConfigsEventHandler ReloadConfigsEventHandler;
         
         public override void OnEnabled()
         {
@@ -53,6 +54,9 @@ namespace SnivysUltimatePackageOneConfig
                 base.OnDisabled();
                 return;
             }
+            
+            Config.LoadConfigs();
+            
             //Custom Items
             if (Instance.Config.CustomItemsConfig.IsEnabled)
                 CustomItem.RegisterItems(overrideClass: Instance.Config.CustomItemsConfig);
@@ -189,6 +193,11 @@ namespace SnivysUltimatePackageOneConfig
                 Player.Verified += SsssEventHandler.OnVerified;
                 ServerSpecificSettingsSync.ServerOnSettingValueReceived += SsssEventHandler.OnSettingValueReceived;
             }
+            
+            // Reload Configs Event Handler
+            ReloadConfigsEventHandler = new ReloadConfigsEventHandler(this);
+            Server.ReloadedConfigs += ReloadConfigsEventHandler.OnReloadingConfigs;
+            
             base.OnEnabled();
         }
 
@@ -240,6 +249,10 @@ namespace SnivysUltimatePackageOneConfig
             Player.Verified -= SsssEventHandler.OnVerified;
             ServerSpecificSettingsSync.ServerOnSettingValueReceived -= SsssEventHandler.OnSettingValueReceived;
             SsssEventHandler = null;
+            
+            // Reload Configs Event Handler
+            Server.ReloadedConfigs -= ReloadConfigsEventHandler.OnReloadingConfigs;
+            ReloadConfigsEventHandler = null;
             
             Instance = null;
             base.OnDisabled();

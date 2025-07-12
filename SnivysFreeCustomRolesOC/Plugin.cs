@@ -2,11 +2,11 @@
 using System.Linq;
 using Exiled.API.Enums;
 using Exiled.API.Features;
-using Exiled.CustomItems.API;
 using Exiled.CustomRoles.API;
 using Exiled.CustomRoles.API.Features;
 using Exiled.Loader;
 using SnivysUltimatePackageOneConfig.API;
+using Server = Exiled.Events.Handlers.Server;
 
 namespace SnivysFreeCustomRolesOC
 {
@@ -17,8 +17,10 @@ namespace SnivysFreeCustomRolesOC
         public override string Name { get; } = "Snivy's Free Custom Roles (For Snivy's Ultimate Package One Config)";
         public override string Author { get; } = "Vicious Vikki";
         public override string Prefix { get; } = "VVFreeCustomRoles";
-        public override Version Version { get; } = new Version(1, 1, 1);
-        public override Version RequiredExiledVersion { get; } = new Version(9, 6, 0);
+        public override Version Version { get; } = new Version(1, 1, 2);
+        public override Version RequiredExiledVersion { get; } = new Version(9, 6, 1);
+        
+        public ReloadConfigsEventHandler ReloadConfigsEventHandler;
 
         public override void OnEnabled()
         {
@@ -28,6 +30,8 @@ namespace SnivysFreeCustomRolesOC
                 base.OnDisabled();
                 return;
             }
+            Config.LoadConfigs();
+            
             Instance = this;
             Config.FreeCustomRoles1.Register();
             Config.FreeCustomRoles2.Register();
@@ -79,12 +83,19 @@ namespace SnivysFreeCustomRolesOC
                     Log.Debug($"Roles {team} now has {SnivysUltimatePackageOneConfig.Plugin.Instance.Roles[team].Count} elements.");
                 }
             }
+            
+            ReloadConfigsEventHandler = new ReloadConfigsEventHandler(this);
+            Server.ReloadedConfigs += ReloadConfigsEventHandler.OnReloadingConfigs;
+            
             base.OnEnabled();
         }
 
         public override void OnDisabled()
         {
             CustomRole.UnregisterRoles();
+            Server.ReloadedConfigs -= ReloadConfigsEventHandler.OnReloadingConfigs;
+            ReloadConfigsEventHandler = null;
+            Instance = null;
             base.OnDisabled();
         }
     }

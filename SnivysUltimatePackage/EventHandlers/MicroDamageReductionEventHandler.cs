@@ -4,10 +4,9 @@ using Exiled.Events.EventArgs.Player;
 
 namespace SnivysUltimatePackage.EventHandlers
 {
-    public class MicroDamageReductionEventHandler
+    public class MicroDamageReductionEventHandler(Plugin plugin)
     {
-        public Plugin Plugin;
-        public MicroDamageReductionEventHandler(Plugin plugin) => Plugin = plugin;
+        public Plugin Plugin = plugin;
 
         public void OnPlayerHurting(HurtingEventArgs ev)
         {

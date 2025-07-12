@@ -7,11 +7,9 @@ using SnivysUltimatePackage.API;
 
 namespace SnivysUltimatePackage.EventHandlers.Custom
 {
-    public class CustomRoleMethods
+    public class CustomRoleMethods(Plugin plugin)
     {
-        private readonly Plugin Plugin;
-
-        public CustomRoleMethods(Plugin plugin) => Plugin = plugin;
+        private readonly Plugin Plugin = plugin;
 
         public static CustomRole? GetCustomRole(ref List<ICustomRole>.Enumerator enumerator, bool checkEscape = false,
             bool checkRevive = false)
