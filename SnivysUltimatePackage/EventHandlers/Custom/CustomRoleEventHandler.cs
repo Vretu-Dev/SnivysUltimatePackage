@@ -62,7 +62,8 @@ namespace SnivysUltimatePackage.EventHandlers.Custom
                         break;
                 }
 
-                role?.AddRole(player);
+                if (player.GetCustomRoles().Count == 0)
+                    role?.AddRole(player);
             }
 
             guardRoles.Dispose();
@@ -109,8 +110,8 @@ namespace SnivysUltimatePackage.EventHandlers.Custom
             foreach (Player player in ev.Players)
             {
                 CustomRole? role = CustomRoleMethods.GetCustomRole(ref roles);
-
-                role?.AddRole(player);
+                if (player.GetCustomRoles().Count == 0)
+                    role?.AddRole(player);
             }
 
             roles.Dispose();

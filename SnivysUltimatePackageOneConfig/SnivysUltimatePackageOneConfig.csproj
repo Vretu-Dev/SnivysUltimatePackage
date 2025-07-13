@@ -11,7 +11,7 @@
         <RootNamespace>SnivysUltimatePackageOneConfig</RootNamespace>
         <AssemblyName>SnivysUltimatePackageOneConfig</AssemblyName>
         <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
-        <LangVersion>latest</LangVersion>
+        <LangVersion>12</LangVersion>
         <FileAlignment>512</FileAlignment>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
