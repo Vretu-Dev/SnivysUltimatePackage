@@ -7,9 +7,10 @@ using SnivysUltimatePackageOneConfig.API;
 
 namespace SnivysUltimatePackageOneConfig.EventHandlers.Custom
 {
-    public class CustomRoleMethods(Plugin plugin)
+    public class CustomRoleMethods
     {
-        private readonly Plugin Plugin = plugin;
+        private readonly Plugin Plugin;
+        public CustomRoleMethods(Plugin plugin) => Plugin = plugin;
 
         public static CustomRole? GetCustomRole(ref List<ICustomRole>.Enumerator enumerator, bool checkEscape = false,
             bool checkRevive = false)

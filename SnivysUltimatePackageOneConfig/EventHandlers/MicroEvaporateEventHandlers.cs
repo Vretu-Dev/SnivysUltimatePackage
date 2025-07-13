@@ -4,9 +4,10 @@ using Exiled.Events.EventArgs.Player;
 
 namespace SnivysUltimatePackageOneConfig.EventHandlers
 {
-    public class MicroEvaporateEventHandlers(Plugin plugin)
+    public class MicroEvaporateEventHandlers
     {
-        public Plugin Plugin = plugin;
+        public Plugin Plugin;
+        public MicroEvaporateEventHandlers(Plugin plugin) => Plugin = plugin;
 
         public void OnDying(DyingEventArgs ev)
         {

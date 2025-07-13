@@ -11,9 +11,10 @@ using PlayerAPI = Exiled.API.Features.Player;
 
 namespace SnivysUltimatePackageOneConfig.EventHandlers
 {
-    public class SsssEventHandler(Plugin plugin)
+    public class SsssEventHandler
     {
-        public Plugin Plugin = plugin;
+        public Plugin Plugin;
+        public SsssEventHandler(Plugin plugin) => Plugin = plugin;
 
         public void OnVerified(VerifiedEventArgs ev)
         {

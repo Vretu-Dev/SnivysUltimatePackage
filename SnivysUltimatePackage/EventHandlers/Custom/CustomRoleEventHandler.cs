@@ -10,8 +10,10 @@ using SnivysUltimatePackage.API;
 
 namespace SnivysUltimatePackage.EventHandlers.Custom
 {
-    public class CustomRoleEventHandler(Plugin plugin)
+    public class CustomRoleEventHandler
     {
+        private readonly Plugin Plugin;
+        public CustomRoleEventHandler(Plugin plugin) => Plugin = plugin;
         public void OnRoundStarted()
         {
             if (!Plugin.Instance.Config.CustomRolesConfig.IsEnabled)
@@ -21,7 +23,7 @@ namespace SnivysUltimatePackage.EventHandlers.Custom
             List<ICustomRole>.Enumerator guardRoles = new();
             List<ICustomRole>.Enumerator scpRoles = new();
 
-            foreach (KeyValuePair<StartTeam, List<ICustomRole>> kvp in plugin.Roles)
+            foreach (KeyValuePair<StartTeam, List<ICustomRole>> kvp in Plugin.Roles)
             {
                 Log.Debug($"VVUP Custom Roles: Setting enumerator for {kvp.Key} - {kvp.Value.Count}");
                 switch (kvp.Key)
@@ -95,13 +97,13 @@ namespace SnivysUltimatePackage.EventHandlers.Custom
             {
                 case (Faction)SpawnableFaction.ChaosWave or (Faction)SpawnableFaction.ChaosMiniWave:
                 {
-                    if (plugin.Roles.TryGetValue(StartTeam.Chaos, out List<ICustomRole> role))
+                    if (Plugin.Roles.TryGetValue(StartTeam.Chaos, out List<ICustomRole> role))
                         roles = role.GetEnumerator();
                     break;
                 }
                 case (Faction)SpawnableFaction.NtfWave or (Faction)SpawnableFaction.NtfMiniWave:
                 {
-                    if (plugin.Roles.TryGetValue(StartTeam.Ntf, out List<ICustomRole> pluginRole))
+                    if (Plugin.Roles.TryGetValue(StartTeam.Ntf, out List<ICustomRole> pluginRole))
                         roles = pluginRole.GetEnumerator();
                     break;
                 }
@@ -110,6 +112,7 @@ namespace SnivysUltimatePackage.EventHandlers.Custom
             foreach (Player player in ev.Players)
             {
                 CustomRole? role = CustomRoleMethods.GetCustomRole(ref roles);
+
                 if (player.GetCustomRoles().Count == 0)
                     role?.AddRole(player);
             }
@@ -122,10 +125,10 @@ namespace SnivysUltimatePackage.EventHandlers.Custom
             if (!Plugin.Instance.Config.CustomRolesConfig.IsEnabled)
                 return;
             Log.Debug($"VVUP Custom Roles: {nameof(FinishingRecall)}: Selecting random zombie role.");
-            if (plugin.Roles.ContainsKey(StartTeam.Scp) && ev.Target is not null)
+            if (Plugin.Roles.ContainsKey(StartTeam.Scp) && ev.Target is not null)
             {
-                Log.Debug($"VVUP Custom Roles: {nameof(FinishingRecall)}: List count {plugin.Roles[StartTeam.Scp].Count}");
-                List<ICustomRole>.Enumerator roles = plugin.Roles[StartTeam.Scp].GetEnumerator();
+                Log.Debug($"VVUP Custom Roles: {nameof(FinishingRecall)}: List count {Plugin.Roles[StartTeam.Scp].Count}");
+                List<ICustomRole>.Enumerator roles = Plugin.Roles[StartTeam.Scp].GetEnumerator();
                 CustomRole? role = CustomRoleMethods.GetCustomRole(ref roles, false, true);
 
                 Log.Debug($"VVUP Custom Roles: Got custom role {role?.Name}");

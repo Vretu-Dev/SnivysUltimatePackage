@@ -7,9 +7,10 @@ using Door = Exiled.API.Features.Doors.Door;
 
 namespace SnivysUltimatePackageOneConfig.EventHandlers
 {
-    public class RoundStartEventHandlers(Plugin plugin)
+    public class RoundStartEventHandlers
     {
-        public Plugin Plugin = plugin;
+        public Plugin Plugin;
+        public RoundStartEventHandlers(Plugin plugin) => Plugin = plugin;
 
         public void OnRoundStarted()
         {

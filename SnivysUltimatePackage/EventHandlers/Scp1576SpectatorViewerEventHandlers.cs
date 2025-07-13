@@ -8,9 +8,10 @@ using Respawning.Waves;
 
 namespace SnivysUltimatePackage.EventHandlers
 {
-    public class Scp1576SpectatorViewerEventHandlers(Plugin plugin)
+    public class Scp1576SpectatorViewerEventHandlers
     {
-        public Plugin Plugin = plugin;
+        public Plugin Plugin;
+        public Scp1576SpectatorViewerEventHandlers(Plugin plugin) => Plugin = plugin;
 
         public void OnUsingItem(UsedItemEventArgs ev)
         {
