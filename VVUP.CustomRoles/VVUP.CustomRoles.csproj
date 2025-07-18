@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props"
+            Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')"/>
+    <PropertyGroup>
+        <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+        <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+        <ProjectGuid>{CFD5B906-4CA0-4493-B81E-AFB1421C6F14}</ProjectGuid>
+        <OutputType>Library</OutputType>
+        <AppDesignerFolder>Properties</AppDesignerFolder>
+        <RootNamespace>VVUP.CustomRoles</RootNamespace>
+        <AssemblyName>VVUP.CustomRoles</AssemblyName>
+        <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+        <LangVersion>latest</LangVersion>
+        <FileAlignment>512</FileAlignment>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+        <PlatformTarget>AnyCPU</PlatformTarget>
+        <DebugSymbols>true</DebugSymbols>
+        <DebugType>full</DebugType>
+        <Optimize>false</Optimize>
+        <OutputPath>bin\Debug\</OutputPath>
+        <DefineConstants>DEBUG;TRACE</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+        <PlatformTarget>AnyCPU</PlatformTarget>
+        <DebugType>pdbonly</DebugType>
+        <Optimize>true</Optimize>
+        <OutputPath>bin\Release\</OutputPath>
+        <DefineConstants>TRACE</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+    </PropertyGroup>
+    <ItemGroup>
+        <Reference Include="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+            <HintPath>..\packages\ExMod.Exiled.9.6.1\lib\net48\Assembly-CSharp-Publicized.dll</HintPath>
+        </Reference>
+        <Reference Include="Assembly-CSharp-firstpass">
+            <HintPath Condition="'$(OS)' == 'Windows_NT'">$(EXILED_REFERENCES)\Assembly-CSharp-firstpass.dll</HintPath>
+            <HintPath Condition="'$(OS)' != 'Windows_NT'">..\..\..\Exiled_Resources\Assembly-CSharp-firstpass.dll</HintPath>
+        </Reference>
+        <Reference Include="CommandSystem.Core, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+            <HintPath>..\packages\ExMod.Exiled.9.6.1\lib\net48\CommandSystem.Core.dll</HintPath>
+        </Reference>
+        <Reference Include="Exiled.API, Version=9.6.1.0, Culture=neutral, processorArchitecture=Amd64">
+            <HintPath>..\packages\ExMod.Exiled.9.6.1\lib\net48\Exiled.API.dll</HintPath>
+        </Reference>
+        <Reference Include="Exiled.CreditTags, Version=9.6.1.0, Culture=neutral, processorArchitecture=Amd64">
+            <HintPath>..\packages\ExMod.Exiled.9.6.1\lib\net48\Exiled.CreditTags.dll</HintPath>
+        </Reference>
+        <Reference Include="Exiled.CustomItems, Version=9.6.1.0, Culture=neutral, processorArchitecture=Amd64">
+            <HintPath>..\packages\ExMod.Exiled.9.6.1\lib\net48\Exiled.CustomItems.dll</HintPath>
+        </Reference>
+        <Reference Include="Exiled.CustomRoles, Version=9.6.1.0, Culture=neutral, processorArchitecture=Amd64">
+            <HintPath>..\packages\ExMod.Exiled.9.6.1\lib\net48\Exiled.CustomRoles.dll</HintPath>
+        </Reference>
+        <Reference Include="Exiled.Events, Version=9.6.1.0, Culture=neutral, processorArchitecture=Amd64">
+            <HintPath>..\packages\ExMod.Exiled.9.6.1\lib\net48\Exiled.Events.dll</HintPath>
+        </Reference>
+        <Reference Include="Exiled.Loader, Version=9.6.1.0, Culture=neutral, processorArchitecture=Amd64">
+            <HintPath>..\packages\ExMod.Exiled.9.6.1\lib\net48\Exiled.Loader.dll</HintPath>
+        </Reference>
+        <Reference Include="Exiled.Permissions, Version=9.6.1.0, Culture=neutral, processorArchitecture=Amd64">
+            <HintPath>..\packages\ExMod.Exiled.9.6.1\lib\net48\Exiled.Permissions.dll</HintPath>
+        </Reference>
+        <Reference Include="LabApi, Version=1.1.0.0, Culture=neutral, processorArchitecture=Amd64">
+            <HintPath>..\packages\ExMod.Exiled.9.6.1\lib\net48\LabApi.dll</HintPath>
+        </Reference>
+        <Reference Include="Mirror">
+            <HintPath Condition="'$(OS)' == 'Windows_NT'">$(EXILED_REFERENCES)\Mirror.dll</HintPath>
+            <HintPath Condition="'$(OS)' != 'Windows_NT'">..\..\..\Exiled_Resources\Mirror.dll</HintPath>
+        </Reference>
+        <Reference Include="NorthwoodLib, Version=1.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+            <HintPath>..\packages\ExMod.Exiled.9.6.1\lib\net48\NorthwoodLib.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.TextMeshPro">
+            <HintPath Condition="'$(OS)' == 'Windows_NT'">$(EXILED_REFERENCES)\Unity.TextMeshPro.dll</HintPath>
+            <HintPath Condition="'$(OS)' != 'Windows_NT'">..\..\..\Exiled_Resources\Unity.TextMeshPro.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine">
+            <HintPath Condition="'$(OS)' == 'Windows_NT'">$(EXILED_REFERENCES)\UnityEngine.dll</HintPath>
+            <HintPath Condition="'$(OS)' != 'Windows_NT'">..\..\..\Exiled_Resources\UnityEngine.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.CoreModule">
+            <HintPath Condition="'$(OS)' == 'Windows_NT'">$(EXILED_REFERENCES)\UnityEngine.CoreModule.dll</HintPath>
+            <HintPath Condition="'$(OS)' != 'Windows_NT'">..\..\..\Exiled_Resources\UnityEngine.CoreModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.PhysicsModule">
+            <HintPath Condition="'$(OS)' == 'Windows_NT'">$(EXILED_REFERENCES)/UnityEngine.PhysicsModule.dll</HintPath>
+            <HintPath Condition="'$(OS)' != 'Windows_NT'">..\..\..\Exiled_Resources\UnityEngine.PhysicsModule.dll</HintPath>
+        </Reference>
+        <Reference Include="System"/>
+        <Reference Include="System.Core"/>
+        <Reference Include="System.Data"/>
+        <Reference Include="System.Xml"/>
+        <Reference Include="YamlDotNet, Version=11.0.0.0, Culture=neutral, PublicKeyToken=ec19458f3c15af5e, processorArchitecture=MSIL">
+            <HintPath>..\packages\ExMod.Exiled.9.6.1\lib\net48\YamlDotNet.dll</HintPath>
+        </Reference>
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Include="Abilities\Active\ActiveCamo.cs" />
+        <Compile Include="Abilities\Active\ChargeAbility.cs" />
+        <Compile Include="Abilities\Active\Detect.cs" />
+        <Compile Include="Abilities\Active\DoorPicking.cs" />
+        <Compile Include="Abilities\Active\HealingMist.cs" />
+        <Compile Include="Abilities\Active\RemoveDisguise.cs" />
+        <Compile Include="Abilities\Active\RevivingMist.cs" />
+        <Compile Include="Abilities\Active\Teleport.cs" />
+        <Compile Include="Abilities\Passive\AbilityRemover.cs" />
+        <Compile Include="Abilities\Passive\ApplyEffectOnHit.cs" />
+        <Compile Include="Abilities\Passive\CustomHume.cs" />
+        <Compile Include="Abilities\Passive\CustomRoleEscape.cs" />
+        <Compile Include="Abilities\Passive\DebugAbility.cs" />
+        <Compile Include="Abilities\Passive\Disguised.cs" />
+        <Compile Include="Abilities\Passive\EffectEnabler.cs" />
+        <Compile Include="Abilities\Passive\GivingCandyAbility.cs" />
+        <Compile Include="Abilities\Passive\GravityAdjuster.cs" />
+        <Compile Include="Abilities\Passive\HealOnKill.cs" />
+        <Compile Include="Abilities\Passive\InfiniteStamina.cs" />
+        <Compile Include="Abilities\Passive\LifeSteal.cs" />
+        <Compile Include="Abilities\Passive\Martyrdom.cs" />
+        <Compile Include="Abilities\Passive\PocketDimensionEscapeChance.cs" />
+        <Compile Include="Abilities\Passive\ReactiveHume.cs" />
+        <Compile Include="Abilities\Passive\RestrictedEscape.cs" />
+        <Compile Include="Abilities\Passive\RestrictedItems.cs" />
+        <Compile Include="Abilities\Passive\ScaleAbility.cs" />
+        <Compile Include="Abilities\Passive\SpeedOnKill.cs" />
+        <Compile Include="Abilities\Passive\TeamConvertOnKill.cs" />
+        <Compile Include="API\ExternalTeams\CustomTeamAPI.cs" />
+        <Compile Include="API\ExternalTeams\ExternalTeamChecker.cs" />
+        <Compile Include="API\ExternalTeams\SerpentsHandCheck.cs" />
+        <Compile Include="API\ExternalTeams\UiuCheck.cs" />
+        <Compile Include="API\ICustomRole.cs" />
+        <Compile Include="API\StartTeam.cs" />
+        <Compile Include="CustomRolesConfig.cs" />
+        <Compile Include="EventHandlers\CustomRoleEventHandler.cs" />
+        <Compile Include="EventHandlers\CustomRoleMethods.cs" />
+        <Compile Include="Plugin.cs" />
+        <Compile Include="Properties\AssemblyInfo.cs"/>
+        <Compile Include="Roles\Chaos\A7Chaos.cs" />
+        <Compile Include="Roles\Chaos\CiPhantom.cs" />
+        <Compile Include="Roles\Chaos\CISpy.cs" />
+        <Compile Include="Roles\Chaos\JuggernautChaos.cs" />
+        <Compile Include="Roles\Chaos\Nightfall.cs" />
+        <Compile Include="Roles\Chaos\TelepathicChaos.cs" />
+        <Compile Include="Roles\ClassD\ClassDAnalyst.cs" />
+        <Compile Include="Roles\ClassD\ClassDTank.cs" />
+        <Compile Include="Roles\ClassD\LockpickingClassD.cs" />
+        <Compile Include="Roles\Foundation\ContainmentGuard.cs" />
+        <Compile Include="Roles\Foundation\Demolitionist.cs" />
+        <Compile Include="Roles\Foundation\LightGuard.cs" />
+        <Compile Include="Roles\Foundation\MtfParamedic.cs" />
+        <Compile Include="Roles\Foundation\MtfWisp.cs" />
+        <Compile Include="Roles\Foundation\Vanguard.cs" />
+        <Compile Include="Roles\Other\BorderPatrol.cs" />
+        <Compile Include="Roles\Other\Flipped.cs" />
+        <Compile Include="Roles\Scientist\Biochemist.cs" />
+        <Compile Include="Roles\Scientist\ContainmentScientist.cs" />
+        <Compile Include="Roles\Scientist\TheoreticalPhysicistScientist.cs" />
+        <Compile Include="Roles\Scps\DwarfZombie.cs" />
+        <Compile Include="Roles\Scps\ExplosiveZombie.cs" />
+        <Compile Include="Roles\Scps\InfectedZombie.cs" />
+        <Compile Include="Roles\Scps\MedicZombie.cs" />
+        <Compile Include="Roles\Scps\PoisonousZombie.cs" />
+        <Compile Include="Roles\Scps\SpeedsterZombie.cs" />
+        <Compile Include="Roles\Scps\TeleportZombie.cs" />
+    </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\VVUP.Base\VVUP.Base.csproj">
+        <Project>{fb453a80-47ea-499c-bd01-190bd82ed0b1}</Project>
+        <Name>VVUP.Base</Name>
+      </ProjectReference>
+    </ItemGroup>
+    <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
+    <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+         Other similar extension points exist, see Microsoft.Common.targets.
+    <Target Name="BeforeBuild">
+    </Target>
+    <Target Name="AfterBuild">
+    </Target>
+    -->
+
+</Project>
