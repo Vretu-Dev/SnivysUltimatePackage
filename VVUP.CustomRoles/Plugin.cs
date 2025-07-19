@@ -17,7 +17,7 @@ namespace VVUP.CustomRoles
     {
         public override PluginPriority Priority { get; } = PluginPriority.Low;
         public static Plugin Instance;
-        public override string Name { get; } = "Snivy's Free Custom Roles";
+        public override string Name { get; } = "VVUP: Custom Roles";
         public override string Author { get; } = "Vicious Vikki";
         public override string Prefix { get; } = "VVUP.CR";
         public override Version Version { get; } = Base.Plugin.Instance.Version;
@@ -105,6 +105,7 @@ namespace VVUP.CustomRoles
         public override void OnDisabled()
         {
             CustomRole.UnregisterRoles();
+            Base.Plugin.Instance.VvupCr = false;
             Instance = null;
             base.OnDisabled();
         }

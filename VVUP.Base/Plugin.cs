@@ -9,7 +9,7 @@ namespace VVUP.Base
     {
         public override PluginPriority Priority { get; } = PluginPriority.Default;
         public static Plugin Instance;
-        public override string Name { get; } = "Snivy's Ultimate Plugin Package Base";
+        public override string Name { get; } = "VVUP: Base";
         public override string Author { get; } = "Vicious Vikki";
         public override string Prefix { get; } = "VVUP.Base";
         public override Version Version { get; } = new Version(3, 0, 0);
@@ -22,7 +22,7 @@ namespace VVUP.Base
         public bool VvupMdr = false; // Micro Damage Reduction
         public bool VvupWe = false; // Weapon Evaporate
         public bool VvupRs = false; // Round Start
-        public bool VvupSv = false; // SCP1576 Spectator Viewer
+        public bool VvupSc = false; // SCP Changes
         public bool VvupFa = false; // Flamingo Adjustments
         public bool VvupHk = false; // Husk Infection
 
@@ -41,7 +41,7 @@ namespace VVUP.Base
             VvupMdr = false;
             VvupWe = false;
             VvupRs = false;
-            VvupSv = false;
+            VvupSc = false;
             VvupFa = false;
             VvupHk = false;
             

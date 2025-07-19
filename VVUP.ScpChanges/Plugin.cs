@@ -2,24 +2,24 @@ using System;
 using System.Linq;
 using Exiled.API.Enums;
 using Exiled.API.Features;
-using Exiled.CustomItems.API.Features;
 using Exiled.Loader;
+using Player = Exiled.Events.Handlers.Player;
 
-namespace VVUP.CustomItems
+namespace VVUP.ScpChanges
 {
-    public class Plugin : Plugin<CustomItemsConfig>
+    public class Plugin : Plugin<Config>
     {
         public override PluginPriority Priority { get; } = PluginPriority.Low;
         public static Plugin Instance;
-        public override string Name { get; } = "VVUP: Custom Items";
+        public override string Name { get; } = "VVUP: SCP Changes";
         public override string Author { get; } = "Vicious Vikki";
-        public override string Prefix { get; } = "VVUP.CI";
+        public override string Prefix { get; } = "VVUP.SC";
         public override Version Version { get; } = Base.Plugin.Instance.Version;
         public override Version RequiredExiledVersion { get; } = Base.Plugin.Instance.RequiredExiledVersion;
-
+        public ScpChangesEventHandlers ScpChangesEventHandlers;
+        
         public override void OnEnabled()
         {
-            Instance = this;
             if (!Loader.Plugins.Any(plugin => plugin.Prefix == "VVUP.Base"))
             {
                 Log.Error("VVUP: Base Plugin is not present, disabling module");
@@ -27,15 +27,16 @@ namespace VVUP.CustomItems
                 return;
             }
 
-            CustomItem.RegisterItems(overrideClass: Instance.Config);
-            Base.Plugin.Instance.VvupCi = true;
+            ScpChangesEventHandlers = new ScpChangesEventHandlers(this);
+            Player.UsedItem += ScpChangesEventHandlers.OnUsingItem;
+            Instance = this;
+            Base.Plugin.Instance.VvupSc = true;
             base.OnEnabled();
         }
 
         public override void OnDisabled()
         {
-            CustomItem.UnregisterItems();
-            Base.Plugin.Instance.VvupCi = false;
+            Base.Plugin.Instance.VvupSc = false;
             Instance = null;
             base.OnDisabled();
         }

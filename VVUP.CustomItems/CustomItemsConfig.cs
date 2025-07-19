@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
+using Exiled.API.Interfaces;
 using VVUP.CustomItems.Items.Armor;
 using VVUP.CustomItems.Items.Firearms;
 using VVUP.CustomItems.Items.Grenades;
@@ -9,11 +10,13 @@ using VVUP.CustomItems.Items.Other;
 
 namespace VVUP.CustomItems
 {
-    public class CustomItemsConfig
+    public class CustomItemsConfig : IConfig
     {
         [Description("Enables Custom Items")]
         public bool IsEnabled { get; set; } = true;
-        
+
+        public bool Debug { get; set; } = false;
+
         public List<SmokeGrenade> SmokeGrenades { get; private set; } = new()
         {
             new SmokeGrenade()

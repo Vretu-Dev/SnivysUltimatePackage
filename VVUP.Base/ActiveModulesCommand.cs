@@ -29,8 +29,8 @@ namespace VVUP.Base
                 activeModules += "Weapon Evaporate\n";
             if (Plugin.Instance.VvupRs)
                 activeModules += "Round Start\n";
-            if (Plugin.Instance.VvupSv)
-                activeModules += "Spectator Viewer\n";
+            if (Plugin.Instance.VvupSc)
+                activeModules += "SCP Changes\n";
             if (Plugin.Instance.VvupFa)
                 activeModules += "Flamingo Adjustments\n";
             if (Plugin.Instance.VvupHk)

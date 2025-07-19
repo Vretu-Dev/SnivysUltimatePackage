@@ -12,6 +12,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VVUP.HuskInfection", "VVUP.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VVUP.CustomItems", "VVUP.CustomItems\VVUP.CustomItems.csproj", "{F94E6731-0190-4591-9110-E4257D793C58}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VVUP.ScpChanges", "VVUP.ScpChanges\VVUP.ScpChanges.csproj", "{B146823C-B2BC-4F9F-AED7-E8FAE635517E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,5 +44,9 @@ Global
 		{F94E6731-0190-4591-9110-E4257D793C58}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F94E6731-0190-4591-9110-E4257D793C58}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F94E6731-0190-4591-9110-E4257D793C58}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B146823C-B2BC-4F9F-AED7-E8FAE635517E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B146823C-B2BC-4F9F-AED7-E8FAE635517E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B146823C-B2BC-4F9F-AED7-E8FAE635517E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B146823C-B2BC-4F9F-AED7-E8FAE635517E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

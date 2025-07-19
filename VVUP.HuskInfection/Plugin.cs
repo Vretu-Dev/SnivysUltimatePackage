@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using Exiled.API.Enums;
 using Exiled.API.Features;
+using Exiled.CustomItems;
 using Exiled.CustomItems.API;
 using Exiled.CustomItems.API.Features;
 using Exiled.CustomRoles.API;
@@ -17,7 +18,7 @@ namespace VVUP.HuskInfection
     {
         public override PluginPriority Priority { get; } = PluginPriority.Lower;
         public static Plugin Instance;
-        public override string Name { get; } = "Snivy's Husk Infection";
+        public override string Name { get; } = "VVUP: Husk Infection";
         public override string Author { get; } = "Vicious Vikki";
         public override string Prefix { get; } = "VVUP.HK";
         public override Version Version { get; } = Base.Plugin.Instance.Version;
@@ -77,22 +78,29 @@ namespace VVUP.HuskInfection
                     Log.Debug($"Roles {team} now has {CustomRoles.Plugin.Instance.Roles[team].Count} elements.");
                 }
             }
-            Config.HuskGrenades.Register();
+
+            CustomItem.RegisterItems(overrideClass: Instance.Config);
+            CustomAbility.RegisterAbilities();
             HuskInfectionEventHandlers = new HuskInfectionEventHandlers(this);
             Server.WaitingForPlayers += HuskInfectionEventHandlers.OnWaitingForPlayers;
             Server.RoundEnded += HuskInfectionEventHandlers.OnRoundEnded;
             Player.VoiceChatting += HuskInfectionEventHandlers.OnVoiceChatting;
             Player.ChangingRole += HuskInfectionEventHandlers.OnRoleChange;
+            Base.Plugin.Instance.VvupHk = true;
+            base.OnEnabled();
         }
 
         public override void OnDisabled()
         {
             CustomRole.UnregisterRoles();
             CustomItem.UnregisterItems();
+            CustomAbility.UnregisterAbilities();
             Server.WaitingForPlayers -= HuskInfectionEventHandlers.OnWaitingForPlayers;
             Server.RoundEnded -= HuskInfectionEventHandlers.OnRoundEnded;
             Player.VoiceChatting -= HuskInfectionEventHandlers.OnVoiceChatting;
             Player.ChangingRole -= HuskInfectionEventHandlers.OnRoleChange;
+            Base.Plugin.Instance.VvupHk = false;
+            Instance = null;
             base.OnDisabled();
         }
     }
