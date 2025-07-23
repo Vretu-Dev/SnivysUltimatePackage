@@ -99,6 +99,7 @@ namespace VVUP.HuskInfection
             Server.RoundEnded -= HuskInfectionEventHandlers.OnRoundEnded;
             Player.VoiceChatting -= HuskInfectionEventHandlers.OnVoiceChatting;
             Player.ChangingRole -= HuskInfectionEventHandlers.OnRoleChange;
+            HuskInfectionEventHandlers = null;
             Base.Plugin.Instance.VvupHk = false;
             Instance = null;
             base.OnDisabled();

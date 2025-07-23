@@ -105,7 +105,11 @@ namespace VVUP.CustomRoles
         public override void OnDisabled()
         {
             CustomRole.UnregisterRoles();
+            Server.RoundStarted -= CustomRoleEventHandler.OnRoundStarted;
+            Server.RespawningTeam -= CustomRoleEventHandler.OnRespawningTeam;
+            Scp049Events.FinishingRecall -= CustomRoleEventHandler.FinishingRecall;
             Base.Plugin.Instance.VvupCr = false;
+            CustomRoleEventHandler = null;
             Instance = null;
             base.OnDisabled();
         }
