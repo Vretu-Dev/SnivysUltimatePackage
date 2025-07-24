@@ -29,6 +29,8 @@ namespace VVUP.ScpChanges
 
             ScpChangesEventHandlers = new ScpChangesEventHandlers(this);
             Player.UsedItem += ScpChangesEventHandlers.OnUsingItem;
+            Player.ChangingRole += ScpChangesEventHandlers.OnChangingRole;
+            Player.Hurting += ScpChangesEventHandlers.OnHurting;
             Instance = this;
             Base.Plugin.Instance.VvupSc = true;
             base.OnEnabled();
@@ -38,6 +40,8 @@ namespace VVUP.ScpChanges
         {
             Base.Plugin.Instance.VvupSc = false;
             Player.UsedItem -= ScpChangesEventHandlers.OnUsingItem;
+            Player.ChangingRole -= ScpChangesEventHandlers.OnChangingRole;
+            Player.Hurting -= ScpChangesEventHandlers.OnHurting;
             ScpChangesEventHandlers = null;
             Instance = null;
             base.OnDisabled();

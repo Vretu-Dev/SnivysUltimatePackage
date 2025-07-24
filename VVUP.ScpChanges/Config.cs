@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using Exiled.API.Interfaces;
 
 namespace VVUP.ScpChanges
@@ -9,5 +10,7 @@ namespace VVUP.ScpChanges
         
         public string Scp1576Text { get; set; } = "<size=24><align=left>Spectators: %spectators%. Time before next spawn wave: %timebeforespawnwave% seconds</align></size>";
         public float Scp1576TextDuration { get; set; } = 15f;
+        [Description("Old SCP 106 Behavior means that SCP 106 will only have a max of 600 HP, but a 90% damage resistance to bullets.")]
+        public bool OldScp106Behavior { get; set; } = true;
     }
 }
