@@ -36,14 +36,12 @@ namespace VVUP.OperationCrossfireServerEvent
             }
             CustomItem.RegisterItems();
             Instance = this;
-            OperationCrossfireEventHandlers = new OperationCrossfireEventHandlers();
             base.OnEnabled();
         }
 
         public override void OnDisabled()
         {
             CustomItem.UnregisterItems();
-            OperationCrossfireEventHandlers = null;
             Instance = null;
             base.OnDisabled();
         }
