@@ -167,6 +167,8 @@
         <Compile Include="Roles\Scps\PoisonousZombie.cs" />
         <Compile Include="Roles\Scps\SpeedsterZombie.cs" />
         <Compile Include="Roles\Scps\TeleportZombie.cs" />
+        <Compile Include="Ssss.cs" />
+        <Compile Include="SsssEventHandlers.cs" />
     </ItemGroup>
     <ItemGroup>
       <ProjectReference Include="..\VVUP.Base\VVUP.Base.csproj">

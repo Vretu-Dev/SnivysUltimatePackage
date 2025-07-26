@@ -130,6 +130,8 @@
         <Compile Include="Items\Other\PortableIntercom.cs" />
         <Compile Include="Items\Other\Scp1499.cs" />
         <Compile Include="Plugin.cs" />
+        <Compile Include="Ssss.cs" />
+        <Compile Include="SsssEventHandlers.cs" />
     </ItemGroup>
     <ItemGroup>
       <ProjectReference Include="..\VVUP.Base\VVUP.Base.csproj">

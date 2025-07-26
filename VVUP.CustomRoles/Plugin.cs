@@ -6,10 +6,12 @@ using Exiled.API.Features;
 using Exiled.CustomRoles.API;
 using Exiled.CustomRoles.API.Features;
 using Exiled.Loader;
+using UserSettings.ServerSpecific;
 using VVUP.CustomRoles.API;
 using VVUP.CustomRoles.EventHandlers;
 using Server = Exiled.Events.Handlers.Server;
 using Scp049Events = Exiled.Events.Handlers.Scp049;
+using Player = Exiled.Events.Handlers.Player;
 
 namespace VVUP.CustomRoles
 {
@@ -25,6 +27,7 @@ namespace VVUP.CustomRoles
         
         public Dictionary<StartTeam, List<ICustomRole>> Roles { get; } = new();
         public CustomRoleEventHandler CustomRoleEventHandler;
+        public SsssEventHandlers SsssEventHandlers;
 
         public override void OnEnabled()
         {
@@ -100,6 +103,9 @@ namespace VVUP.CustomRoles
             Server.RoundStarted += CustomRoleEventHandler.OnRoundStarted;
             Server.RespawningTeam += CustomRoleEventHandler.OnRespawningTeam;
             Scp049Events.FinishingRecall += CustomRoleEventHandler.FinishingRecall;
+            SsssEventHandlers = new SsssEventHandlers(this);
+            Player.Verified += SsssEventHandlers.OnVerified;
+            ServerSpecificSettingsSync.ServerOnSettingValueReceived += SsssEventHandlers.OnSettingValueReceived;
             Base.Plugin.Instance.VvupCr = true;
             base.OnEnabled();
         }
@@ -111,6 +117,9 @@ namespace VVUP.CustomRoles
             Server.RespawningTeam -= CustomRoleEventHandler.OnRespawningTeam;
             Scp049Events.FinishingRecall -= CustomRoleEventHandler.FinishingRecall;
             Base.Plugin.Instance.VvupCr = false;
+            Player.Verified -= SsssEventHandlers.OnVerified;
+            ServerSpecificSettingsSync.ServerOnSettingValueReceived -= SsssEventHandlers.OnSettingValueReceived;
+            SsssEventHandlers = null;
             CustomRoleEventHandler = null;
             Instance = null;
             base.OnDisabled();

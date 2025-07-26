@@ -4,6 +4,8 @@ using Exiled.API.Enums;
 using Exiled.API.Features;
 using Exiled.CustomItems.API.Features;
 using Exiled.Loader;
+using UserSettings.ServerSpecific;
+using Player = Exiled.Events.Handlers.Player;
 
 namespace VVUP.CustomItems
 {
@@ -16,6 +18,7 @@ namespace VVUP.CustomItems
         public override string Prefix { get; } = "VVUP.CI";
         public override Version Version { get; } = new Version(3, 0, 0);
         public override Version RequiredExiledVersion { get; } = new Version(9, 6, 1);
+        public SsssEventHandlers SsssEventHandlers;
 
         public override void OnEnabled()
         {
@@ -26,8 +29,10 @@ namespace VVUP.CustomItems
                 base.OnDisabled();
                 return;
             }
-
             CustomItem.RegisterItems(overrideClass: Instance.Config);
+            SsssEventHandlers = new SsssEventHandlers(this);
+            Player.Verified += SsssEventHandlers.OnVerified;
+            ServerSpecificSettingsSync.ServerOnSettingValueReceived += SsssEventHandlers.OnSettingValueReceived;
             Base.Plugin.Instance.VvupCi = true;
             base.OnEnabled();
         }
@@ -35,6 +40,9 @@ namespace VVUP.CustomItems
         public override void OnDisabled()
         {
             CustomItem.UnregisterItems();
+            Player.Verified -= SsssEventHandlers.OnVerified;
+            ServerSpecificSettingsSync.ServerOnSettingValueReceived -= SsssEventHandlers.OnSettingValueReceived;
+            SsssEventHandlers = null;
             Base.Plugin.Instance.VvupCi = false;
             Instance = null;
             base.OnDisabled();
