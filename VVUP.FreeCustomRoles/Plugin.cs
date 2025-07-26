@@ -34,8 +34,6 @@ namespace VVUP.FreeCustomRoles
                 base.OnDisabled();
                 return;
             }
-
-            Config.LoadConfigs();
             
             Config.FreeCustomRoles1.Register();
             Config.FreeCustomRoles2.Register();

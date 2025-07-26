@@ -48,7 +48,8 @@ namespace VVUP.HuskInfection
                 base.OnDisabled();
                 return;
             }
-            Config.HuskZombies.Register();
+            CustomAbility.RegisterAbilities();
+            Config.CustomRoleConfig.HuskZombies.Register();
             foreach (CustomRole role in CustomRole.Registered)
             {
                 if (role is ICustomRole custom)
@@ -79,8 +80,7 @@ namespace VVUP.HuskInfection
                 }
             }
 
-            CustomItem.RegisterItems(overrideClass: Instance.Config);
-            CustomAbility.RegisterAbilities();
+            CustomItem.RegisterItems(overrideClass: Instance.Config.CustomItemConfig);
             HuskInfectionEventHandlers = new HuskInfectionEventHandlers(this);
             Server.WaitingForPlayers += HuskInfectionEventHandlers.OnWaitingForPlayers;
             Server.RoundEnded += HuskInfectionEventHandlers.OnRoundEnded;

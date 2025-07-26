@@ -13,7 +13,7 @@ using Scp049Events = Exiled.Events.Handlers.Scp049;
 
 namespace VVUP.CustomRoles
 {
-    public class Plugin : Plugin<CustomRolesConfig>
+    public class Plugin : Plugin<Config>
     {
         public override PluginPriority Priority { get; } = PluginPriority.Low;
         public static Plugin Instance;
@@ -35,35 +35,37 @@ namespace VVUP.CustomRoles
                 base.OnDisabled();
                 return;
             }
+
+            CustomAbility.RegisterAbilities();
             
             CustomRoleEventHandler = new CustomRoleEventHandler(this);
-            CustomRolesConfig.ContainmentScientists.Register();
-            CustomRolesConfig.LightGuards.Register();
-            CustomRolesConfig.Biochemists.Register();
-            CustomRolesConfig.ContainmentGuards.Register();
-            CustomRolesConfig.BorderPatrols.Register();
-            CustomRolesConfig.Nightfalls.Register();
-            CustomRolesConfig.A7Chaoss.Register();
-            CustomRolesConfig.Flippeds.Register();
-            CustomRolesConfig.TelepathicChaos.Register();
-            CustomRolesConfig.JuggernautChaos.Register();
-            CustomRolesConfig.CISpies.Register();
-            CustomRolesConfig.MtfWisps.Register();
-            CustomRolesConfig.DwarfZombies.Register();
-            CustomRolesConfig.ExplosiveZombies.Register();
-            CustomRolesConfig.CiPhantoms.Register();
-            CustomRolesConfig.MedicZombies.Register();
-            CustomRolesConfig.LockpickingClassDs.Register();
-            CustomRolesConfig.Demolitionists.Register();
-            CustomRolesConfig.Vanguards.Register();
-            CustomRolesConfig.TheoreticalPhysicistScientists.Register();
-            CustomRolesConfig.MtfParamedics.Register();
-            CustomRolesConfig.ClassDAnalysts.Register();
-            CustomRolesConfig.ClassDTanks.Register();
-            CustomRolesConfig.InfectedZombies.Register();
-            CustomRolesConfig.PoisonousZombies.Register();
-            CustomRolesConfig.SpeedsterZombies.Register();
-            CustomRolesConfig.TeleportZombies.Register();
+            Config.CustomRolesConfig.ContainmentScientists.Register();
+            Config.CustomRolesConfig.LightGuards.Register();
+            Config.CustomRolesConfig.Biochemists.Register();
+            Config.CustomRolesConfig.ContainmentGuards.Register();
+            Config.CustomRolesConfig.BorderPatrols.Register();
+            Config.CustomRolesConfig.Nightfalls.Register();
+            Config.CustomRolesConfig.A7Chaoss.Register();
+            Config.CustomRolesConfig.Flippeds.Register();
+            Config.CustomRolesConfig.TelepathicChaos.Register();
+            Config.CustomRolesConfig.JuggernautChaos.Register();
+            Config.CustomRolesConfig.CISpies.Register();
+            Config.CustomRolesConfig.MtfWisps.Register();
+            Config.CustomRolesConfig.DwarfZombies.Register();
+            Config.CustomRolesConfig.ExplosiveZombies.Register();
+            Config.CustomRolesConfig.CiPhantoms.Register();
+            Config.CustomRolesConfig.MedicZombies.Register();
+            Config.CustomRolesConfig.LockpickingClassDs.Register();
+            Config.CustomRolesConfig.Demolitionists.Register();
+            Config.CustomRolesConfig.Vanguards.Register();
+            Config.CustomRolesConfig.TheoreticalPhysicistScientists.Register();
+            Config.CustomRolesConfig.MtfParamedics.Register();
+            Config.CustomRolesConfig.ClassDAnalysts.Register();
+            Config.CustomRolesConfig.ClassDTanks.Register();
+            Config.CustomRolesConfig.InfectedZombies.Register();
+            Config.CustomRolesConfig.PoisonousZombies.Register();
+            Config.CustomRolesConfig.SpeedsterZombies.Register();
+            Config.CustomRolesConfig.TeleportZombies.Register();
 
             foreach (CustomRole role in CustomRole.Registered)
             {
@@ -94,7 +96,7 @@ namespace VVUP.CustomRoles
                     Log.Debug($"Roles {team} now has {Roles[team].Count} elements.");
                 }
             }
-
+            
             Server.RoundStarted += CustomRoleEventHandler.OnRoundStarted;
             Server.RespawningTeam += CustomRoleEventHandler.OnRespawningTeam;
             Scp049Events.FinishingRecall += CustomRoleEventHandler.FinishingRecall;

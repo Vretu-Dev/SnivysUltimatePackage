@@ -134,6 +134,7 @@
         <Compile Include="API\ExternalTeams\UiuCheck.cs" />
         <Compile Include="API\ICustomRole.cs" />
         <Compile Include="API\StartTeam.cs" />
+        <Compile Include="Config.cs" />
         <Compile Include="CustomRolesConfig.cs" />
         <Compile Include="EventHandlers\CustomRoleEventHandler.cs" />
         <Compile Include="EventHandlers\CustomRoleMethods.cs" />

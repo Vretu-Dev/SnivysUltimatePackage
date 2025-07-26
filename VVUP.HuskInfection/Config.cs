@@ -8,20 +8,7 @@ namespace VVUP.HuskInfection
     {
         public bool IsEnabled { get; set; } = true;
         public bool Debug { get; set; } = false;
-        
-        public static List<HuskZombie> HuskZombies { get; set; } = new()
-        {
-            new HuskZombie(),
-        };
-
-        public static List<HuskGrenade> HuskGrenades { get; set; } = new()
-        {
-            new HuskGrenade(),
-        };
-
-        public static List<Calyxanide> Calyxanides { get; set; } = new()
-        {
-            new Calyxanide(),
-        };
+        public CustomItemConfig CustomItemConfig { get; set; } = new();
+        public CustomRoleConfig CustomRoleConfig { get; set; } = new();
     }
 }

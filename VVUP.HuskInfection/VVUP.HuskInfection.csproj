@@ -103,6 +103,8 @@
         <Compile Include="ApplyHuskInfection.cs" />
         <Compile Include="Calyxanide.cs" />
         <Compile Include="Config.cs" />
+        <Compile Include="CustomItemConfig.cs" />
+        <Compile Include="CustomRoleConfig.cs" />
         <Compile Include="HuskGrenade.cs" />
         <Compile Include="HuskInfectionEventHandlers.cs" />
         <Compile Include="HuskZombie.cs" />

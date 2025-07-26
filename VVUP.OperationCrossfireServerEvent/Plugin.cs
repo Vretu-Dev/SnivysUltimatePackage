@@ -34,7 +34,7 @@ namespace VVUP.OperationCrossfireServerEvent
                 base.OnDisabled();
                 return;
             }
-            CustomItem.RegisterItems();
+            CustomItem.RegisterItems(overrideClass: Instance.Config);
             Instance = this;
             base.OnEnabled();
         }
