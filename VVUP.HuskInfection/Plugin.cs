@@ -42,7 +42,7 @@ namespace VVUP.HuskInfection
                 base.OnDisabled();
                 return;
             }
-            if (!Loader.Plugins.Any(plugin => plugin.Prefix == "VVUP.CustomItems"))
+            if (!Loader.Plugins.Any(plugin => plugin.Prefix == "VVUP.CI"))
             {
                 Log.Error("VVUP: Custom Items Module is not present, disabling module");
                 base.OnDisabled();
