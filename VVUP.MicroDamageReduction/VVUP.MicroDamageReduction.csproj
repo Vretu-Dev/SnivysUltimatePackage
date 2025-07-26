@@ -28,10 +28,11 @@
         <PlatformTarget>AnyCPU</PlatformTarget>
         <DebugType>embedded</DebugType>
         <Optimize>true</Optimize>
-        <OutputPath>bin\Release\</OutputPath>
+        <OutputPath>$(SolutionDir)Build\$(Configuration)\</OutputPath>
         <DefineConstants>TRACE</DefineConstants>
         <ErrorReport>prompt</ErrorReport>
         <WarningLevel>4</WarningLevel>
+        <DebugSymbols>true</DebugSymbols>
     </PropertyGroup>
     <ItemGroup>
     <Reference Include="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
