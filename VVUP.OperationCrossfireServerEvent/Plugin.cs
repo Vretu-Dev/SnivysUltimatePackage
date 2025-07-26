@@ -2,6 +2,7 @@
 using System.Linq;
 using Exiled.API.Enums;
 using Exiled.API.Features;
+using Exiled.CustomItems.API.Features;
 using Exiled.Loader;
 using VVUP.ServerEvents.ServerEventsEventHandlers;
 
@@ -33,6 +34,7 @@ namespace VVUP.OperationCrossfireServerEvent
                 base.OnDisabled();
                 return;
             }
+            CustomItem.RegisterItems(overrideClass: Instance.Config);
             Instance = this;
             OperationCrossfireEventHandlers = new OperationCrossfireEventHandlers();
             base.OnEnabled();
@@ -40,6 +42,7 @@ namespace VVUP.OperationCrossfireServerEvent
 
         public override void OnDisabled()
         {
+            CustomItem.UnregisterItems();
             OperationCrossfireEventHandlers = null;
             Instance = null;
             base.OnDisabled();
