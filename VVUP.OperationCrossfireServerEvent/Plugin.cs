@@ -28,9 +28,9 @@ namespace VVUP.OperationCrossfireServerEvent
                 base.OnDisabled();
                 return;
             }
-            if (!Loader.Plugins.Any(plugin => plugin.Prefix == "VVUP.ServerEvents"))
+            if (!Loader.Plugins.Any(plugin => plugin.Prefix == "VVUP.SE"))
             {
-                Log.Error("VVUP: Base Plugin is not present, disabling module");
+                Log.Error("VVUP: Server Event Module is not present, disabling module");
                 base.OnDisabled();
                 return;
             }

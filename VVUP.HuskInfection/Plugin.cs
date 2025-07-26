@@ -36,7 +36,7 @@ namespace VVUP.HuskInfection
                 return;
             }
 
-            if (!Loader.Plugins.Any(plugin => plugin.Prefix == "VVUP.CustomRoles"))
+            if (!Loader.Plugins.Any(plugin => plugin.Prefix == "VVUP.CR"))
             {
                 Log.Error("VVUP: Custom Roles Module is not present, disabling module");
                 base.OnDisabled();

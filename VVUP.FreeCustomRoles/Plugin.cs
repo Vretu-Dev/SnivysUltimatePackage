@@ -24,13 +24,13 @@ namespace VVUP.FreeCustomRoles
             Instance = this;
             if (!Loader.Plugins.Any(plugin => plugin.Prefix == "VVUP.Base"))
             {
-                Log.Error("VVUP Free Custom Roles: Base Plugin is not present, disabling module");
+                Log.Error("VVUP Base Plugin is not present, disabling module");
                 base.OnDisabled();
                 return;
             }
             if (!Loader.Plugins.Any(plugin => plugin.Prefix == "VVUP.CustomRoles"))
             {
-                Log.Error("VVUP Free Custom Roles: Custom Roles Module is not present, disabling module");
+                Log.Error("VVUP Custom Roles Module is not present, disabling module");
                 base.OnDisabled();
                 return;
             }
