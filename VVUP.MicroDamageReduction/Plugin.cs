@@ -14,8 +14,8 @@ namespace VVUP.MicroDamageReduction
         public override string Name { get; } = "VVUP: Micro Damage Reduction";
         public override string Author { get; } = "Vicious Vikki";
         public override string Prefix { get; } = "VVUP.MDR";
-        public override Version Version { get; } = Base.Plugin.Instance.Version;
-        public override Version RequiredExiledVersion { get; } = Base.Plugin.Instance.RequiredExiledVersion;
+        public override Version Version { get; } = new Version(3, 0, 0);
+        public override Version RequiredExiledVersion { get; } = new Version(9, 6, 1);
         public MicroDamageReductionEventHandler MicroDamageReductionEventHandler;
         
         public override void OnEnabled()
