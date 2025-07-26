@@ -1,7 +1,5 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SnivysUltimatePackage", "SnivysUltimatePackage\SnivysUltimatePackage.csproj", "{500F83A2-4A1E-4172-B905-6D21E37FDA1E}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VVUP.FreeCustomRoles", "VVUP.FreeCustomRoles\VVUP.FreeCustomRoles.csproj", "{5A358376-2F4B-42D8-B830-BAD2D827F603}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VVUP.Base", "VVUP.Base\VVUP.Base.csproj", "{FB453A80-47EA-499C-BD01-190BD82ED0B1}"
@@ -32,10 +30,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{500F83A2-4A1E-4172-B905-6D21E37FDA1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{500F83A2-4A1E-4172-B905-6D21E37FDA1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{500F83A2-4A1E-4172-B905-6D21E37FDA1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{500F83A2-4A1E-4172-B905-6D21E37FDA1E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5A358376-2F4B-42D8-B830-BAD2D827F603}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5A358376-2F4B-42D8-B830-BAD2D827F603}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5A358376-2F4B-42D8-B830-BAD2D827F603}.Release|Any CPU.ActiveCfg = Release|Any CPU
