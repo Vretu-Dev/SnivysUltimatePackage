@@ -16,8 +16,8 @@ namespace VVUP.CustomRoles.Abilities.Active
         public override string Description { get; set; } = "Allows you to open any door for a short period of time, but limited by some external factors";
         public override float Duration { get; set; } = 15f;
         public override float Cooldown { get; set; } = 180f;
-        public float TimeToDoorPickMin { get; set; } = 3f;
-        public float TimeToDoorPickMax { get; set; } = 6f;
+        public int TimeToDoorPickMin { get; set; } = 3;
+        public int TimeToDoorPickMax { get; set; } = 6;
         public float TimeForDoorToBeOpen { get; set; } = 5f;
         public string BeforePickingDoorText { get; set; } = "Interact with a door to start to pick it";
         public string PickingDoorText { get; set; } = "Picking door...";
@@ -54,7 +54,7 @@ namespace VVUP.CustomRoles.Abilities.Active
             
             Log.Debug("VVUP Custom Abilities: Door Picking Ability, processing methods");
             ev.IsAllowed = false;
-            int randomTime = new Random().Next((int)TimeToDoorPickMin, (int)TimeToDoorPickMax);
+            int randomTime = Base.GetRandomNumber.GetRandomInt(TimeToDoorPickMin, TimeToDoorPickMax);
             ev.Player.ShowHint(PickingDoorText, randomTime);
             foreach (var effect in EffectsToApply)
             {

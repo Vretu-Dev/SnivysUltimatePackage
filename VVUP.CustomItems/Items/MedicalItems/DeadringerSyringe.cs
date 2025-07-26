@@ -13,7 +13,6 @@ using MEC;
 using UnityEngine;
 using YamlDotNet.Serialization;
 using Player = Exiled.Events.Handlers.Player;
-using Random = System.Random;
 
 namespace VVUP.CustomItems.Items.MedicalItems
 {
@@ -100,7 +99,6 @@ namespace VVUP.CustomItems.Items.MedicalItems
                 ev.Player.EnableEffect(EffectType.AmnesiaItems, 30f, true);
                 ev.Player.EnableEffect(EffectType.AmnesiaVision, 30f, true);
                 Ragdoll ragdoll = Ragdoll.CreateAndSpawn(ev.Player.Role, ev.Player.Nickname, RagdollDeathReason, ev.Player.Position, ev.Player.ReferenceHub.PlayerCameraReference.rotation);
-                Random random = new Random();
                 List<Room> rooms = Room.List.Where(room => !ExcludedRooms.Contains(room.Type)).ToList();
                 if (rooms.Count > 0)
                 {
@@ -110,7 +108,7 @@ namespace VVUP.CustomItems.Items.MedicalItems
                      }
                      else
                      {
-                         Room randomRoom = rooms[random.Next(rooms.Count)];
+                         Room randomRoom = rooms[Base.GetRandomNumber.GetRandomInt(rooms.Count)];
                          Vector3 teleportPosition = randomRoom.Position + Vector3.up;
                          ev.Player.Position = teleportPosition;
                      }

@@ -102,9 +102,9 @@
     <ItemGroup>
         <Compile Include="Config.cs" />
         <Compile Include="ActiveModulesCommand.cs" />
+        <Compile Include="GetRandomNumber.cs" />
         <Compile Include="GetRandomSpectator.cs" />
         <Compile Include="Plugin.cs" />
-        <Compile Include="Properties\AssemblyInfo.cs"/>
     </ItemGroup>
     <ItemGroup>
       <None Include="packages.config" />

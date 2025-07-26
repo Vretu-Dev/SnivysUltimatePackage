@@ -5,7 +5,6 @@ using Exiled.CustomRoles.API.Features;
 using Exiled.Events.EventArgs.Player;
 using MEC;
 using UnityEngine;
-using Random = System.Random;
 
 namespace VVUP.CustomRoles.Abilities.Passive
 {
@@ -40,14 +39,13 @@ namespace VVUP.CustomRoles.Abilities.Passive
             if (!PlayersWithPocketDimensionEscapeChance.ContainsKey(ev.Player))
                 return;
             Log.Debug($"VVUP Custom Abilities: Pocket Dimension Escape Chance, Checking if {ev.Player.Nickname} hit the limit of allowed escapes. Limit = {AmountOfAllowedEscapes}, Current = {PlayersWithPocketDimensionEscapeChance[ev.Player]}");
-            Random random = new Random();
             if (PlayersWithPocketDimensionEscapeChance.ContainsValue(AmountOfAllowedEscapes))
             {
                 Log.Debug($"VVUP Custom Abilities: Pocket Dimension Escape Chance, {ev.Player.Nickname} hit the limit of custom escapes, killing them.");
                 ev.Player.Kill(CustomDeathReason);
                 ev.IsAllowed = false;
             }
-            else if (EscapeChance >= random.Next(101))
+            else if (EscapeChance >= Base.GetRandomNumber.GetRandomInt(101))
             {
                 Log.Debug(
                     $"VVUP Custom Abilities: Pocket Dimension Escape Chance, {ev.Player.Nickname} has gotten an escape chance, teleporting them to 106's room");
@@ -64,14 +62,13 @@ namespace VVUP.CustomRoles.Abilities.Passive
             if (!PlayersWithPocketDimensionEscapeChance.ContainsKey(ev.Player))
                 return;
             Log.Debug($"VVUP Custom Abilities: Pocket Dimension Escape Chance, Checking if {ev.Player.Nickname} hit the limit of allowed escapes. Limit = {AmountOfAllowedEscapes}, Current = {PlayersWithPocketDimensionEscapeChance[ev.Player]}");
-            Random random = new Random();
             if (PlayersWithPocketDimensionEscapeChance.ContainsValue(AmountOfAllowedEscapes))
             {
                 Log.Debug($"VVUP Custom Abilities: Pocket Dimension Escape Chance, {ev.Player.Nickname} hit the limit of custom escapes, killing them.");
                 ev.Player.Kill(CustomDeathReason);
                 ev.IsAllowed = true;
             }
-            else if (EscapeChance >= random.Next(101))
+            else if (EscapeChance >= Base.GetRandomNumber.GetRandomInt(101))
             {
                 Log.Debug(
                     $"VVUP Custom Abilities: Pocket Dimension Escape Chance, {ev.Player.Nickname} has gotten an escape chance, teleporting them to 106's room");

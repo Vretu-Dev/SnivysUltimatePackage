@@ -2,7 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using Exiled.API.Enums;
+using Exiled.API.Features;
 using Exiled.API.Features.Attributes;
+using Exiled.API.Features.Items;
+using Exiled.API.Features.Pickups;
 using Exiled.API.Features.Spawn;
 using Exiled.CustomItems.API.EventArgs;
 using Exiled.CustomItems.API.Features;
@@ -15,7 +18,7 @@ using UnityEngine;
 using YamlDotNet.Serialization;
 using LabKeycardItem = LabApi.Features.Wrappers.KeycardItem;
 
-namespace VVUP.CustomItems.Items.Keycards
+namespace VVUP.OperationCrossfireServerEvent
 {
     [CustomItem(ItemType.KeycardCustomSite02)]
     public class OcfPrototypeKeycardBasic : CustomItem
@@ -136,7 +139,7 @@ namespace VVUP.CustomItems.Items.Keycards
 
         protected override void OnDroppingItem(DroppingItemEventArgs ev)
         {
-            if (ev.Player.Role == RoleTypeId.ClassD && OperationCrossFire.OcfStarted)
+            if (ev.Player.Role == RoleTypeId.ClassD && OperationCrossfireEventHandlers.OcfStarted)
                 ev.IsAllowed = false;
             base.OnDroppingItem(ev);
         }
@@ -250,7 +253,7 @@ namespace VVUP.CustomItems.Items.Keycards
         {
             ev.IsAllowed = false;
             ev.Item.DestroySelf();
-            if (OperationCrossFire.OcfStarted)
+            if (OperationCrossfireEventHandlers.OcfStarted)
                 TrySpawn(RefinedKeycardId, ev.OutputPosition, out var pickup);
         }
     }

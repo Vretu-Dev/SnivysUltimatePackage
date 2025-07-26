@@ -25,6 +25,7 @@ namespace VVUP.Base
         public bool VvupSc = false; // SCP Changes
         public bool VvupFa = false; // Flamingo Adjustments
         public bool VvupHk = false; // Husk Infection
+        public bool VvupVo = false; // Votes
 
         public override void OnEnabled()
         {
@@ -44,6 +45,7 @@ namespace VVUP.Base
             VvupSc = false;
             VvupFa = false;
             VvupHk = false;
+            VvupVo = false;
             
             Instance = null;
             base.OnDisabled();

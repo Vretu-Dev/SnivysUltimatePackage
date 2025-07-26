@@ -1,7 +1,19 @@
 using System;
 using System.ComponentModel;
+using Exiled.API.Features;
+using Exiled.API.Features.Attributes;
+using Exiled.API.Features.Items;
+using Exiled.API.Features.Pickups;
+using Exiled.API.Features.Spawn;
+using Exiled.CustomItems.API.Features;
+using Exiled.Events.EventArgs.Map;
+using Interactables.Interobjects.DoorUtils;
+using InventorySystem;
+using InventorySystem.Items.Keycards;
+using UnityEngine;
+using YamlDotNet.Serialization;
 
-namespace VVUP.CustomItems.Items.Keycards
+namespace VVUP.OperationCrossfireServerEvent
 {
     [CustomItem(ItemType.KeycardCustomManagement)]
     public class OcfPrototypeKeycardRefined : CustomItem
@@ -77,8 +89,8 @@ namespace VVUP.CustomItems.Items.Keycards
         {
             base.OnAcquired(player, item, displayMessage);
             UpdateCard(item);
-            if (OperationCrossFire.OcfStarted)
-                OperationCrossFire._prototypeDeviceRefined = true;
+            if (OperationCrossfireEventHandlers.OcfStarted)
+                OperationCrossfireEventHandlers._prototypeDeviceRefined = true;
         }
 
         public override Pickup Spawn(Vector3 position, Item item, Player previousOwner = null)

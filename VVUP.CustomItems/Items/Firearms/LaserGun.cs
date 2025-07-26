@@ -10,7 +10,6 @@ using Exiled.CustomItems.API.Features;
 using Exiled.Events.EventArgs.Player;
 using MEC;
 using UnityEngine;
-using Random = System.Random;
 
 namespace VVUP.CustomItems.Items.Firearms
 {
@@ -92,9 +91,9 @@ namespace VVUP.CustomItems.Items.Firearms
         }
         private (float Red, float Green, float Blue) GetRandomLaserColor()
         {
-            int randomColorR = new Random().Next(LaserColorRed.Count);
-            int randomColorG = new Random().Next(LaserColorGreen.Count);
-            int randomColorB = new Random().Next(LaserColorBlue.Count);
+            int randomColorR = Base.GetRandomNumber.GetRandomInt(LaserColorRed.Count);
+            int randomColorG = Base.GetRandomNumber.GetRandomInt(LaserColorGreen.Count);
+            int randomColorB = Base.GetRandomNumber.GetRandomInt(LaserColorBlue.Count);
             return (randomColorR, randomColorG, randomColorB);
         }
     }

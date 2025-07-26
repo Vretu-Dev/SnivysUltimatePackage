@@ -13,7 +13,6 @@ namespace VVUP.Base
         
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
-            
             string activeModules = string.Empty;
             if (Plugin.Instance.VvupCi)
                 activeModules += "Custom Items\n";
@@ -35,6 +34,8 @@ namespace VVUP.Base
                 activeModules += "Flamingo Adjustments\n";
             if (Plugin.Instance.VvupHk)
                 activeModules += "Husk Infection\n";
+            if (Plugin.Instance.VvupVo)
+                activeModules += "Votes\n";
             if (activeModules == string.Empty)
                 activeModules = "No modules has been loaded";
             response = $"VVUP Active Modules: {activeModules}";

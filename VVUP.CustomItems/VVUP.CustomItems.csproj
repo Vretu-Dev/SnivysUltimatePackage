@@ -120,8 +120,6 @@
         <Compile Include="Items\Grenades\ProxyBang.cs" />
         <Compile Include="Items\Grenades\SmokeGrenade.cs" />
         <Compile Include="Items\Keycards\ContainmentScientistKeycard.cs" />
-        <Compile Include="Items\Keycards\OcfPrototypeKeycardBasic.cs" />
-        <Compile Include="Items\Keycards\OcfPrototypeKeycardRefined.cs" />
         <Compile Include="Items\MedicalItems\AntiScp096Pills.cs" />
         <Compile Include="Items\MedicalItems\DeadringerSyringe.cs" />
         <Compile Include="Items\MedicalItems\InfinitePills.cs" />
@@ -131,7 +129,6 @@
         <Compile Include="Items\Other\PortableIntercom.cs" />
         <Compile Include="Items\Other\Scp1499.cs" />
         <Compile Include="Plugin.cs" />
-        <Compile Include="Properties\AssemblyInfo.cs"/>
     </ItemGroup>
     <ItemGroup>
       <ProjectReference Include="..\VVUP.Base\VVUP.Base.csproj">

@@ -4,7 +4,7 @@ using Exiled.API.Interfaces;
 using VVUP.CustomItems.Items.Armor;
 using VVUP.CustomItems.Items.Firearms;
 using VVUP.CustomItems.Items.Grenades;
-using VVUP.CustomItems.Items.Keycards;
+//using VVUP.CustomItems.Items.Keycards;
 using VVUP.CustomItems.Items.MedicalItems;
 using VVUP.CustomItems.Items.Other;
 
@@ -135,16 +135,6 @@ namespace VVUP.CustomItems
         public List<ProxyBang> ProxyBangs { get; private set; } = new()
         {
             new ProxyBang()
-        };
-        
-        public List<OcfPrototypeKeycardBasic> OcfPrototypeKeycardBasics { get; private set; } = new()
-        {
-            new OcfPrototypeKeycardBasic()
-        };
-
-        public List<OcfPrototypeKeycardRefined> OcfPrototypeKeycardRefineds { get; private set; } = new()
-        {
-            new OcfPrototypeKeycardRefined()
         };
 
         [Description("An unsupported item, there's going to be a lot of issues that I wont fix.")]
