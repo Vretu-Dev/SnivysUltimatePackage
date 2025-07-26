@@ -14,8 +14,6 @@ namespace VVUP.WeaponEvaporate
         public Dictionary<DamageType, EventHandlers.HitBoxEnums> WeaponHitToEvaporate = new Dictionary<DamageType, EventHandlers.HitBoxEnums>
         {
             { DamageType.MicroHid, EventHandlers.HitBoxEnums.Body },
-            { DamageType.MicroHid, EventHandlers.HitBoxEnums.Limb },
-            { DamageType.MicroHid, EventHandlers.HitBoxEnums.Headshot },
             { DamageType.Revolver, EventHandlers.HitBoxEnums.Headshot },
         };
     }
