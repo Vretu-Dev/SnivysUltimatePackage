@@ -15,7 +15,7 @@ namespace VVUP.ServerEvents
         public static Plugin Instance;
         public override string Name { get; } = "VVUP: Server Events";
         public override string Author { get; } = "Vicious Vikki";
-        public override string Prefix { get; } = "VVUP.ServerEvents";
+        public override string Prefix { get; } = "VVUP.SE";
         public override Version Version { get; } = new Version(3, 0, 0);
         public override Version RequiredExiledVersion { get; } = new Version(9, 6, 1);
 
