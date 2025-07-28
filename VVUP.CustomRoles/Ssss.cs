@@ -82,7 +82,7 @@ namespace VVUP.CustomRoles
         {
             var mySettings = GetSettings();
             var current = ServerSpecificSettingsSync.DefinedSettings?.ToList() ?? new List<ServerSpecificSettingBase>();
-            current.AddRange([new SSGroupHeader("Vicious Vikki's Custom Roles")]);
+            current.AddRange(new ServerSpecificSettingBase[] { new SSGroupHeader("Vicious Vikki's Custom Roles") });
             foreach (var setting in mySettings)
             {
                 if (current.All(s => s.SettingId != setting.SettingId))

@@ -71,7 +71,7 @@ namespace VVUP.CustomItems
         {
             var mySettings = GetSettings();
             var current = ServerSpecificSettingsSync.DefinedSettings?.ToList() ?? new List<ServerSpecificSettingBase>();
-            current.AddRange([new SSGroupHeader("Vicious Vikki's Custom Items")]);
+            current.AddRange(new ServerSpecificSettingBase[] { new SSGroupHeader("Vicious Vikki's Custom Items") });
             foreach (var setting in mySettings)
             {
                 if (current.All(s => s.SettingId != setting.SettingId))

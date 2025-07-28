@@ -9,7 +9,7 @@ namespace VVUP.OperationCrossfireServerEvent
         public string Command { get; } = "OperationCrossfireStop";
         public string[] Aliases { get; } = { "OfcStop" };
         public string Description { get; } = "Stops the Operation Crossfire event if it is running.";
-        public bool Execute(ArraySegment<string> arguments, ICommandSender sender, [UnscopedRef] out string response)
+        public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
             if (!OperationCrossfireEventHandlers.OcfStarted)
             {

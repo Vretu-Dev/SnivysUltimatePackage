@@ -11,7 +11,7 @@
         <RootNamespace>VVUP.CustomItems</RootNamespace>
         <AssemblyName>VVUP.CustomItems</AssemblyName>
         <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
-        <LangVersion>latest</LangVersion>
+        <LangVersion>latestmajor</LangVersion>
         <FileAlignment>512</FileAlignment>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
