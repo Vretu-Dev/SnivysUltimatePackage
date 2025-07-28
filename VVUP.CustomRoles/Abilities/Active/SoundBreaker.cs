@@ -17,7 +17,7 @@ namespace VVUP.CustomRoles.Abilities.Active
         public override float Cooldown { get; set; } = 150f;
         public float BlinkCooldown { get; set; } = 0.5f;
         public float MaxBlinkDistance { get; set; } = 4f;
-        public int MinimumObserverdPlayers { get; set; } = 1;
+        public int MinimumObservedPlayers { get; set; } = 1;
 
         public override bool CanUseAbility(Player player, out string response, bool selectedOnly = false)
         {
@@ -25,7 +25,7 @@ namespace VVUP.CustomRoles.Abilities.Active
             {
                 int observers = scp173Role.ObservingPlayers.Count();
 
-                if (observers >= MinimumObserverdPlayers)
+                if (observers >= MinimumObservedPlayers)
                     return base.CanUseAbility(player, out response, selectedOnly);
             }
 
