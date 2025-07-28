@@ -51,6 +51,7 @@ namespace VVUP.CustomRoles
                 TeleportZombie.Get(typeof(TeleportZombie)),
                 TheoreticalPhysicistScientist.Get(typeof(TheoreticalPhysicistScientist)),
                 Vanguard.Get(typeof(Vanguard)),
+                SoundBreaker173.Get(typeof(SoundBreaker173)),
             };
                 
             foreach (var role in customRoles)
@@ -76,7 +77,8 @@ namespace VVUP.CustomRoles
              settings.Add(new SSKeybindSetting(Plugin.Instance.Config.RemoveDisguiseId, Plugin.Instance.Config.RemoveDisguiseSsssText, KeyCode.B, true, false, Plugin.Instance.Config.RemoveDisguiseHint));
              settings.Add(new SSKeybindSetting(Plugin.Instance.Config.ReviveMistId, Plugin.Instance.Config.ReviveMistSsssText, KeyCode.B, true, false, Plugin.Instance.Config.ReviveMistHint));
              settings.Add(new SSKeybindSetting(Plugin.Instance.Config.TeleportId, Plugin.Instance.Config.TeleportSsssText, KeyCode.B, true, false, Plugin.Instance.Config.TeleportHint));
-             return settings.ToArray();
+             settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SoundBreakerId, Plugin.Instance.Config.SoundBreakerSsssText,KeyCode.C, true, false, Plugin.Instance.Config.SoundBreakerHint));
+            return settings.ToArray();
         }
         public static void SafeAppendSsssSettings()
         {
