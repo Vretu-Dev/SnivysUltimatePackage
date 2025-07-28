@@ -16,18 +16,8 @@ namespace VVUP.CustomRoles.Abilities.Active
         public override float Duration { get; set; } = 5f;
         public override float Cooldown { get; set; } = 150f;
         public float BlinkCooldown { get; set; } = 0.5f;
-        public float BlinkDistanceLimited { get; set; } = 0.4f;
+        public float BlinkDistanceLimited { get; set; } = 0.6f;
         public int MinimumObserverdPlayers { get; set; } = 1;
-
-        protected override void SubscribeEvents()
-        {
-            Exiled.Events.Handlers.Scp173.Blinking += OnBlinking;
-        }
-
-        protected override void UnsubscribeEvents()
-        {
-            Exiled.Events.Handlers.Scp173.Blinking -= OnBlinking;
-        }
 
         public override bool CanUseAbility(Player player, out string response, bool selectedOnly = false)
         {
@@ -45,12 +35,16 @@ namespace VVUP.CustomRoles.Abilities.Active
 
         protected override void AbilityUsed(Player player)
         {
+            Exiled.Events.Handlers.Scp173.Blinking += OnBlinking;
+
             if (player.Role is Scp173Role role)
                 role.BlinkCooldown = 0f;
         }
 
         protected override void AbilityEnded(Player player)
         {
+            Exiled.Events.Handlers.Scp173.Blinking -= OnBlinking;
+
             player.ShowHint("Sound Breaker ended.", 3f);
         }
 
