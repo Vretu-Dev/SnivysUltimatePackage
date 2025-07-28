@@ -20,7 +20,7 @@ namespace VVUP.CustomRoles.Roles.Foundation
         public override string Name { get; set; } = "<color=#0096FF>MTF Paramedic</color>";
 
         public override string Description { get; set; } =
-            "A paramedic that has extra medical equipment and can revive recently killed players.";
+            "A paramedic that has extra medical equipment";
         public override string CustomInfo { get; set; } = "MTF Paramedic";
         
         public override List<string> Inventory { get; set; } = new()
@@ -53,7 +53,7 @@ namespace VVUP.CustomRoles.Roles.Foundation
 
         public override List<CustomAbility>? CustomAbilities { get; set; } = new()
         {
-            new RevivingMist
+            /*new RevivingMist
             {
                 Name = "Reviving Mist [Active]",
                 Description = "Allows you to revive teammates",
@@ -65,7 +65,7 @@ namespace VVUP.CustomRoles.Roles.Foundation
                 ReviveMessage = "You have been revived by a Paramedic!",
                 ReviveMessageTime = 5,
                 ReviveTeammatesOnly = true,
-            },
+            },*/
             new HealingMist
             {
                 Name = "Healing Mist [Active]",

@@ -1,4 +1,4 @@
-using System;
+/*using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using Exiled.API.Enums;
@@ -36,23 +36,24 @@ namespace VVUP.CustomRoles.Abilities.Active
         public RoleTypeId ReviveBaseRole { get; set; } = RoleTypeId.Tutorial;
         public uint ReviveCustomRoleId { get; set; } = 25;
 
-        protected override void SubscribeEvents()
+        protected override void AbilityAdded(Player player)
         {
-            base.SubscribeEvents();
             Exiled.Events.Handlers.Player.Died += OnPlayerDied;
         }
 
-        protected override void UnsubscribeEvents()
+        protected override void AbilityRemoved(Player player)
         {
             Exiled.Events.Handlers.Player.Died -= OnPlayerDied;
             foreach (CoroutineHandle handle in coroutines)
                 Timing.KillCoroutines(handle);
-            base.UnsubscribeEvents();
         }
 
         private void OnPlayerDied(DiedEventArgs ev)
         {
             // Store info about dead players
+            if (ev.Player == null)
+                return;
+            
             recentlyDead[ev.Player] = new DeathInfo
             {
                 DeathTime = DateTime.Now,
@@ -60,64 +61,85 @@ namespace VVUP.CustomRoles.Abilities.Active
                 Position = ev.Player.Position,
                 Side = ev.Player.Role.Side
             };
+            Log.Info($"Player died: {ev.Player.Nickname}, Role: {ev.Player.Role.Type}, Time: {DateTime.Now}");
         }
 
         protected override void AbilityUsed(Player player)
         {
-            CheckForDeadTeammates(player);
-        }
-        
-        private void CheckForDeadTeammates(Player activator)
-        {
+            Log.Info($"Ability used by {player.Nickname}. Dictionary has {recentlyDead.Count} dead players");
+            
+            if (recentlyDead.Count == 0)
+            {
+                Log.Info("No recently dead players found to revive");
+                return;
+            }
+            
             List<Player> toRemove = new List<Player>();
             
             foreach (var deadPlayer in recentlyDead)
             {
-                if (ReviveTeammatesOnly && deadPlayer.Value.Side != activator.Role.Side)
+                Log.Info($"Checking dead player: {deadPlayer.Key.Nickname}, Time since death: {(DateTime.Now - deadPlayer.Value.DeathTime).TotalSeconds}s, Distance: {Vector3.Distance(deadPlayer.Value.Position, player.Position)}m");
+                if (ReviveTeammatesOnly && deadPlayer.Value.Side != player.Role.Side)
+                {
+                    Log.Info($"Skipping {deadPlayer.Key.Nickname}: not on the same team");
                     continue;
+                }
                 
                 TimeSpan timeSinceDeath = DateTime.Now - deadPlayer.Value.DeathTime;
+                Log.Info($"{timeSinceDeath.TotalSeconds}, {ReviveTimeWindow}");
                 if (timeSinceDeath.TotalSeconds > ReviveTimeWindow)
                 {
                     toRemove.Add(deadPlayer.Key);
                     continue;
                 }
-                
-                float distanceSquared = (deadPlayer.Value.Position - activator.Position).sqrMagnitude;
-                if (distanceSquared > ReviveRadius * ReviveRadius)
+
+                if ((deadPlayer.Value.Position - player.Position).sqrMagnitude > ReviveRadius * ReviveRadius)
                     continue;
-                
-                Player player = deadPlayer.Key;
+
+                Player deadPlayerKey = deadPlayer.Key;
+                Vector3 revivePosition = deadPlayer.Value.Position;
+                float healthToSet = deadPlayerKey.MaxHealth * (ReviveHealthPercent / 100f);
+
                 if (ReviveToSetRole)
                 {
                     if (ReviveToCustomRole)
                     {
-                        CustomRole.Get(ReviveCustomRoleId)?.AddRole(player);
-                        player.Position = deadPlayer.Value.Position;
+                        CustomRole.Get(ReviveCustomRoleId)?.AddRole(deadPlayerKey);
                         if (!GrantLoadoutOnRevive)
-                            player.ClearInventory();
-                        Log.Debug($"VVUP Custom Abilities: Reviving Mist: {player.Nickname} has been revived to custom role id {ReviveCustomRoleId} at position {deadPlayer.Value.Position}");
+                            deadPlayerKey.ClearInventory();
+                        Log.Debug($"VVUP Custom Abilities: Reviving Mist: {deadPlayerKey.Nickname} has been revived to custom role id {ReviveCustomRoleId} at position {revivePosition}");
                     }
                     else
                     {
-                        player.Role.Set(ReviveBaseRole, GrantLoadoutOnRevive ? RoleSpawnFlags.AssignInventory : RoleSpawnFlags.None);
-                        Log.Debug($"VVUP Custom Abilities: Reviving Mist: {player.Nickname} has been revived to role {ReviveBaseRole} at position {deadPlayer.Value.Position}");
+                        deadPlayerKey.Role.Set(ReviveBaseRole, GrantLoadoutOnRevive ? RoleSpawnFlags.AssignInventory : RoleSpawnFlags.None);
+                        Log.Debug($"VVUP Custom Abilities: Reviving Mist: {deadPlayerKey.Nickname} has been revived to role {ReviveBaseRole} at position {revivePosition}");
                     }
                 }
                 else
                 {
-                    player.Role.Set(deadPlayer.Value.Role, GrantLoadoutOnRevive ? RoleSpawnFlags.AssignInventory : RoleSpawnFlags.None);
-                    Log.Debug($"VVUP Custom Abilities: Reviving Mist: {player.Nickname} has been revived to their original role {deadPlayer.Value.Role} at position {deadPlayer.Value.Position}");
+                    deadPlayerKey.Role.Set(deadPlayer.Value.Role, GrantLoadoutOnRevive ? RoleSpawnFlags.AssignInventory : RoleSpawnFlags.None);
+                    Log.Debug($"VVUP Custom Abilities: Reviving Mist: {player.Nickname} has been revived to their original role {deadPlayer.Value.Role} at position {revivePosition}");
                 }
-                player.Health = player.MaxHealth * (ReviveHealthPercent / 100f);
-                player.Broadcast(ReviveMessageTime, ReviveMessage);
-                Log.Debug($"VVUP Custom Abilities: Reviving Mist: Showing revive message to {player.Nickname}: {ReviveMessage}");
-                toRemove.Add(player);
+
+                Timing.CallDelayed(0.2f, () =>
+                {
+                    deadPlayerKey.Position = revivePosition;
+                    deadPlayerKey.Health = healthToSet;
+                });
+
+                deadPlayerKey.Broadcast(ReviveMessageTime, ReviveMessage);
+                Log.Debug($"VVUP Custom Abilities: Reviving Mist: Showing revive message to {deadPlayerKey.Nickname}: {ReviveMessage}");
+                toRemove.Add(deadPlayerKey);
             }
             
             // Clean up the dictionary
-            foreach (var player in toRemove)
-                recentlyDead.Remove(player);
+            foreach (var deadPlayerKey in toRemove)
+                recentlyDead.Remove(deadPlayerKey);
+        }
+        
+        private void CheckForDeadTeammates(Player activator)
+        {
+            
         }
         
         private class DeathInfo
@@ -128,4 +150,4 @@ namespace VVUP.CustomRoles.Abilities.Active
             public Side Side { get; set; }
         }
     }
-}
+}*/

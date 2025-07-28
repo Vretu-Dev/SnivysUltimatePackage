@@ -133,7 +133,7 @@ namespace VVUP.CustomRoles
                             player.ShowHint(response);
                         }
                     }
-                    else if (ssKeybindSetting.SettingId == Plugin.Instance.Config.ReviveMistId)
+                    /*else if (ssKeybindSetting.SettingId == Plugin.Instance.Config.ReviveMistId)
                     {
                         var revivingMistAbility =
                             abilities.FirstOrDefault(abilities => abilities.GetType() == typeof(RevivingMist));
@@ -147,7 +147,7 @@ namespace VVUP.CustomRoles
                         {
                             player.ShowHint(response);
                         }
-                    }
+                    }*/
                     else if (ssKeybindSetting.SettingId == Plugin.Instance.Config.TeleportId)
                     {
                         var teleportAbility =

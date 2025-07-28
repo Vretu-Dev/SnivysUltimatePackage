@@ -71,16 +71,32 @@ namespace VVUP.CustomItems
         {
             var mySettings = GetSettings();
             var current = ServerSpecificSettingsSync.DefinedSettings?.ToList() ?? new List<ServerSpecificSettingBase>();
-            current.AddRange(new ServerSpecificSettingBase[] { new SSGroupHeader("Vicious Vikki's Custom Items") });
+            bool needToAddSettings = false;
             foreach (var setting in mySettings)
             {
                 if (current.All(s => s.SettingId != setting.SettingId))
-                    current.Add(setting);
-                else
-                    Log.Debug($"SSSS: Skipped duplicate SettingId: {setting.SettingId}");
+                {
+                    needToAddSettings = true;
+                    break;
+                }
             }
-            ServerSpecificSettingsSync.DefinedSettings = current.ToArray();
-            Log.Debug($"SSSS: Appended {mySettings.Length} settings. Total now: {current.Count}");
+            if (needToAddSettings)
+            {
+                if (!current.Any(s => s is SSGroupHeader header && header.Label == "Vicious Vikki's Custom Items"))
+                {
+                    current.Add(new SSGroupHeader("Vicious Vikki's Custom Items"));
+                }
+                foreach (var setting in mySettings)
+                {
+                    if (current.All(s => s.SettingId != setting.SettingId))
+                        current.Add(setting);
+                    else
+                        Log.Debug($"SSSS: Skipped duplicate SettingId: {setting.SettingId}");
+                }
+        
+                ServerSpecificSettingsSync.DefinedSettings = current.ToArray();
+                Log.Debug($"SSSS: Appended settings. Total now: {current.Count}");
+            }
         }
     }
 }

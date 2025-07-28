@@ -32,7 +32,12 @@ namespace VVUP.CustomRoles.Abilities.Active
         {
             player.ShowHint(BeforePickingDoorText, 5f);
             PlayersWithPickingDoorAbility.Add(player);
+        }
+
+        protected override void SubscribeEvents()
+        {
             Exiled.Events.Handlers.Player.InteractingDoor += OnInteractingDoor;
+            base.SubscribeEvents();
         }
 
         protected override void UnsubscribeEvents()
