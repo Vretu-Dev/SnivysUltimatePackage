@@ -16,7 +16,7 @@ namespace VVUP.CustomRoles.Abilities.Active
         public override float Duration { get; set; } = 5f;
         public override float Cooldown { get; set; } = 150f;
         public float BlinkCooldown { get; set; } = 0.5f;
-        public float BlinkDistanceLimited { get; set; } = 0.6f;
+        public float MaxBlinkDistance { get; set; } = 4f;
         public int MinimumObserverdPlayers { get; set; } = 1;
 
         public override bool CanUseAbility(Player player, out string response, bool selectedOnly = false)
@@ -56,8 +56,13 @@ namespace VVUP.CustomRoles.Abilities.Active
 
                 Vector3 current = ev.Player.Position;
                 Vector3 target = ev.BlinkPosition;
-                Vector3 limited = Vector3.Lerp(current, target, BlinkDistanceLimited);
-                ev.BlinkPosition = limited;
+                Vector3 direction = (target - current);
+
+                if (direction.magnitude > MaxBlinkDistance)
+                {
+                    direction = direction.normalized * MaxBlinkDistance;
+                    ev.BlinkPosition = current + direction;
+                }
             }
         }
     }
