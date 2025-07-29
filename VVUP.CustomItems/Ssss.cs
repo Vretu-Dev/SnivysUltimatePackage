@@ -46,6 +46,7 @@ namespace VVUP.CustomItems
                 MultiFlash.Get(typeof(MultiFlash)),
                 ProxyBang.Get(typeof(ProxyBang)),
                 PortableIntercom.Get(typeof(PortableIntercom)),
+                Telewand.Get(typeof(Telewand)),
             };
 
             foreach (var itemCollection in customItems)
