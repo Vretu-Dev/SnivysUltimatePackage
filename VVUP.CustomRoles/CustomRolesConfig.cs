@@ -130,5 +130,10 @@ namespace VVUP.CustomRoles
         {
             new TeleportZombie()
         };
+
+        public List<SoundBreaker173> SoundBreaker173 { get; set; } = new()
+        {
+            new SoundBreaker173()
+        };
     }
 }

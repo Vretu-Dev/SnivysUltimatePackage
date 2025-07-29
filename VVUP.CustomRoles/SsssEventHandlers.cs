@@ -39,7 +39,9 @@ namespace VVUP.CustomRoles
                      || ssKeybindSetting.SettingId == Plugin.Instance.Config.HealingMistId
                      || ssKeybindSetting.SettingId == Plugin.Instance.Config.RemoveDisguiseId
                      || ssKeybindSetting.SettingId == Plugin.Instance.Config.ReviveMistId
-                     || ssKeybindSetting.SettingId == Plugin.Instance.Config.TeleportId)
+                     || ssKeybindSetting.SettingId == Plugin.Instance.Config.TeleportId
+                     || ssKeybindSetting.SettingId == Plugin.Instance.Config.SoundBreakerId)
+
                     && ActiveAbility.AllActiveAbilities.TryGetValue(player, out var abilities))
                 {
                     string response = String.Empty;
@@ -157,6 +159,20 @@ namespace VVUP.CustomRoles
                             teleportAbility.SelectAbility(player);
                             teleportAbility.UseAbility(player);
                             player.ShowHint(Plugin.Instance.Config.SsssTeleportActivationMessage);
+                        }
+                        else
+                        {
+                            player.ShowHint(response);
+                        }
+                    }
+                    else if (ssKeybindSetting.SettingId == Plugin.Instance.Config.SoundBreakerId)
+                    {
+                        var soundBreakerAbility = abilities.FirstOrDefault(abilities => abilities.GetType() == typeof(SoundBreaker));
+                        if (soundBreakerAbility != null && soundBreakerAbility.CanUseAbility(player, out response))
+                        {
+                            soundBreakerAbility.SelectAbility(player);
+                            soundBreakerAbility.UseAbility(player);
+                            player.ShowHint(Plugin.Instance.Config.SsssSoundBreakerActivationMessage);
                         }
                         else
                         {
