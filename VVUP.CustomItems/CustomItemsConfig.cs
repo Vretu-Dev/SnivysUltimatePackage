@@ -147,7 +147,12 @@ namespace VVUP.CustomItems
         {
             new PortableIntercom()
         };
-        
+
+        public List<Telewand> Telewand { get; private set; } = new()
+        {
+            new Telewand()
+        };
+
         [Description("SSSS Stuff")]
         public string Header { get; set; } = "VVUP Custom Items.";
         public int DetonateC4Id { get; set; } = 10006;
