@@ -34,7 +34,7 @@ namespace VVUP.CustomRoles
             Instance = this;
             if (!Loader.Plugins.Any(plugin => plugin.Prefix == "VVUP.Base"))
             {
-                Log.Error("VVUP Base Plugin is not present, disabling module");
+                Log.Error("VVUP CR: Base Plugin is not present, disabling module");
                 base.OnDisabled();
                 return;
             }

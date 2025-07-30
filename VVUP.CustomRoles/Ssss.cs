@@ -95,20 +95,20 @@ namespace VVUP.CustomRoles
             }
             if (needToAddSettings)
             {
-                if (!current.Any(s => s is SSGroupHeader header && header.Label == "Vicious Vikki's Custom Roles"))
+                if (!current.Any(s => s is SSGroupHeader header && header.Label == Plugin.Instance.Config.Header))
                 {
-                    current.Add(new SSGroupHeader("Vicious Vikki's Custom Roles"));
+                    current.Add(new SSGroupHeader(Plugin.Instance.Config.Header));
                 }
                 foreach (var setting in mySettings)
                 {
                     if (current.All(s => s.SettingId != setting.SettingId))
                         current.Add(setting);
                     else
-                        Log.Debug($"SSSS: Skipped duplicate SettingId: {setting.SettingId}");
+                        Log.Debug($"VVUP CR SSSS: Skipped duplicate SettingId: {setting.SettingId}");
                 }
         
                 ServerSpecificSettingsSync.DefinedSettings = current.ToArray();
-                Log.Debug($"SSSS: Appended settings. Total now: {current.Count}");
+                Log.Debug($"VVUP CR SSSS: Appended settings. Total now: {current.Count}");
             }
         }
     }

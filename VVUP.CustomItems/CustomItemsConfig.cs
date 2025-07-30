@@ -163,6 +163,5 @@ namespace VVUP.CustomItems
         public string SsssC4DetonatorNeeded { get; set; } = "You need to have your detonator equipped";
         public string SsssC4TooFarAway { get; set; } = "You are far away from your C4, consider getting closer";
         public string SsssDetonateC4ActivationMessage { get; set; } = "Detonating C4";
-        public int SsssHeaderId { get; set; } = 1;
     }
 }

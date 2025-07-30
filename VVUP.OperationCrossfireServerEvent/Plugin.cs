@@ -24,13 +24,13 @@ namespace VVUP.OperationCrossfireServerEvent
         {
             if (!Loader.Plugins.Any(plugin => plugin.Prefix == "VVUP.Base"))
             {
-                Log.Error("VVUP: Base Plugin is not present, disabling module");
+                Log.Error("VVUP OCF: Base Plugin is not present, disabling module");
                 base.OnDisabled();
                 return;
             }
             if (!Loader.Plugins.Any(plugin => plugin.Prefix == "VVUP.SE"))
             {
-                Log.Error("VVUP: Server Event Module is not present, disabling module");
+                Log.Error("VVUP OCF: Server Event Module is not present, disabling module");
                 base.OnDisabled();
                 return;
             }

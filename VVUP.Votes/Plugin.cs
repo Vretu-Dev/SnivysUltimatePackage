@@ -20,7 +20,7 @@ namespace VVUP.Votes
         {
             if (!Loader.Plugins.Any(plugin => plugin.Prefix == "VVUP.Base"))
             {
-                Log.Error("VVUP: Base Plugin is not present, disabling module");
+                Log.Error("VVUP V: Base Plugin is not present, disabling module");
                 base.OnDisabled();
                 return;
             }

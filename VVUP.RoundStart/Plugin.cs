@@ -22,7 +22,7 @@ namespace VVUP.RoundStart
         {
             if (!Loader.Plugins.Any(plugin => plugin.Prefix == "VVUP.Base"))
             {
-                Log.Error("VVUP: Base Plugin is not present, disabling module");
+                Log.Error("VVUP RS: Base Plugin is not present, disabling module");
                 base.OnDisabled();
                 return;
             }

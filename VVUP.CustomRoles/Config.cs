@@ -9,6 +9,7 @@ namespace VVUP.CustomRoles
         public bool Debug { get; set; } = false;
         public CustomRolesConfig CustomRolesConfig { get; set; } = new();
         [Description("SSSS Stuff)")]
+        public string Header { get; set; } = "Vicious Vikki's Custom Roles";
         public int ActiveCamoId { get; set; } = 10000;
         public int ChargeId { get; set; } = 10001;
         public int DetectId { get; set; } = 10002;
@@ -42,9 +43,8 @@ namespace VVUP.CustomRoles
         public string SsssDoorPickingActivationMessage { get; set; } = "Activated Door Picking, Interact with the door you want to pick.";
         public string SsssHealingMistActivationMessage { get; set; } = "Activated Healing Mist";
         public string SsssRemoveDisguiseActivationMessage { get; set; } = "Removing Disguise";
-        public string SsssReviveMistActivationMessage { get; set; } = "Activated Revive Mist";
+        //public string SsssReviveMistActivationMessage { get; set; } = "Activated Revive Mist";
         public string SsssTeleportActivationMessage { get; set; } = "Activated Teleport";
         public string SsssSoundBreakerActivationMessage { get; set; } = "Activated Sound Breaker";
-        public int SsssHeaderId { get; set; } = 2;
     }
 }

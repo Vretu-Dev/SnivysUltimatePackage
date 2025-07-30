@@ -3,16 +3,11 @@ using System.Linq;
 using System.Text;
 using Exiled.API.Features;
 using Exiled.CustomItems.API.Features;
+using Exiled.CustomRoles.API.Features;
 using NorthwoodLib.Pools;
-using UnityEngine;
 using UserSettings.ServerSpecific;
-using VVUP.CustomItems.Items.Armor;
-using VVUP.CustomItems.Items.Firearms;
-using VVUP.CustomItems.Items.Grenades;
-using VVUP.CustomItems.Items.MedicalItems;
-using VVUP.CustomItems.Items.Other;
 
-namespace VVUP.CustomItems
+namespace VVUP.HuskInfection
 {
     public class SsssHelper
     {
@@ -20,33 +15,26 @@ namespace VVUP.CustomItems
         {
             List<ServerSpecificSettingBase> settings = new List<ServerSpecificSettingBase>();
             StringBuilder stringBuilder = StringBuilderPool.Shared.Rent();
-            //settings.Add(new SSGroupHeader("Vicious Vikki's Custom Items"));
+            var customRoles = new List<CustomRole>
+            {
+                HuskZombie.Get(typeof(HuskZombie)),
+            };
+                
+            foreach (var role in customRoles)
+            {
+                if (role == null || role.CustomAbilities == null) continue;
+
+                stringBuilder.AppendLine($"Role: {role.Name}");
+                stringBuilder.AppendLine($"- Description: {role.Description}");
+                foreach (var ability in role.CustomAbilities)
+                {
+                    stringBuilder.AppendLine($"-- Ability: {ability.Name}, {ability.Description}");
+                }
+            }
             var customItems = new List<IEnumerable<CustomItem>>
             {
-                ExplosiveResistantArmor.Get(typeof(ExplosiveResistantArmor)),
-                ExplosiveRoundRevolver.Get(typeof(ExplosiveRoundRevolver)),
-                MediGun.Get(typeof(MediGun)),
-                Tranquilizer.Get(typeof(Tranquilizer)),
-                C4.Get(typeof(C4)),
-                EmpGrenade.Get(typeof(EmpGrenade)),
-                NerveAgentGrenade.Get(typeof(NerveAgentGrenade)),
-                SmokeGrenade.Get(typeof(SmokeGrenade)),
-                DeadringerSyringe.Get(typeof(DeadringerSyringe)),
-                KySyringe.Get(typeof(KySyringe)),
-                AntiScp096Pills.Get(typeof(AntiScp096Pills)),
-                PhantomLantern.Get(typeof(PhantomLantern)),
-                Scp1499.Get(typeof(Scp1499)),
-                InfinitePills.Get(typeof(InfinitePills)),
-                ClusterGrenade.Get(typeof(ClusterGrenade)),
-                AdditionalHealth207.Get(typeof(AdditionalHealth207)),
-                LowGravityArmor.Get(typeof(LowGravityArmor)),
-                ViperPdw.Get(typeof(ViperPdw)),
-                Pathfinder.Get(typeof(Pathfinder)),
-                LaserGun.Get(typeof(LaserGun)),
-                MultiFlash.Get(typeof(MultiFlash)),
-                ProxyBang.Get(typeof(ProxyBang)),
-                PortableIntercom.Get(typeof(PortableIntercom)),
-                Telewand.Get(typeof(Telewand)),
+                HuskGrenade.Get(typeof(HuskGrenade)),
+                Calyxanide.Get(typeof(Calyxanide)),
             };
 
             foreach (var itemCollection in customItems)
@@ -60,12 +48,9 @@ namespace VVUP.CustomItems
                 }
                     
             }
-            settings.Add(new SSTextArea(Plugin.Instance.Config.CustomItemTextId, StringBuilderPool.Shared.ToStringReturn(stringBuilder),
+            settings.Add(new SSTextArea(Plugin.Instance.Config.HuskInfectionTextId, StringBuilderPool.Shared.ToStringReturn(stringBuilder),
                 SSTextArea.FoldoutMode.CollapsedByDefault));
             stringBuilder.Clear();
-            
-            settings.Add(new SSKeybindSetting(Plugin.Instance.Config.DetonateC4Id, Plugin.Instance.Config.DetonateC4SsssText,
-                KeyCode.J, true, false, Plugin.Instance.Config.DetonateC4Hint));
             return settings.ToArray();
         }
         public static void SafeAppendSsssSettings()
@@ -92,11 +77,11 @@ namespace VVUP.CustomItems
                     if (current.All(s => s.SettingId != setting.SettingId))
                         current.Add(setting);
                     else
-                        Log.Debug($"VVUP CI SSSS: Skipped duplicate SettingId: {setting.SettingId}");
+                        Log.Debug($"VVUP HK SSSS: Skipped duplicate SettingId: {setting.SettingId}");
                 }
         
                 ServerSpecificSettingsSync.DefinedSettings = current.ToArray();
-                Log.Debug($"VVUP CI SSSS: Appended settings. Total now: {current.Count}");
+                Log.Debug($"VVUP HK SSSS: Appended settings. Total now: {current.Count}");
             }
         }
     }

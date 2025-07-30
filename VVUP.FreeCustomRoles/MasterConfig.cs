@@ -91,5 +91,7 @@ namespace VVUP.FreeCustomRoles
         {
             new FreeCustomRole20(),
         };
+        public string Header { get; set; } = "Vicious Vikki's Custom Roles";
+        public int FreeCustomRoleTextId { get; set; } = 3;
     }
 }

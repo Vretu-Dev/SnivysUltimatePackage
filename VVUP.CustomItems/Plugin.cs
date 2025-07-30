@@ -25,7 +25,7 @@ namespace VVUP.CustomItems
             Instance = this;
             if (!Loader.Plugins.Any(plugin => plugin.Prefix == "VVUP.Base"))
             {
-                Log.Error("VVUP: Base Plugin is not present, disabling module");
+                Log.Error("VVUP CI: Base Plugin is not present, disabling module");
                 base.OnDisabled();
                 return;
             }

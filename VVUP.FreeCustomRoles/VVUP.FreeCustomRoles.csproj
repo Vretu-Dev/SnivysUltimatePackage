@@ -123,6 +123,8 @@
         <Compile Include="FreeCustomRoles\FreeCustomRole7.cs" />
         <Compile Include="FreeCustomRoles\FreeCustomRole8.cs" />
         <Compile Include="FreeCustomRoles\FreeCustomRole9.cs" />
+        <Compile Include="Ssss.cs" />
+        <Compile Include="SsssEventHandlers.cs" />
     </ItemGroup>
     <ItemGroup>
       <ProjectReference Include="..\VVUP.Base\VVUP.Base.csproj">

@@ -25,26 +25,27 @@ namespace VVUP.HuskInfection
         public override Version RequiredExiledVersion { get; } = new Version(9, 6, 1);
 
         public HuskInfectionEventHandlers HuskInfectionEventHandlers;
+        public SsssEventHandlers SsssEventHandlers;
         
         public override void OnEnabled()
         {
             Instance = this;
             if (!Loader.Plugins.Any(plugin => plugin.Prefix == "VVUP.Base"))
             {
-                Log.Error("VVUP: Base Plugin is not present, disabling module");
+                Log.Error("VVUP HK: Base Plugin is not present, disabling module");
                 base.OnDisabled();
                 return;
             }
 
             if (!Loader.Plugins.Any(plugin => plugin.Prefix == "VVUP.CR"))
             {
-                Log.Error("VVUP: Custom Roles Module is not present, disabling module");
+                Log.Error("VVUP HK: Custom Roles Module is not present, disabling module");
                 base.OnDisabled();
                 return;
             }
             if (!Loader.Plugins.Any(plugin => plugin.Prefix == "VVUP.CI"))
             {
-                Log.Error("VVUP: Custom Items Module is not present, disabling module");
+                Log.Error("VVUP HK: Custom Items Module is not present, disabling module");
                 base.OnDisabled();
                 return;
             }
@@ -86,6 +87,8 @@ namespace VVUP.HuskInfection
             Server.RoundEnded += HuskInfectionEventHandlers.OnRoundEnded;
             Player.VoiceChatting += HuskInfectionEventHandlers.OnVoiceChatting;
             Player.ChangingRole += HuskInfectionEventHandlers.OnRoleChange;
+            SsssEventHandlers = new SsssEventHandlers(this);
+            Player.Verified += SsssEventHandlers.OnVerified;
             Base.Plugin.Instance.VvupHk = true;
             base.OnEnabled();
         }
@@ -99,6 +102,8 @@ namespace VVUP.HuskInfection
             Server.RoundEnded -= HuskInfectionEventHandlers.OnRoundEnded;
             Player.VoiceChatting -= HuskInfectionEventHandlers.OnVoiceChatting;
             Player.ChangingRole -= HuskInfectionEventHandlers.OnRoleChange;
+            Player.Verified -= SsssEventHandlers.OnVerified;
+            SsssEventHandlers = null;
             HuskInfectionEventHandlers = null;
             Base.Plugin.Instance.VvupHk = false;
             Instance = null;

@@ -26,7 +26,7 @@ namespace VVUP.ServerEvents
         {
             if (!Loader.Plugins.Any(plugin => plugin.Prefix == "VVUP.Base"))
             {
-                Log.Error("VVUP: Base Plugin is not present, disabling module");
+                Log.Error("VVUP SE: Base Plugin is not present, disabling module");
                 base.OnDisabled();
                 return;
             }

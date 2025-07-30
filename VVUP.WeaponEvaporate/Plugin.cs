@@ -22,7 +22,7 @@ namespace VVUP.WeaponEvaporate
         {
             if (!Loader.Plugins.Any(plugin => plugin.Prefix == "VVUP.Base"))
             {
-                Log.Error("VVUP: Base Plugin is not present, disabling module");
+                Log.Error("VVUP WE: Base Plugin is not present, disabling module");
                 base.OnDisabled();
                 return;
             }

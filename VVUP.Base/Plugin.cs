@@ -26,6 +26,7 @@ namespace VVUP.Base
         public bool VvupFa = false; // Flamingo Adjustments
         public bool VvupHk = false; // Husk Infection
         public bool VvupVo = false; // Votes
+        public bool VvupCt = false; // Credit Tags
 
         public override void OnEnabled()
         {
@@ -46,6 +47,7 @@ namespace VVUP.Base
             VvupFa = false;
             VvupHk = false;
             VvupVo = false;
+            VvupCt = false;
             
             Instance = null;
             base.OnDisabled();

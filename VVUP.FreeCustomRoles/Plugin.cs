@@ -6,6 +6,7 @@ using Exiled.CustomRoles.API;
 using Exiled.CustomRoles.API.Features;
 using Exiled.Loader;
 using VVUP.CustomRoles.API;
+using Player = Exiled.Events.Handlers.Player;
 
 namespace VVUP.FreeCustomRoles
 {
@@ -19,12 +20,13 @@ namespace VVUP.FreeCustomRoles
         public override Version Version { get; } = new Version(3, 0, 0);
         public override Version RequiredExiledVersion { get; } = new Version(9, 6, 1);
 
+        public SsssEventHandlers SsssEventHandlers;
         public override void OnEnabled()
         {
             Instance = this;
             if (!Loader.Plugins.Any(plugin => plugin.Prefix == "VVUP.Base"))
             {
-                Log.Error("VVUP Base Plugin is not present, disabling module");
+                Log.Error("VVUP FCR: Base Plugin is not present, disabling module");
                 base.OnDisabled();
                 return;
             }
@@ -86,12 +88,16 @@ namespace VVUP.FreeCustomRoles
                 }
             }
             Base.Plugin.Instance.VvupFcr = true;
+            SsssEventHandlers = new SsssEventHandlers(this);
+            Player.Verified += SsssEventHandlers.OnVerified;
             base.OnEnabled();
         }
 
         public override void OnDisabled()
         {
             CustomRole.UnregisterRoles();
+            Player.Verified -= SsssEventHandlers.OnVerified;
+            SsssEventHandlers = null;
             Base.Plugin.Instance.VvupFcr = false;
             Instance = null;
             base.OnDisabled();
