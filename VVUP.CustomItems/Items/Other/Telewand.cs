@@ -17,7 +17,7 @@ namespace VVUP.CustomItems.Items.Other
     {
         [YamlIgnore]
         public override ItemType Type { get; set; } = ItemType.Jailbird;
-        public override uint Id { get; set; } = 48;
+        public override uint Id { get; set; } = 50;
         public override string Name { get; set; } = "<color=#0096FF>TeleWand</color>";
         public override string Description { get; set; } = "<b>LMB</b> to save position, <b>RMB</b> to teleport";
         public override float Weight { get; set; } = 1;
