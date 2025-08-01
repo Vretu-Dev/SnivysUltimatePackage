@@ -9,6 +9,8 @@ using Exiled.Events.EventArgs.Item;
 using YamlDotNet.Serialization;
 using UnityEngine;
 using MEC;
+using System.ComponentModel;
+using Exiled.API.Features.Items;
 
 namespace VVUP.CustomItems.Items.Other
 {
@@ -21,10 +23,19 @@ namespace VVUP.CustomItems.Items.Other
         public override string Name { get; set; } = "<color=#0096FF>TeleWand</color>";
         public override string Description { get; set; } = "<b>LMB</b> to save position, <b>RMB</b> to teleport";
         public override float Weight { get; set; } = 1;
+
+        [Description("Time before the item can be used again after teleporting")]
         public float UseCooldown { get; set; } = 15f;
+
+        [Description("Delay after using the item before the player is teleported")]
         public float TeleportCooldown { get; set; } = 5f;
+
+        [Description("Maximum number of times the item can be used before breaking")]
         public int MaxUses { get; set; } = 3;
+
+        [Description("Should a global flashbang sound be played after teleportation?")]
         public bool SoundEffect { get; set; } = false;
+
         public override SpawnProperties SpawnProperties { get; set; } = new()
         {
             Limit = 1,
@@ -160,14 +171,28 @@ namespace VVUP.CustomItems.Items.Other
 
                         yield break;
                     }
+
+                    if (destRoom.Zone == ZoneType.Pocket)
+                    {
+                        player.ShowHint("<color=red>Cannot teleport to Pocket Dimension!</color>", 3f);
+
+                        activeCountdowns.Remove(serial);
+                        ClearTeleportHint(player);
+
+                        yield break;
+                    }
                 }
 
                 player.Position = dest;
                 player.ShowHint("<color=green>Teleportation Succeeded!</color>", 2f);
 
                 if (SoundEffect)
-                    player.ThrowGrenade(ProjectileType.Flashbang, false);
-
+                {
+                    FlashGrenade flash = (FlashGrenade)Item.Create(ItemType.GrenadeFlash, player);
+                    flash.FuseTime = 1f;
+                    flash.SpawnActive(player.Position);
+                }
+                
                 useCounts[serial] = useCounts.TryGetValue(serial, out int count) ? count + 1 : 1;
                 lastUseTimes[serial] = Time.realtimeSinceStartup;
 
