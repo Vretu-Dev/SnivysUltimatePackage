@@ -33,7 +33,7 @@ namespace VVUP.CustomItems.Items.Other
                 new()
                 {
                     Chance = 10,
-                    Location = SpawnLocationType.Inside079Secondary,
+                    Location = SpawnLocationType.Inside079Armory,
                 },
             },
         };

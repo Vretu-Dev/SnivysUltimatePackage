@@ -21,7 +21,7 @@ namespace VVUP.ServerEvents.ServerEventsCommands.EventCommands
                 return false;
             }
             
-            if (!sender.CheckPermission("vvevents.run.disruptive"))
+            if (!sender.CheckPermission("vvevents.rund"))
             {
                 response = "You do not have the required permission to use this command";
                 return false;

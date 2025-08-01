@@ -36,6 +36,8 @@ namespace VVUP.Base
                 activeModules += "Husk Infection\n";
             if (Plugin.Instance.VvupVo)
                 activeModules += "Votes\n";
+            if (Plugin.Instance.VvupCt)
+                activeModules += "Credit Tags\n";
             if (activeModules == string.Empty)
                 activeModules = "No modules has been loaded";
             response = $"VVUP Active Modules: {activeModules}";

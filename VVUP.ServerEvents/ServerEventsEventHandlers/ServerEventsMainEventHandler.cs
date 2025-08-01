@@ -4,6 +4,7 @@ using System.Linq;
 using Exiled.API.Enums;
 using Exiled.API.Features;
 using Exiled.API.Features.Items;
+using Exiled.API.Features.Pickups;
 using Exiled.CustomItems.API.Features;
 using Exiled.Events.EventArgs.Map;
 using Exiled.Events.EventArgs.Player;
@@ -69,6 +70,7 @@ namespace VVUP.ServerEvents.ServerEventsEventHandlers
             AfterHoursEventHandlers.EndEvent();
             //SnowballsVsScpsEventHandlers.EndEvent();
             GravityEventHandlers.EndEvent();
+            ItemRandomizerEventHandlers.EndEvent();
             Plugin.ActiveEvent = 0;
         }
 
@@ -382,6 +384,56 @@ namespace VVUP.ServerEvents.ServerEventsEventHandlers
                 return;
             Log.Debug($"VVUP Server Events: Setting {ev.Player.Nickname} size to {Plugin.Instance.Config.GravityConfig.GravityChanges}");
             PlayerLab.Get(ev.Player.NetworkIdentity).Gravity = Plugin.Instance.Config.GravityConfig.GravityChanges;
+        }
+        
+        public void OnPickingUpItemIR(PickingUpItemEventArgs ev)
+        {
+            if (ev.Player == null || ev.Pickup == null)
+                return;
+            bool isCustomItem = CustomItem.TryGet(ev.Pickup, out _);
+            ev.IsAllowed = false;
+            ev.Pickup.Destroy();
+            if (isCustomItem)
+            {
+                Log.Debug("VVUP Server Events, Item Randomizer: Player picked up a custom item, giving a random custom item.");
+                GetRandomCustomItem().Give(ev.Player);
+            }
+            else
+            {
+                Log.Debug("VVUP Server Events, Item Randomizer: Player picked up a base item, giving a random base item.");
+                ev.Player.AddItem(GetRandomBaseItem());
+            }
+        }
+
+        public void OnDroppingItemIR(DroppingItemEventArgs ev)
+        {
+            if (ev.Player == null || ev.Item == null)
+                return;
+            bool isCustomItem = CustomItem.TryGet(ev.Item, out _);
+            ev.IsAllowed = false;
+            ev.Player.RemoveItem(ev.Item);
+            if (isCustomItem)
+            {
+                Log.Debug("VVUP Server Events, Item Randomizer: Player dropped a custom item, dropping a random custom item.");
+                GetRandomCustomItem().Spawn(ev.Player.Position);
+            }
+            else
+            {
+                Log.Debug("VVUP Server Events, Item Randomizer: Player dropped a base item, dropping a random base item.");
+                Pickup.CreateAndSpawn(GetRandomBaseItem(), ev.Player.Position);
+            }
+        }
+        
+        private ItemType GetRandomBaseItem()
+        {
+            Array itemTypes = Enum.GetValues(typeof(ItemType));
+            int index = Base.GetRandomNumber.GetRandomInt(itemTypes.Length);
+            return (ItemType)itemTypes.GetValue(index);
+        }
+        private CustomItem GetRandomCustomItem()
+        {
+            List<CustomItem> customItems = CustomItem.Registered.ToList();
+            return customItems[Base.GetRandomNumber.GetRandomInt(customItems.Count)];
         }
     }
 }

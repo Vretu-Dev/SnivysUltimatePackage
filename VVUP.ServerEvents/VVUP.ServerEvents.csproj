@@ -107,6 +107,7 @@
         <Compile Include="ServerEventsCommands\EventCommands\ChaoticCommand.cs" />
         <Compile Include="ServerEventsCommands\EventCommands\FreezingTemperaturesCommand.cs" />
         <Compile Include="ServerEventsCommands\EventCommands\GravityCommand.cs" />
+        <Compile Include="ServerEventsCommands\EventCommands\ItemRandomizerCommand.cs" />
         <Compile Include="ServerEventsCommands\EventCommands\NameRedactedCommand.cs" />
         <Compile Include="ServerEventsCommands\EventCommands\PeanutHyrdraCommand.cs" />
         <Compile Include="ServerEventsCommands\EventCommands\PeanutInfectionCommand.cs" />
@@ -120,6 +121,7 @@
         <Compile Include="ServerEventsConfigs\ChaoticConfig.cs" />
         <Compile Include="ServerEventsConfigs\FreezingTemperaturesConfig.cs" />
         <Compile Include="ServerEventsConfigs\GravityConfig.cs" />
+        <Compile Include="ServerEventsConfigs\ItemRandomizerConfig.cs" />
         <Compile Include="ServerEventsConfigs\NameRedactedConfig.cs" />
         <Compile Include="ServerEventsConfigs\PeanutHydraConfig.cs" />
         <Compile Include="ServerEventsConfigs\PeanutInfectionConfig.cs" />
@@ -132,6 +134,7 @@
         <Compile Include="ServerEventsEventHandlers\ChaoticEventHandlers.cs" />
         <Compile Include="ServerEventsEventHandlers\FreezingTemperaturesEventHandlers.cs" />
         <Compile Include="ServerEventsEventHandlers\GravityEventHandlers.cs" />
+        <Compile Include="ServerEventsEventHandlers\ItemRandomizerEventHandlers.cs" />
         <Compile Include="ServerEventsEventHandlers\NameRedactedEventHandlers.cs" />
         <Compile Include="ServerEventsEventHandlers\PeanutHydraEventHandlers.cs" />
         <Compile Include="ServerEventsEventHandlers\PeanutInfectionEventHandlers.cs" />
