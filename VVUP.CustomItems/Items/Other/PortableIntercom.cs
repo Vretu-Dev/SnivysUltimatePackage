@@ -101,8 +101,7 @@ namespace VVUP.CustomItems.Items.Other
 
         protected override void OnChanging(ChangingItemEventArgs ev)
         {
-            if (_playerWithPortableIntercom.Contains(ev.Player) && isPortableIntercomActive &&
-                Check(ev.Player.CurrentItem))
+            if (_playerWithPortableIntercom.Contains(ev.Player) && isPortableIntercomActive)
             {
                 Log.Debug($"VVUP Custom Items, Portable Intercom: {ev.Player.Nickname} is changing item while using the portable intercom, removing them from the list.");
                 _playerWithPortableIntercom.Remove(ev.Player);
@@ -111,8 +110,7 @@ namespace VVUP.CustomItems.Items.Other
         }
         protected override void OnDroppingItem(DroppingItemEventArgs ev)
         {
-            if (_playerWithPortableIntercom.Contains(ev.Player) && isPortableIntercomActive &&
-                Check(ev.Player.CurrentItem))
+            if (_playerWithPortableIntercom.Contains(ev.Player) && isPortableIntercomActive)
             {
                 Log.Debug($"VVUP Custom Items, Portable Intercom: {ev.Player.Nickname} is dropping item while using the portable intercom, removing them from the list.");
                 _playerWithPortableIntercom.Remove(ev.Player);
