@@ -91,10 +91,9 @@ namespace VVUP.CustomItems.Items.Firearms
         }
         private (float Red, float Green, float Blue) GetRandomLaserColor()
         {
-            int randomColorR = Base.GetRandomNumber.GetRandomInt(LaserColorRed.Count);
-            int randomColorG = Base.GetRandomNumber.GetRandomInt(LaserColorGreen.Count);
-            int randomColorB = Base.GetRandomNumber.GetRandomInt(LaserColorBlue.Count);
-            return (randomColorR, randomColorG, randomColorB);
+            return (Base.GetRandomNumber.GetRandomInt(LaserColorRed.Count), 
+                Base.GetRandomNumber.GetRandomInt(LaserColorGreen.Count), 
+                Base.GetRandomNumber.GetRandomInt(LaserColorBlue.Count));
         }
     }
 }
