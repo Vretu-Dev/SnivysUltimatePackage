@@ -1,4 +1,4 @@
-name: Pull Request Auto Reviewer
+name: Auto-Request PR Review
 
 on:
   pull_request_target:
@@ -11,7 +11,7 @@ jobs:
   assign-reviewer:
     runs-on: ubuntu-latest
     steps:
-      - name: Auto-assign SnivyFilms as PR reviewer
+      - name: Auto-request review from SnivyFilms
         uses: actions/github-script@v6
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
@@ -19,6 +19,6 @@ jobs:
             await github.rest.pulls.requestReviewers({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              pull_number: context.issue.number,
+              pull_number: context.payload.pull_request.number,
               reviewers: ['SnivyFilms']
-            });
+            })
