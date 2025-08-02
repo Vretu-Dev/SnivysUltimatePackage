@@ -33,9 +33,7 @@ namespace VVUP.CustomItems.Items.Other
         [Description("Maximum number of times the item can be used before breaking")]
         public int MaxUses { get; set; } = 3;
 
-        [Description("Should a global flashbang sound be played after teleportation?")]
-        public bool SoundEffect { get; set; } = false;
-
+        [Description("Spawn Location:")]
         public override SpawnProperties SpawnProperties { get; set; } = new()
         {
             Limit = 1,
@@ -201,13 +199,6 @@ namespace VVUP.CustomItems.Items.Other
 
                 player.Position = dest;
                 player.ShowHint(TpSucceeded, 2f);
-
-                if (SoundEffect)
-                {
-                    FlashGrenade flash = (FlashGrenade)Item.Create(ItemType.GrenadeFlash, player);
-                    flash.FuseTime = 1f;
-                    flash.SpawnActive(player.Position);
-                }
                 
                 useCounts[serial] = useCounts.TryGetValue(serial, out int count) ? count + 1 : 1;
                 lastUseTimes[serial] = Time.realtimeSinceStartup;
