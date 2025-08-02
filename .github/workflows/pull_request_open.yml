@@ -1,4 +1,4 @@
-name: Pull Request Auto Assignment
+name: Pull Request Auto Reviewer
 
 on:
   pull_request_target:
@@ -6,26 +6,16 @@ on:
 
 permissions:
   pull-requests: write
-  issues: write
 
 jobs:
-  assign:
+  assign-reviewer:
     runs-on: ubuntu-latest
     steps:
-      - name: Auto-assign PR opener and reviewer
+      - name: Auto-assign SnivyFilms as PR reviewer
         uses: actions/github-script@v6
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const creator = context.payload.pull_request.user.login;
-            
-            await github.rest.issues.addAssignees({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: context.issue.number,
-              assignees: [creator]
-            });
-            
             await github.rest.pulls.requestReviewers({
               owner: context.repo.owner,
               repo: context.repo.repo,
