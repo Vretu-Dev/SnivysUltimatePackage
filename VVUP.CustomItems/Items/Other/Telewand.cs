@@ -49,6 +49,19 @@ namespace VVUP.CustomItems.Items.Other
             },
         };
 
+        [Description("Translations:")]
+        public string PosSaved { get; set; } = "<color=#808080>Position Saved</color>";
+        public string NoPosSaved { get; set; } = "<color=#FF5554>No position saved!</color>";
+        public string TpCooldown { get; set; } = "<color=#0096FF>TeleWand</color>: Wait {remaining}s before next use";
+        public string TpInProgress { get; set; } = "Don't move for <color=yellow>{remaining}s</color> to teleport!";
+        public string TpCanceled { get; set; } = "<color=#FF5554>Teleportation Canceled!</color>";
+        public string TpSucceeded { get; set; } = "<color=#54FF54>Teleportation Succeeded!</color>";
+        public string AfterWarhead { get; set; } = "<color=#FF5554>Warhead detonated! You can only teleport to the surface.</color>";
+        public string AfterDecontamination { get; set; } = "<color=#FF5554>Cannot teleport to Light Containment - zone is decontaminated!</color>";
+        public string ToPocketDimension { get; set; } = "<color=#FF5554>Cannot teleport to Pocket Dimension!</color>";
+        public string TelewandBroken { get; set; } = "<color=#0096FF>TeleWand</color> has broken!";
+
+
         private readonly Dictionary<Player, Vector3> savedPositions = new();
         private readonly Dictionary<ushort, CoroutineHandle> activeCountdowns = new();
         private readonly Dictionary<ushort, float> lastUseTimes = new();
@@ -76,7 +89,7 @@ namespace VVUP.CustomItems.Items.Other
                 ev.IsAllowed = false;
 
                 savedPositions[ev.Player] = ev.Player.Position;
-                ev.Player.ShowHint("<color=#808080>Position Saved</color>", 2f);
+                ev.Player.ShowHint(PosSaved, 2f);
             }
         }
 
@@ -94,7 +107,9 @@ namespace VVUP.CustomItems.Items.Other
                     if (now - lastTime < UseCooldown)
                     {
                         float left = UseCooldown - (now - lastTime);
-                        ev.Player.ShowHint($"<color=#0096FF>TeleWand</color>: Wait {left:F1}s before next use", 2f);
+                        string hint = TpCooldown.Replace("{remaining}", left.ToString("F1"));
+
+                        ev.Player.ShowHint(hint, 2f);
                         return;
                     }
                 }
@@ -119,8 +134,9 @@ namespace VVUP.CustomItems.Items.Other
             while (Time.realtimeSinceStartup < end)
             {
                 float left = end - Time.realtimeSinceStartup;
-                player.ShowHint($"Don't move for <color=yellow>{left:F1}s</color> to teleport!", 0.2f);
+                string hint = TpCooldown.Replace("{remaining}", left.ToString("F1"));
 
+                player.ShowHint(hint, 0.2f);
                 yield return 0.1f;
             }
         }
@@ -135,7 +151,7 @@ namespace VVUP.CustomItems.Items.Other
             {
                 if (Vector3.Distance(player.Position, startPos) > 0.05f)
                 {
-                    player.ShowHint("<color=red>Teleportation Canceled!</color>", 2f);
+                    player.ShowHint(TpCanceled, 2f);
 
                     activeCountdowns.Remove(serial);
                     ClearTeleportHint(player);
@@ -154,7 +170,7 @@ namespace VVUP.CustomItems.Items.Other
                 {
                     if (Warhead.IsDetonated && destRoom.Zone != ZoneType.Surface)
                     {
-                        player.ShowHint("<color=red>Warhead detonated! You can only teleport to the surface.</color>", 3f);
+                        player.ShowHint(AfterWarhead, 3f);
 
                         activeCountdowns.Remove(serial);
                         ClearTeleportHint(player);
@@ -164,7 +180,7 @@ namespace VVUP.CustomItems.Items.Other
 
                     if (Map.IsLczDecontaminated && destRoom.Zone == ZoneType.LightContainment)
                     {
-                        player.ShowHint("<color=red>Cannot teleport to Light Containment - zone is decontaminated!</color>", 3f);
+                        player.ShowHint(AfterDecontamination, 3f);
 
                         activeCountdowns.Remove(serial);
                         ClearTeleportHint(player);
@@ -174,7 +190,7 @@ namespace VVUP.CustomItems.Items.Other
 
                     if (destRoom.Zone == ZoneType.Pocket)
                     {
-                        player.ShowHint("<color=red>Cannot teleport to Pocket Dimension!</color>", 3f);
+                        player.ShowHint(ToPocketDimension, 3f);
 
                         activeCountdowns.Remove(serial);
                         ClearTeleportHint(player);
@@ -184,7 +200,7 @@ namespace VVUP.CustomItems.Items.Other
                 }
 
                 player.Position = dest;
-                player.ShowHint("<color=green>Teleportation Succeeded!</color>", 2f);
+                player.ShowHint(TpSucceeded, 2f);
 
                 if (SoundEffect)
                 {
@@ -203,7 +219,7 @@ namespace VVUP.CustomItems.Items.Other
                     if (item != null)
                     {
                         player.RemoveItem(item);
-                        player.ShowHint("<color=#0096FF>TeleWand</color> has broken!", 3f);
+                        player.ShowHint(TelewandBroken, 3f);
                     }
 
                     activeCountdowns.Remove(serial);
@@ -211,7 +227,7 @@ namespace VVUP.CustomItems.Items.Other
             }
             else
             {
-                player.ShowHint("<color=#808080>No position saved!</color>", 2f);
+                player.ShowHint(NoPosSaved, 2f);
             }
 
             ClearTeleportHint(player);
