@@ -15,7 +15,7 @@ namespace VVUP.WeaponEvaporate
         public override string Author { get; } = "Vicious Vikki";
         public override string Prefix { get; } = "VVUP.WE";
         public override Version Version { get; } = new Version(3, 0, 0);
-        public override Version RequiredExiledVersion { get; } = new Version(9, 6, 1);
+        public override Version RequiredExiledVersion { get; } = new Version(9, 7, 1);
         public EventHandlers EventHandlers;
         
         public override void OnEnabled()

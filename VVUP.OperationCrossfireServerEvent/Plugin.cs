@@ -16,12 +16,13 @@ namespace VVUP.OperationCrossfireServerEvent
         public override string Author { get; } = "Vicious Vikki";
         public override string Prefix { get; } = "VVUP.OFCSE";
         public override Version Version { get; } = new Version(3, 0, 0);
-        public override Version RequiredExiledVersion { get; } = new Version(9, 6, 1);
+        public override Version RequiredExiledVersion { get; } = new Version(9, 7, 1);
 
         public OperationCrossfireEventHandlers OperationCrossfireEventHandlers { get; set; }
 
         public override void OnEnabled()
         {
+            Instance = this;
             if (!Loader.Plugins.Any(plugin => plugin.Prefix == "VVUP.Base"))
             {
                 Log.Error("VVUP OCF: Base Plugin is not present, disabling module");
@@ -35,7 +36,6 @@ namespace VVUP.OperationCrossfireServerEvent
                 return;
             }
             CustomItem.RegisterItems(overrideClass: Instance.Config);
-            Instance = this;
             base.OnEnabled();
         }
 

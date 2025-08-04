@@ -13,7 +13,7 @@ namespace VVUP.Base
         public override string Author { get; } = "Vicious Vikki";
         public override string Prefix { get; } = "VVUP.Base";
         public override Version Version { get; } = new Version(3, 0, 0);
-        public override Version RequiredExiledVersion { get; } = new Version(9, 6, 1);
+        public override Version RequiredExiledVersion { get; } = new Version(9, 7, 1);
 
         public bool VvupCi = false; // Custom Items
         public bool VvupCr = false; // Custom Roles
