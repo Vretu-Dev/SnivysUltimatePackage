@@ -19,6 +19,7 @@ namespace VVUP.CustomRoles
         public int ReviveMistId { get; set; } = 10007;
         public int TeleportId { get; set; } = 10008;
         public int SoundBreakerId { get; set; } = 10009;
+        public int ReplicatorId { get; set; } = 10010;
         public int CustomRoleTextId { get; set; } = 2;
         public string ActiveCamoHint { get; set; } = "Press the keybind to activate Active Camo, you will become invisible for a short time (Custom Ability).";
         public string ChargeHint { get; set; } = "Press the keybind to activate Charge, you will be able to charge at a target (Custom Ability).";
@@ -29,6 +30,7 @@ namespace VVUP.CustomRoles
         public string ReviveMistHint { get; set; } = "Press the keybind to activate Revive Mist, you will be able to revive nearby players (Custom Ability).";
         public string TeleportHint { get; set; } = "Press the keybind to activate Teleport, you will be able to teleport to a target location (Custom Ability).";
         public string SoundBreakerHint { get; set; } = "Press the keybind to reset Blink cooldown and reduce the next blink interval and distance (Custom Ability).";
+        public string ReplicatorHint { get; set; } = "Press the keybind to create Decoy and make safe Recon (Custom Ability).";
         public string ActiveCamoSsssText { get; set; } = "Active Camo";
         public string ChargeSsssText { get; set; } = "Charge";
         public string DetectSsssText { get; set; } = "Detect";
@@ -38,6 +40,7 @@ namespace VVUP.CustomRoles
         public string ReviveMistSsssText { get; set; } = "Reviving Mist";
         public string TeleportSsssText { get; set; } = "Teleport";
         public string SoundBreakerSsssText { get; set; } = "Sound Breaker";
+        public string ReplicatorSsssText { get; set; } = "Replicator";
         public string SsssActiveCamoActivationMessage { get; set; } = "Activated Active Camo";
         public string SsssChargeActivationMessage { get; set; } = "Activated Charge";
         public string SsssDoorPickingActivationMessage { get; set; } = "Activated Door Picking, Interact with the door you want to pick.";
@@ -46,5 +49,6 @@ namespace VVUP.CustomRoles
         //public string SsssReviveMistActivationMessage { get; set; } = "Activated Revive Mist";
         public string SsssTeleportActivationMessage { get; set; } = "Activated Teleport";
         public string SsssSoundBreakerActivationMessage { get; set; } = "Activated Sound Breaker";
+        public string SsssReplicatorActivationMessage { get; set; } = "Activated Replicator";
     }
 }

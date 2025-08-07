@@ -40,7 +40,8 @@ namespace VVUP.CustomRoles
                      || ssKeybindSetting.SettingId == Plugin.Instance.Config.RemoveDisguiseId
                      || ssKeybindSetting.SettingId == Plugin.Instance.Config.ReviveMistId
                      || ssKeybindSetting.SettingId == Plugin.Instance.Config.TeleportId
-                     || ssKeybindSetting.SettingId == Plugin.Instance.Config.SoundBreakerId)
+                     || ssKeybindSetting.SettingId == Plugin.Instance.Config.SoundBreakerId
+                     || ssKeybindSetting.SettingId == Plugin.Instance.Config.ReplicatorId)
 
                     && ActiveAbility.AllActiveAbilities.TryGetValue(player, out var abilities))
                 {
@@ -173,6 +174,20 @@ namespace VVUP.CustomRoles
                             soundBreakerAbility.SelectAbility(player);
                             soundBreakerAbility.UseAbility(player);
                             player.ShowHint(Plugin.Instance.Config.SsssSoundBreakerActivationMessage);
+                        }
+                        else
+                        {
+                            player.ShowHint(response);
+                        }
+                    }
+                    else if (ssKeybindSetting.SettingId == Plugin.Instance.Config.ReplicatorId)
+                    {
+                        var replicatorAbility = abilities.FirstOrDefault(abilities => abilities.GetType() == typeof(Replicator));
+                        if (replicatorAbility != null && replicatorAbility.CanUseAbility(player, out response))
+                        {
+                            replicatorAbility.SelectAbility(player);
+                            replicatorAbility.UseAbility(player);
+                            player.ShowHint(Plugin.Instance.Config.SsssReplicatorActivationMessage);
                         }
                         else
                         {

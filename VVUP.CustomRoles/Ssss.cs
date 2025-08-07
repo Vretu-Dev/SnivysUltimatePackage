@@ -52,6 +52,7 @@ namespace VVUP.CustomRoles
                 TheoreticalPhysicistScientist.Get(typeof(TheoreticalPhysicistScientist)),
                 Vanguard.Get(typeof(Vanguard)),
                 SoundBreaker173.Get(typeof(SoundBreaker173)),
+                Replicant.Get(typeof(Replicant)),
             };
                 
             foreach (var role in customRoles)
@@ -78,6 +79,7 @@ namespace VVUP.CustomRoles
              settings.Add(new SSKeybindSetting(Plugin.Instance.Config.ReviveMistId, Plugin.Instance.Config.ReviveMistSsssText, KeyCode.B, true, false, Plugin.Instance.Config.ReviveMistHint));
              settings.Add(new SSKeybindSetting(Plugin.Instance.Config.TeleportId, Plugin.Instance.Config.TeleportSsssText, KeyCode.B, true, false, Plugin.Instance.Config.TeleportHint));
              settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SoundBreakerId, Plugin.Instance.Config.SoundBreakerSsssText,KeyCode.C, true, false, Plugin.Instance.Config.SoundBreakerHint));
+             settings.Add(new SSKeybindSetting(Plugin.Instance.Config.ReplicatorId, Plugin.Instance.Config.ReplicatorSsssText,KeyCode.P, true, false, Plugin.Instance.Config.ReplicatorHint));
             return settings.ToArray();
         }
         public static void SafeAppendSsssSettings()

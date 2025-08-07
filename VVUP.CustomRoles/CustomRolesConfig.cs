@@ -135,5 +135,10 @@ namespace VVUP.CustomRoles
         {
             new SoundBreaker173()
         };
+
+        public List<Replicant> Replicant { get; set; } = new()
+        {
+            new Replicant()
+        };
     }
 }
