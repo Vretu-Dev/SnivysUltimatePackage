@@ -22,7 +22,6 @@ using YamlDotNet.Serialization;
 using Item = Exiled.API.Features.Items.Item;
 using PlayerAPI = Exiled.API.Features.Player;
 using PlayerEvent = Exiled.Events.Handlers.Player;
-using Random = UnityEngine.Random;
 using Warhead = Exiled.API.Features.Warhead;
 
 namespace VVUP.CustomItems.Items.Firearms
@@ -157,7 +156,7 @@ namespace VVUP.CustomItems.Items.Firearms
 
             if (ev.Player.Role.Team == Team.SCPs)
             {
-                int randomNumber = Random.Range(1, 101);
+                int randomNumber = Base.GetRandomNumber.GetRandomInt(1, 101);
                 Log.Debug(
                     $"VVUP Custom Items: Tranquilizer, rolled {randomNumber}, checking if SCP can be tranquilized");
                 if (randomNumber <= ScpResistChance)

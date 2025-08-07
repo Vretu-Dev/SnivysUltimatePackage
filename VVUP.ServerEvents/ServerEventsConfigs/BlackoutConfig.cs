@@ -19,5 +19,9 @@ namespace VVUP.ServerEvents.ServerEventsConfigs
         {
             ItemType.Lantern
         };
+        [Description("Set to true if you want the lights to flicker before going out for good.")]
+        public bool FlickerLights { get; set; } = false;
+        [Description("How long should the lights flicker before going out? (in seconds)")]
+        public int FlickerDuration { get; set; } = 5;
     }
 }

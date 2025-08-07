@@ -3,7 +3,6 @@ using Exiled.API.Features;
 using MEC;
 using UnityEngine;
 using VVUP.ServerEvents.ServerEventsConfigs;
-using Random = System.Random;
 
 namespace VVUP.ServerEvents.ServerEventsEventHandlers
 {
@@ -27,7 +26,6 @@ namespace VVUP.ServerEvents.ServerEventsEventHandlers
 
         private static IEnumerator<float> VariableLightsTiming()
         {
-            Random random = new Random();
             Log.Debug("VVUP Server Events, Variable Lights: Checking if Variable Lights Event has started improperly");
             if (!_vleStarted)
             {
@@ -46,13 +44,13 @@ namespace VVUP.ServerEvents.ServerEventsEventHandlers
                     {
                         Log.Debug("VVUP Server Events, Variable Lights: Different lights per room is enabled, changing brightness");
                         foreach (Room room in Room.List)
-                            room.Color = new Color(1, 1, 1, (float)random.NextDouble());
+                            room.Color = new Color(1, 1, 1, (float)Base.GetRandomNumber.GetRandomDouble());
                     }
                     else
                     {
                         Log.Debug(
                             "VVUP Server Events, Variable Lights: Different lights per room is disabled, setting brightness to be the same across rooms");
-                        float aRandomNumber = (float)random.NextDouble();
+                        float aRandomNumber = (float)Base.GetRandomNumber.GetRandomDouble();
                         foreach (Room room in Room.List)
                             room.Color = new Color(1, 1, 1, aRandomNumber);
                     }
@@ -64,22 +62,15 @@ namespace VVUP.ServerEvents.ServerEventsEventHandlers
                     {
                         Log.Debug("VVUP Server Events, Variable Lights: Different room lights is enabled, setting different lights per room");
                         foreach (Room room in Room.List)
-                            room.Color = new Color((float)random.NextDouble(), (float)random.NextDouble(),
-                                (float)random.NextDouble(), (float)random.NextDouble());
+                            room.Color = new Color((float)Base.GetRandomNumber.GetRandomDouble(), (float)Base.GetRandomNumber.GetRandomDouble(),
+                                (float)Base.GetRandomNumber.GetRandomDouble(), (float)Base.GetRandomNumber.GetRandomDouble());
                     }
                     else
                     {
                         Log.Debug("VVUP Server Events, Variable Lights: Different room lights is disabled, setting the same lights per room");
-                        float aRandomNumber = (float)random.NextDouble();
-                        Log.Debug(aRandomNumber);
-                        float rRandomNumber = (float)random.NextDouble();
-                        Log.Debug(rRandomNumber);
-                        float gRandomNumber = (float)random.NextDouble();
-                        Log.Debug(gRandomNumber);
-                        float bRandomNumber = (float)random.NextDouble();
-                        Log.Debug(bRandomNumber);
                         foreach (Room room in Room.List)
-                            room.Color = new Color(rRandomNumber, gRandomNumber, bRandomNumber, aRandomNumber);
+                            room.Color = new Color((float)Base.GetRandomNumber.GetRandomDouble(), (float)Base.GetRandomNumber.GetRandomDouble(),
+                                (float)Base.GetRandomNumber.GetRandomDouble(), (float)Base.GetRandomNumber.GetRandomDouble());
                     }
                 }
 

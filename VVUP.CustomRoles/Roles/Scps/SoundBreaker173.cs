@@ -17,7 +17,7 @@ namespace VVUP.CustomRoles.Roles.Scps
         public override string CustomInfo { get; set; } = "Sound Breaker SCP-173";
         public override RoleTypeId Role { get; set; } = RoleTypeId.Scp173;
 
-        public StartTeam StartTeam { get; set; } = StartTeam.Scp;
+        public StartTeam StartTeam { get; set; } = StartTeam.Scp173;
 
         public override List<CustomAbility> CustomAbilities { get; set; } = new List<CustomAbility>
         {

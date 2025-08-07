@@ -1,4 +1,5 @@
 ﻿using Exiled.API.Features;
+using MEC;
 using VVUP.ServerEvents.ServerEventsConfigs;
 using Maps = Exiled.Events.Handlers.Map;
 
@@ -22,7 +23,17 @@ namespace VVUP.ServerEvents.ServerEventsEventHandlers
             
             _boeStarted = true;
             Log.Debug("VVUP Server Events, Blackout: Turning off the lights");
-            Map.TurnOffAllLights(432000);
+            if (_config.FlickerLights)
+            {
+                foreach (Room room in Room.List)
+                {
+                    room.RoomLightController.ServerFlickerLights(_config.FlickerDuration);
+                }
+
+                Timing.CallDelayed(_config.FlickerDuration, () => Map.TurnOffAllLights(432000));
+            }
+            else
+                Map.TurnOffAllLights(432000);
             foreach (var player in Player.List)
             {
                 Log.Debug($"VVUP Server Events, Blackout: Adding {_config.BlackoutEventStartingItem} to {player.Nickname}");

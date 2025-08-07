@@ -24,20 +24,20 @@ namespace VVUP.CustomRoles.EventHandlers
                     Log.Debug(enumerator.Current?.StartTeam);
                     if (enumerator.Current is not null)
                     {
-                        int r = Loader.Random.Next(100);
+                        int random = Base.GetRandomNumber.GetRandomInt(101);
                         if (enumerator.Current.StartTeam.HasFlag(StartTeam.Other)
                             || (enumerator.Current.StartTeam.HasFlag(StartTeam.Revived) && !checkRevive)
                             || (enumerator.Current.StartTeam.HasFlag(StartTeam.Escape) && !checkEscape)
                             || (!enumerator.Current.StartTeam.HasFlag(StartTeam.Revived) && checkRevive)
                             || (!enumerator.Current.StartTeam.HasFlag(StartTeam.Escape) && checkEscape)
-                            || r > enumerator.Current.Chance)
+                            || random > enumerator.Current.Chance)
                         {
                             Log.Debug(
-                                $"VVUP Custom Roles: Validation check failed | {enumerator.Current.StartTeam} {enumerator.Current.Chance}% || {r}");
+                                $"VVUP Custom Roles: Validation check failed | {enumerator.Current.StartTeam} {enumerator.Current.Chance}% || {random}");
                             continue;
                         }
 
-                        Log.Debug("VVUP Custom Roles: Returning a role!");
+                        Log.Debug($"VVUP Custom Roles: Returning a role! | {enumerator.Current.StartTeam} {enumerator.Current.Chance}% || {random}");
                         return (CustomRole)enumerator.Current;
                     }
                 }
