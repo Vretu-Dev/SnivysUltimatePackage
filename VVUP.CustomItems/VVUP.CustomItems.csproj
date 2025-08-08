@@ -34,9 +34,8 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Assembly-CSharp-Publicized">
-      <HintPath Condition="'$(OS)' == 'Windows_NT'">$(EXILED_REFERENCES)\Assembly-CSharp-Publicized.dll</HintPath>
-      <HintPath Condition="'$(OS)' != 'Windows_NT'">..\..\..\Exiled_Resources\Assembly-CSharp-Publicized.dll</HintPath>
+    <Reference Include="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ExMod.Exiled.9.7.2\lib\net48\Assembly-CSharp-Publicized.dll</HintPath>
     </Reference>
     <Reference Include="Assembly-CSharp-firstpass">
       <HintPath Condition="'$(OS)' == 'Windows_NT'">$(EXILED_REFERENCES)\Assembly-CSharp-firstpass.dll</HintPath>
