@@ -48,7 +48,6 @@ namespace VVUP.CustomRoles.Abilities.Active
 
             Exiled.Events.Handlers.Player.Hurting -= OnPlayerHurting;
             Exiled.Events.Handlers.Player.Shooting -= OnPlayerShooting;
-            Exiled.Events.Handlers.Player.UsingItem -= OnPlayerUsingItem;
             Exiled.Events.Handlers.Player.DroppingItem -= OnPlayerDropping;
             Exiled.Events.Handlers.Player.PickingUpItem -= OnPlayerPickingUp;
             Exiled.Events.Handlers.Player.UsingItem -= OnPlayerUsingItem;
