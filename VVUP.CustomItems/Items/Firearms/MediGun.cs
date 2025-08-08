@@ -84,8 +84,12 @@ namespace VVUP.CustomItems.Items.Firearms
                 return;
             if (ev.Player.Role.Team == ev.Target.Role.Team)
             {
-                float amount = ev.Damage * HealingModifer;
-                ev.Player.Heal(amount);
+                float amount;
+                ev.CanHurt = false;
+                if (Server.FriendlyFire)
+                    amount = (ev.Damage + ev.Damage) * HealingModifer;
+                else
+                    amount = ev.Damage * HealingModifer;
                 Log.Debug($"VVUP Custom Items: Medigun healing {ev.Target.Nickname} for {amount}");
                 if (ev.Target.Health >= ev.Target.MaxHealth && ev.Target.ArtificialHealth < MaxAhpAmount)
                 {
@@ -95,7 +99,6 @@ namespace VVUP.CustomItems.Items.Firearms
                     ev.Target.AddAhp(amount, MaxAhpAmount, decay);
                     Log.Debug($"VVUP Custom Items: Medigun adding {amount} AHP to {ev.Target.Nickname}");
                 }
-                ev.CanHurt = false;
                 ev.Player.ShowHitMarker();
             }
             else if (ev.Target.Role == RoleTypeId.Scp0492 && HealZombies)

@@ -191,5 +191,10 @@ namespace VVUP.CustomItems.Items.Firearms
                 }
             }
         }
+        protected override void OnReloaded(ReloadedWeaponEventArgs ev)
+        {
+            Log.Debug($"VVUP Custom Items: Grenade Launcher Impact: {ev.Player.Nickname} reloaded the Grenade Launcher Impact setting Magazing Ammo to {ClipSize}.");
+            ev.Firearm.MagazineAmmo = ClipSize;
+        }
     }
 }
