@@ -70,6 +70,7 @@ namespace VVUP.CustomRoles
             Config.CustomRolesConfig.SpeedsterZombies.Register();
             Config.CustomRolesConfig.TeleportZombies.Register();
             Config.CustomRolesConfig.SoundBreaker173.Register();
+            Config.CustomRolesConfig.Replicant.Register();
 
             foreach (CustomRole role in CustomRole.Registered)
             {

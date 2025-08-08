@@ -108,6 +108,7 @@
     <Compile Include="Abilities\Active\HealingMist.cs" />
     <Compile Include="Abilities\Active\RemoveDisguise.cs" />
     <Compile Include="Abilities\Active\RevivingMist.cs" />
+    <Compile Include="Abilities\Active\Replicator.cs" />
     <Compile Include="Abilities\Active\SoundBreaker.cs" />
     <Compile Include="Abilities\Active\Teleport.cs" />
     <Compile Include="Abilities\Passive\AbilityRemover.cs" />
@@ -143,6 +144,7 @@
     <Compile Include="Plugin.cs" />
     <Compile Include="Roles\Chaos\A7Chaos.cs" />
     <Compile Include="Roles\Chaos\CiPhantom.cs" />
+    <Compile Include="Roles\Chaos\Replicant.cs" />
     <Compile Include="Roles\Chaos\CISpy.cs" />
     <Compile Include="Roles\Chaos\JuggernautChaos.cs" />
     <Compile Include="Roles\Chaos\Nightfall.cs" />
