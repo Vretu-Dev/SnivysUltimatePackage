@@ -25,12 +25,13 @@ namespace VVUP.CustomRoles.Abilities.Active
             startPos[player] = player.Position;
 
             Npc dummy = Npc.Spawn(player.Nickname, player.Role.Type, player.Position);
-            dummy.CustomInfo = player.CustomInfo;
             decoys[player] = dummy;
 
             Exiled.Events.Handlers.Player.Hurting += OnPlayerHurting;
             Exiled.Events.Handlers.Player.Shooting += OnPlayerShooting;
             Exiled.Events.Handlers.Player.UsingItem += OnPlayerUsingItem;
+            Exiled.Events.Handlers.Player.DroppingItem += OnPlayerDropping;
+            Exiled.Events.Handlers.Player.PickingUpItem += OnPlayerPickingUp;
             Exiled.Events.Handlers.Player.Dying += OnDummyDying;
         }
 
@@ -47,6 +48,8 @@ namespace VVUP.CustomRoles.Abilities.Active
 
             Exiled.Events.Handlers.Player.Hurting -= OnPlayerHurting;
             Exiled.Events.Handlers.Player.Shooting -= OnPlayerShooting;
+            Exiled.Events.Handlers.Player.DroppingItem -= OnPlayerDropping;
+            Exiled.Events.Handlers.Player.PickingUpItem -= OnPlayerPickingUp;
             Exiled.Events.Handlers.Player.UsingItem -= OnPlayerUsingItem;
             Exiled.Events.Handlers.Player.Dying -= OnDummyDying;
         }
@@ -67,6 +70,18 @@ namespace VVUP.CustomRoles.Abilities.Active
         }
 
         private void OnPlayerUsingItem(UsingItemEventArgs ev)
+        {
+            if (decoys.ContainsKey(ev.Player))
+                ev.IsAllowed = false;
+        }
+
+        private void OnPlayerDropping(DroppingItemEventArgs ev)
+        {
+            if (decoys.ContainsKey(ev.Player))
+                ev.IsAllowed = false;
+        }
+
+        private void OnPlayerPickingUp(PickingUpItemEventArgs ev)
         {
             if (decoys.ContainsKey(ev.Player))
                 ev.IsAllowed = false;
