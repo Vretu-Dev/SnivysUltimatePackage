@@ -12,7 +12,7 @@ namespace VVUP.ServerEvents.ServerEventsCommands.EventCommands
         public string Command { get; } = "ItemRandomizer";
         public string[] Aliases { get; } = { "Randomizer", "ItemRandom", "IR" };
         public string Description { get; } = "Starts item randomizer event";
-        public bool Execute(ArraySegment<string> arguments, ICommandSender sender, [UnscopedRef] out string response)
+        public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
             if (!sender.CheckPermission("vvevents.rund"))
             {
