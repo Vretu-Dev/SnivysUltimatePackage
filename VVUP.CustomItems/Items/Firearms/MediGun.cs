@@ -87,7 +87,7 @@ namespace VVUP.CustomItems.Items.Firearms
                 float amount;
                 ev.CanHurt = false;
                 if (Server.FriendlyFire)
-                    amount = (ev.Damage + ev.Damage) * HealingModifer;
+                    amount = (ev.Damage * 2) * HealingModifer;
                 else
                     amount = ev.Damage * HealingModifer;
                 Log.Debug($"VVUP Custom Items: Medigun healing {ev.Target.Nickname} for {amount}");
