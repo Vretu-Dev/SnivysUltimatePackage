@@ -4,10 +4,7 @@ Snivy's Ultimate Package contains all of the plugins I have made into one mega p
 
 # Installing this plugin
 > [!IMPORTANT]
-> In releases, there is 2 versions available, `SnivysUltimatePackage.dll` and `SnivysUltimatePackageOneConfig.dll`. I would advise using `SnivysUltimatePackage.dll`, due to how many config options there are, mainly with Custom Items and Roles, `SnivysUltimatePackage.dll` seperates each of their configs into a file per section. (I.E. all the custom item config stuff is together and its just that in a file). Some servers may not play nice with `SnivysUltimatePackage.dll` and may throw null pointer errors and things may not work as intended. If this happens, you can try `SnivysUltimatePackageOneConfig.dll` which throws everyone into one config, either your `(port)-config.yml` (Exiled Combined Configs) or `Plugins/VVUltimatePluginPackageOneConfig/(port).yml` (Exiled Seperated Configs)
-
-> [!CAUTION]
-> There is a check now that detects if both plugin versions are on the server at the same time. If the server starts and both are present, both plugins will disable. This is due to both `SnivysUltimatePackage.dll` and `SnivysUltimatePackageOneConfig.dll` will try to race eachother for enabling stuff. Just remove one of them from your server and restart.
+> In releases, you will find multiple .dll files, this allows you to pick and choose what you want to have on your server. `VVUP.Base` **IS REQUIRED** for any of the other modules to load. You can find what everything else does in the Plugin List below.
 
 # Plugin List:
 
