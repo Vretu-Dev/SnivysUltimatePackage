@@ -108,7 +108,7 @@
         <Compile Include="Plugin.cs" />
     </ItemGroup>
     <ItemGroup>
-      <PackageReference Include="ExMod.Exiled" Version="9.7.2" />
+      <PackageReference Include="ExMod.Exiled" Version="9.8.0" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
     <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
