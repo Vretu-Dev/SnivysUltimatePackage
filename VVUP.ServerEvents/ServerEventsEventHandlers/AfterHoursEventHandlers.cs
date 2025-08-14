@@ -22,10 +22,7 @@ namespace VVUP.ServerEvents.ServerEventsEventHandlers
             Plugin.ActiveEvent += 1;
             _ahStarted = true;
             Log.Debug("VVUP Server Events, After Hours: Dimming the lights, reducing tesla activation chance, reducing intercom time");
-            foreach (Room room in Room.List)
-            {
-                room.Color = new Color(0.25f, 0.25f, 0.25f);
-            }
+            Map.ChangeLightsColor(new Color(0.25f, 0.25f, 0.25f));
             PlayerEvent.TriggeringTesla += Plugin.Instance.ServerEventsMainEventHandler.OnTeslaActivationAh;
             Intercom.SpeechRemainingTime = _config.IntercomTime;
             Cassie.MessageTranslated(_config.StartEventCassieMessage, _config.StartEventCassieText);
@@ -55,6 +52,7 @@ namespace VVUP.ServerEvents.ServerEventsEventHandlers
         {
             if (!_ahStarted) return;
             PlayerEvent.TriggeringTesla -= Plugin.Instance.ServerEventsMainEventHandler.OnTeslaActivationAh;
+            Map.ResetLightsColor();
             _ahStarted = false;
             Timing.KillCoroutines(_afterHoursHandle);
             Plugin.ActiveEvent -= 1;
