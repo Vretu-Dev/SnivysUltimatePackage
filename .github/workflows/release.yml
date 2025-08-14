@@ -39,10 +39,21 @@ jobs:
       - name: Build
         run: msbuild.exe ${{ github.workspace }}/SnivysUltimatePackage.sln /p:Configuration=Release /p:Platform="Any CPU"
 
+      - name: Gather only plugin DLLs
+        shell: pwsh
+        run: |
+          $outputDir = Join-Path $env:GITHUB_WORKSPACE "SnivysUltimatePackage\Build\Release"
+          New-Item -ItemType Directory -Force -Path $outputDir | Out-Null
+
+          Get-ChildItem -Path $env:GITHUB_WORKSPACE -Recurse -Filter "VVUP.*.dll" |
+            Copy-Item -Destination $outputDir -Force
+
+          Write-Host "Copied plugin DLLs to $outputDir"
+          Get-ChildItem $outputDir
+
       - name: Upload built plugins to Release
         uses: softprops/action-gh-release@v1
         with:
-          files: |
-            SnivysUltimatePackage/Build/Release/**
+          files: SnivysUltimatePackage/Build/Release/**
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
