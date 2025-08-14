@@ -43,23 +43,22 @@ jobs:
         shell: pwsh
         run: |
           # Create output directory
-          $outputDir = Join-Path $env:GITHUB_WORKSPACE "release-artifacts"
+          $outputDir = Join-Path $env:GITHUB_WORKSPACE "artifacts"
           New-Item -ItemType Directory -Force -Path $outputDir | Out-Null
           
-          # Find all VVUP DLLs in bin/Release directories
-          Get-ChildItem -Path $env:GITHUB_WORKSPACE -Recurse -Include "VVUP.*.dll" -Directory "bin\Release" |
-            ForEach-Object {
-              Write-Host "Found plugin: $_"
-              Copy-Item -Path $_ -Destination $outputDir -Force
-            }
+          # Find all VVUP DLLs in the build output
+          Get-ChildItem -Path $env:GITHUB_WORKSPACE -Recurse -Filter "VVUP.*.dll" | ForEach-Object {
+            Write-Host "Found plugin: $($_.FullName)"
+            Copy-Item -Path $_.FullName -Destination $outputDir -Force
+          }
           
-          # Show what we found
-          Write-Host "Files ready for upload:"
+          # List files found
+          Write-Host "Artifacts ready for upload:"
           Get-ChildItem $outputDir
 
       - name: Upload built plugins to Release
         uses: softprops/action-gh-release@v1
         with:
-          files: release-artifacts/*
+          files: artifacts/*
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
