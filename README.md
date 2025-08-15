@@ -24,11 +24,11 @@ Snivy's Ultimate Package contains all of the plugins I have made into one mega p
 
 # [Round Start Changes](https://github.com/SnivyFilms/SnivysUltimatePackage/wiki/Round-Start-Changes)
 
-# [Micro Evaporates Players](https://github.com/SnivyFilms/SnivysUltimatePackage/wiki/Micro-Evaporates-Players)
+# [Weapon Evaporates Players](https://github.com/SnivyFilms/SnivysUltimatePackage/wiki/Weapon-Evaporates-Players)
 
 # [Flamingo Adjustments](https://github.com/SnivyFilms/SnivysUltimatePackage/wiki/Flamingo-Adjustments)
 
-# [SCP-1576 Spectator Viewer](https://github.com/SnivyFilms/SnivysUltimatePackage/wiki/SCP%E2%80%901576-Spectator-Viewer)
+# [SCP Changes](https://github.com/SnivyFilms/SnivysUltimatePackage/wiki/SCP-Changes)
 
 # [Voting Commands](https://github.com/SnivyFilms/SnivysUltimatePackage/wiki/Voting-Commands)
 
